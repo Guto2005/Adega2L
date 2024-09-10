@@ -11,10 +11,18 @@ body {
     padding: 0;
     display: flex;
     background-color: #000000;
+    flex-direction: column;
+    color: white;
+    align-items: center;
 }
 
 header {
     width: 100%;
+    height: fit-content;
+    display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: space-evenly;
 }
 
 a i {
@@ -22,8 +30,25 @@ a i {
 }
 
 img {
-    height: 100%;
-    width: 20%;
+    height: 80%;
+    width: 25%;
+}
+
+li {
+    list-style-type: none;
+}
+
+.logotipo {
+    display: flex;
+    width: 60%;
+    gap: 64px;
+}
+
+.link-carrinho {
+    display: flex;
+    text-decoration: none;
+    color: goldenrod;
+    align-items: center;   
 }
 
 

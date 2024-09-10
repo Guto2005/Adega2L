@@ -8,8 +8,8 @@
 </head>
 <body>
 <header>
-    <a href="index.php"><img src="assets/img/Image.png" alt="logo"></a> 
-    <a href="cart.php"><i class="fa-solid fa-cart-shopping">Ir para o carrinho</i></a>
+    <a class="logotipo" href="index.php"><img src="assets/img/Image.png" alt="logo"></a> 
+    <a class="link-carrinho" href="cart.php"><i class="fa-solid fa-cart-shopping">Ir para o carrinho</i></a>
 </header>
 </body>
 </html>
