@@ -1,21 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Adega2L</title>
-    <link rel="stylesheet" href="assets/css/style.css" />
-  </head>
-  <body>
+
     <?php include 'header.php'?>
     <main class="container">
         <div class="carrossel-container">
     <div class="carrossel">
-        <div class="banner" id="banner1">Banner 1</div>
-        <div class="banner" id="banner2">Banner 2</div>
-        <div class="banner" id="banner3">Banner 3</div>
-        <div class="banner" id="banner4">Banner 4</div>
-        <div class="banner" id="banner5">Banner 5</div>
+        <div class="banner">Banner 
+            <img src="" alt="imagem0">
+            <img src="" alt="imagem1">
+            <img src="" alt="imagem2">
+            <img src="" alt="imagem3">
+            <img src="" alt="imagem4">
+        </div>
     </div>
     <div class="carrossel-controls">
         <button class="control-btn" data-target="0"></button>

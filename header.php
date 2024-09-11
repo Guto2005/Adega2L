@@ -19,6 +19,3 @@
                 <li><a href="cigarros.php">Cigarros</a></li>
             </ul>
         </nav>
-</body>
-<script src="https://kit.fontawesome.com/149b000a36.js" crossorigin="anonymous"></script>
-</html>

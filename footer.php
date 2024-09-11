@@ -1,12 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="assets/css/style.css">
-    <title>Adega2L</title>
-</head>
-<body>
 <footer>
         <div class="footer-container">
             <div class="footer-left">
@@ -28,4 +19,5 @@
         </div>
     </footer>
 </body>
+<script src="https://kit.fontawesome.com/149b000a36.js" crossorigin="anonymous"></script>
 </html>

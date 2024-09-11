@@ -33,7 +33,7 @@ header {
     display: flex;
     height: 100%;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: space-between;
     border-bottom: 2px solid var(--cor-dourado);
     padding-bottom: 20px;
 }
@@ -48,8 +48,7 @@ a i {
 }
 
 img {
-    height: 80%;
-    width: 25%;
+    width:100%;
 }
 
 li {
@@ -57,10 +56,9 @@ li {
 }
 
 .logotipo {
-    display: flex;
-    width: 60%;
-    gap: 64px;
-    padding-right: 50px;
+    display: inline-block;
+    width:20%;
+    padding-left: 40px;
 }
 
 .container {
@@ -76,6 +74,7 @@ li {
     color: var(--cor-dourado);
     align-items: center;   
     font-size: 40px;
+    padding-right: 40px;
 }
 
 #cart-icon {
