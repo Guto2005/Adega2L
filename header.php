@@ -8,8 +8,8 @@
 </head>
 <body>
 <header>
-    <a class="logotipo" href="index.php"><img src="assets/img/Image.png" alt="logo"></a> 
-    <a class="link-carrinho" href="cart.php"><i class="fa-solid fa-cart-shopping" id="cart-icon"><h3 class="carrinho-titulo">Minhas Compras</h3></i></a>
+    <a class="logotipo" href="../index.php"><img src="assets/img/Image.png" alt="logo"></a> 
+    <a class="link-carrinho" href="./cart.php"><i class="fa-solid fa-cart-shopping" id="cart-icon"><h3 class="carrinho-titulo">Minhas Compras</h3></i></a>
 </header>
 <nav class="nav-products">
             <ul class="nav-list">

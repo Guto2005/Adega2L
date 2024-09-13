@@ -1,3 +1,5 @@
+/*Comandos sem classe*/
+
 :root {
     --cor-dourado: #FFD700; /* Código hexadecimal para dourado */
     --cor-preto: #000000;   /* Código hexadecimal para preto */
@@ -31,7 +33,6 @@ header {
     width: 100%;
     height: fit-content;
     display: flex;
-    height: 100%;
     align-items: center;
     justify-content: space-between;
     border-bottom: 2px solid var(--cor-dourado);
@@ -54,6 +55,8 @@ img {
 li {
     list-style-type: none;
 }
+
+/*Classificados*/
 
 .logotipo {
     display: inline-block;
@@ -176,10 +179,29 @@ li {
     border: 2px solid var(--cor-dourado);
 }
 
+.produtos {
+    background-color: var(--cor-preto-claro);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 20px;
+    color: var(--cor-branco);
+    width: 90%;
+    margin: 0 auto;
+    text-align: center;
+    gap: 32px;
+    border: 2px solid var(--cor-dourado);
+}
+
 .destaque-titulo {
     color: var(--cor-branco);
     font-family: 'Sans-Variable';
     
+}
+
+.catalogo-titulo {
+    color: var(--cor-branco);
+    font-family: 'Sans-Variable';
 }
 
 
@@ -250,6 +272,15 @@ li {
     padding: 0;
     margin: 0;
     list-style-type: none;
+}
+
+.catalogo{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    gap: 20px;
+    justify-content: center;
+    overflow: hidden;
 }
 
 .card-produto {

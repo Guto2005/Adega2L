@@ -1,16 +1,24 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="assets/css/style.css">
-    <title>Document</title>
-</head>
 <body>
-    <?php include 'header.php'?>
+    <?php include 'header.php' ?>
 
-    <!--Comece o código aqui dentro :) -->
+    <body>
+        <main class="container">
+            <div class="carrinho produtos">
+                <h1>Seu Carrinho</h1>
 
-    <?php include 'footer.php'?>
-</body>
-</html>
+                <!-- Formulário para adicionar produtos ao carrinho -->
+                <h2>Produtos Disponíveis</h2>
+                <!-- Exibição dos itens do carrinho -->
+                <h2>Itens no Carrinho</h2>
+                <!-- Botão para finalizar a compra -->
+                <h2>Finalizar Compra</h2>
+                <form action="checkout.php" method="post">
+                    <input type="submit" value="Finalizar Compra">
+                </form>
+            </div>
+
+        </main>
+        <?php include 'footer.php' ?>
+    </body>
+
+    </html>

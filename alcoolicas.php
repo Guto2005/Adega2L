@@ -1,15 +1,95 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="assets/css/style.css">
-    <title>Document</title>
-</head>
-<body>
-    <?php include 'header.php'?>
+<?php include 'header.php'?>
 
-    <!--Comece o código aqui dentro :) -->
+    <main class="container">
+        <div class="produtos">
+        <h2 class="destaque-titulo">MAIS VENDIDOS DA SEMANA</h2>
+        <div class="destaques-alcoolicas">
+            <h2 class="destaque-titulo">BEBIDAS ALCOÓLICAS</h2>
+            <ul>
+                <li class="card-produto">
+                    <h2>nome</h2>
+                    <p>Preço:R$</p>
+                    <img src="" alt="">
+                </li>
+                <li class="card-produto">
+                    <h2>nome</h2>
+                    <p>Preço:R$</p>
+                    <img src="" alt="">
+                </li>
+                <li class="card-produto">
+                    <h2>nome</h2>
+                    <p>Preço:R$</p>
+                    <img src="" alt="">
+                </li>
+                <li class="card-produto">
+                    <h2>nome</h2>
+                    <p>Preço:R$</p>
+                    <img src="" alt="">
+                </li>
+                <li class="card-produto">
+                    <h2>nome</h2>
+                    <p>Preço:R$</p>
+                    <img src="" alt="">
+                </li>
+            </ul> 
+            <h2 class="catalogo-titulo">CATÁLOGO</h2>
+            <div class="catalogo">
+            <ul>
+                <li class="card-produto">
+                    <h2>nome</h2>
+                    <p>Preço:R$</p>
+                    <img src="" alt="">
+                </li>
+                <li class="card-produto">
+                    <h2>nome</h2>
+                    <p>Preço:R$</p>
+                    <img src="" alt="">
+                </li>
+                <li class="card-produto">
+                    <h2>nome</h2>
+                    <p>Preço:R$</p>
+                    <img src="" alt="">
+                </li>
+                <li class="card-produto">
+                    <h2>nome</h2>
+                    <p>Preço:R$</p>
+                    <img src="" alt="">
+                </li>
+                <li class="card-produto">
+                    <h2>nome</h2>
+                    <p>Preço:R$</p>
+                    <img src="" alt="">
+                </li>
+                <li class="card-produto">
+                    <h2>nome</h2>
+                    <p>Preço:R$</p>
+                    <img src="" alt="">
+                </li>
+                <li class="card-produto">
+                    <h2>nome</h2>
+                    <p>Preço:R$</p>
+                    <img src="" alt="">
+                </li>
+                <li class="card-produto">
+                    <h2>nome</h2>
+                    <p>Preço:R$</p>
+                    <img src="" alt="">
+                </li>
+                <li class="card-produto">
+                    <h2>nome</h2>
+                    <p>Preço:R$</p>
+                    <img src="" alt="">
+                </li>
+                <li class="card-produto">
+                    <h2>nome</h2>
+                    <p>Preço:R$</p>
+                    <img src="" alt="">
+                </li>
+            </ul> 
+            </div>
+        </div>
+    </div>
+    </main>
 
     <?php include 'footer.php'?>
 </body>
