@@ -52,7 +52,7 @@
             </ul>
         </div>
         <div class="destaques-alcoolicas">
-            <h2 class="destaque-titulo">BEBIDAS ALCOÓLICOS</h2>
+            <h2 class="destaque-titulo">BEBIDAS ALCOÓLICAS</h2>
             <ul>
                 <li class="card-produto">
                     <h2>nome</h2>

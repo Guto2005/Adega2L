@@ -64,6 +64,53 @@ li {
     padding-left: 40px;
 }
 
+.search-bar {
+    display: flex;
+    border: 2px solid var(--cor-branco);
+    border-radius: 4px; /* Isso arredonda os cantos, opcional */
+    width: 30%;
+}
+
+.search-placeholder {
+    font-size: 1.6rem;
+    background-color: var(--cor-branco);
+    border: none;
+    width: 90%;
+}
+
+.search-placeholder::placeholder {
+    color: var(--cor-preto);
+    font-family: 'Sans-Italic';
+}
+
+.botao-enviar {
+    width: 10%;
+    font-size: 1.0rem;  
+    border: none; 
+    background-color: var(--cor-branco);
+}
+
+.botao-enviar :hover{
+    color: var(--cor-dourado);
+}
+
+.profile-link {
+    display: flex;
+    font-size: 1.2rem;
+    width: 10%;
+    align-items: center;
+    color: var(--cor-dourado);
+    gap: 10px;
+}
+
+.perfil-titulo {
+    font-family: 'Sans-Italic';
+}
+
+#user-icon {
+    font-size: 1.6rem;
+}
+
 .container {
     display: flex;
     flex-direction: column;
@@ -84,7 +131,6 @@ li {
     font-size: 30px;
     display: flex;
     align-items: center;
-    border: 2px solid var(--cor-dourado);
    
 }
 
@@ -92,8 +138,14 @@ li {
     font-size: 20px;
     color: var(--cor-dourado);
     font-family: 'Sans-Italic';
+    padding-left: 10px;
 }
 
+.nav-products {
+    display: flex;
+    width: 90%;
+    align-items: center;
+}
 
 .nav-list {
     display: flex;
@@ -101,7 +153,7 @@ li {
     font-size: 20px;
     padding: 20px;
     margin: 0 auto;
-    width: fit-content;
+    width: 80%;
     background-color: var(--cor-preto);
     justify-content: center;
     border: 2px solid var(--cor-dourado);
