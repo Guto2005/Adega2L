@@ -73,9 +73,18 @@ li {
     background: #FFEA00;
 }
 
-.login-tittle{
+.login-title{
     justify-content: center;
     display: flex;
+}
+
+.login-links{
+    font-size: medium;
+    align-items: center;
+    color: #3DB4FF;
+    margin: auto;
+    display: inherit;
+    flex-direction: inherit;
 }
 
 .form-login{
@@ -88,8 +97,6 @@ li {
     background: rgba(0, 0, 0, 0.50);
     margin:20px;
     padding: 70px;
-    padding-bottom: 100px;
-    padding-top:100px;
 }
 
 .login-decoration{

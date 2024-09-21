@@ -39,6 +39,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <title>Cadastrar Usuário</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/534bfbb4de.js" crossorigin="anonymous"></script>
 
     <link rel="stylesheet" href="./assets/css/style.css">
 </head>
@@ -46,13 +47,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <div class="login-decoration">
     <form class="form-login" method="POST">
-    <h1 class="login-title">Adega 2L</h1>
-        <input type="text" id="usuario" placeholder="Usuário" name="usuario" required>
+    <h1 class="login-title">Adega2L</h1>
+        <input type="text" id="usuario" placeholder="Usuário" name="usuario" required>  
         <input type="password" id="senha" placeholder="Senha" name="senha" required>
-        <button class="login-button" type="submit">Entrar</button>
+        <button class="login-button" 
+        type="submit">Entrar</button>        
+<div class="login-links">
+        <p>Esqueceu sua senha?</p>
+        <p>Cadastre-se</p>
+</div>
     </form>
-    <p>Esqueceu sua senha?</p>
-    <p>Cadastre-se</p>
+    
 </div>
 
 
