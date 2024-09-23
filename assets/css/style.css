@@ -303,14 +303,17 @@ li {
     position: fixed; /* Fixa o modal na tela */
     z-index: 1000; /* Garante que o modal fique acima de outros elementos */
     left: 0;
-    top: 0;
+    bottom: 50px;
     width: 100%; /* Largura total */
     height: 100%; /* Altura total */
+    margin: 0 auto;
     background-color: rgba(0, 0, 0, 0.5); /* Fundo semi-transparente */
 }
 
 
 .modal-content {
+    display: flex;
+    flex-direction: column;
     background-color: var(--cor-preto-claro); /* Cor de fundo do conteúdo do modal */
     margin: 5% auto; /* Margem para centralizar o modal */
     padding: 30px; /* Aumenta o espaçamento interno */
@@ -322,9 +325,53 @@ li {
     box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3); /* Sombra */
     border-radius: 8px; /* Bordas arredondadas */
     color: rgb(255, 255, 255);
+    align-items: center;
 }
 
+.modal-content button {
+    cursor: pointer; /* Cursor pointer para indicar que é clicável */
+    float: right; /* Alinha o botão de fechar à direita */
+    font-size: 20px; /* Tamanho do botão de fechar */
+    color: #ffffff; /* Cor do botão de fechar */
+    background-color: rgb(40, 167, 15);
+    padding: 20px;
+    border-radius: 20px;
+    width: 50%;
+    border: none;
+}
+
+.modal-titulo {
+    font-size: 2.0rem;
+    color: var(--cor-dourado);
+}
+
+.perfil-campos {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 32px;
+
+}
+
+.campo-perfil {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.campo-perfil input {
+    font-size: 1.4rem;
+}
+
+.campo-perfil label {
+    font-size: 1.4rem;
+}
+
+
+
 .close-btn {
+    display: flex;
+    justify-content: center;
     cursor: pointer; /* Cursor pointer para indicar que é clicável */
     float: right; /* Alinha o botão de fechar à direita */
     font-size: 20px; /* Tamanho do botão de fechar */
@@ -332,6 +379,8 @@ li {
     background-color: red;
     padding: 20px;
     border-radius: 20px;
+    width: 50%;
+
 }
 
 .close-btn:hover,

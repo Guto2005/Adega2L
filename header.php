@@ -25,38 +25,62 @@
 </header>
 <div id="perfil-modal" class="modal">
         <div class="modal-content">
-            <span class="close-btn">Sair</span>
-            <h2>Perfil</h2>
-            <div class="option-list">
-                <li><a href="#informacoes">Informações</a></li>
-                <li><a href="#configuracoes">Configurações</a></li>
-                <li></li>
-                <li></li>
-            </div>
-                
-                
-           
-            <form>
-                <div>
+            <h2 class="modal-titulo">Perfil</h2>
+            <p>AQUI VOCE PODE ALTERAR SUAS INFORMAÇÕES EM CASO DE ERRO.</p>
+            <form class="perfil-campos">
+                <div class="campo-perfil">
                     <label for="nome">Nome:</label>
                     <input type="text" id="nome" name="nome" required>
                 </div>
-                <div>
+                <div class="campo-perfil">
                     <label for="email">E-mail:</label>
                     <input type="email" id="email" name="email" required>
                 </div>
-                <div>
+                <div class="campo-perfil">
+                    <label for="celular">Celular:</label>
+                    <input type="celular" id="celular" name="celular" required>
+                </div>
+                <div class="campo-perfil">
                     <label for="senha">Senha:</label>
                     <input type="password" id="senha" name="senha" required>
                 </div>
+                <div class="campo-perfil">
+                    <label for="cpf">CPF:</label>
+                    <input type="cpf" id="cpf" name="cpf" required>
+                </div>
+                <div class="campo-perfil">
+                    <label for="cep">CEP:</label>
+                    <input type="cep" id="cep" name="cep" required>
+                </div>
+                <div class="campo-perfil">
+                    <label for="endereco">Endereço:</label>
+                    <input type="endereco" id="endereco" name="endereco" required>
+                </div>
+                <div class="campo-perfil">
+                    <label for="numero">Numero:</label>
+                    <input type="numero" id="numero" name="numero" required>
+                </div>
+                <div class="campo-perfil">
+                    <label for="logradouro">Logradouro:</label>
+                    <input type="logradouro" id="logradouro" name="logradouro" required>
+                </div>
+                <div class="campo-perfil">
+                    <label for="tipo">Tipo(apartamento,casa...):</label>
+                    <input type="tipo" id="tipo" name="tipo" required>
+                </div>
+                <div class="campo-perfil">
+                    <label for="complemento">Complemento:</label>
+                    <input type="complemento" id="complemento" name="complemento" required>
+                </div>
                 <button type="submit">Salvar</button>
+                <span class="close-btn">Sair</span>
             </form>
         </div>
     </div>
 <nav class="nav-products">
             <ul class="nav-list">
                 <li><a href="bebidas.php">Bebidas</a></li>
-                <li><a href="alcoolicas.php">BebidasAlcoólicas</a></li>
+                <li><a href="destilados.php">Destilados</a></li>
                 <li><a href="snacks.php">Snacks</a></li>
                 <li><a href="cigarros.php">Cigarros</a></li>
             </ul>
