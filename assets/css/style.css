@@ -63,8 +63,7 @@ li {
     align-items: flex-start;
     background-image: url(../img/Image.png);
     background-repeat: no-repeat;
-    background-size:contain;
-    background-position: 27rem;
+    background-position: 50rem;
     overflow-y: hidden;
 }
 
@@ -85,6 +84,7 @@ li {
     margin: auto;
     display: inherit;
     flex-direction: inherit;
+    padding: 5px;
 }
 
 .form-login{
@@ -101,7 +101,7 @@ li {
 
 .login-decoration{
     display: flex;
-    width: 720px;
+    width: 800px;
     height: 1024px;
     padding: 242px 95px;
     flex-direction:column;

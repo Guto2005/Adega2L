@@ -53,8 +53,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <button class="login-button" 
         type="submit">Entrar</button>        
 <div class="login-links">
-        <p>Esqueceu sua senha?</p>
-        <p>Cadastre-se</p>
+<a class="login-links" href="#">Esqueceu sua senha?</a>
+<a class="login-links" href="#">Cadastre-se</a>
 </div>
     </form>
     
