@@ -58,6 +58,58 @@ li {
 
 /*Classificados*/
 
+/*Tela de Login*/
+.login-container{ 
+    align-items: flex-start;
+    background-image: url(../img/Image.png);
+    background-repeat: no-repeat;
+    background-size:contain;
+    background-position: 27rem;
+    overflow-y: hidden;
+}
+
+.login-button{
+    border-radius: 4px;
+    background: #FFEA00;
+}
+
+.login-title{
+    justify-content: center;
+    display: flex;
+}
+
+.login-links{
+    font-size: medium;
+    align-items: center;
+    color: #3DB4FF;
+    margin: auto;
+    display: inherit;
+    flex-direction: inherit;
+}
+
+.form-login{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    font-size: 1.6rem;
+    border-radius: 10px;
+    border: 2px solid #000;
+    background: rgba(0, 0, 0, 0.50);
+    margin:20px;
+    padding: 70px;
+}
+
+.login-decoration{
+    display: flex;
+    width: 720px;
+    height: 1024px;
+    padding: 242px 95px;
+    flex-direction:column;
+    align-items: center;
+    border: 1px solid #FFEA00;
+    background: rgba(91, 91, 91, 0.50);
+}
+
 .logotipo {
     display: inline-block;
     width:20%;
@@ -433,6 +485,8 @@ footer {
     margin-bottom: 20px;
     text-align: center;
 }
+
+
 
 
 
