@@ -23,14 +23,19 @@
 </div>  
     <a class="link-carrinho" href="./cart.php"><i class="fa-solid fa-cart-shopping" id="cart-icon"><h3 class="carrinho-titulo">Minhas Compras</h3></i></a>
 </header>
-<div id="profile-modal" class="modal">
+<div id="perfil-modal" class="modal">
         <div class="modal-content">
-            <span class="close-btn">&times;</span>
+            <span class="close-btn">Sair</span>
             <h2>Perfil</h2>
-            <nav>
-                <a href="#informacoes">Informações</a>
-                <a href="#configuracoes">Configurações</a>
-            </nav>
+            <div class="option-list">
+                <li><a href="#informacoes">Informações</a></li>
+                <li><a href="#configuracoes">Configurações</a></li>
+                <li></li>
+                <li></li>
+            </div>
+                
+                
+           
             <form>
                 <div>
                     <label for="nome">Nome:</label>
