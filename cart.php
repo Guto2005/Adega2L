@@ -19,6 +19,9 @@
 
         </main>
         <?php include 'footer.php' ?>
+
+        <!--O cliente não vai precisar de cadastro, após concluir a compra, ele precisa passar pelo formulário pra terminar a compra. -->
+
     </body>
 
     </html>
