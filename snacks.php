@@ -1,4 +1,5 @@
-<?php include 'header.php'?>
+<?php require __DIR__ .'/header.php'?>
+
 
     <main class="container">
         <div class="produtos">

@@ -1,4 +1,4 @@
-<?php include 'header.php'?>
+<?php require __DIR__ .'/header.php'?>
 <main class="container">
     <div class="carrossel-container">
         <div class="carrossel">
@@ -143,7 +143,7 @@
         </div>
     </div>
 </main>
-<?php include 'footer.php' ?>
+<?php require __DIR__ .'/footer.php'?>
 <script src="assets/scripts/script.js"></script>
 </body>
 <script src="https://kit.fontawesome.com/149b000a36.js" crossorigin="anonymous"></script>
