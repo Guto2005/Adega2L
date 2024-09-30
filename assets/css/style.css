@@ -18,7 +18,6 @@
 }
 
 body {
-    
     margin: 0;
     padding: 0;
     display: flex;
@@ -59,13 +58,14 @@ li {
 /*Classificados*/
 
 /*Tela de Login*/
-.login-container{ 
+.login-container {
     align-items: flex-start;
     background-image: url(../img/Image.png);
     background-repeat: no-repeat;
-    background-size:contain;
-    background-position: 27rem;
+    background-position: center;
+    background-position-x: right;
     overflow-y: hidden;
+    width: 100%;
 }
 
 .login-button{
@@ -85,9 +85,10 @@ li {
     margin: auto;
     display: inherit;
     flex-direction: inherit;
+    padding: 5px;
 }
 
-.form-login{
+.form-login {
     display: flex;
     flex-direction: column;
     gap: 30px;
@@ -95,13 +96,15 @@ li {
     border-radius: 10px;
     border: 2px solid #000;
     background: rgba(0, 0, 0, 0.50);
-    margin:20px;
+    margin: 20px;
     padding: 70px;
+    width: 100%;
+    max-width: 400px; /* Limitar a largura do formulário */
 }
 
 .login-decoration{
     display: flex;
-    width: 720px;
+    width: 800px;
     height: 1024px;
     padding: 242px 95px;
     flex-direction:column;
@@ -490,7 +493,56 @@ footer {
     text-align: center;
 }
 
+/* Ajuste de Responsividade */
+@media (max-width: 873px) {
+    .login-container {
+        display: flex; /* Habilita o uso do flexbox */
+        justify-content: center; /* Centraliza horizontalmente */
+        align-items: center; /* Centraliza verticalmente */
+        height: 100vh; /* Define a altura para ocupar a tela toda */
 
+        background-position-x:center;
+    }
+
+    .login-decoration {
+        width: 90%; /* Largura maior em telas pequenas */
+        height: auto; /* Deixar altura automática */
+        padding: 20px; /* Reduzir padding */
+    }
+
+    .form-login {
+        padding: 40px; /* Reduzir padding */
+        font-size: 1.4rem; /* Reduzir tamanho da fonte */
+    }
+    
+    .login-title {
+        font-size: 2rem; /* Ajustar o tamanho do título */
+    }
+
+    .login-button {
+        font-size: 1.2rem; /* Ajustar tamanho do botão */
+    }    
+   
+}
+@media (max-width: 300px) {
+    .login-decoration {
+        max-width: 200px; /* Largura total em telas muito pequenas */
+        padding: 10px; /* Reduzir ainda mais o padding */
+    }
+
+    .form-login {
+        padding: 20px; /* Menos padding em telas muito pequenas */
+        font-size: 1.2rem; /* Reduzir ainda mais o tamanho da fonte */
+    }
+    
+    .login-title {
+        font-size: 1.5rem; /* Ajustar o tamanho do título */
+    }
+
+    .login-button {
+        font-size: 1rem; /* Ajustar tamanho do botão */
+    }    
+}
 
 
 
