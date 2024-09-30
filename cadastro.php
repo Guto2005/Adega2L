@@ -40,11 +40,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <title>Cadastrar Usuário</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
 </head>
 <body>
-<h1 class="titulo"> BEM VINDO A BIBLIOTECA0</h1>  
-<?php include 'cabecalho.php';?>
     <h1>Cadastrar Usuários</h1>
     <form method="POST">
         <label for="nome">Nome</label>
