@@ -12,7 +12,7 @@
 </head>
 <body>
 <header>
-    <a class="logotipo" href="src/index.php"><img src="/assets/img/Image.png" alt="logo"></a> 
+    <a class="logotipo" href="/index.php"><img src="./assets/img/Image.png" alt="logo"></a> 
     <div class="search-bar">
     <input class="search-placeholder" type="text" placeholder="Olá, O que você procura?" />
     <button class="botao-enviar" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
