@@ -29,17 +29,24 @@ body {
     color: white;
     align-items: center;
     gap: 32px;
+    padding-top: 80px; /* Adicione padding-top igual à altura do header */
 }
 
+
 header {
+    position: fixed; /* Torna o header fixo no topo */
+    top: 0; /* Posiciona o header no topo da página */
     width: 100%;
-    height: fit-content;
+    height: 250px; /* Altura fixa do header */
     display: flex;
     align-items: center;
     justify-content: space-between;
     border-bottom: 2px solid var(--cor-dourado);
-    padding-bottom: 20px;
+    padding: 0 40px; /* Ajuste o padding conforme necessário */
+    background-color: var(--cor-preto); /* Adicione uma cor de fundo para evitar transparência */
+    z-index: 1000; /* Garante que o header fique acima de outros elementos */
 }
+
 
 a {
     color: white;
@@ -48,10 +55,6 @@ a {
 
 a i {
     font-size: 20px;
-}
-
-img {
-    width: 100%;
 }
 
 li {
@@ -117,18 +120,17 @@ li {
     background: rgba(91, 91, 91, 0.50);
 }
 
-.logotipo {
-    display: inline-block;
-    width: 20%;
-    padding-left: 40px;
+.logotipo img {
+    height: 200px; /* Ajuste a altura do logotipo conforme necessário */
+    width: auto; /* Mantém a proporção do logotipo */
 }
 
 .search-bar {
     display: flex;
     border: 2px solid var(--cor-branco);
     border-radius: 4px;
-    /* Isso arredonda os cantos, opcional */
     width: 30%;
+    height: 40px; /* Defina uma altura fixa */
 }
 
 .search-placeholder {
@@ -136,7 +138,9 @@ li {
     background-color: var(--cor-branco);
     border: none;
     width: 90%;
+    height: 100%; /* Preenche a altura da barra de pesquisa */
 }
+
 
 .search-placeholder::placeholder {
     color: var(--cor-preto);
@@ -148,21 +152,24 @@ li {
     font-size: 1.0rem;
     border: none;
     background-color: var(--cor-branco);
+    height: 100%; /* Preenche a altura da barra de pesquisa */
 }
 
 .botao-enviar :hover {
     color: var(--cor-dourado);
 }
 
-.perfil-link {
+.perfil-link,
+.link-carrinho {
     display: flex;
-    font-size: 1.2rem;
-    width: 10%;
     align-items: center;
+    font-size: 1.2rem;
     color: var(--cor-dourado);
     gap: 10px;
-    padding-top: 20px;
+    height: 100%; /* Mantém os itens alinhados verticalmente */
+    padding-top: 20px; /* Remova este padding se não precisar */
 }
+
 
 .perfil-modal {
     color: black;
@@ -220,6 +227,7 @@ li {
     display: flex;
     width: 90%;
     align-items: center;
+    padding-top: 200px;
 }
 
 .nav-list {
@@ -252,16 +260,19 @@ li {
 
 .banner {
     position: relative;
-    left: 0px;
     min-width: 95%;
     box-sizing: border-box;
-    text-align: center;
-    padding: 60px 40px;
+    padding: 40px 20px;
     background-color: var(--cor-preto-claro);
     /* Cor de fundo do banner */
     color: var(--cor-branco);
-    
 }   
+
+.banner img {
+    width: 95%;
+    position: relative;
+    left: 40px;
+}
 
 .carrossel-controls {
     text-align: center;
@@ -632,6 +643,27 @@ footer {
         /* Ajustar tamanho do botão */
     }
 
+}
+
+@media (max-width: 600px) {
+    header {
+        flex-direction: column;
+        height: auto; /* Permite que o header se ajuste ao conteúdo */
+        padding: 10px; /* Reduz o padding */
+    }
+
+    .logotipo img {
+        height: 50px; /* Ajusta a altura do logotipo para telas menores */
+    }
+
+    .search-bar {
+        width: 100%; /* A barra de pesquisa ocupa 100% da largura */
+    }
+
+    .perfil-link,
+    .link-carrinho {
+        font-size: 1rem; /* Reduz o tamanho da fonte */
+    }
 }
 
 @media (max-width: 300px) {

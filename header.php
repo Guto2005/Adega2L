@@ -12,7 +12,7 @@
 </head>
 <body>
 <header>
-    <a class="logotipo" href="/index.php"><img src="./assets/img/Image.png" alt="logo"></a> 
+    <a class="logotipo" href="index.php"><img src="./assets/img/Image.png" alt="logo"></a> 
     <div class="search-bar">
     <input class="search-placeholder" type="text" placeholder="Olá, O que você procura?" />
     <button class="botao-enviar" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
@@ -25,7 +25,11 @@
     </button>
 </form>
 </div>  
-    <a class="link-carrinho" href="./cart.php"><i class="fa-solid fa-cart-shopping" id="cart-icon"><h3 class="carrinho-titulo">Minhas Compras</h3></i></a>
+<a class="link-carrinho" href="./cart.php">
+    <span class="carrinho-quantidade" id="cart-count">0</span> <!-- Índice do carrinho -->
+    <i class="fa-solid fa-cart-shopping" id="cart-icon"></i>
+    <h3 class="carrinho-titulo">Minhas Compras</h3>
+</a>
 </header>
 <div id="perfil-modal" class="modal">
         <div class="modal-content">
