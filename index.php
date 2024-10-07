@@ -1,23 +1,45 @@
-<?php include 'header.php'?>
+<?php require __DIR__ . '/header.php' ?>
 <main class="container">
-    <div class="carrossel-container">
-        <div class="carrossel">
-            <div class="banner">Banner
-                <img src="" alt="imagem0">
-                <img src="" alt="imagem1">
-                <img src="" alt="imagem2">
-                <img src="" alt="imagem3">
-                <img src="" alt="imagem4">
+<div class="carrossel-container">
+    <div class="carrossel" id="carrossel">
+        <div class="banner" id="banner1">
+            <div class="carrossel-navigation-left">
+                <button class="prev-btn">&lt;</button>
+            </div>
+            <img src="assets/img/Banner black friday ofertas preto amarelo.png" alt="banner1">
+            <div class="carrossel-navigation-right">
+                <button class="next-btn">&gt;</button>
             </div>
         </div>
-        <div class="carrossel-controls">
-            <button class="control-btn" data-target="0"></button>
-            <button class="control-btn" data-target="1"></button>
-            <button class="control-btn" data-target="2"></button>
-            <button class="control-btn" data-target="3"></button>
-            <button class="control-btn" data-target="4"></button>
+        
+        <div class="banner" id="banner2">
+            <div class="carrossel-navigation-left">
+                <button class="prev-btn">&lt;</button>
+            </div>
+            <img src="assets/img/Ofertas dia do consumidor neon amarelo e preto banner para mercado shops.png" alt="banner2">
+            <div class="carrossel-navigation-right">
+                <button class="next-btn">&gt;</button>
+            </div>
         </div>
+        
+        <div class="banner" id="banner3">
+            <div class="carrossel-navigation-left">
+                <button class="prev-btn">&lt;</button>
+            </div>
+            <img src="assets/img/Banner black friday ofertas preto amarelo.png" alt="banner3">
+            <div class="carrossel-navigation-right">
+                <button class="next-btn">&gt;</button>
+            </div>
+        </div>
+        <!-- Adicione mais banners conforme necessário -->
     </div>
+    <div class="carrossel-controls">
+        <button class="control-btn" data-index="0"></button>
+        <button class="control-btn" data-index="1"></button>
+        <button class="control-btn" data-index="2"></button>
+        <!-- Adicione mais botões conforme necessário -->
+    </div>
+</div>
 
     <div class="destaques">
         <h2 class="destaque-titulo">MAIS VENDIDOS DA SEMANA</h2>
@@ -143,10 +165,9 @@
         </div>
     </div>
 </main>
-<?php include 'footer.php' ?>
+<?php require __DIR__ . '/footer.php' ?>
 <script src="assets/scripts/script.js"></script>
 </body>
 <script src="https://kit.fontawesome.com/149b000a36.js" crossorigin="anonymous"></script>
 
 </html>
-

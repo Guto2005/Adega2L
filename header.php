@@ -1,14 +1,18 @@
+<?php require __DIR__ .'/config.php'?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="assets/css/style.css"/>
+    <link rel="stylesheet" href="./assets/css/style.css"/>
     <title>Adega2L</title>
 </head>
 <body>
 <header>
-    <a class="logotipo" href="index.php"><img src="assets/img/Image.png" alt="logo"></a> 
+    <a class="logotipo" href="/index.php"><img src="./assets/img/Image.png" alt="logo"></a> 
     <div class="search-bar">
     <input class="search-placeholder" type="text" placeholder="Olá, O que você procura?" />
     <button class="botao-enviar" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>

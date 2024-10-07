@@ -1,10 +1,13 @@
 /*Comandos sem classe*/
 
 :root {
-    --cor-dourado: #FFD700; /* Código hexadecimal para dourado */
-    --cor-preto: #000000;   /* Código hexadecimal para preto */
-    --cor-branco: #FFFFFF;  /* Código hexadecimal para branco */
-    --cor-preto-claro: #1f1f1f; 
+    --cor-dourado: #FFD700;
+    /* Código hexadecimal para dourado */
+    --cor-preto: #000000;
+    /* Código hexadecimal para preto */
+    --cor-branco: #FFFFFF;
+    /* Código hexadecimal para branco */
+    --cor-preto-claro: #1f1f1f;
 }
 
 @font-face {
@@ -18,7 +21,6 @@
 }
 
 body {
-    
     margin: 0;
     padding: 0;
     display: flex;
@@ -49,7 +51,7 @@ a i {
 }
 
 img {
-    width:100%;
+    width: 100%;
 }
 
 li {
@@ -59,35 +61,37 @@ li {
 /*Classificados*/
 
 /*Tela de Login*/
-.login-container{ 
+.login-container {
     align-items: flex-start;
     background-image: url(../img/Image.png);
     background-repeat: no-repeat;
-    background-size:contain;
-    background-position: 27rem;
+    background-position: center;
+    background-position-x: right;
     overflow-y: hidden;
+    width: 100%;
 }
 
-.login-button{
+.login-button {
     border-radius: 4px;
     background: #FFEA00;
 }
 
-.login-title{
+.login-title {
     justify-content: center;
     display: flex;
 }
 
-.login-links{
+.login-links {
     font-size: medium;
     align-items: center;
     color: #3DB4FF;
     margin: auto;
     display: inherit;
     flex-direction: inherit;
+    padding: 5px;
 }
 
-.form-login{
+.form-login {
     display: flex;
     flex-direction: column;
     gap: 30px;
@@ -95,16 +99,19 @@ li {
     border-radius: 10px;
     border: 2px solid #000;
     background: rgba(0, 0, 0, 0.50);
-    margin:20px;
+    margin: 20px;
     padding: 70px;
+    width: 100%;
+    max-width: 400px;
+    /* Limitar a largura do formulário */
 }
 
-.login-decoration{
+.login-decoration {
     display: flex;
-    width: 720px;
+    width: 800px;
     height: 1024px;
     padding: 242px 95px;
-    flex-direction:column;
+    flex-direction: column;
     align-items: center;
     border: 1px solid #FFEA00;
     background: rgba(91, 91, 91, 0.50);
@@ -112,14 +119,15 @@ li {
 
 .logotipo {
     display: inline-block;
-    width:20%;
+    width: 20%;
     padding-left: 40px;
 }
 
 .search-bar {
     display: flex;
     border: 2px solid var(--cor-branco);
-    border-radius: 4px; /* Isso arredonda os cantos, opcional */
+    border-radius: 4px;
+    /* Isso arredonda os cantos, opcional */
     width: 30%;
 }
 
@@ -137,12 +145,12 @@ li {
 
 .botao-enviar {
     width: 10%;
-    font-size: 1.0rem;  
-    border: none; 
+    font-size: 1.0rem;
+    border: none;
     background-color: var(--cor-branco);
 }
 
-.botao-enviar :hover{
+.botao-enviar :hover {
     color: var(--cor-dourado);
 }
 
@@ -189,7 +197,7 @@ li {
     display: flex;
     text-decoration: none;
     color: var(--cor-dourado);
-    align-items: center;   
+    align-items: center;
     font-size: 40px;
     padding-right: 40px;
 }
@@ -198,7 +206,7 @@ li {
     font-size: 30px;
     display: flex;
     align-items: center;
-   
+
 }
 
 .carrinho-titulo {
@@ -233,16 +241,8 @@ li {
 }
 
 .carrossel-container {
-    display: flex;
-    flex-direction:column;
     position: relative;
-    width: 80%;
-    max-width: 1200px; 
-    margin: 0 auto;
-    background-color: var(--cor-preto-claro); 
-    border-radius: 10px;
-    padding: 40px;
-    overflow:hidden;
+    overflow: hidden;
 }
 
 .carrossel {
@@ -251,36 +251,65 @@ li {
 }
 
 .banner {
-    min-width: 100%;
+    position: relative;
+    left: 0px;
+    min-width: 95%;
     box-sizing: border-box;
     text-align: center;
-    padding: 60px 40px; 
+    padding: 60px 40px;
     background-color: var(--cor-preto-claro);
+    /* Cor de fundo do banner */
     color: var(--cor-branco);
-    border-top: 2px solid var(--cor-dourado);
-    border-bottom: 2px solid var(--cor-dourado);
-    font-size: 24px; 
-    overflow: hidden;
-}
+    
+}   
 
 .carrossel-controls {
     text-align: center;
-    margin-top: 20px;
+    margin-top: 10px;
 }
 
 .control-btn {
     background-color: var(--cor-dourado);
+    /* Cor dos botões de controle */
     border: none;
     border-radius: 50%;
     width: 15px;
     height: 15px;
     margin: 0 5px;
     cursor: pointer;
-    display: inline-block;
 }
 
 .control-btn.active {
-    background-color: var(--cor-preto);
+    background-color: var(--cor-preto-claro);
+    border-radius: 50px;
+    border: 2px solid var(--cor-dourado);
+    /* Cor do botão ativo */
+}
+
+
+.carrossel-navigation-left {
+        position: absolute;
+        top: 50%;
+        left: 10px; /* Posiciona a seta à direita */
+        transform: translateY(-50%);
+        z-index: 10; /* Certifique-se de que esteja acima dos outros elementos */
+}
+.carrossel-navigation-right{
+        position: absolute;
+        top: 50%;
+        right: 10px; /* Posiciona a seta à direita */
+        transform: translateY(-50%);
+        z-index: 10; /* Certifique-se de que esteja acima dos outros elementos */
+}
+    
+.prev-btn,
+.next-btn {
+    background-color: var(--cor-branco);
+    /* Cor dos botões de navegação */
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    font-size: 1.4rem;
 }
 
 
@@ -299,31 +328,44 @@ li {
 }
 
 .modal {
-    display: none; /* Escondido por padrão */
-    position: fixed; /* Fixa o modal na tela */
-    z-index: 1000; /* Garante que o modal fique acima de outros elementos */
+    display: none;
+    /* Escondido por padrão */
+    position: fixed;
+    /* Fixa o modal na tela */
+    z-index: 1000;
+    /* Garante que o modal fique acima de outros elementos */
     left: 0;
-    bottom: 50px;
-    width: 100%; /* Largura total */
-    height: 100%; /* Altura total */
-    margin: 0 auto;
-    background-color: rgba(0, 0, 0, 0.5); /* Fundo semi-transparente */
+    top: 0;
+    width: 100%;
+    /* Largura total */
+    height: 100%;
+    /* Altura total */
+    background-color: rgba(0, 0, 0, 0.5);
+    /* Fundo semi-transparente */
 }
 
 
 .modal-content {
-    display: flex;
-    flex-direction: column;
-    background-color: var(--cor-preto-claro); /* Cor de fundo do conteúdo do modal */
-    margin: 5% auto; /* Margem para centralizar o modal */
-    padding: 30px; /* Aumenta o espaçamento interno */
-    border: 1px solid #888; /* Borda */
-    width: 90%; /* Largura do modal (90% da largura da tela) */
-    max-width: 800px; /* Largura máxima para telas grandes */
-    max-height: 90%; /* Altura máxima para evitar que o modal saia da tela */
-    overflow-y: auto; /* Adiciona rolagem vertical se o conteúdo for muito grande */
-    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3); /* Sombra */
-    border-radius: 8px; /* Bordas arredondadas */
+    background-color: var(--cor-preto-claro);
+    /* Cor de fundo do conteúdo do modal */
+    margin: 5% auto;
+    /* Margem para centralizar o modal */
+    padding: 30px;
+    /* Aumenta o espaçamento interno */
+    border: 1px solid #888;
+    /* Borda */
+    width: 90%;
+    /* Largura do modal (90% da largura da tela) */
+    max-width: 800px;
+    /* Largura máxima para telas grandes */
+    max-height: 90%;
+    /* Altura máxima para evitar que o modal saia da tela */
+    overflow-y: auto;
+    /* Adiciona rolagem vertical se o conteúdo for muito grande */
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+    /* Sombra */
+    border-radius: 8px;
+    /* Bordas arredondadas */
     color: rgb(255, 255, 255);
     align-items: center;
 }
@@ -370,12 +412,14 @@ li {
 
 
 .close-btn {
-    display: flex;
-    justify-content: center;
-    cursor: pointer; /* Cursor pointer para indicar que é clicável */
-    float: right; /* Alinha o botão de fechar à direita */
-    font-size: 20px; /* Tamanho do botão de fechar */
-    color: #ffffff; /* Cor do botão de fechar */
+    cursor: pointer;
+    /* Cursor pointer para indicar que é clicável */
+    float: right;
+    /* Alinha o botão de fechar à direita */
+    font-size: 20px;
+    /* Tamanho do botão de fechar */
+    color: #ffffff;
+    /* Cor do botão de fechar */
     background-color: red;
     padding: 20px;
     border-radius: 20px;
@@ -385,9 +429,12 @@ li {
 
 .close-btn:hover,
 .close-btn:focus {
-    color: rgb(12, 89, 255); /* Muda a cor ao passar o mouse ou focar */
-    text-decoration: none; /* Remove sublinhado */
-    cursor: pointer; /* Indica que é clicável */
+    color: rgb(12, 89, 255);
+    /* Muda a cor ao passar o mouse ou focar */
+    text-decoration: none;
+    /* Remove sublinhado */
+    cursor: pointer;
+    /* Indica que é clicável */
 }
 
 
@@ -408,7 +455,7 @@ li {
 .destaque-titulo {
     color: var(--cor-branco);
     font-family: 'Sans-Variable';
-    
+
 }
 
 .catalogo-titulo {
@@ -417,7 +464,7 @@ li {
 }
 
 
-.destaques-bebidas{
+.destaques-bebidas {
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
@@ -426,7 +473,7 @@ li {
     overflow: hidden;
 }
 
-.destaques-alcoolicas{
+.destaques-alcoolicas {
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
@@ -435,7 +482,7 @@ li {
     overflow: hidden;
 }
 
-.destaques-snacks{
+.destaques-snacks {
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
@@ -444,7 +491,7 @@ li {
     overflow: hidden;
 }
 
-.destaques-cigarros{
+.destaques-cigarros {
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
@@ -461,6 +508,7 @@ li {
     margin: 0;
     list-style-type: none;
 }
+
 .destaques-alcoolicas ul {
     display: flex;
     flex-wrap: wrap;
@@ -469,6 +517,7 @@ li {
     margin: 0;
     list-style-type: none;
 }
+
 .destaques-snacks ul {
     display: flex;
     flex-wrap: wrap;
@@ -477,6 +526,7 @@ li {
     margin: 0;
     list-style-type: none;
 }
+
 .destaques-cigarros ul {
     display: flex;
     flex-wrap: wrap;
@@ -486,7 +536,7 @@ li {
     list-style-type: none;
 }
 
-.catalogo{
+.catalogo {
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
@@ -534,16 +584,78 @@ footer {
     text-decoration: underline;
 }
 
-.footer-left, .footer-center, .footer-right {
+.footer-left,
+.footer-center,
+.footer-right {
     margin-bottom: 20px;
     text-align: center;
 }
 
+/* Ajuste de Responsividade */
+@media (max-width: 873px) {
+    .login-container {
+        display: flex;
+        /* Habilita o uso do flexbox */
+        justify-content: center;
+        /* Centraliza horizontalmente */
+        align-items: center;
+        /* Centraliza verticalmente */
+        height: 100vh;
+        /* Define a altura para ocupar a tela toda */
 
+        background-position-x: center;
+    }
 
+    .login-decoration {
+        width: 90%;
+        /* Largura maior em telas pequenas */
+        height: auto;
+        /* Deixar altura automática */
+        padding: 20px;
+        /* Reduzir padding */
+    }
 
+    .form-login {
+        padding: 40px;
+        /* Reduzir padding */
+        font-size: 1.4rem;
+        /* Reduzir tamanho da fonte */
+    }
 
+    .login-title {
+        font-size: 2rem;
+        /* Ajustar o tamanho do título */
+    }
 
+    .login-button {
+        font-size: 1.2rem;
+        /* Ajustar tamanho do botão */
+    }
 
+}
 
+@media (max-width: 300px) {
+    .login-decoration {
+        max-width: 200px;
+        /* Largura total em telas muito pequenas */
+        padding: 10px;
+        /* Reduzir ainda mais o padding */
+    }
 
+    .form-login {
+        padding: 20px;
+        /* Menos padding em telas muito pequenas */
+        font-size: 1.2rem;
+        /* Reduzir ainda mais o tamanho da fonte */
+    }
+
+    .login-title {
+        font-size: 1.5rem;
+        /* Ajustar o tamanho do título */
+    }
+
+    .login-button {
+        font-size: 1rem;
+        /* Ajustar tamanho do botão */
+    }
+}
