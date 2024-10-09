@@ -120,7 +120,25 @@ li {
     background: rgba(91, 91, 91, 0.50);
 }
 
+.menu-mobile {
+
+}
+
+.icone-mobile {
+    font-size: 2.0rem;
+    background-color: #000;
+    color: var(--cor-dourado);
+    border: none;
+    display: none;
+}
+
 .logotipo img {
+    height: 200px; /* Ajuste a altura do logotipo conforme necessário */
+    width: auto; /* Mantém a proporção do logotipo */
+}
+
+.logotipo-mobile {
+    display: none;
     height: 200px; /* Ajuste a altura do logotipo conforme necessário */
     width: auto; /* Mantém a proporção do logotipo */
 }
@@ -134,11 +152,12 @@ li {
 }
 
 .search-placeholder {
-    font-size: 1.6rem;
+    font-size: 1.8vw;   
     background-color: var(--cor-branco);
     border: none;
     width: 90%;
     height: 100%; /* Preenche a altura da barra de pesquisa */
+    outline: none;
 }
 
 
@@ -170,6 +189,9 @@ li {
     padding-top: 20px; /* Remova este padding se não precisar */
 }
 
+.link-carrinho-mobile {
+   display: none;
+}
 
 .perfil-modal {
     color: black;
@@ -181,8 +203,12 @@ li {
     border: none;
     color: var(--cor-dourado);
     align-items: center;
-    font-size: 1.4rem;
+    font-size: 1.8vw;
     width: 100%;
+}
+
+.perfil-btn-mobile {
+   display: none;
 }
 
 .perfil-titulo {
@@ -190,7 +216,11 @@ li {
 }
 
 #user-icon {
-    font-size: 1.6rem;
+    font-size: 1.6vw;
+}
+
+#home-icon {
+    display: none;
 }
 
 .container {
@@ -210,14 +240,18 @@ li {
 }
 
 #cart-icon {
-    font-size: 30px;
+    font-size: 1.8vw;
     display: flex;
     align-items: center;
+}
 
+.carrinho-quantidade{
+    font-size: 1.8vw;
 }
 
 .carrinho-titulo {
-    font-size: 20px;
+    display: block;
+    font-size: 1.8vw;
     color: var(--cor-dourado);
     font-family: 'Sans-Italic';
     padding-left: 10px;
@@ -647,23 +681,133 @@ footer {
 
 @media (max-width: 600px) {
     header {
+        display: flex;
         flex-direction: column;
         height: auto; /* Permite que o header se ajuste ao conteúdo */
         padding: 10px; /* Reduz o padding */
+        align-items: center;
+        background-image: url(./../img/Image.png);
+        background-repeat: no-repeat;
+        background-position: center; /* Alinha a imagem ao centro */
+        background-size: contain; /* Ajusta a imagem para caber dentro do header */
+        min-width: 200px;
+        padding-bottom: 100px;
+    }
+    
+
+    .carrinho-titulo {
+        display: none;
+        font-size: 1.8vw;
+        color: var(--cor-dourado);
+        font-family: 'Sans-Italic';
+        padding-left: 10px;
+    }
+
+    .mobile {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        padding: 50px;
+        margin: 0; /* Remove margens */
+        width: 100%; /* Garante que o elemento ocupe toda a largura disponível */
+    }
+    
+
+    .menu-mobile {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #home-icon {
+        font-size: 2.0vw;
+        display: block;
+        color: var(--cor-dourado);
+    }
+
+    .icone-mobile {
+        align-self:flex-start;
+        display: block;
+        padding-top: 30px;
     }
 
     .logotipo img {
-        height: 50px; /* Ajusta a altura do logotipo para telas menores */
+        display: none;
+    }
+    
+    .logotipo-mobile {
+        display: flex;
+        height: 100px; /* Ajuste a altura do logotipo conforme necessário */
+        width: auto; /* Mantém a proporção do logotipo */
+    }
+
+    .icones-menu {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .perfil-btn-mobile {
+        display: flex;
+        background-color: #000000;
+        border: none;
+        color: var(--cor-dourado);
+        align-items: center;
+        font-size: 1.8vw;
+        width: 100%;
+    }
+    
+    .perfil-titulo-mobile {
+        font-family: 'Sans-Italic';
     }
 
     .search-bar {
-        width: 100%; /* A barra de pesquisa ocupa 100% da largura */
+        width: 80%; /* A barra de pesquisa ocupa 100% da largura */
+    }
+
+    .search-placeholder {
+        font-size: 3.0vw;   
     }
 
     .perfil-link,
     .link-carrinho {
-        font-size: 1rem; /* Reduz o tamanho da fonte */
+        display: none;
     }
+    .link-carrinho-mobile {
+        display: flex;
+        align-items: center;
+        font-size: 2.0rem;
+        color: var(--cor-dourado);
+        gap: 10px;
+        height: 100%; /* Mantém os itens alinhados verticalmente */
+        position: absolute; /* Permite posicionar o elemento */
+        top: -125px; /* Alinha ao topo */
+        right: 0; /* Alinha à direita */
+        padding: 20px; /* Ajuste conforme necessário */
+    }
+
+    .carrinho-quantidade {
+        font-size: 5.5vw;
+    }
+
+    #home-icon {
+        font-size: 5.0vw;
+        position: relative;
+        top: -27px;
+    }
+
+    #cart-icon {
+        font-size: 5.0vw;
+    }
+
+    #menu-icon {
+        position: relative;
+        top: -30px;
+    }
+
+    #menu-icon ::before {
+        font-size: 5.5vw;
+    }
+    
 }
 
 @media (max-width: 300px) {
