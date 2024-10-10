@@ -22,6 +22,15 @@ nextBtns.forEach((btn) => {
     });
 });
 
+document.getElementById('menu-toggle').addEventListener('click', function() {
+    const perfilContent = document.getElementById('perfil-content');
+    if (perfilContent.style.display === 'none' || perfilContent.style.display === '') {
+        perfilContent.style.display = 'block'; // Mostra o conteúdo
+    } else {
+        perfilContent.style.display = 'none'; // Esconde o conteúdo
+    }
+});
+
 // Adiciona event listeners aos botões "prev"
 prevBtns.forEach((btn) => {
     btn.addEventListener('click', () => {
@@ -38,4 +47,7 @@ controlBtns.forEach((btn, index) => {
         showBanner(currentIndex);
     });
 });
+
+
+
 
