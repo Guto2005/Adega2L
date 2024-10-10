@@ -44,7 +44,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 <body>
     <h1>Cadastrar Usuários</h1>
-    <form method="POST">
+    <form class="form-cadastro" method="POST">
         <label for="nome">Nome</label>
         <input type="text" id="nome" name="nome" required>
         <label for="telefone">telefone</label>
