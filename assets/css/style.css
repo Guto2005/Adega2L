@@ -34,13 +34,12 @@ body {
 
 
 header {
+    display: flex;
+    align-items: center;
     position: fixed; /* Torna o header fixo no topo */
     top: 0; /* Posiciona o header no topo da página */
     width: 100%;
     height: 250px; /* Altura fixa do header */
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
     border-bottom: 2px solid var(--cor-dourado);
     padding: 0 40px; /* Ajuste o padding conforme necessário */
     background-color: var(--cor-preto); /* Adicione uma cor de fundo para evitar transparência */
@@ -139,7 +138,7 @@ li {
 
 .icone-mobile {
     font-size: 2.0rem;
-    background-color: #000;
+    background-color: #00000000;
     color: var(--cor-dourado);
     border: none;
     display: none;
@@ -150,11 +149,20 @@ li {
     width: auto; /* Mantém a proporção do logotipo */
 }
 
+.home {
+    display: none;
+}
+
 .logotipo-mobile {
     display: none;
     height: 200px; /* Ajuste a altura do logotipo conforme necessário */
     width: auto; /* Mantém a proporção do logotipo */
 
+}
+
+
+.search-bar-mobile {
+    display: none;
 }
 
 .search-bar {
@@ -237,6 +245,7 @@ li {
     display: none;
 }
 
+
 .container {
     display: flex;
     flex-direction: column;
@@ -276,6 +285,10 @@ li {
     width: 90%;
     align-items: center;
     padding-top: 200px;
+}
+
+.nav-products-mobile {
+   display: none;
 }
 
 .nav-list {
@@ -693,21 +706,20 @@ footer {
 
 }
 
-@media (max-width: 600px) {
+@media (max-width: 650px) {
     header {
         display: flex;
         flex-direction: column;
         height: auto; /* Permite que o header se ajuste ao conteúdo */
         padding: 10px; /* Reduz o padding */
         align-items: center;
-        background-image: url(./../img/Image.png);
-        background-repeat: no-repeat;
-        background-position: center; /* Alinha a imagem ao centro */
-        background-size: contain; /* Ajusta a imagem para caber dentro do header */
         min-width: 200px;
-        padding-bottom: 100px;
+        padding-bottom: 120px;
     }
-    
+
+    .container {
+        padding-top: 200px;
+    }
 
     .carrinho-titulo {
         display: none;
@@ -721,11 +733,42 @@ footer {
         display: flex;
         align-items: center;
         justify-content: flex-start;
+        flex-direction: column;
         padding: 50px;
+        padding-bottom: 200px;
+        background-image: url(./../img/Image.png);
+        background-repeat: no-repeat;
+        background-position: center; /* Alinha a imagem ao centro */
+        background-size: contain; /* Ajusta a imagem para caber dentro do header */
         margin: 0; /* Remove margens */
         width: 100%; /* Garante que o elemento ocupe toda a largura disponível */
+        
     }
     
+    .nav-products {
+        display: none;
+    }
+
+    .nav-products-mobile {
+        display: flex;
+        width: 90%;
+        align-items: center;
+        background-color: #00000000;
+    }
+
+    .nav-list-mobile {
+        display: flex;
+        gap: 16px;
+        font-size: 2.0vw;
+        padding: 20px;
+        margin: 0 auto;
+        width: 80%;
+        background-color: rgba(0, 0, 0, 0);
+        justify-content: center;
+        border: 2px solid var(--cor-dourado);
+        position: relative;
+        top: 290px;
+    }
 
     .menu-mobile {
         display: flex;
@@ -734,9 +777,14 @@ footer {
     }
 
     #home-icon {
-        font-size: 2.0vw;
-        display: block;
+        font-size: 5.0vw;
+        display: flex;
         color: var(--cor-dourado);
+    }
+
+    .home-ancora {
+        display: flex;
+        flex-direction: row;
     }
 
     .icone-mobile {
@@ -762,20 +810,54 @@ footer {
 
     .perfil-btn-mobile {
         display: flex;
-        background-color: #000000;
+        background-color: #00000000;
         border: none;
         color: var(--cor-dourado);
         align-items: center;
-        font-size: 1.8vw;
+        font-size: 3.0vw;
         width: 100%;
     }
     
+    .home {
+        display: flex;
+        flex-direction: row;
+        align-items:center;
+    }
+
+    .home h3 {
+        color: var(--cor-dourado);
+    }
+
     .perfil-titulo-mobile {
         font-family: 'Sans-Italic';
     }
 
+    .home-titulo-mobile {
+        font-family: 'Sans-Italic';
+        font-size: 4.0vw;
+    }
+
+    .search-nav-mobile {
+        display: flex;
+        align-items:center;
+        justify-content: center;
+        flex-direction: column;
+        gap: 64px;
+        position: relative;
+        left: 120px;
+    }
+
+    .search-bar-mobile {
+        display: flex;
+        width: 80%;
+        position: relative;
+        top: 340px;
+        padding:20px;
+        background-color: white;
+    }
+
     .search-bar {
-        width: 80%; /* A barra de pesquisa ocupa 100% da largura */
+       display: none;
     }
 
     .search-placeholder {
@@ -803,11 +885,7 @@ footer {
         font-size: 5.5vw;
     }
 
-    #home-icon {
-        font-size: 5.0vw;
-        position: relative;
-        top: -27px;
-    }
+  
 
     #cart-icon {
         font-size: 5.0vw;
