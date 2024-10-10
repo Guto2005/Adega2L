@@ -113,6 +113,25 @@ li {
     background: rgba(91, 91, 91, 0.50);
 }
 
+/* Tela de cadastro */
+
+.form-cadastro {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    font-size: 1.6rem;
+    border-radius: 10px;
+    border: 2px solid #000;
+    background: rgba(0, 0, 0, 0.50);
+    margin: 20px;
+    padding: 70px;
+    width: 100%;
+    max-width: 400px; /* Limitar a largura do formulário */
+}
+
+
+
+
 .logotipo {
     display: inline-block;
     width:20%;
