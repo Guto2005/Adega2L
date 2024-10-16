@@ -1,10 +1,10 @@
 <?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Informações de conexão com o banco de dados
-    $servername = "localhost";
-    $username = "root";
+    $servername = "";
+    $username = "";
     $password = "";
-    $dbname = "biblioteca";
+    $dbname = "";
 
     // Criar conexão com o banco de dados
     $conn = mysqli_connect($servername, $username, $password, $dbname);

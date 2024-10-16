@@ -1,10 +1,10 @@
 <?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Informações de conexão com o banco de dados
-    $servername = "localhost";
-    $username = "root";
+    $servername = "";
+    $username = "";
     $password = "";
-    $dbname = "biblioteca";
+    $dbname = "";
 
     // Criar conexão com o banco de dados
     $conn = mysqli_connect($servername, $username, $password, $dbname);
@@ -39,29 +39,34 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <title>Cadastrar Usuário</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/534bfbb4de.js" crossorigin="anonymous"></script>
 
     <link rel="stylesheet" href="./assets/css/style.css">
 </head>
-<body>
-    <h1>Cadastrar Usuários</h1>
+<body class="cadastro-container">  
+
+<div class="cadastro-decoration">
     <form class="form-cadastro" method="POST">
-        <label for="nome">Nome</label>
-        <input type="text" id="nome" name="nome" required>
-        <label for="telefone">telefone</label>
-        <input type="number" id="telefone" name="telefone" required>
-        <label for="senha">Senha</label>
-        <input type="password" id="senha" name="senha" required>
-        <label for="tipo">Tipo</label>
-        <select id="tipo" name="tipo" required>
-            <option value="admin">Admin</option>
-            <option value="aluno">Aluno</option>
-        </select>
-        <button type="submit">Cadastrar</button>
+    <h1 class="cadastro-title">Cadastro</h1>
+        <input type="text" id="nome" placeholder="Nome" name="usuario" required>
+        <input type="tel" name="telefone" placeholder="Celular" required>
+        <input type="text" name="cpf" placeholder="Digite um CPF"  required>
+              <input type="email" id="email" name="email" placeholder="Email">
+              <input id="date" type="date" required>
+              <input type="password" id="senha" placeholder="Senha" name="senha" required>
+        <input type="password" id="senha" placeholder="Confirmar senha" name="senha" required>
+        <button class="cadastro-button" 
+        type="submit">Entrar</button>        
+
+<div class="cadastro-links">
+<a class="cadastro-links" href="#">Esqueceu sua senha?</a>
+<a class="cadastro-links" href="#">Cadastre-se</a>
+</div>
     </form>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+    
+</div>
 
 
 </body>
 </html>
-<!--É enviando para a mesma página-->
+<!--É enviando para a mesma página--
