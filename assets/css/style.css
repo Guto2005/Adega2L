@@ -39,6 +39,7 @@ header {
     position: fixed; /* Torna o header fixo no topo */
     top: 0; /* Posiciona o header no topo da página */
     width: 100%;
+    gap: 16px;
     height: 250px; /* Altura fixa do header */
     border-bottom: 2px solid var(--cor-dourado);
     padding: 0 40px; /* Ajuste o padding conforme necessário */
@@ -58,6 +59,7 @@ a i {
 
 li {
     list-style-type: none;
+    font-size: 1.6vw;
 }
 
 /*Classificados*/
@@ -629,6 +631,8 @@ li {
 }
 
 footer {
+    display: flex;
+    flex-direction: row;
     background-color: var(--cor-preto-claro);
     color: var(--cor-branco);
     padding: 20px;
@@ -640,11 +644,10 @@ footer {
 
 .footer-container {
     display: flex;
-    flex-direction: column;
-    align-items: center;
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
+    gap: 32px;
 }
 
 .footer-container a {
@@ -656,11 +659,71 @@ footer {
     text-decoration: underline;
 }
 
-.footer-left,
-.footer-center,
-.footer-right {
+.FAQ {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.FAQ h2 {
+    font-size: 1.6vw;
+}
+
+.FAQ ul {
+    display: flex;
+    flex-direction: column;
+}
+
+.sobre-nos {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.sobre-nos h2 {
+    font-size: 1.6vw;
+    padding-left: 25px;
+}
+
+.sobre-nos ul li a{
+    font-size: 1.0vw;
+}
+
+.socials {
+    display: flex;
+    flex-direction: column;
     margin-bottom: 20px;
     text-align: center;
+    font-size: 1.2vw;
+}
+
+
+#insta-icon {
+    font-size: 2.4vw; /* Tamanho maior para o ícone */
+    display: inline-block; /* Garante que o ícone e o texto fiquem alinhados */
+    vertical-align: middle; /* Alinha o ícone verticalmente com o texto */
+}
+
+.instagram h3 {
+    display: inline; /* Mantém o texto ao lado do ícone */
+    font-size: 1.6vw; /* Tamanho normal do texto */
+    margin-left: 10px; /* Espaço entre o ícone e o texto */
+}
+
+.fa-instagram-square {
+    background-color: var(--cor-dourado);
+    color: black;
+}
+
+
+
+
+.atendimento {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 1.2vw;
 }
 
 /* Ajuste de Responsividade */
