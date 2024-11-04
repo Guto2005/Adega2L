@@ -25,7 +25,7 @@
                 <div class="icones-menu" id="perfil-content" style="display: none;">
                     <form>
                         <div class="home">
-                            <a class="home-ancora" href="index.php"><i id="home-icon" class="fas fa-home"></i></a>
+                            <a class="home-ancora" href="catalogo.php"><i id="home-icon" class="fas fa-home"></i></a>
                             <h3 class="home-titulo-mobile">Home</h3>
                         </div>
                         <button id="perfil-btn" class="perfil-btn-mobile">
@@ -53,7 +53,7 @@
 
         </div>
 
-        <a class="logotipo" href="index.php"><img src="./assets/img/Image.png" alt="logo"></a>
+        <a class="logotipo" href="catalogo.php"><img src="./assets/img/Image.png" alt="logo"></a>
 
         <div class="search-bar">
             <input class="search-placeholder" type="text" placeholder="Olá, O que você procura?" />

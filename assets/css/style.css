@@ -28,22 +28,24 @@ body {
     flex-direction: column;
     color: white;
     align-items: center;
-    gap: 32px;
-    padding-top: 80px; /* Adicione padding-top igual à altura do header */
+    gap: 80px;
+    padding-top: 250px; /* Igual à altura do header */
+    overflow-x: hidden;
 }
+
 
 
 header {
     display: flex;
     align-items: center;
-    position: fixed; /* Torna o header fixo no topo */
-    top: 0; /* Posiciona o header no topo da página */
+    position: fixed;
+    top: 0;
+    justify-content: space-around;
     width: 100%;
     height: 250px; /* Altura fixa do header */
     border-bottom: 2px solid var(--cor-dourado);
     padding: 0 40px; /* Ajuste o padding conforme necessário */
     background-color: var(--cor-preto); /* Adicione uma cor de fundo para evitar transparência */
-    z-index: 1000; /* Garante que o header fique acima de outros elementos */
 }
 
 
@@ -72,6 +74,17 @@ li {
     overflow-y: hidden;
     width: 100%;
 }
+
+.institucional {
+    position: fixed; /* Fixa o header no topo */
+    top: 0;
+    width: 100%; /* Largura total */
+    height: 250px; /* Altura do header */
+    background-color: var(--cor-preto); /* Cor de fundo */
+    border-bottom: 2px solid var(--cor-dourado); /* Borda inferior */
+    z-index: 1000; /* Garante que o header fique acima de outros elementos */
+}
+
 
 .login-button {
     border-radius: 4px;
@@ -185,9 +198,17 @@ li {
     display: none;
 }
 
+.logotipo {
+    transition: all 0.3s ease; /* Para uma transição suave */
+}
+
 .logotipo img {
     height: 200px; /* Ajuste a altura do logotipo conforme necessário */
-    width: auto; /* Mantém a proporção do logotipo */
+    width: auto; /* Mantém a proporção do logotipo */ 
+}
+
+.logotipo:hover {
+    transform:scale(1.2);
 }
 
 .home {
@@ -207,38 +228,40 @@ li {
 }
 
 .search-bar {
-    display: flex;
-    border: 2px solid var(--cor-branco);
-    border-radius: 4px;
-    width: 30%;
-    height: 40px; /* Defina uma altura fixa */
+    display: flex; /* Utiliza flexbox para alinhar os itens */
+    align-items: center; /* Alinha verticalmente os itens ao centro */
+    background-color: var(--cor-branco);
+    border-radius: 20px;
+    padding: 10px;
 }
 
 .search-placeholder {
-    font-size: 1.8vw;   
-    background-color: var(--cor-branco);
-    border: none;
-    width: 90%;
-    height: 100%; /* Preenche a altura da barra de pesquisa */
-    outline: none;
-}
-
-
-.search-placeholder::placeholder {
-    color: var(--cor-preto);
-    font-family: 'Sans-Italic';
+    padding: 10px; /* Adiciona espaçamento interno */
+    border: none; /* Define a borda */
+    border-radius: 4px 0 0 4px; /* Bordas arredondadas */
+    flex: 1; /* Faz o input ocupar o máximo de espaço disponível */
+    outline: none; /* Remove a borda de foco padrão */
+    font-size: 2.0vw;
 }
 
 .botao-enviar {
-    width: 10%;
-    font-size: 1.0rem;
+    background-color: var(--cor-branco); /* Cor de fundo do botão */
     border: none;
-    background-color: var(--cor-branco);
-    height: 100%; /* Preenche a altura da barra de pesquisa */
+    border-radius: 0 4px 4px 0; /* Bordas arredondadas */
+    padding: 10px; /* Adiciona espaçamento interno */
+    cursor: pointer; /* Muda o cursor ao passar por cima */
+    font-size: 1.5vw;
+    transition: all 0.3s ease; /* Para uma transição suave */
 }
 
-.botao-enviar :hover {
+.botao-enviar i {
+    font-size: 1.2em; /* Ajusta o tamanho do ícone */
+}
+
+
+.botao-enviar:hover {
     color: var(--cor-dourado);
+    transform: scale(1.2);
 }
 
 .perfil-link,
@@ -264,10 +287,16 @@ li {
     display: flex;
     background-color: #000000;
     border: none;
-    color: var(--cor-dourado);
+    color: var(--cor-branco);
     align-items: center;
     font-size: 1.8vw;
     width: 100%;
+    transition: all 0.3s ease; /* Para uma transição suave */
+}
+
+.perfil-btn:hover {
+    transform: scale(1.2); /* Aumenta a div ao passar o mouse */
+    color: var(--cor-dourado);
 }
 
 .perfil-btn-mobile {
@@ -286,21 +315,80 @@ li {
     display: none;
 }
 
+#facebook-icon {
+    color: var(--cor-dourado);
+    font-size: 2.0vw;
+    transition: all 0.2s ease; /* Para uma transição suave */
+}
+
+#instagram-icon {
+    color: var(--cor-dourado);
+    font-size: 2.0vw;
+    transition: all 0.2s ease; /* Para uma transição suave */
+}
+
+#twitter-icon {
+    color: var(--cor-dourado);
+    font-size: 2.0vw;
+    transition: all 0.2s ease; /* Para uma transição suave */
+}
+
+#facebook-icon:hover {
+    color: var(--cor-branco);
+    font-size: 2.0vw;
+    transform: scale(1.2);
+}
+
+#instagram-icon:hover {
+    color: var(--cor-branco);
+    font-size: 2.0vw;
+    transform: scale(1.2);
+}
+
+#twitter-icon:hover {
+    color: var(--cor-branco);
+    font-size: 2.0vw;
+    transform: scale(1.2);
+
+}
+
+#map-icon {
+    font-size: 2.0vw;
+}
 
 .container {
     display: flex;
     flex-direction: column;
     width: 100%;
     gap: 32px;
+    align-items: center;
 }
 
 .link-carrinho {
     display: flex;
     text-decoration: none;
-    color: var(--cor-dourado);
+    color: var(--cor-branco);
     align-items: center;
     font-size: 40px;
     padding-right: 40px;
+    transition: all 0.2s ease; /* Para uma transição suave */
+}
+
+.link-carrinho:hover {
+    color: gold; /* Cor ao passar o mouse */
+    transform: scale(1.2); /* Aumenta ligeiramente o tamanho */
+}
+
+.link-carrinho:hover #cart-count {
+    color: gold; /* Cor do span ao passar o mouse */
+}
+
+.link-carrinho:hover #cart-icon {
+    color: gold; /* Cor do ícone ao passar o mouse */
+}
+
+.link-carrinho:hover .carrinho-titulo {
+    color: gold; /* Cor do ícone ao passar o mouse */
 }
 
 #cart-icon {
@@ -316,9 +404,10 @@ li {
 .carrinho-titulo {
     display: block;
     font-size: 1.8vw;
-    color: var(--cor-dourado);
+    color: var(--cor-branco);
     font-family: 'Sans-Italic';
     padding-left: 10px;
+    transition: all 0.2s ease; /* Para uma transição suave */
 }
 
 .nav-products {
@@ -329,7 +418,38 @@ li {
 }
 
 .nav-products-mobile {
-   display: none;
+    display: none;
+ }
+ 
+
+.nav-catalogo {
+    display: flex;
+    width: 50%;
+    align-items: center;
+    border: 3px solid var(--cor-dourado);
+    position:relative;
+    top:40px;
+    font-size: 2.0vw;
+    justify-content: center;
+    padding: 30px;
+    text-align: center; /* Centraliza o conteúdo */
+    transition: all 0.3s ease; /* Para uma transição suave */
+}
+
+.nav-catalogo:hover {
+    transform: scale(1.2); /* Aumenta a div ao passar o mouse */
+}
+
+.btn-catalogo {
+    padding: 10px 20px; /* Ajuste o padding conforme necessário */
+    background-color: #000; /* Cor de fundo padrão */
+    color: #fff; /* Cor da fonte padrão */
+    text-decoration: none; /* Remove o underline */
+    transition: all 0.3s ease; /* Para uma transição suave */
+}
+
+.nav-catalogo:hover .btn-catalogo {
+    color: gold; /* Muda a cor da fonte para dourado */
 }
 
 .nav-list {
@@ -438,6 +558,105 @@ li {
     text-align: center;
     gap: 32px;
     border: 2px solid var(--cor-dourado);
+}
+
+.marquee-container {
+    padding: 20px;
+    width: 90%;
+    background-color: var(--cor-preto-claro);
+}
+
+.marquee {
+    display: flex;
+    white-space: nowrap;
+    overflow: hidden;
+    box-sizing: border-box;
+    border: 2px solid gold; /* Borda dourada */
+    padding: 20px; /* Padding de 20px */
+    font-size: 4.0vw; /* Fonte maior */
+    align-items: center;
+    background-color: black; /* Fundo do marquee preto */
+    color: white; /* Texto branco */
+    justify-content: center;
+    animation: marquee 20s linear infinite; /* Animação do marquee */
+}
+
+.institucional-quem-somos-proposta {
+    display: flex;
+    flex-direction: row;
+    width: 80%;
+    padding: 40px;
+    justify-content: space-around;
+    gap: 32px;
+}
+
+.quem-somos {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    font-size: 1.6vw;
+    border: 2px solid var(--cor-dourado);
+    align-items: center;
+    background-color: var(--cor-preto-claro);
+    padding: 20px;
+}
+
+.proposta-site {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    font-size: 1.6vw;
+    align-items: center;
+    border: 2px solid var(--cor-dourado);
+    background-color: var(--cor-preto-claro);
+    padding: 20px;
+}
+
+.nossa-historia-container {
+    display: flex;
+    width: 80%;
+    flex-direction: row;
+    align-items: center;
+    font-size: 1.6vw;
+    background-color: var(--cor-preto-claro);
+    padding: 80px;
+    gap: 32px;
+}
+
+.nossa-historia {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    font-size: 1.6vw;
+    border: 2px solid var(--cor-dourado);
+    background-color: var(--cor-preto-claro);
+    padding: 40px;
+}
+
+.nossa-historia-img {
+    padding: 20px;
+    background-color: var(--cor-preto-claro);
+    padding: 29px;
+}
+
+.nossa-historia-img img {
+    width: 100%;
+    border: 2px solid var(--cor-dourado); 
+    padding: 29px;
+}
+
+.nossa-missao {
+    display: flex;
+    width: 80%;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    font-size: 1.6vw;
+    border: 2px solid var(--cor-dourado);
+    background-color: var(--cor-preto-claro);
+    padding: 40px;
 }
 
 .modal {
@@ -670,6 +889,7 @@ li {
 }
 
 footer {
+    display: flex;
     background-color: var(--cor-preto-claro);
     color: var(--cor-branco);
     padding: 20px;
@@ -677,6 +897,25 @@ footer {
     justify-content: center;
     border-radius: 20px;
     width: 100%;
+}
+
+.footer-institucional {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.logotipo-footer img {
+    background-color: var(--cor-preto-claro);
+    color: var(--cor-branco);
+    padding: 20px;
+    text-align: center;
+    justify-content: center;
+    border-radius: 20px;
+    width: 50%;
 }
 
 .footer-container {
@@ -701,9 +940,67 @@ footer {
 .footer-center,
 .footer-right {
     margin-bottom: 20px;
-    text-align: center;
+    text-align: start;
 }
 
+.footer-left {
+    width: 34%;
+}
+
+.footer-center {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 33%;
+}
+
+.footer-center h4 {
+    font-size: 1.8vw;
+    width: 100%;
+}
+
+.footer-right {
+    width: 33%;
+    display: flex;
+    gap: 64px;
+}
+
+.redes-sociais {
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+}
+
+.contato {
+    font-size: 1.4vw;
+    width: 100%;
+}
+
+.contato p {
+    font-size: 1.2vw;
+}
+
+.endereco {
+    font-size: 1.4vw;
+    width: 100%;
+}
+
+.endereco p {
+    font-size: 1.2vw;
+}
+
+.endereco a {
+    font-size: 1.2vw;
+}
+
+@keyframes marquee {
+    0% {
+        transform: translateX(100%); /* Começa fora da tela à direita */
+    }
+    100% {
+        transform: translateX(-100%); /* Termina fora da tela à esquerda */
+    }
+}
 /* Ajuste de Responsividade */
 @media (max-width: 873px) {
     .login-container {
@@ -967,4 +1264,6 @@ footer {
         font-size: 1rem;
         /* Ajustar tamanho do botão */
     }
+
+    
 }
