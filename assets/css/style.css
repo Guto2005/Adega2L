@@ -20,6 +20,8 @@
     src: url(./../fonts/OpenSans-VariableFont_wdth\,wght.ttf);
 }
 
+* {box-sizing:border-box}
+
 body {
     margin: 0;
     padding: 0;
@@ -354,6 +356,14 @@ li {
 
 #map-icon {
     font-size: 2.0vw;
+    color: var(--cor-dourado);
+    transition: all 0.2s ease; /* Para uma transição suave */
+}
+
+#map-icon:hover {
+    color: var(--cor-branco);
+    font-size: 2.0vw;
+    transform: scale(1.2);
 }
 
 .container {
@@ -362,6 +372,7 @@ li {
     width: 100%;
     gap: 32px;
     align-items: center;
+    justify-content: center;
 }
 
 .link-carrinho {
@@ -581,6 +592,92 @@ li {
     animation: marquee 20s linear infinite; /* Animação do marquee */
 }
 
+body {font-family: Verdana, sans-serif;}
+img {vertical-align: middle;}
+
+/* Slideshow container */
+.slideshow-container {
+    display: flex;
+    align-items: center;
+    padding-left: 100px;
+    padding-right: 100px;
+    background-color: var(--cor-branco);
+    padding-top: 60px;
+    padding-bottom: 60px;
+    border-radius: 20px;
+    justify-content: center;
+    flex-direction: column;
+    width: 60%;
+}
+
+/* Hide all images by default */
+.mySlides {
+    display: none;
+}
+
+.SlideProduto {
+    width: 70%;
+    border-radius: 20px;
+    position: relative;
+    left: 140px;
+}
+
+/* Next & previous buttons */
+.prev, .next {
+    position: absolute;
+    top: 50%;
+    width: auto;
+    padding: 16px;
+    margin-top: -22px; /* Center the arrows vertically */
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.3s;
+    border-radius: 0 3px 3px 0;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    text-decoration: none;
+}
+
+/* Position the "prev" arrow to the left */
+.prev {
+    left: -50px; /* Position the "prev" arrow outside the image */
+}
+
+/* Position the "next" arrow to the right */
+.next {
+    right: -50px; /* Position the "next" arrow outside the image */
+}
+
+/* On hover, show the arrows more clearly */
+.prev:hover, .next:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+/* Dots/circles at the bottom */
+.dot {
+    height: 15px;
+    width: 15px;
+    margin: 0 2px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+}
+
+/* Change color of dots on hover */
+.dot:hover {
+    background-color: #717171;
+}
+
+/* Active dot (current slide) */
+.active {
+    background-color: #717171;
+}
+
+
+
+
+
 .institucional-quem-somos-proposta {
     display: flex;
     flex-direction: row;
@@ -601,7 +698,7 @@ li {
     padding: 20px;
 }
 
-.proposta-site {
+.proposta-site-vendas {
     display: flex;
     width: 100%;
     flex-direction: column;
@@ -1001,269 +1098,250 @@ footer {
         transform: translateX(-100%); /* Termina fora da tela à esquerda */
     }
 }
+
+@keyframes fade {
+    from {opacity: .4} 
+    to {opacity: 1}
+  }
+
 /* Ajuste de Responsividade */
+
+/* Garante que o layout de conteúdo seja em coluna em telas menores */
 @media (max-width: 873px) {
-    .login-container {
-        display: flex;
-        /* Habilita o uso do flexbox */
-        justify-content: center;
-        /* Centraliza horizontalmente */
-        align-items: center;
-        /* Centraliza verticalmente */
-        height: 100vh;
-        /* Define a altura para ocupar a tela toda */
-
-        background-position-x: center;
-    }
-
-    .login-decoration {
-        width: 90%;
-        /* Largura maior em telas pequenas */
-        height: auto;
-        /* Deixar altura automática */
-        padding: 20px;
-        /* Reduzir padding */
-    }
-
-    .form-login {
-        padding: 40px;
-        /* Reduzir padding */
-        font-size: 1.4rem;
-        /* Reduzir tamanho da fonte */
-    }
-
-    .login-title {
-        font-size: 2rem;
-        /* Ajustar o tamanho do título */
-    }
-
-    .login-button {
-        font-size: 1.2rem;
-        /* Ajustar tamanho do botão */
-    }
-
-}
-
-@media (max-width: 650px) {
     header {
         display: flex;
         flex-direction: column;
-        height: auto; /* Permite que o header se ajuste ao conteúdo */
-        padding: 10px; /* Reduz o padding */
         align-items: center;
-        min-width: 200px;
-        padding-bottom: 120px;
-    }
-
-    .container {
-        padding-top: 200px;
-    }
-
-    .carrinho-titulo {
-        display: none;
-        font-size: 1.8vw;
-        color: var(--cor-dourado);
-        font-family: 'Sans-Italic';
-        padding-left: 10px;
+        padding: 10px;
     }
 
     .mobile {
-        display: flex;
-        align-items: center;
-        justify-content: flex-start;
-        flex-direction: column;
-        padding: 50px;
-        padding-bottom: 200px;
-        background-image: url(./../img/Image.png);
-        background-repeat: no-repeat;
-        background-position: center; /* Alinha a imagem ao centro */
-        background-size: contain; /* Ajusta a imagem para caber dentro do header */
-        margin: 0; /* Remove margens */
-        width: 100%; /* Garante que o elemento ocupe toda a largura disponível */
-        
-    }
-    
-    .nav-products {
-        display: none;
+        display: block;
+        width: 100%;
+        text-align: center;
     }
 
-    .nav-products-mobile {
+    .logotipo img {
+        width: 60%;
+        max-width: 250px; /* Limita o tamanho do logotipo */
+    }
+
+    .search-bar {
+        width: 100%;
+        margin: 10px 0;
+    }
+
+    .search-placeholder {
+        width: 80%;
+        font-size: 1.2rem;
+    }
+
+    .perfil-link {
         display: flex;
-        width: 90%;
+        justify-content: center;
+        margin: 10px 0;
+    }
+
+    .link-carrinho {
+        display: flex;
+        justify-content: center;
+        margin: 10px 0;
+    }
+
+    .container {
+        padding: 20px;
+    }
+
+    .marquee-container {
+        text-align: center;
+        font-size: 1.2rem;
+    }
+
+    .slideshow-container {
+        width: 100%;
+    }
+
+    .slideshow-container .mySlides img {
+        width: 100%;
+        height: auto;
+    }
+
+    .institucional-quem-somos-proposta {
+        flex-direction: column;
+        padding: 10px;
+    }
+
+    .quem-somos, .proposta-site-vendas {
+        width: 100%;
+        margin-bottom: 20px;
+        padding: 20px;
+        text-align: center;
+    }
+
+    .nossa-historia-container {
+        flex-direction: column;
+        padding: 20px;
+    }
+
+    .nossa-historia, .nossa-historia-img {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .footer-institucional {
+        flex-direction: column;
         align-items: center;
-        background-color: #00000000;
+        padding: 20px;
+    }
+
+    .footer-left, .footer-center, .footer-right {
+        width: 100%;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .footer-center h4 {
+        font-size: 1.4rem;
+    }
+
+    .redes-sociais a {
+        font-size: 1.5rem;
+        margin: 0 10px;
+    }
+
+    .endereco a {
+        font-size: 1rem;
+    }
+}
+
+/* Para telas ainda menores (dispositivos com até 650px de largura) */
+@media (max-width: 650px) {
+    header {
+        padding: 10px;
+    }
+
+    .logotipo img {
+        width: 50%;
+        max-width: 180px;
+    }
+
+    .search-bar {
+        width: 100%;
+    }
+
+    .search-placeholder {
+        font-size: 1rem;
+    }
+
+    .perfil-link, .link-carrinho {
+        flex-direction: column;
+        align-items: center;
+        margin: 10px 0;
+    }
+
+    .nav-catalogo {
+        display: none;
     }
 
     .nav-list-mobile {
         display: flex;
-        gap: 16px;
-        font-size: 2.0vw;
-        padding: 20px;
-        margin: 0 auto;
-        width: 80%;
-        background-color: rgba(0, 0, 0, 0);
-        justify-content: center;
-        border: 2px solid var(--cor-dourado);
-        position: relative;
-        top: 290px;
+        flex-direction: column;
+        width: 100%;
     }
 
-    .menu-mobile {
-        display: flex;
+    .slideshow-container .mySlides img {
+        width: 100%;
+        height: auto;
+    }
+
+    .institucional-quem-somos-proposta {
+        flex-direction: column;
+        padding: 10px;
+    }
+
+    .quem-somos, .proposta-site-vendas {
+        width: 100%;
+        margin-bottom: 20px;
+        padding: 20px;
+    }
+
+    .nossa-historia-container {
+        flex-direction: column;
+        padding: 20px;
+    }
+
+    .footer-institucional {
         flex-direction: column;
         align-items: center;
+        padding: 20px;
     }
 
-    #home-icon {
-        font-size: 5.0vw;
-        display: flex;
-        color: var(--cor-dourado);
+    .footer-left, .footer-center, .footer-right {
+        width: 100%;
+        text-align: center;
+        margin-bottom: 20px;
     }
 
-    .home-ancora {
-        display: flex;
-        flex-direction: row;
+    .footer-center h4 {
+        font-size: 1.2rem;
     }
 
-    .icone-mobile {
-        align-self:flex-start;
-        display: block;
-        padding-top: 30px;
+    .redes-sociais a {
+        font-size: 1.2rem;
+    }
+}
+
+/* Para telas extremamente pequenas (como smartphones muito compactos, até 320px) */
+@media (max-width: 320px) {
+    header {
+        padding: 5px;
     }
 
     .logotipo img {
-        display: none;
-    }
-    
-    .logotipo-mobile {
-        display: flex;
-        height: 100px; /* Ajuste a altura do logotipo conforme necessário */
-        width: auto; /* Mantém a proporção do logotipo */
-    }
-
-    .icones-menu {
-        display: flex;
-        flex-direction: column;
-    }
-
-    .perfil-btn-mobile {
-        display: flex;
-        background-color: #00000000;
-        border: none;
-        color: var(--cor-dourado);
-        align-items: center;
-        font-size: 3.0vw;
-        width: 100%;
-    }
-    
-    .home {
-        display: flex;
-        flex-direction: row;
-        align-items:center;
-    }
-
-    .home h3 {
-        color: var(--cor-dourado);
-    }
-
-    .perfil-titulo-mobile {
-        font-family: 'Sans-Italic';
-    }
-
-    .home-titulo-mobile {
-        font-family: 'Sans-Italic';
-        font-size: 4.0vw;
-    }
-
-    .search-nav-mobile {
-        display: flex;
-        align-items:center;
-        justify-content: center;
-        flex-direction: column;
-        gap: 64px;
-        position: relative;
-        left: 120px;
-    }
-
-    .search-bar-mobile {
-        display: flex;
-        width: 80%;
-        position: relative;
-        top: 340px;
-        padding:20px;
-        background-color: white;
-    }
-
-    .search-bar {
-       display: none;
+        width: 50%;
+        max-width: 150px;
     }
 
     .search-placeholder {
-        font-size: 3.0vw;   
-    }
-
-    .perfil-link,
-    .link-carrinho {
-        display: none;
-    }
-    .link-carrinho-mobile {
-        display: flex;
-        align-items: center;
-        font-size: 2.0rem;
-        color: var(--cor-dourado);
-        gap: 10px;
-        height: 100%; /* Mantém os itens alinhados verticalmente */
-        position: absolute; /* Permite posicionar o elemento */
-        top: -125px; /* Alinha ao topo */
-        right: 0; /* Alinha à direita */
-        padding: 20px; /* Ajuste conforme necessário */
-    }
-
-    .carrinho-quantidade {
-        font-size: 5.5vw;
-    }
-
-  
-
-    #cart-icon {
-        font-size: 5.0vw;
-    }
-
-    #menu-icon {
-        position: relative;
-        top: -30px;
-    }
-
-    #menu-icon ::before {
-        font-size: 5.5vw;
-    }
-    
-}
-
-@media (max-width: 300px) {
-    .login-decoration {
-        max-width: 200px;
-        /* Largura total em telas muito pequenas */
-        padding: 10px;
-        /* Reduzir ainda mais o padding */
-    }
-
-    .form-login {
-        padding: 20px;
-        /* Menos padding em telas muito pequenas */
-        font-size: 1.2rem;
-        /* Reduzir ainda mais o tamanho da fonte */
-    }
-
-    .login-title {
-        font-size: 1.5rem;
-        /* Ajustar o tamanho do título */
-    }
-
-    .login-button {
         font-size: 1rem;
-        /* Ajustar tamanho do botão */
     }
 
-    
+    .perfil-link, .link-carrinho {
+        font-size: 1rem;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .slideshow-container .mySlides img {
+        width: 100%;
+        height: auto;
+    }
+
+    .institucional-quem-somos-proposta {
+        flex-direction: column;
+    }
+
+    .quem-somos, .proposta-site-vendas {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .footer-institucional {
+        flex-direction: column;
+        padding: 10px;
+    }
+
+    .footer-left, .footer-center, .footer-right {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .footer-center h4 {
+        font-size: 1rem;
+    }
+
+    .redes-sociais a {
+        font-size: 1.2rem;
+        margin: 0 5px;
+    }
 }

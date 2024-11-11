@@ -1,53 +1,44 @@
-const banners = document.querySelectorAll('.banner');
-const nextBtns = document.querySelectorAll('.next-btn');
-const prevBtns = document.querySelectorAll('.prev-btn');
+let slideIndex = 1;
+showSlides(slideIndex);
 
-let currentIndex = 0;
-
-// Função para mostrar o banner atual
-function showBanner(index) {
-    banners.forEach((banner, i) => {
-        banner.style.display = i === index ? 'block' : 'none';
-    });
+// Next/previous controls
+function plusSlides(n) {
+    showSlides(slideIndex += n);
 }
 
-// Mostra o primeiro banner ao carregar
-showBanner(currentIndex);
+// Thumbnail image controls
+function currentSlide(n) {
+    showSlides(slideIndex = n);
+}
 
-// Adiciona event listeners aos botões "next"
-nextBtns.forEach((btn) => {
-    btn.addEventListener('click', () => {
-        currentIndex = (currentIndex + 1) % banners.length; // Avança para o próximo banner
-        showBanner(currentIndex);
-    });
-});
-
-document.getElementById('menu-toggle').addEventListener('click', function() {
-    const perfilContent = document.getElementById('perfil-content');
-    if (perfilContent.style.display === 'none' || perfilContent.style.display === '') {
-        perfilContent.style.display = 'block'; // Mostra o conteúdo
-    } else {
-        perfilContent.style.display = 'none'; // Esconde o conteúdo
+function showSlides(n) {
+    let i;
+    let slides = document.getElementsByClassName("mySlides");
+    let dots = document.getElementsByClassName("dot");
+    if (n > slides.length) { slideIndex = 1 }
+    if (n < 1) { slideIndex = slides.length }
+    for (i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
     }
-});
+    for (i = 0; i < dots.length; i++) {
+        dots[i].className = dots[i].className.replace(" active", "");
+    }
+    slides[slideIndex - 1].style.display = "block";
+    dots[slideIndex - 1].className += " active";
+}
 
-// Adiciona event listeners aos botões "prev"
-prevBtns.forEach((btn) => {
-    btn.addEventListener('click', () => {
-        currentIndex = (currentIndex - 1 + banners.length) % banners.length; // Volta para o banner anterior
-        showBanner(currentIndex);
-    });
-});
+// Automatic Slideshow
+let slideIndexAuto = 0;
+showSlidesAuto();
 
-// Adiciona event listeners aos botões de controle
-const controlBtns = document.querySelectorAll('.control-btn');
-controlBtns.forEach((btn, index) => {
-    btn.addEventListener('click', () => {
-        currentIndex = index; // Atualiza o índice atual para o botão clicado
-        showBanner(currentIndex);
-    });
-});
-
-
-
-
+function showSlidesAuto() {
+    let i;
+    let slides = document.getElementsByClassName("mySlides");
+    for (i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+    }
+    slideIndexAuto++;
+    if (slideIndexAuto > slides.length) { slideIndexAuto = 1 }
+    slides[slideIndexAuto - 1].style.display = "block";
+    setTimeout(showSlidesAuto, 2000); // Troca de imagem a cada 2 segundos
+}
