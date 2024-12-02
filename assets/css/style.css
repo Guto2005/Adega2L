@@ -66,132 +66,11 @@ li {
 
 /*Classificados*/
 
-/*Tela de Login*/
-.login-container {
-    align-items: flex-start;
-    background-image: url(../img/Image.png);
-    background-repeat: no-repeat;
-    background-position: center;
-    background-position-x: right;
-    overflow-y: hidden;
-    width: 100%;
-}
+/* index */
+ @media screen {
 
-.institucional {
-    position: fixed; /* Fixa o header no topo */
-    top: 0;
-    width: 100%; /* Largura total */
-    height: 250px; /* Altura do header */
-    background-color: var(--cor-preto); /* Cor de fundo */
-    border-bottom: 2px solid var(--cor-dourado); /* Borda inferior */
-    z-index: 1000; /* Garante que o header fique acima de outros elementos */
-}
+ }
 
-
-.login-button {
-    border-radius: 4px;
-    background: #FFEA00;
-}
-
-.login-title {
-    justify-content: center;
-    display: flex;
-}
-
-.login-links {
-    font-size: medium;
-    align-items: center;
-    color: #3DB4FF;
-    margin: auto;
-    display: inherit;
-    flex-direction: inherit;
-    padding: 5px;
-}
-
-.form-login {
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
-    font-size: 1.6rem;
-    border-radius: 10px;
-    border: 2px solid #000;
-    background: rgba(0, 0, 0, 0.50);
-    margin: 20px;
-    padding: 70px;
-    width: 100%;
-    max-width: 400px;
-    /* Limitar a largura do formulário */
-}
-
-.login-decoration {
-    display: flex;
-    width: 800px;
-    height: 1024px;
-    padding: 242px 95px;
-    flex-direction: column;
-    align-items: center;
-    border: 1px solid #FFEA00;
-    background: rgba(91, 91, 91, 0.50);
-}
-
-
-/* Tela de cadastro */
-
-.cadastro-container {
-    align-items: flex-start;
-    background-image: url(../img/Image.png);
-    background-repeat: no-repeat;
-    background-position: center;
-    background-position-x: right;
-    overflow-y: hidden;
-    width: 100%;
-}
-
-.cadastro-button {
-    border-radius: 4px;
-    background: #FFEA00;
-}
-
-.cadastro-title {
-    justify-content: center;
-    display: flex;
-}
-
-.cadastro-links {
-    font-size: medium;
-    align-items: center;
-    color: #3DB4FF;
-    margin: auto;
-    display: inherit;
-    flex-direction: inherit;
-    padding: 5px;
-}
-
-.form-cadastro {
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
-    font-size: 1.6rem;
-    border-radius: 10px;
-    border: 2px solid #000;
-    background: rgba(0, 0, 0, 0.50);
-    margin: 20px;
-    padding: 70px;
-    width: 100%;
-    max-width: 400px;
-    /* Limitar a largura do formulário */
-}
-
-.cadastro-decoration {
-    display: flex;
-    width: 800px;
-    height: 1024px;
-    padding: 242px 95px;
-    flex-direction: column;
-    align-items: center;
-    border: 1px solid #FFEA00;
-    background: rgba(91, 91, 91, 0.50);
-}
 .icone-mobile {
     font-size: 2.0rem;
     background-color: #00000000;
@@ -530,6 +409,16 @@ li {
     /* Cor do botão ativo */
 }
 
+.institucional {
+    position: fixed; /* Fixa o header no topo */
+    top: 0;
+    width: 100%; /* Largura total */
+    height: 250px; /* Altura do header */
+    background-color: var(--cor-preto); /* Cor de fundo */
+    border-bottom: 2px solid var(--cor-dourado); /* Borda inferior */
+    z-index: 1000; /* Garante que o header fique acima de outros elementos */
+}
+
 
 .carrossel-navigation-left {
         position: absolute;
@@ -674,9 +563,19 @@ img {vertical-align: middle;}
     background-color: #717171;
 }
 
+/* index responsivo */
+@media (max-width: 500px) {
+    header {
+        display: flex;
+        position: fixed;
+        top: 0;
+        border-bottom: 2px solid var(--cor-dourado);
+
+    }
 
 
 
+}
 
 .institucional-quem-somos-proposta {
     display: flex;

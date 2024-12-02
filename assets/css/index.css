@@ -1,0 +1,22 @@
+/* Slideshow container */
+.slideshow-container {
+    display: flex;
+    align-items: center;
+    padding-left: 100px;
+    padding-right: 100px;
+    background-color: var(--cor-branco);
+    padding-top: 60px;
+    padding-bottom: 60px;
+    border-radius: 20px;
+    justify-content: center;
+    flex-direction: column;
+    width: 60%;
+}
+
+
+.SlideProduto {
+    width: 70%;
+    border-radius: 20px;
+    position: relative;
+    left: 140px;
+}
