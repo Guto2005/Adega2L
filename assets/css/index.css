@@ -66,121 +66,6 @@ li {
 
 /*Classificados*/
 
-/*Tela de Login*/
-.login-container {
-    align-items: flex-start;
-    background-image: url(../img/Image.png);
-    background-repeat: no-repeat;
-    background-position: center;
-    background-position-x: right;
-    overflow-y: hidden;
-    width: 100%;
-}
-
-.login-button {
-    border-radius: 4px;
-    background: #FFEA00;
-}
-
-.login-title {
-    justify-content: center;
-    display: flex;
-}
-
-.login-links {
-    font-size: medium;
-    align-items: center;
-    color: #3DB4FF;
-    margin: auto;
-    display: inherit;
-    flex-direction: inherit;
-    padding: 5px;
-}
-
-.form-login {
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
-    font-size: 1.6rem;
-    border-radius: 10px;
-    border: 2px solid #000;
-    background: rgba(0, 0, 0, 0.50);
-    margin: 20px;
-    padding: 70px;
-    width: 100%;
-    max-width: 400px;
-    /* Limitar a largura do formulário */
-}
-
-.login-decoration {
-    display: flex;
-    width: 800px;
-    height: 1024px;
-    padding: 242px 95px;
-    flex-direction: column;
-    align-items: center;
-    border: 1px solid #FFEA00;
-    background: rgba(91, 91, 91, 0.50);
-}
-
-/* Tela de cadastro */
-
-.cadastro-container {
-    align-items: flex-start;
-    background-image: url(../img/Image.png);
-    background-repeat: no-repeat;
-    background-position: center;
-    background-position-x: right;
-    overflow-y: hidden;
-    width: 100%;
-}
-
-.cadastro-button {
-    border-radius: 4px;
-    background: #FFEA00;
-}
-
-.cadastro-title {
-    justify-content: center;
-    display: flex;
-}
-
-.cadastro-links {
-    font-size: medium;
-    align-items: center;
-    color: #3DB4FF;
-    margin: auto;
-    display: inherit;
-    flex-direction: inherit;
-    padding: 5px;
-}
-
-.form-cadastro {
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
-    font-size: 1.6rem;
-    border-radius: 10px;
-    border: 2px solid #000;
-    background: rgba(0, 0, 0, 0.50);
-    margin: 20px;
-    padding: 70px;
-    width: 100%;
-    max-width: 400px;
-    /* Limitar a largura do formulário */
-}
-
-.cadastro-decoration {
-    display: flex;
-    width: 800px;
-    height: 1024px;
-    padding: 242px 95px;
-    flex-direction: column;
-    align-items: center;
-    border: 1px solid #FFEA00;
-    background: rgba(91, 91, 91, 0.50);
-}
-
 
 /* index */
  @media screen {
@@ -442,21 +327,6 @@ li {
     transition: all 0.3s ease; /* Para uma transição suave */
 }
 
-.nav-catalogo:hover {
-    transform: scale(1.2); /* Aumenta a div ao passar o mouse */
-}
-
-.btn-catalogo {
-    padding: 10px 20px; /* Ajuste o padding conforme necessário */
-    background-color: #000; /* Cor de fundo padrão */
-    color: #fff; /* Cor da fonte padrão */
-    text-decoration: none; /* Remove o underline */
-    transition: all 0.3s ease; /* Para uma transição suave */
-}
-
-.nav-catalogo:hover .btn-catalogo {
-    color: gold; /* Muda a cor da fonte para dourado */
-}
 
 .nav-list {
     display: flex;
@@ -476,16 +346,6 @@ li {
     padding: 20px;
 }
 
-.carrossel-container {
-    position: relative;
-    overflow: hidden;
-}
-
-.carrossel {
-    display: flex;
-    transition: transform 0.5s ease-in-out;
-}
-
 .banner {
     position: relative;
     min-width: 95%;
@@ -502,10 +362,6 @@ li {
     left: 40px;
 }
 
-.carrossel-controls {
-    text-align: center;
-    margin-top: 10px;
-}
 
 .control-btn {
     background-color: var(--cor-dourado);
@@ -535,47 +391,6 @@ li {
     z-index: 1000; /* Garante que o header fique acima de outros elementos */
 }
 
-
-.carrossel-navigation-left {
-        position: absolute;
-        top: 50%;
-        left: 10px; /* Posiciona a seta à direita */
-        transform: translateY(-50%);
-        z-index: 10; /* Certifique-se de que esteja acima dos outros elementos */
-}
-.carrossel-navigation-right{
-        position: absolute;
-        top: 50%;
-        right: 10px; /* Posiciona a seta à direita */
-        transform: translateY(-50%);
-        z-index: 10; /* Certifique-se de que esteja acima dos outros elementos */
-}
-    
-.prev-btn,
-.next-btn {
-    background-color: var(--cor-branco);
-    /* Cor dos botões de navegação */
-    border: none;
-    cursor: pointer;
-    padding: 10px;
-    font-size: 1.4rem;
-}
-
-
-.destaques {
-    background-color: var(--cor-preto-claro);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    font-size: 20px;
-    color: var(--cor-branco);
-    width: 90%;
-    margin: 0 auto;
-    text-align: center;
-    gap: 32px;
-    border: 2px solid var(--cor-dourado);
-}
-
 .marquee-container {
     padding: 20px;
     width: 90%;
@@ -594,7 +409,6 @@ li {
     background-color: black; /* Fundo do marquee preto */
     color: white; /* Texto branco */
     justify-content: center;
-    animation: marquee 20s linear infinite; /* Animação do marquee */
 }
 
 body {font-family: Verdana, sans-serif;}
@@ -871,134 +685,6 @@ img {vertical-align: middle;}
 
 }
 
-.close-btn:hover,
-.close-btn:focus {
-    color: rgb(12, 89, 255);
-    /* Muda a cor ao passar o mouse ou focar */
-    text-decoration: none;
-    /* Remove sublinhado */
-    cursor: pointer;
-    /* Indica que é clicável */
-}
-
-
-.produtos {
-    background-color: var(--cor-preto-claro);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    font-size: 20px;
-    color: var(--cor-branco);
-    width: 90%;
-    margin: 0 auto;
-    text-align: center;
-    gap: 32px;
-    border: 2px solid var(--cor-dourado);
-}
-
-.destaque-titulo {
-    color: var(--cor-branco);
-    font-family: 'Sans-Variable';
-
-}
-
-.catalogo-titulo {
-    color: var(--cor-branco);
-    font-family: 'Sans-Variable';
-}
-
-
-.destaques-bebidas {
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
-    gap: 20px;
-    justify-content: center;
-    overflow: hidden;
-}
-
-.destaques-alcoolicas {
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
-    gap: 20px;
-    justify-content: center;
-    overflow: hidden;
-}
-
-.destaques-snacks {
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
-    gap: 20px;
-    justify-content: center;
-    overflow: hidden;
-}
-
-.destaques-cigarros {
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
-    gap: 20px;
-    justify-content: center;
-    overflow: hidden;
-}
-
-.destaques-bebidas ul {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    padding: 0;
-    margin: 0;
-    list-style-type: none;
-}
-
-.destaques-alcoolicas ul {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    padding: 0;
-    margin: 0;
-    list-style-type: none;
-}
-
-.destaques-snacks ul {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    padding: 0;
-    margin: 0;
-    list-style-type: none;
-}
-
-.destaques-cigarros ul {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    padding: 0;
-    margin: 0;
-    list-style-type: none;
-}
-
-.catalogo {
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
-    gap: 20px;
-    justify-content: center;
-    overflow: hidden;
-}
-
-.card-produto {
-    width: 200px;
-    box-sizing: border-box;
-    margin-bottom: 20px;
-}
-
-.card-produto img {
-    width: 100%;
-    height: auto;
-}
 
 footer {
     display: flex;
@@ -1075,6 +761,12 @@ footer {
     width: 33%;
     display: flex;
     gap: 64px;
+}
+
+.redes-sociais {
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
 }
 
 .contato {
