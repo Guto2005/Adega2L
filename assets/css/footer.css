@@ -66,7 +66,6 @@ li {
 
 /*Classificados*/
 
-
 /* index */
  @media screen {
 
@@ -197,6 +196,64 @@ li {
     display: none;
 }
 
+#facebook-icon {
+    color: var(--cor-dourado);
+    font-size: 2.0vw;
+    transition: all 0.2s ease; /* Para uma transição suave */
+}
+
+#instagram-icon {
+    color: var(--cor-dourado);
+    font-size: 2.0vw;
+    transition: all 0.2s ease; /* Para uma transição suave */
+}
+
+#twitter-icon {
+    color: var(--cor-dourado);
+    font-size: 2.0vw;
+    transition: all 0.2s ease; /* Para uma transição suave */
+}
+
+#facebook-icon:hover {
+    color: var(--cor-branco);
+    font-size: 2.0vw;
+    transform: scale(1.2);
+}
+
+#instagram-icon:hover {
+    color: var(--cor-branco);
+    font-size: 2.0vw;
+    transform: scale(1.2);
+}
+
+#twitter-icon:hover {
+    color: var(--cor-branco);
+    font-size: 2.0vw;
+    transform: scale(1.2);
+
+}
+
+#map-icon {
+    font-size: 2.0vw;
+    color: var(--cor-dourado);
+    transition: all 0.2s ease; /* Para uma transição suave */
+}
+
+#map-icon:hover {
+    color: var(--cor-branco);
+    font-size: 2.0vw;
+    transform: scale(1.2);
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 32px;
+    align-items: center;
+    justify-content: center;
+}
+
 .link-carrinho {
     display: flex;
     text-decoration: none;
@@ -253,6 +310,37 @@ li {
 .nav-products-mobile {
     display: none;
  }
+ 
+
+.nav-catalogo {
+    display: flex;
+    width: 50%;
+    align-items: center;
+    border: 3px solid var(--cor-dourado);
+    position:relative;
+    top:40px;
+    font-size: 2.0vw;
+    justify-content: center;
+    padding: 30px;
+    text-align: center; /* Centraliza o conteúdo */
+    transition: all 0.3s ease; /* Para uma transição suave */
+}
+
+.nav-catalogo:hover {
+    transform: scale(1.2); /* Aumenta a div ao passar o mouse */
+}
+
+.btn-catalogo {
+    padding: 10px 20px; /* Ajuste o padding conforme necessário */
+    background-color: #000; /* Cor de fundo padrão */
+    color: #fff; /* Cor da fonte padrão */
+    text-decoration: none; /* Remove o underline */
+    transition: all 0.3s ease; /* Para uma transição suave */
+}
+
+.nav-catalogo:hover .btn-catalogo {
+    color: gold; /* Muda a cor da fonte para dourado */
+}
 
 .nav-list {
     display: flex;
@@ -270,6 +358,209 @@ li {
     background-color: var(--cor-preto);
     font-family: 'Sans-Italic';
     padding: 20px;
+}
+
+.carrossel-container {
+    position: relative;
+    overflow: hidden;
+}
+
+.carrossel {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.banner {
+    position: relative;
+    min-width: 95%;
+    box-sizing: border-box;
+    padding: 40px 20px;
+    background-color: var(--cor-preto-claro);
+    /* Cor de fundo do banner */
+    color: var(--cor-branco);
+}   
+
+.banner img {
+    width: 95%;
+    position: relative;
+    left: 40px;
+}
+
+.carrossel-controls {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.control-btn {
+    background-color: var(--cor-dourado);
+    /* Cor dos botões de controle */
+    border: none;
+    border-radius: 50%;
+    width: 15px;
+    height: 15px;
+    margin: 0 5px;
+    cursor: pointer;
+}
+
+.control-btn.active {
+    background-color: var(--cor-preto-claro);
+    border-radius: 50px;
+    border: 2px solid var(--cor-dourado);
+    /* Cor do botão ativo */
+}
+
+.institucional {
+    position: fixed; /* Fixa o header no topo */
+    top: 0;
+    width: 100%; /* Largura total */
+    height: 250px; /* Altura do header */
+    background-color: var(--cor-preto); /* Cor de fundo */
+    border-bottom: 2px solid var(--cor-dourado); /* Borda inferior */
+    z-index: 1000; /* Garante que o header fique acima de outros elementos */
+}
+
+
+.carrossel-navigation-left {
+        position: absolute;
+        top: 50%;
+        left: 10px; /* Posiciona a seta à direita */
+        transform: translateY(-50%);
+        z-index: 10; /* Certifique-se de que esteja acima dos outros elementos */
+}
+.carrossel-navigation-right{
+        position: absolute;
+        top: 50%;
+        right: 10px; /* Posiciona a seta à direita */
+        transform: translateY(-50%);
+        z-index: 10; /* Certifique-se de que esteja acima dos outros elementos */
+}
+    
+.prev-btn,
+.next-btn {
+    background-color: var(--cor-branco);
+    /* Cor dos botões de navegação */
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    font-size: 1.4rem;
+}
+
+
+.destaques {
+    background-color: var(--cor-preto-claro);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 20px;
+    color: var(--cor-branco);
+    width: 90%;
+    margin: 0 auto;
+    text-align: center;
+    gap: 32px;
+    border: 2px solid var(--cor-dourado);
+}
+
+.marquee-container {
+    padding: 20px;
+    width: 90%;
+    background-color: var(--cor-preto-claro);
+}
+
+.marquee {
+    display: flex;
+    white-space: nowrap;
+    overflow: hidden;
+    box-sizing: border-box;
+    border: 2px solid gold; /* Borda dourada */
+    padding: 20px; /* Padding de 20px */
+    font-size: 4.0vw; /* Fonte maior */
+    align-items: center;
+    background-color: black; /* Fundo do marquee preto */
+    color: white; /* Texto branco */
+    justify-content: center;
+    animation: marquee 20s linear infinite; /* Animação do marquee */
+}
+
+body {font-family: Verdana, sans-serif;}
+img {vertical-align: middle;}
+
+/* Slideshow container */
+.slideshow-container {
+    display: flex;
+    align-items: center;
+    padding-left: 100px;
+    padding-right: 100px;
+    background-color: var(--cor-branco);
+    padding-top: 60px;
+    padding-bottom: 60px;
+    border-radius: 20px;
+    justify-content: center;
+    flex-direction: column;
+    width: 60%;
+}
+
+/* Hide all images by default */
+.mySlides {
+    display: none;
+}
+
+.SlideProduto {
+    width: 70%;
+    border-radius: 20px;
+    position: relative;
+    left: 140px;
+}
+
+/* Next & previous buttons */
+.prev, .next {
+    position: absolute;
+    top: 50%;
+    width: auto;
+    padding: 16px;
+    margin-top: -22px; /* Center the arrows vertically */
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.3s;
+    border-radius: 0 3px 3px 0;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    text-decoration: none;
+}
+
+/* Position the "prev" arrow to the left */
+.prev {
+    left: -50px; /* Position the "prev" arrow outside the image */
+}
+
+/* Position the "next" arrow to the right */
+.next {
+    right: -50px; /* Position the "next" arrow outside the image */
+}
+
+/* On hover, show the arrows more clearly */
+.prev:hover, .next:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+/* Dots/circles at the bottom */
+.dot {
+    height: 15px;
+    width: 15px;
+    margin: 0 2px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+}
+
+/* Change color of dots on hover */
+.dot:hover {
+    background-color: #717171;
+}
+
+/* Active dot (current slide) */
+.active {
+    background-color: #717171;
 }
 
 /* index responsivo */
