@@ -1,0 +1,364 @@
+/*Comandos sem classe*/
+
+:root {
+    --cor-dourado: #FFD700;
+    /* Código hexadecimal para dourado */
+    --cor-preto: #000000;
+    /* Código hexadecimal para preto */
+    --cor-branco: #FFFFFF;
+    /* Código hexadecimal para branco */
+    --cor-preto-claro: #1f1f1f;
+}
+
+@font-face {
+    font-family: 'Sans-Italic';
+    src: url('./../fonts/OpenSans-Italic-VariableFont_wdth\,wght.ttf');
+}
+
+@font-face {
+    font-family: 'Sans-Variable';
+    src: url(./../fonts/OpenSans-VariableFont_wdth\,wght.ttf);
+}
+
+* {box-sizing:border-box}
+
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    background-color: var(--cor-preto);
+    flex-direction: column;
+    color: white;
+    align-items: center;
+    gap: 80px;
+    padding-top: 250px; /* Igual à altura do header */
+    overflow-x: hidden;
+}
+
+
+
+header {
+    display: flex;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    justify-content: space-around;
+    width: 100%;
+    height: 250px; /* Altura fixa do header */
+    border-bottom: 2px solid var(--cor-dourado);
+    padding: 0 40px; /* Ajuste o padding conforme necessário */
+    background-color: var(--cor-preto); /* Adicione uma cor de fundo para evitar transparência */
+}
+
+
+a {
+    color: white;
+    text-decoration: none;
+}
+
+a i {
+    font-size: 20px;
+}
+
+li {
+    list-style-type: none;
+}
+
+/*Classificados*/
+
+/* index */
+ @media screen {
+
+ }
+
+.container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 32px;
+    align-items: center;
+    justify-content: center;
+}
+
+
+body {font-family: Verdana, sans-serif;}
+img {vertical-align: middle;}
+
+
+/* index responsivo */
+@media (max-width: 500px) {
+    
+}
+
+.contato p {
+    font-size: 1.2vw;
+}
+
+.endereco {
+    font-size: 1.4vw;
+    width: 100%;
+}
+
+.endereco p {
+    font-size: 1.2vw;
+}
+
+.endereco a {
+    font-size: 1.2vw;
+}
+
+@keyframes marquee {
+    0% {
+        transform: translateX(100%); /* Começa fora da tela à direita */
+    }
+    100% {
+        transform: translateX(-100%); /* Termina fora da tela à esquerda */
+    }
+}
+
+@keyframes fade {
+    from {opacity: .4} 
+    to {opacity: 1}
+  }
+
+/* Ajuste de Responsividade */
+
+/* Garante que o layout de conteúdo seja em coluna em telas menores */
+@media (max-width: 873px) {
+    header {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 10px;
+    }
+
+    .mobile {
+        display: block;
+        width: 100%;
+        text-align: center;
+    }
+
+    .logotipo img {
+        width: 60%;
+        max-width: 250px; /* Limita o tamanho do logotipo */
+    }
+
+    .search-bar {
+        width: 100%;
+        margin: 10px 0;
+    }
+
+    .search-placeholder {
+        width: 80%;
+        font-size: 1.2rem;
+    }
+
+    .perfil-link {
+        display: flex;
+        justify-content: center;
+        margin: 10px 0;
+    }
+
+    .link-carrinho {
+        display: flex;
+        justify-content: center;
+        margin: 10px 0;
+    }
+
+    .container {
+        padding: 20px;
+    }
+
+    .marquee-container {
+        text-align: center;
+        font-size: 1.2rem;
+    }
+
+    .slideshow-container {
+        width: 100%;
+    }
+
+    .slideshow-container .mySlides img {
+        width: 100%;
+        height: auto;
+    }
+
+    .institucional-quem-somos-proposta {
+        flex-direction: column;
+        padding: 10px;
+    }
+
+    .quem-somos, .proposta-site-vendas {
+        width: 100%;
+        margin-bottom: 20px;
+        padding: 20px;
+        text-align: center;
+    }
+
+    .nossa-historia-container {
+        flex-direction: column;
+        padding: 20px;
+    }
+
+    .nossa-historia, .nossa-historia-img {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .footer-institucional {
+        flex-direction: column;
+        align-items: center;
+        padding: 20px;
+    }
+
+    .footer-left, .footer-center, .footer-right {
+        width: 100%;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .footer-center h4 {
+        font-size: 1.4rem;
+    }
+
+    .redes-sociais a {
+        font-size: 1.5rem;
+        margin: 0 10px;
+    }
+
+    .endereco a {
+        font-size: 1rem;
+    }
+}
+
+/* Para telas ainda menores (dispositivos com até 650px de largura) */
+@media (max-width: 650px) {
+    header {
+        padding: 10px;
+    }
+
+    .logotipo img {
+        width: 50%;
+        max-width: 180px;
+    }
+
+    .search-bar {
+        width: 100%;
+    }
+
+    .search-placeholder {
+        font-size: 1rem;
+    }
+
+    .perfil-link, .link-carrinho {
+        flex-direction: column;
+        align-items: center;
+        margin: 10px 0;
+    }
+
+    .nav-catalogo {
+        display: none;
+    }
+
+    .nav-list-mobile {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .slideshow-container .mySlides img {
+        width: 100%;
+        height: auto;
+    }
+
+    .institucional-quem-somos-proposta {
+        flex-direction: column;
+        padding: 10px;
+    }
+
+    .quem-somos, .proposta-site-vendas {
+        width: 100%;
+        margin-bottom: 20px;
+        padding: 20px;
+    }
+
+    .nossa-historia-container {
+        flex-direction: column;
+        padding: 20px;
+    }
+
+    .footer-institucional {
+        flex-direction: column;
+        align-items: center;
+        padding: 20px;
+    }
+
+    .footer-left, .footer-center, .footer-right {
+        width: 100%;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .footer-center h4 {
+        font-size: 1.2rem;
+    }
+
+    .redes-sociais a {
+        font-size: 1.2rem;
+    }
+}
+
+/* Para telas extremamente pequenas (como smartphones muito compactos, até 320px) */
+@media (max-width: 320px) {
+    header {
+        padding: 5px;
+    }
+
+    .logotipo img {
+        width: 50%;
+        max-width: 150px;
+    }
+
+    .search-placeholder {
+        font-size: 1rem;
+    }
+
+    .perfil-link, .link-carrinho {
+        font-size: 1rem;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .slideshow-container .mySlides img {
+        width: 100%;
+        height: auto;
+    }
+
+    .institucional-quem-somos-proposta {
+        flex-direction: column;
+    }
+
+    .quem-somos, .proposta-site-vendas {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .footer-institucional {
+        flex-direction: column;
+        padding: 10px;
+    }
+
+    .footer-left, .footer-center, .footer-right {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .footer-center h4 {
+        font-size: 1rem;
+    }
+
+    .redes-sociais a {
+        font-size: 1.2rem;
+        margin: 0 5px;
+    }
+}
