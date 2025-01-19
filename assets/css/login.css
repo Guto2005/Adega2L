@@ -1,0 +1,124 @@
+/*Comandos sem classe*/
+
+:root {
+    --cor-dourado: #FFD700;
+    /* Código hexadecimal para dourado */
+    --cor-preto: #000000;
+    /* Código hexadecimal para preto */
+    --cor-branco: #FFFFFF;
+    /* Código hexadecimal para branco */
+    --cor-preto-claro: #1f1f1f;
+}
+
+@font-face {
+    font-family: 'Sans-Italic';
+    src: url('./../fonts/OpenSans-Italic-VariableFont_wdth\,wght.ttf');
+}
+
+@font-face {
+    font-family: 'Sans-Variable';
+    src: url(./../fonts/OpenSans-VariableFont_wdth\,wght.ttf);
+}
+
+* {box-sizing:border-box}
+
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    background-color: var(--cor-preto);
+    flex-direction: column;
+    color: white;
+    align-items: center;
+    gap: 80px;
+    padding-top: 250px; /* Igual à altura do header */
+    overflow-x: hidden;
+}
+
+
+
+header {
+    display: flex;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    justify-content: space-around;
+    width: 100%;
+    height: 250px; /* Altura fixa do header */
+    border-bottom: 2px solid var(--cor-dourado);
+    padding: 0 40px; /* Ajuste o padding conforme necessário */
+    background-color: var(--cor-preto); /* Adicione uma cor de fundo para evitar transparência */
+}
+
+
+a {
+    color: white;
+    text-decoration: none;
+}
+
+a i {
+    font-size: 20px;
+}
+
+li {
+    list-style-type: none;
+}
+
+/*Classificados*/
+
+/*Tela de Login*/
+.login-container {
+    align-items: flex-start;
+    background-image: url(../img/Image.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-position-x: right;
+    overflow-y: hidden;
+    width: 100%;
+}
+
+.login-button {
+    border-radius: 4px;
+    background: #FFEA00;
+}
+
+.login-title {
+    justify-content: center;
+    display: flex;
+}
+
+.login-links {
+    font-size: medium;
+    align-items: center;
+    color: #3DB4FF;
+    margin: auto;
+    display: inherit;
+    flex-direction: inherit;
+    padding: 5px;
+}
+
+.form-login {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    font-size: 1.6rem;
+    border-radius: 10px;
+    border: 2px solid #000;
+    background: rgba(0, 0, 0, 0.50);
+    margin: 20px;
+    padding: 70px;
+    width: 100%;
+    max-width: 400px;
+    /* Limitar a largura do formulário */
+}
+
+.login-decoration {
+    display: flex;
+    width: 800px;
+    height: 1024px;
+    padding: 242px 95px;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid #FFEA00;
+    background: rgba(91, 91, 91, 0.50);
+}

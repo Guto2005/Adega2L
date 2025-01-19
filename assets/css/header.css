@@ -1,3 +1,42 @@
+/*Comandos sem classe*/
+
+:root {
+    --cor-dourado: #FFD700;
+    /* Código hexadecimal para dourado */
+    --cor-preto: #000000;
+    /* Código hexadecimal para preto */
+    --cor-branco: #FFFFFF;
+    /* Código hexadecimal para branco */
+    --cor-preto-claro: #1f1f1f;
+}
+
+@font-face {
+    font-family: 'Sans-Italic';
+    src: url('./../fonts/OpenSans-Italic-VariableFont_wdth\,wght.ttf');
+}
+
+@font-face {
+    font-family: 'Sans-Variable';
+    src: url(./../fonts/OpenSans-VariableFont_wdth\,wght.ttf);
+}
+
+* {box-sizing:border-box}
+
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    background-color: var(--cor-preto);
+    flex-direction: column;
+    color: white;
+    align-items: center;
+    gap: 80px;
+    padding-top: 250px; /* Igual à altura do header */
+    overflow-x: hidden;
+}
+
+
+
 header {
     display: flex;
     align-items: center;
@@ -11,7 +50,450 @@ header {
     background-color: var(--cor-preto); /* Adicione uma cor de fundo para evitar transparência */
 }
 
+
+a {
+    color: white;
+    text-decoration: none;
+}
+
+a i {
+    font-size: 20px;
+}
+
+li {
+    list-style-type: none;
+}
+
+/*Classificados*/
+
+
+/* index */
+ @media screen {
+
+ }
+
+.icone-mobile {
+    font-size: 2.0rem;
+    background-color: #00000000;
+    color: var(--cor-dourado);
+    border: none;
+    display: none;
+}
+
+.logotipo {
+    transition: all 0.3s ease; /* Para uma transição suave */
+}
+
 .logotipo img {
     height: 200px; /* Ajuste a altura do logotipo conforme necessário */
     width: auto; /* Mantém a proporção do logotipo */ 
+}
+
+.logotipo:hover {
+    transform:scale(1.2);
+}
+
+.home {
+    display: none;
+}
+
+.logotipo-mobile {
+    display: none;
+    height: 200px; /* Ajuste a altura do logotipo conforme necessário */
+    width: auto; /* Mantém a proporção do logotipo */
+
+}
+
+
+.search-bar-mobile {
+    display: none;
+}
+
+.search-bar {
+    display: flex; /* Utiliza flexbox para alinhar os itens */
+    align-items: center; /* Alinha verticalmente os itens ao centro */
+    background-color: var(--cor-branco);
+    border-radius: 20px;
+    padding: 10px;
+}
+
+.search-placeholder {
+    padding: 10px; /* Adiciona espaçamento interno */
+    border: none; /* Define a borda */
+    border-radius: 4px 0 0 4px; /* Bordas arredondadas */
+    flex: 1; /* Faz o input ocupar o máximo de espaço disponível */
+    outline: none; /* Remove a borda de foco padrão */
+    font-size: 2.0vw;
+}
+
+.botao-enviar {
+    background-color: var(--cor-branco); /* Cor de fundo do botão */
+    border: none;
+    border-radius: 0 4px 4px 0; /* Bordas arredondadas */
+    padding: 10px; /* Adiciona espaçamento interno */
+    cursor: pointer; /* Muda o cursor ao passar por cima */
+    font-size: 1.5vw;
+    transition: all 0.3s ease; /* Para uma transição suave */
+}
+
+.botao-enviar i {
+    font-size: 1.2em; /* Ajusta o tamanho do ícone */
+}
+
+
+.botao-enviar:hover {
+    color: var(--cor-dourado);
+    transform: scale(1.2);
+}
+
+.perfil-link,
+.link-carrinho {
+    display: flex;
+    align-items: center;
+    font-size: 1.2rem;
+    color: var(--cor-dourado);
+    gap: 10px;
+    height: 100%; /* Mantém os itens alinhados verticalmente */
+    padding-top: 20px; /* Remova este padding se não precisar */
+}
+
+.link-carrinho-mobile {
+   display: none;
+}
+
+.perfil-modal {
+    color: black;
+}
+
+.perfil-btn {
+    display: flex;
+    background-color: #000000;
+    border: none;
+    color: var(--cor-branco);
+    align-items: center;
+    font-size: 1.8vw;
+    width: 100%;
+    transition: all 0.3s ease; /* Para uma transição suave */
+}
+
+.perfil-btn:hover {
+    transform: scale(1.2); /* Aumenta a div ao passar o mouse */
+    color: var(--cor-dourado);
+}
+
+.perfil-btn-mobile {
+   display: none;
+}
+
+.perfil-titulo {
+    font-family: 'Sans-Italic';
+}
+
+#user-icon {
+    font-size: 1.6vw;
+}
+
+#home-icon {
+    display: none;
+}
+
+.link-carrinho {
+    display: flex;
+    text-decoration: none;
+    color: var(--cor-branco);
+    align-items: center;
+    font-size: 40px;
+    padding-right: 40px;
+    transition: all 0.2s ease; /* Para uma transição suave */
+}
+
+.link-carrinho:hover {
+    color: gold; /* Cor ao passar o mouse */
+    transform: scale(1.2); /* Aumenta ligeiramente o tamanho */
+}
+
+.link-carrinho:hover #cart-count {
+    color: gold; /* Cor do span ao passar o mouse */
+}
+
+.link-carrinho:hover #cart-icon {
+    color: gold; /* Cor do ícone ao passar o mouse */
+}
+
+.link-carrinho:hover .carrinho-titulo {
+    color: gold; /* Cor do ícone ao passar o mouse */
+}
+
+#cart-icon {
+    font-size: 1.8vw;
+    display: flex;
+    align-items: center;
+}
+
+.carrinho-quantidade{
+    font-size: 1.8vw;
+}
+
+.carrinho-titulo {
+    display: block;
+    font-size: 1.8vw;
+    color: var(--cor-branco);
+    font-family: 'Sans-Italic';
+    padding-left: 10px;
+    transition: all 0.2s ease; /* Para uma transição suave */
+}
+
+.nav-products {
+    display: flex;
+    width: 90%;
+    align-items: center;
+    padding-top: 200px;
+}
+
+.nav-products-mobile {
+    display: none;
+ }
+
+.nav-list {
+    display: flex;
+    gap: 32px;
+    font-size: 20px;
+    padding: 20px;
+    margin: 0 auto;
+    width: 80%;
+    background-color: var(--cor-preto);
+    justify-content: center;
+    border: 2px solid var(--cor-dourado);
+}
+
+.nav-list li {
+    background-color: var(--cor-preto);
+    font-family: 'Sans-Italic';
+    padding: 20px;
+}
+
+/* index responsivo */
+@media (max-width: 500px) {
+    header {
+        display: flex;
+        position: fixed;
+        top: 0;
+        border-bottom: 2px solid var(--cor-dourado);
+
+    }
+
+
+
+}
+
+.modal {
+    display: none;
+    /* Escondido por padrão */
+    position: fixed;
+    /* Fixa o modal na tela */
+    z-index: 1000;
+    /* Garante que o modal fique acima de outros elementos */
+    left: 0;
+    top: 0;
+    width: 100%;
+    /* Largura total */
+    height: 100%;
+    /* Altura total */
+    background-color: rgba(0, 0, 0, 0.5);
+    /* Fundo semi-transparente */
+}
+
+
+.modal-content {
+    background-color: var(--cor-preto-claro);
+    /* Cor de fundo do conteúdo do modal */
+    margin: 5% auto;
+    /* Margem para centralizar o modal */
+    padding: 30px;
+    /* Aumenta o espaçamento interno */
+    border: 1px solid #888;
+    /* Borda */
+    width: 90%;
+    /* Largura do modal (90% da largura da tela) */
+    max-width: 800px;
+    /* Largura máxima para telas grandes */
+    max-height: 90%;
+    /* Altura máxima para evitar que o modal saia da tela */
+    overflow-y: auto;
+    /* Adiciona rolagem vertical se o conteúdo for muito grande */
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+    /* Sombra */
+    border-radius: 8px;
+    /* Bordas arredondadas */
+    color: rgb(255, 255, 255);
+    align-items: center;
+}
+
+.modal-content button {
+    cursor: pointer; /* Cursor pointer para indicar que é clicável */
+    float: right; /* Alinha o botão de fechar à direita */
+    font-size: 20px; /* Tamanho do botão de fechar */
+    color: #ffffff; /* Cor do botão de fechar */
+    background-color: rgb(40, 167, 15);
+    padding: 20px;
+    border-radius: 20px;
+    width: 50%;
+    border: none;
+}
+
+.modal-titulo {
+    font-size: 2.0rem;
+    color: var(--cor-dourado);
+}
+
+.perfil-campos {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 32px;
+
+}
+
+.campo-perfil {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.campo-perfil input {
+    font-size: 1.4rem;
+}
+
+.campo-perfil label {
+    font-size: 1.4rem;
+}
+
+
+
+.close-btn {
+    cursor: pointer;
+    /* Cursor pointer para indicar que é clicável */
+    float: right;
+    /* Alinha o botão de fechar à direita */
+    font-size: 20px;
+    /* Tamanho do botão de fechar */
+    color: #ffffff;
+    /* Cor do botão de fechar */
+    background-color: red;
+    padding: 20px;
+    border-radius: 20px;
+    width: 50%;
+
+}
+
+.close-btn:hover,
+.close-btn:focus {
+    color: rgb(12, 89, 255);
+    /* Muda a cor ao passar o mouse ou focar */
+    text-decoration: none;
+    /* Remove sublinhado */
+    cursor: pointer;
+    /* Indica que é clicável */
+}
+
+/* Ajuste de Responsividade */
+
+/* Garante que o layout de conteúdo seja em coluna em telas menores */
+@media (max-width: 873px) {
+    header {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 10px;
+    }
+
+    .mobile {
+        display: block;
+        width: 100%;
+        text-align: center;
+    }
+
+    .logotipo img {
+        width: 60%;
+        max-width: 250px; /* Limita o tamanho do logotipo */
+    }
+
+    .search-bar {
+        width: 100%;
+        margin: 10px 0;
+    }
+
+    .search-placeholder {
+        width: 80%;
+        font-size: 1.2rem;
+    }
+
+    .perfil-link {
+        display: flex;
+        justify-content: center;
+        margin: 10px 0;
+    }
+
+    .link-carrinho {
+        display: flex;
+        justify-content: center;
+        margin: 10px 0;
+    }
+
+}
+
+/* Para telas ainda menores (dispositivos com até 650px de largura) */
+@media (max-width: 650px) {
+    header {
+        padding: 10px;
+    }
+
+    .logotipo img {
+        width: 50%;
+        max-width: 180px;
+    }
+
+    .search-bar {
+        width: 100%;
+    }
+
+    .search-placeholder {
+        font-size: 1rem;
+    }
+
+    .perfil-link, .link-carrinho {
+        flex-direction: column;
+        align-items: center;
+        margin: 10px 0;
+    }
+
+    .nav-list-mobile {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+
+}
+
+/* Para telas extremamente pequenas (como smartphones muito compactos, até 320px) */
+@media (max-width: 320px) {
+    header {
+        padding: 5px;
+    }
+
+    .logotipo img {
+        width: 50%;
+        max-width: 150px;
+    }
+
+    .search-placeholder {
+        font-size: 1rem;
+    }
+
+    .perfil-link, .link-carrinho {
+        font-size: 1rem;
+        flex-direction: column;
+        align-items: center;
+    }
+
 }

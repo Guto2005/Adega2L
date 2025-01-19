@@ -72,14 +72,6 @@ li {
 
  }
 
-.icone-mobile {
-    font-size: 2.0rem;
-    background-color: #00000000;
-    color: var(--cor-dourado);
-    border: none;
-    display: none;
-}
-
 .logotipo {
     transition: all 0.3s ease; /* Para uma transição suave */
 }
@@ -93,20 +85,11 @@ li {
     transform:scale(1.2);
 }
 
-.home {
-    display: none;
-}
-
 .logotipo-mobile {
     display: none;
     height: 200px; /* Ajuste a altura do logotipo conforme necessário */
     width: auto; /* Mantém a proporção do logotipo */
 
-}
-
-
-.search-bar-mobile {
-    display: none;
 }
 
 .search-bar {
@@ -157,10 +140,6 @@ li {
     padding-top: 20px; /* Remova este padding se não precisar */
 }
 
-.link-carrinho-mobile {
-   display: none;
-}
-
 .perfil-modal {
     color: black;
 }
@@ -179,10 +158,6 @@ li {
 .perfil-btn:hover {
     transform: scale(1.2); /* Aumenta a div ao passar o mouse */
     color: var(--cor-dourado);
-}
-
-.perfil-btn-mobile {
-   display: none;
 }
 
 .perfil-titulo {
@@ -301,18 +276,6 @@ li {
     transition: all 0.2s ease; /* Para uma transição suave */
 }
 
-.nav-products {
-    display: flex;
-    width: 90%;
-    align-items: center;
-    padding-top: 200px;
-}
-
-.nav-products-mobile {
-    display: none;
- }
- 
-
 .nav-catalogo {
     display: flex;
     width: 50%;
@@ -325,60 +288,6 @@ li {
     padding: 30px;
     text-align: center; /* Centraliza o conteúdo */
     transition: all 0.3s ease; /* Para uma transição suave */
-}
-
-
-.nav-list {
-    display: flex;
-    gap: 32px;
-    font-size: 20px;
-    padding: 20px;
-    margin: 0 auto;
-    width: 80%;
-    background-color: var(--cor-preto);
-    justify-content: center;
-    border: 2px solid var(--cor-dourado);
-}
-
-.nav-list li {
-    background-color: var(--cor-preto);
-    font-family: 'Sans-Italic';
-    padding: 20px;
-}
-
-.banner {
-    position: relative;
-    min-width: 95%;
-    box-sizing: border-box;
-    padding: 40px 20px;
-    background-color: var(--cor-preto-claro);
-    /* Cor de fundo do banner */
-    color: var(--cor-branco);
-}   
-
-.banner img {
-    width: 95%;
-    position: relative;
-    left: 40px;
-}
-
-
-.control-btn {
-    background-color: var(--cor-dourado);
-    /* Cor dos botões de controle */
-    border: none;
-    border-radius: 50%;
-    width: 15px;
-    height: 15px;
-    margin: 0 5px;
-    cursor: pointer;
-}
-
-.control-btn.active {
-    background-color: var(--cor-preto-claro);
-    border-radius: 50px;
-    border: 2px solid var(--cor-dourado);
-    /* Cor do botão ativo */
 }
 
 .institucional {
@@ -439,37 +348,6 @@ img {vertical-align: middle;}
     border-radius: 20px;
     position: relative;
     left: 140px;
-}
-
-/* Next & previous buttons */
-.prev, .next {
-    position: absolute;
-    top: 50%;
-    width: auto;
-    padding: 16px;
-    margin-top: -22px; /* Center the arrows vertically */
-    color: white;
-    font-weight: bold;
-    font-size: 18px;
-    transition: 0.3s;
-    border-radius: 0 3px 3px 0;
-    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
-    text-decoration: none;
-}
-
-/* Position the "prev" arrow to the left */
-.prev {
-    left: -50px; /* Position the "prev" arrow outside the image */
-}
-
-/* Position the "next" arrow to the right */
-.next {
-    right: -50px; /* Position the "next" arrow outside the image */
-}
-
-/* On hover, show the arrows more clearly */
-.prev:hover, .next:hover {
-    background-color: rgba(0, 0, 0, 0.8);
 }
 
 /* Dots/circles at the bottom */
@@ -602,90 +480,6 @@ img {vertical-align: middle;}
     /* Fundo semi-transparente */
 }
 
-
-.modal-content {
-    background-color: var(--cor-preto-claro);
-    /* Cor de fundo do conteúdo do modal */
-    margin: 5% auto;
-    /* Margem para centralizar o modal */
-    padding: 30px;
-    /* Aumenta o espaçamento interno */
-    border: 1px solid #888;
-    /* Borda */
-    width: 90%;
-    /* Largura do modal (90% da largura da tela) */
-    max-width: 800px;
-    /* Largura máxima para telas grandes */
-    max-height: 90%;
-    /* Altura máxima para evitar que o modal saia da tela */
-    overflow-y: auto;
-    /* Adiciona rolagem vertical se o conteúdo for muito grande */
-    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
-    /* Sombra */
-    border-radius: 8px;
-    /* Bordas arredondadas */
-    color: rgb(255, 255, 255);
-    align-items: center;
-}
-
-.modal-content button {
-    cursor: pointer; /* Cursor pointer para indicar que é clicável */
-    float: right; /* Alinha o botão de fechar à direita */
-    font-size: 20px; /* Tamanho do botão de fechar */
-    color: #ffffff; /* Cor do botão de fechar */
-    background-color: rgb(40, 167, 15);
-    padding: 20px;
-    border-radius: 20px;
-    width: 50%;
-    border: none;
-}
-
-.modal-titulo {
-    font-size: 2.0rem;
-    color: var(--cor-dourado);
-}
-
-.perfil-campos {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    gap: 32px;
-
-}
-
-.campo-perfil {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-}
-
-.campo-perfil input {
-    font-size: 1.4rem;
-}
-
-.campo-perfil label {
-    font-size: 1.4rem;
-}
-
-
-
-.close-btn {
-    cursor: pointer;
-    /* Cursor pointer para indicar que é clicável */
-    float: right;
-    /* Alinha o botão de fechar à direita */
-    font-size: 20px;
-    /* Tamanho do botão de fechar */
-    color: #ffffff;
-    /* Cor do botão de fechar */
-    background-color: red;
-    padding: 20px;
-    border-radius: 20px;
-    width: 50%;
-
-}
-
-
 footer {
     display: flex;
     background-color: var(--cor-preto-claro);
@@ -714,24 +508,6 @@ footer {
     justify-content: center;
     border-radius: 20px;
     width: 50%;
-}
-
-.footer-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-}
-
-.footer-container a {
-    color: var(--cor-branco);
-    text-decoration: none;
-}
-
-.footer-container a:hover {
-    text-decoration: underline;
 }
 
 .footer-left,
@@ -942,12 +718,6 @@ footer {
 
     .nav-catalogo {
         display: none;
-    }
-
-    .nav-list-mobile {
-        display: flex;
-        flex-direction: column;
-        width: 100%;
     }
 
     .slideshow-container .mySlides img {

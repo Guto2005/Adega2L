@@ -1,0 +1,271 @@
+/*Comandos sem classe*/
+
+:root {
+    --cor-dourado: #FFD700;
+    /* Código hexadecimal para dourado */
+    --cor-preto: #000000;
+    /* Código hexadecimal para preto */
+    --cor-branco: #FFFFFF;
+    /* Código hexadecimal para branco */
+    --cor-preto-claro: #1f1f1f;
+}
+
+@font-face {
+    font-family: 'Sans-Italic';
+    src: url('./../fonts/OpenSans-Italic-VariableFont_wdth\,wght.ttf');
+}
+
+@font-face {
+    font-family: 'Sans-Variable';
+    src: url(./../fonts/OpenSans-VariableFont_wdth\,wght.ttf);
+}
+
+* {box-sizing:border-box}
+
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    background-color: var(--cor-preto);
+    flex-direction: column;
+    color: white;
+    align-items: center;
+    gap: 80px;
+    padding-top: 250px; /* Igual à altura do header */
+    overflow-x: hidden;
+}
+
+a {
+    color: white;
+    text-decoration: none;
+}
+
+a i {
+    font-size: 20px;
+}
+
+li {
+    list-style-type: none;
+}
+
+/*Classificados*/
+
+/* index */
+ @media screen {
+
+ }
+
+#facebook-icon {
+    color: var(--cor-dourado);
+    font-size: 2.0vw;
+    transition: all 0.2s ease; /* Para uma transição suave */
+}
+
+#instagram-icon {
+    color: var(--cor-dourado);
+    font-size: 2.0vw;
+    transition: all 0.2s ease; /* Para uma transição suave */
+}
+
+#twitter-icon {
+    color: var(--cor-dourado);
+    font-size: 2.0vw;
+    transition: all 0.2s ease; /* Para uma transição suave */
+}
+
+#facebook-icon:hover {
+    color: var(--cor-branco);
+    font-size: 2.0vw;
+    transform: scale(1.2);
+}
+
+#instagram-icon:hover {
+    color: var(--cor-branco);
+    font-size: 2.0vw;
+    transform: scale(1.2);
+}
+
+#twitter-icon:hover {
+    color: var(--cor-branco);
+    font-size: 2.0vw;
+    transform: scale(1.2);
+
+}
+
+#map-icon {
+    font-size: 2.0vw;
+    color: var(--cor-dourado);
+    transition: all 0.2s ease; /* Para uma transição suave */
+}
+
+#map-icon:hover {
+    color: var(--cor-branco);
+    font-size: 2.0vw;
+    transform: scale(1.2);
+}
+
+/* index responsivo */
+@media (max-width: 500px) {
+
+
+
+}
+
+footer {
+    display: flex;
+    background-color: var(--cor-preto-claro);
+    color: var(--cor-branco);
+    padding: 20px;
+    text-align: center;
+    justify-content: center;
+    border-radius: 20px;
+    width: 100%;
+}
+
+.footer-institucional {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.logotipo-footer img {
+    background-color: var(--cor-preto-claro);
+    color: var(--cor-branco);
+    padding: 20px;
+    text-align: center;
+    justify-content: center;
+    border-radius: 20px;
+    width: 50%;
+}
+
+.footer-left,
+.footer-center,
+.footer-right {
+    margin-bottom: 20px;
+    text-align: start;
+}
+
+.footer-left {
+    width: 34%;
+}
+
+.footer-center {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 33%;
+}
+
+.footer-center h4 {
+    font-size: 1.8vw;
+    width: 100%;
+}
+
+.footer-right {
+    width: 33%;
+    display: flex;
+    gap: 64px;
+}
+
+.contato {
+    font-size: 1.4vw;
+    width: 100%;
+}
+
+.contato p {
+    font-size: 1.2vw;
+}
+
+.endereco {
+    font-size: 1.4vw;
+    width: 100%;
+}
+
+.endereco p {
+    font-size: 1.2vw;
+}
+
+.endereco a {
+    font-size: 1.2vw;
+}
+
+/* Ajuste de Responsividade */
+
+/* Garante que o layout de conteúdo seja em coluna em telas menores */
+@media (max-width: 873px) {
+
+    .footer-institucional {
+        flex-direction: column;
+        align-items: center;
+        padding: 20px;
+    }
+
+    .footer-left, .footer-center, .footer-right {
+        width: 100%;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .footer-center h4 {
+        font-size: 1.4rem;
+    }
+
+    .redes-sociais a {
+        font-size: 1.5rem;
+        margin: 0 10px;
+    }
+
+    .endereco a {
+        font-size: 1rem;
+    }
+}
+
+/* Para telas ainda menores (dispositivos com até 650px de largura) */
+@media (max-width: 650px) {
+
+    .footer-institucional {
+        flex-direction: column;
+        align-items: center;
+        padding: 20px;
+    }
+
+    .footer-left, .footer-center, .footer-right {
+        width: 100%;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .footer-center h4 {
+        font-size: 1.2rem;
+    }
+
+    .redes-sociais a {
+        font-size: 1.2rem;
+    }
+}
+
+/* Para telas extremamente pequenas (como smartphones muito compactos, até 320px) */
+@media (max-width: 320px) {
+
+    .footer-institucional {
+        flex-direction: column;
+        padding: 10px;
+    }
+
+    .footer-left, .footer-center, .footer-right {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .footer-center h4 {
+        font-size: 1rem;
+    }
+
+    .redes-sociais a {
+        font-size: 1.2rem;
+        margin: 0 5px;
+    }
+}
