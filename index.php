@@ -6,7 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./assets/css/style.css" />
+    <link rel="stylesheet" href="./assets/css/index.css" />
     <title>Adega2L</title>
 </head>
 
@@ -145,6 +145,8 @@
     <script src="https://kit.fontawesome.com/149b000a36.js" crossorigin="anonymous"></script>
     <script src="assets/scripts/script.js"></script>
 
+
+    
 </body>
 
 </html>
