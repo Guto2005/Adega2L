@@ -109,12 +109,12 @@ foreach ($produtos as $produto) {
             <i class="fa-solid fa-cart-shopping" id="cart-icon"></i>
             <h3 class="carrinho-titulo">Minhas Compras</h3>
         </a>
-
-        <a class="login-back" href="./panel/index.php">
-            <span class="carrinho-quantidade" id="cart-count">0</span>
-            <i class="fa-solid fa-cart-shopping" id="cart-icon"></i>
-            <h3 class="carrinho-titulo">Minhas Compras</h3>
+    <div class="adm-link">
+        <a class="adm-btn" href="./panel/index.php">
+        <i class="fa-regular fa-address-card" id="adm-icon"></i>
+            <h3 class="adm-titulo">Administrativo</h3>
         </a>
+    </div>    
 
     </header>
 
