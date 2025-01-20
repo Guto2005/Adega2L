@@ -1,4 +1,41 @@
-<?php require __DIR__ . '/config.php' ?>
+<?php
+// Conexão com o banco de dados
+$host = 'cc220df3eb53.sn.mynetname.net';
+$dbname = 'gto_caveira';
+$user = 'gto_caveira';
+$password = 'gto416966';
+
+try {
+    $pdo = new PDO("mysql:host=$host;dbname=$dbname", $user, $password);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch (PDOException $e) {
+    die("Erro na conexão: " . $e->getMessage());
+}
+
+// Consulta os produtos agrupados por categoria
+$sql = "SELECT 
+            p.idProduto, 
+            p.nomeProduto, 
+            p.precoProduto, 
+            p.quantidadeEstoqueProduto, 
+            p.tipoUnidade, 
+            p.descricaoBebidas, 
+            c.nomeCategoria AS categoria
+        FROM ADG2L_Produtos p
+        INNER JOIN ADG2L_Categorias c ON p.idCategoria = c.idCategoria
+        ORDER BY c.nomeCategoria, p.nomeProduto";
+
+$stmt = $pdo->prepare($sql);
+$stmt->execute();
+$produtos = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+// Agrupa os produtos por categoria
+$categorias = [];
+foreach ($produtos as $produto) {
+    $categorias[$produto['categoria']][] = $produto;
+}
+?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -7,6 +44,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./assets/css/header.css" />
+    <link rel="stylesheet" href="./assets/css/footer.css" />
     <title>Adega2L</title>
 </head>
 
@@ -72,6 +110,13 @@
             <i class="fa-solid fa-cart-shopping" id="cart-icon"></i>
             <h3 class="carrinho-titulo">Minhas Compras</h3>
         </a>
+
+        <a class="login-back" href="./panel/index.php">
+            <span class="carrinho-quantidade" id="cart-count">0</span>
+            <i class="fa-solid fa-cart-shopping" id="cart-icon"></i>
+            <h3 class="carrinho-titulo">Minhas Compras</h3>
+        </a>
+
     </header>
 
     <div id="perfil-modal" class="modal">

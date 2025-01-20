@@ -462,10 +462,7 @@
                 } else {
                     console.warn("Produto não encontrado. Certifique-se de que \'sender.getValue()\' corresponde a algum \'pro_id\' em \'produtos\'.");
                 }
-            }
-            
-            
-            ');
+            }');
             
             $grid->SetEditClientEditorValueChangedScript('// verifico se é o combo de item que estou pegando
             if (sender.getFieldName() == \'item_produto\') {
@@ -508,8 +505,7 @@
                 } else {
                     console.warn("Produto não encontrado. Certifique-se de que \'sender.getValue()\' corresponde a algum \'pro_id\' em \'produtos\'.");
                 }
-            }
-            ');
+            }');
         }
     
         protected function doRegisterHandlers() {

@@ -439,6 +439,13 @@
             $actions->setCaption($this->GetLocalizerCaptions()->GetMessageString('Actions'));
             $actions->setPosition(ActionList::POSITION_LEFT);
             
+            if ($this->GetSecurityInfo()->HasViewGrant())
+            {
+                $operation = new LinkOperation($this->GetLocalizerCaptions()->GetMessageString('View'), OPERATION_VIEW, $this->dataset, $grid);
+                $operation->setUseImage(true);
+                $actions->addOperation($operation);
+            }
+            
             if ($this->GetSecurityInfo()->HasEditGrant())
             {
                 $operation = new LinkOperation($this->GetLocalizerCaptions()->GetMessageString('Edit'), OPERATION_EDIT, $this->dataset, $grid);
@@ -456,6 +463,14 @@
                 $operation->setUseImage(true);
                 $actions->addOperation($operation);
                 $operation->OnShow->AddListener('ShowDeleteButtonHandler', $this);
+            }
+            
+            
+            if ($this->GetSecurityInfo()->HasAddGrant())
+            {
+                $operation = new LinkOperation($this->GetLocalizerCaptions()->GetMessageString('Copy'), OPERATION_COPY, $this->dataset, $grid);
+                $operation->setUseImage(true);
+                $actions->addOperation($operation);
             }
         }
     
@@ -834,7 +849,7 @@
             $this->SetShowPageList(true);
             $this->SetShowTopPageNavigator(false);
             $this->SetShowBottomPageNavigator(true);
-            $this->setAllowedActions(array('insert', 'edit', 'multi-edit', 'delete', 'multi-delete'));
+            $this->setAllowedActions(array('view', 'insert', 'copy', 'edit', 'multi-edit', 'delete', 'multi-delete'));
             $this->setPrintListAvailable(true);
             $this->setPrintListRecordAvailable(false);
             $this->setPrintOneRecordAvailable(true);

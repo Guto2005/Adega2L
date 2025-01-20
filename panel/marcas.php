@@ -97,7 +97,48 @@
     
         protected function setupFilterBuilder(FilterBuilder $filterBuilder, FixedKeysArray $columns)
         {
-    
+            $main_editor = new TextEdit('marca_id_edit');
+            
+            $filterBuilder->addColumn(
+                $columns['marca_id'],
+                array(
+                    FilterConditionOperator::EQUALS => $main_editor,
+                    FilterConditionOperator::DOES_NOT_EQUAL => $main_editor,
+                    FilterConditionOperator::IS_GREATER_THAN => $main_editor,
+                    FilterConditionOperator::IS_GREATER_THAN_OR_EQUAL_TO => $main_editor,
+                    FilterConditionOperator::IS_LESS_THAN => $main_editor,
+                    FilterConditionOperator::IS_LESS_THAN_OR_EQUAL_TO => $main_editor,
+                    FilterConditionOperator::IS_BETWEEN => $main_editor,
+                    FilterConditionOperator::IS_NOT_BETWEEN => $main_editor,
+                    FilterConditionOperator::IS_BLANK => null,
+                    FilterConditionOperator::IS_NOT_BLANK => null
+                )
+            );
+            
+            $main_editor = new TextEdit('marca_nome_edit');
+            $main_editor->SetMaxLength(40);
+            
+            $filterBuilder->addColumn(
+                $columns['marca_nome'],
+                array(
+                    FilterConditionOperator::EQUALS => $main_editor,
+                    FilterConditionOperator::DOES_NOT_EQUAL => $main_editor,
+                    FilterConditionOperator::IS_GREATER_THAN => $main_editor,
+                    FilterConditionOperator::IS_GREATER_THAN_OR_EQUAL_TO => $main_editor,
+                    FilterConditionOperator::IS_LESS_THAN => $main_editor,
+                    FilterConditionOperator::IS_LESS_THAN_OR_EQUAL_TO => $main_editor,
+                    FilterConditionOperator::IS_BETWEEN => $main_editor,
+                    FilterConditionOperator::IS_NOT_BETWEEN => $main_editor,
+                    FilterConditionOperator::CONTAINS => $main_editor,
+                    FilterConditionOperator::DOES_NOT_CONTAIN => $main_editor,
+                    FilterConditionOperator::BEGINS_WITH => $main_editor,
+                    FilterConditionOperator::ENDS_WITH => $main_editor,
+                    FilterConditionOperator::IS_LIKE => $main_editor,
+                    FilterConditionOperator::IS_NOT_LIKE => $main_editor,
+                    FilterConditionOperator::IS_BLANK => null,
+                    FilterConditionOperator::IS_NOT_BLANK => null
+                )
+            );
         }
     
         protected function AddOperationsColumns(Grid $grid)
@@ -105,6 +146,13 @@
             $actions = $grid->getActions();
             $actions->setCaption($this->GetLocalizerCaptions()->GetMessageString('Actions'));
             $actions->setPosition(ActionList::POSITION_LEFT);
+            
+            if ($this->GetSecurityInfo()->HasViewGrant())
+            {
+                $operation = new LinkOperation($this->GetLocalizerCaptions()->GetMessageString('View'), OPERATION_VIEW, $this->dataset, $grid);
+                $operation->setUseImage(true);
+                $actions->addOperation($operation);
+            }
             
             if ($this->GetSecurityInfo()->HasEditGrant())
             {
@@ -123,6 +171,14 @@
                 $operation->setUseImage(true);
                 $actions->addOperation($operation);
                 $operation->OnShow->AddListener('ShowDeleteButtonHandler', $this);
+            }
+            
+            
+            if ($this->GetSecurityInfo()->HasAddGrant())
+            {
+                $operation = new LinkOperation($this->GetLocalizerCaptions()->GetMessageString('Copy'), OPERATION_COPY, $this->dataset, $grid);
+                $operation->setUseImage(true);
+                $actions->addOperation($operation);
             }
         }
     
@@ -342,7 +398,7 @@
             $this->SetShowPageList(true);
             $this->SetShowTopPageNavigator(false);
             $this->SetShowBottomPageNavigator(true);
-            $this->setAllowedActions(array('insert', 'edit', 'multi-edit', 'delete', 'multi-delete'));
+            $this->setAllowedActions(array('view', 'insert', 'copy', 'edit', 'multi-edit', 'delete', 'multi-delete'));
             $this->setPrintListAvailable(true);
             $this->setPrintListRecordAvailable(false);
             $this->setPrintOneRecordAvailable(true);

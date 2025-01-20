@@ -1,4 +1,5 @@
 <?php require __DIR__ . '/header.php' ?>
+<link rel="stylesheet" href="./assets/css/catalogo.css" />
 <main class="container">
 <div class="carrossel-container">
     <div class="carrossel" id="carrossel">
@@ -41,129 +42,28 @@
     </div>
 </div>
 
-    <div class="destaques">
-        <h2 class="destaque-titulo">MAIS VENDIDOS DA SEMANA</h2>
-        <div class="destaques-bebidas">
-            <h2 class="destaque-titulo">BEBIDAS</h2>
+<div class="destaques">
+    <h2 class="destaque-titulo">MAIS VENDIDOS DA SEMANA</h2>
+
+    <!-- Itera sobre as categorias -->
+    <?php foreach ($categorias as $categoria => $produtosCategoria): ?>
+        <div class="destaques-<?= strtolower($categoria) ?>">
+            <h2 class="destaque-titulo"><?= htmlspecialchars($categoria) ?></h2>
             <ul>
-                <li class="card-produto">
-                    <h2>nome</h2>
-                    <p>Preço:R$</p>
-                    <img src="" alt="">
-                </li>
-                <li class="card-produto">
-                    <h2>nome</h2>
-                    <p>Preço:R$</p>
-                    <img src="" alt="">
-                </li>
-                <li class="card-produto">
-                    <h2>nome</h2>
-                    <p>Preço:R$</p>
-                    <img src="" alt="">
-                </li>
-                <li class="card-produto">
-                    <h2>nome</h2>
-                    <p>Preço:R$</p>
-                    <img src="" alt="">
-                </li>
-                <li class="card-produto">
-                    <h2>nome</h2>
-                    <p>Preço:R$</p>
-                    <img src="" alt="">
-                </li>
+                <!-- Itera sobre os produtos de cada categoria, limitando a 5 -->
+                <?php foreach (array_slice($produtosCategoria, 0, 5) as $produto): ?>
+                    <li class="card-produto">
+                        <h2><?= htmlspecialchars($produto['nomeProduto']) ?></h2>
+                        <p>Preço: R$ <?= number_format($produto['precoProduto'], 2, ',', '.') ?></p>
+                        <p>Estoque: <?= htmlspecialchars($produto['quantidadeEstoqueProduto']) ?> unidades</p>
+                        <img src="<?= htmlspecialchars($produto['pro_img']) ?>" alt="Imagem de <?= htmlspecialchars($produto['nomeProduto']) ?>">
+                    </li>
+                <?php endforeach; ?>
             </ul>
         </div>
-        <div class="destaques-alcoolicas">
-            <h2 class="destaque-titulo">BEBIDAS ALCOÓLICAS</h2>
-            <ul>
-                <li class="card-produto">
-                    <h2>nome</h2>
-                    <p>Preço:R$</p>
-                    <img src="" alt="">
-                </li>
-                <li class="card-produto">
-                    <h2>nome</h2>
-                    <p>Preço:R$</p>
-                    <img src="" alt="">
-                </li>
-                <li class="card-produto">
-                    <h2>nome</h2>
-                    <p>Preço:R$</p>
-                    <img src="" alt="">
-                </li>
-                <li class="card-produto">
-                    <h2>nome</h2>
-                    <p>Preço:R$</p>
-                    <img src="" alt="">
-                </li>
-                <li class="card-produto">
-                    <h2>nome</h2>
-                    <p>Preço:R$</p>
-                    <img src="" alt="">
-                </li>
-            </ul>
-        </div>
-        <div class="destaques-snacks">
-            <h2 class="destaque-titulo">SNACKS</h2>
-            <ul>
-                <li class="card-produto">
-                    <h2>nome</h2>
-                    <p>Preço:R$</p>
-                    <img src="" alt="">
-                </li>
-                <li class="card-produto">
-                    <h2>nome</h2>
-                    <p>Preço:R$</p>
-                    <img src="" alt="">
-                </li>
-                <li class="card-produto">
-                    <h2>nome</h2>
-                    <p>Preço:R$</p>
-                    <img src="" alt="">
-                </li>
-                <li class="card-produto">
-                    <h2>nome</h2>
-                    <p>Preço:R$</p>
-                    <img src="" alt="">
-                </li>
-                <li class="card-produto">
-                    <h2>nome</h2>
-                    <p>Preço:R$</p>
-                    <img src="" alt="">
-                </li>
-            </ul>
-        </div>
-        <div class="destaques-cigarros">
-            <h2 class="destaque-titulo">CIGARROS</h2>
-            <ul>
-                <li class="card-produto">
-                    <h2>nome</h2>
-                    <p>Preço:R$</p>
-                    <img src="" alt="">
-                </li>
-                <li class="card-produto">
-                    <h2>nome</h2>
-                    <p>Preço:R$</p>
-                    <img src="" alt="">
-                </li>
-                <li class="card-produto">
-                    <h2>nome</h2>
-                    <p>Preço:R$</p>
-                    <img src="" alt="">
-                </li>
-                <li class="card-produto">
-                    <h2>nome</h2>
-                    <p>Preço:R$</p>
-                    <img src="" alt="">
-                </li>
-                <li class="card-produto">
-                    <h2>nome</h2>
-                    <p>Preço:R$</p>
-                    <img src="" alt="">
-                </li>
-            </ul>
-        </div>
-    </div>
+    <?php endforeach; ?>
+</div>
+
 </main>
 <?php require __DIR__ . '/footer.php' ?>
 <script src="assets/scripts/script.js"></script>

@@ -44,7 +44,7 @@ header {
     top: 0;
     justify-content: space-around;
     width: 100%;
-    height: 250px; /* Altura fixa do header */
+    height: 200px; /* Altura fixa do header */
     border-bottom: 2px solid var(--cor-dourado);
     padding: 0 40px; /* Ajuste o padding conforme necessário */
     background-color: var(--cor-preto); /* Adicione uma cor de fundo para evitar transparência */
