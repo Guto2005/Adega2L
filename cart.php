@@ -3,6 +3,7 @@
 
     <body>
         <main class="container">
+        <link rel="stylesheet" href="./assets/css/cart.css" />
             <div class="carrinho produtos">
                 <h1>Seu Carrinho</h1>
 
