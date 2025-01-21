@@ -67,16 +67,6 @@ li {
 
 /* Tela de cadastro */
 
-.cadastro-container {
-    align-items: flex-start;
-    background-image: url(../img/Image.png);
-    background-repeat: no-repeat;
-    background-position: center;
-    background-position-x: right;
-    overflow-y: hidden;
-    width: 100%;
-}
-
 .cadastro-button {
     border-radius: 4px;
     background: #FFEA00;
