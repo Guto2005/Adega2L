@@ -518,6 +518,10 @@ footer {
     padding: 0 20px;
 }
 
+.logotipo_footer {
+    width: 100%;
+}
+
 .logotipo-footer img {
     background-color: var(--cor-preto-claro);
     color: var(--cor-branco);
@@ -525,7 +529,7 @@ footer {
     text-align: center;
     justify-content: center;
     border-radius: 20px;
-    width: 50%;
+    width: 90%;
 }
 
 .footer-left,
@@ -538,7 +542,8 @@ footer {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    width: 33%;
+    width: 30%;
+    align-items: center;
 }
 
 .footer-left h4 {
@@ -547,53 +552,37 @@ footer {
 }
 
 .footer-right {
-    width: 33%;
+    width: 70%;
     display: flex;
     gap: 64px;
 }
 
-.redes-sociais {
+.contato-endereco {
+    padding-top: 5px;
+    font-size: 1.2vw;
+    width: 50%;
     display: flex;
-    flex-direction: row;
-    gap: 16px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
-.contato {
-    font-size: 1.4vw;
-    width: 100%;
+.endereco-loja {
+    padding-left: 55px;
 }
 
-.contato p {
-    font-size: 1.2vw;
-}
-
-.endereco {
-    font-size: 1.4vw;
-    width: 100%;
-}
-
-.endereco p {
-    font-size: 1.2vw;
-}
-
-.endereco a {
-    font-size: 1.2vw;
-}
-
-.endereco iframe{
+ iframe{
     width: 200px;
     height: 200px;
+    position: relative;
+    top: 40px;
+    left: 40px;
+    transition: all 0.3s ease; /* Para uma transição suave */
 }
 
-@keyframes marquee {
-    0% {
-        transform: translateX(100%); /* Começa fora da tela à direita */
-    }
-    100% {
-        transform: translateX(-100%); /* Termina fora da tela à esquerda */
-    }
+iframe:hover {
+    transform:scale(1.2);
 }
-
 @keyframes fade {
     from {opacity: .4} 
     to {opacity: 1}
