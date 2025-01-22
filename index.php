@@ -11,12 +11,16 @@
 </head>
 
 <body>
+    <div class="imagem-institu">
+    <img src="./assets/img/Image.png" alt="">
+    </div>
     
     <div class="marquee-container">
             <div class="marquee">Bem-vindo à Adega2L!</div>
         </div>
 
     <main class="container">
+
     <nav class="nav-catalogo">
         <a href="catalogo.php" class="btn-catalogo">Ir para o catálogo</a>
     </nav>
@@ -87,9 +91,6 @@
     <footer>
         <div class="footer-institucional">
             <div class="footer-left">
-                <a class="logotipo-footer" href="catalogo.php"><img src="./assets/img/Image.png" alt="logo"></a>
-            </div>
-            <div class="footer-center">
                 <h4>Redes Sociais</h4>
                 <div class="redes-sociais">
                     <a href="#"><i id="facebook-icon" class="fab fa-facebook"></i></a>
