@@ -11,15 +11,15 @@
 </head>
 
 <body>
+    
+    <div class="marquee-container">
+            <div class="marquee">Bem-vindo à Adega2L!</div>
+        </div>
 
+    <main class="container">
     <nav class="nav-catalogo">
         <a href="catalogo.php" class="btn-catalogo">Ir para o catálogo</a>
     </nav>
-
-    <main class="container">
-        <div class="marquee-container">
-            <div class="marquee">Bem-vindo à Adega2L!</div>
-        </div>
 
         <div class="slideshow-container">
             <div class="mySlides fade">
