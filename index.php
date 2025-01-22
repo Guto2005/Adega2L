@@ -11,37 +11,6 @@
 </head>
 
 <body>
-    <header class="institucional">
-        <div class="mobile">
-            <!-- Seu conteúdo mobile já está aqui -->
-        </div>
-
-        <a class="logotipo" href="catalogo.php"><img src="./assets/img/Image.png" alt="logo"></a>
-
-        <div class="search-bar">
-            <form action="search.php" method="GET">
-                <input class="search-placeholder" type="text" name="query" placeholder="Olá, O que você procura?" required>
-                <button class="botao-enviar" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
-            </form>
-        </div>
-
-        <div class="perfil-link">
-            <a href="perfil.php" class="perfil-btn">
-                <h3 class="perfil-titulo">Perfil</h3>
-                <i id="user-icon" class="fa-solid fa-user"></i>
-            </a>
-        </div>
-
-        <a class="link-carrinho" href="./cart.php">
-            <span class="carrinho-quantidade" id="cart-count">0</span>
-            <i class="fa-solid fa-cart-shopping" id="cart-icon"></i>
-            <h3 class="carrinho-titulo">Minhas Compras</h3>
-        </a>
-    </header>
-
-    <div id="perfil-modal" class="modal">
-        <!-- Modal de perfil -->
-    </div>
 
     <nav class="nav-catalogo">
         <a href="catalogo.php" class="btn-catalogo">Ir para o catálogo</a>
