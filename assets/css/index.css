@@ -31,7 +31,6 @@ body {
     color: white;
     align-items: center;
     gap: 80px;
-    padding-top: 250px; /* Igual à altura do header */
     overflow-x: hidden;
 }
 
@@ -281,8 +280,8 @@ li {
     width: 50%;
     align-items: center;
     border: 3px solid var(--cor-dourado);
-    position:relative;
-    top:40px;
+    /*position:relative;
+    top:40px;*/
     font-size: 2.0vw;
     justify-content: center;
     padding: 30px;
@@ -303,7 +302,7 @@ li {
 .marquee-container {
     padding: 20px;
     width: 90%;
-    background-color: var(--cor-preto-claro);
+    /*background-color: var(--cor-preto-claro);*/
 }
 
 .marquee {

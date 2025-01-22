@@ -1,6 +1,6 @@
 <?php require __DIR__ .'/header.php'?>
 
-
+<link rel="stylesheet" href="./assets/css/snacks.css" />
     <main class="container">
         <div class="produtos">
         <h2 class="destaque-titulo">MAIS VENDIDOS DA SEMANA</h2>

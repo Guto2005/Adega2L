@@ -22,18 +22,6 @@
 
 * {box-sizing:border-box}
 
-body {
-    margin: 0;
-    padding: 0;
-    display: flex;
-    background-color: var(--cor-preto);
-    flex-direction: column;
-    color: white;
-    align-items: center;
-    gap: 80px;
-    padding-top: 250px; /* Igual à altura do header */
-    overflow-x: hidden;
-}
 
 a {
     color: white;

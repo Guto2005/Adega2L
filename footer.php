@@ -1,6 +1,7 @@
 
 <footer>
         <div class="footer-institucional">
+        <link rel="stylesheet" href="./assets/css/footer.css" />
             <div class="footer-left">
                 <a class="logotipo-footer" href="catalogo.php"><img src="./assets/img/Image.png" alt="logo"></a>
             </div>
