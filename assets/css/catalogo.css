@@ -81,16 +81,51 @@ li {
     justify-content: center;
 }
 
-.carrossel-container {
-    position: relative;
-    overflow: hidden;
-}
-
-.carrossel {
+.slideshow-container {
     display: flex;
-    transition: transform 0.5s ease-in-out;
+    align-items: center;
+    padding-left: 100px;
+    padding-right: 100px;
+    background-color: var(--cor-preto-claro);
+    padding-top: 60px;
+    padding-bottom: 60px;
+    border-radius: 20px;
+    justify-content: center;
+    flex-direction: column;
+    width: 90%;
 }
 
+/* Hide all images by default */
+.mySlides {
+    display: none;
+}
+
+.SlideProduto {
+    width: 100%;
+    border-radius: 20px;
+    position: relative;
+}
+
+/* Dots/circles at the bottom */
+.dot {
+    height: 15px;
+    width: 15px;
+    margin: 0 2px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+}
+
+/* Change color of dots on hover */
+.dot:hover {
+    background-color: #717171;
+}
+
+/* Active dot (current slide) */
+.active {
+    background-color: #717171;
+}
 .banner {
     position: relative;
     min-width: 95%;
@@ -106,55 +141,6 @@ li {
     position: relative;
     left: 40px;
 }
-
-.carrossel-controls {
-    text-align: center;
-    margin-top: 10px;
-}
-
-.control-btn {
-    background-color: var(--cor-dourado);
-    /* Cor dos botões de controle */
-    border: none;
-    border-radius: 50%;
-    width: 15px;
-    height: 15px;
-    margin: 0 5px;
-    cursor: pointer;
-}
-
-.control-btn.active {
-    background-color: var(--cor-preto-claro);
-    border-radius: 50px;
-    border: 2px solid var(--cor-dourado);
-    /* Cor do botão ativo */
-}
-
-.carrossel-navigation-left {
-        position: absolute;
-        top: 50%;
-        left: 10px; /* Posiciona a seta à direita */
-        transform: translateY(-50%);
-        z-index: 10; /* Certifique-se de que esteja acima dos outros elementos */
-}
-.carrossel-navigation-right{
-        position: absolute;
-        top: 50%;
-        right: 10px; /* Posiciona a seta à direita */
-        transform: translateY(-50%);
-        z-index: 10; /* Certifique-se de que esteja acima dos outros elementos */
-}
-    
-.prev-btn,
-.next-btn {
-    background-color: var(--cor-branco);
-    /* Cor dos botões de navegação */
-    border: none;
-    cursor: pointer;
-    padding: 10px;
-    font-size: 1.4rem;
-}
-
 
 .destaques {
     background-color: var(--cor-preto-claro);
