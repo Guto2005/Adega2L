@@ -91,9 +91,6 @@
     <footer>
         <div class="footer-institucional">
             <div class="footer-left">
-                <a class="logotipo-footer" href="catalogo.php"><img src="./assets/img/Image.png" alt="logo"></a>
-            </div>
-            <div class="footer-center">
                 <h4>Redes Sociais</h4>
                 <div class="redes-sociais">
                     <a href="#"><i id="facebook-icon" class="fab fa-facebook"></i></a>

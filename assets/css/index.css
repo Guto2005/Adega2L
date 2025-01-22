@@ -286,15 +286,27 @@ li {
     width: 50%;
     align-items: center;
     border: 3px solid var(--cor-dourado);
-    /*position:relative;
-    top:40px;*/
     font-size: 2.0vw;
     justify-content: center;
     padding: 30px;
     text-align: center; /* Centraliza o conteúdo */
-    transition: all 0.3s ease; /* Para uma transição suave */
+    transition: all 0.3s ease; /* Define a transição para mudanças suaves */
 }
 
+.nav-catalogo:hover {
+    transform: scale(1.1); /* Aumenta ligeiramente o botão */
+    color: var(--cor-dourado); /* Altera a cor do texto */
+}
+
+.nav-catalogo a{
+   color: #FFFFFF;
+   transition: all 0.3s ease; /* Define a transição para mudanças suaves */
+}
+
+.nav-catalogo a:hover {
+    transition: all 0.3s ease;
+    color: #FFD700;
+}
 
 .institucional {
     position: fixed; /* Fixa o header no topo */
@@ -516,24 +528,19 @@ footer {
 }
 
 .footer-left,
-.footer-center,
 .footer-right {
     margin-bottom: 20px;
     text-align: start;
 }
 
 .footer-left {
-    width: 34%;
-}
-
-.footer-center {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     width: 33%;
 }
 
-.footer-center h4 {
+.footer-left h4 {
     font-size: 1.8vw;
     width: 100%;
 }
@@ -570,6 +577,11 @@ footer {
 
 .endereco a {
     font-size: 1.2vw;
+}
+
+.endereco iframe{
+    width: 200px;
+    height: 200px;
 }
 
 @keyframes marquee {
@@ -676,13 +688,13 @@ footer {
         padding: 20px;
     }
 
-    .footer-left, .footer-center, .footer-right {
+    .footer-left, .footer-left, .footer-right {
         width: 100%;
         text-align: center;
         margin-bottom: 20px;
     }
 
-    .footer-center h4 {
+    .footer-left h4 {
         font-size: 1.4rem;
     }
 
@@ -752,13 +764,13 @@ footer {
         padding: 20px;
     }
 
-    .footer-left, .footer-center, .footer-right {
+    .footer-left, .footer-left, .footer-right {
         width: 100%;
         text-align: center;
         margin-bottom: 20px;
     }
 
-    .footer-center h4 {
+    .footer-left h4 {
         font-size: 1.2rem;
     }
 
@@ -807,12 +819,12 @@ footer {
         padding: 10px;
     }
 
-    .footer-left, .footer-center, .footer-right {
+    .footer-left, .footer-left, .footer-right {
         width: 100%;
         margin-bottom: 10px;
     }
 
-    .footer-center h4 {
+    .footer-left h4 {
         font-size: 1rem;
     }
 
