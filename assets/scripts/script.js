@@ -40,5 +40,5 @@ function showSlidesAuto() {
     slideIndexAuto++;
     if (slideIndexAuto > slides.length) { slideIndexAuto = 1 }
     slides[slideIndexAuto - 1].style.display = "block";
-    setTimeout(showSlidesAuto, 2000); // Troca de imagem a cada 2 segundos
+    setTimeout(showSlidesAuto, 8000); // Troca de imagem a cada 2 segundos
 }

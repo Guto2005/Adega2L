@@ -70,9 +70,6 @@ li {
 
 
 /* index */
- @media screen {
-
- }
 
 .icone-mobile {
     font-size: 2.0rem;
@@ -84,11 +81,12 @@ li {
 
 .logotipo {
     transition: all 0.3s ease; /* Para uma transição suave */
+    width: 100%;
 }
 
 .logotipo img {
-    height: 200px; /* Ajuste a altura do logotipo conforme necessário */
-    width: auto; /* Mantém a proporção do logotipo */ 
+    height: auto; /* Ajuste a altura do logotipo conforme necessário */
+    width: 15vw; /* Mantém a proporção do logotipo */ 
 }
 
 .logotipo:hover {
@@ -317,9 +315,14 @@ li {
 }
 
 .nav-list li {
-    background-color: var(--cor-preto);
     font-family: 'Sans-Italic';
     padding: 20px;
+    font-size: 1.6vw;
+    transition: all 0.2s ease; /* Para uma transição suave */
+}
+
+.nav-list li:hover{
+    transform:scale(1.4);
 }
 
 /* index responsivo */

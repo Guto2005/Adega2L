@@ -1,46 +1,36 @@
 <?php require __DIR__ . '/header.php' ?>
 <link rel="stylesheet" href="./assets/css/catalogo.css" />
 <main class="container">
-<div class="carrossel-container">
-    <div class="carrossel" id="carrossel">
-        <div class="banner" id="banner1">
-            <div class="carrossel-navigation-left">
-                <button class="prev-btn">&lt;</button>
+<div class="slideshow-container">
+            <div class="mySlides fade">
+                <div class="numbertext">1 / 4</div>
+                <a href="catalogo.php"><img class="SlideProduto" src="./assets/img/Ofertas dia do consumidor neon amarelo e preto banner para mercado shops.png" alt="Oferta1"></a>
             </div>
-            <img src="assets/img/Banner black friday ofertas preto amarelo.png" alt="banner1">
-            <div class="carrossel-navigation-right">
-                <button class="next-btn">&gt;</button>
+
+            <div class="mySlides fade">
+                <div class="numbertext">2 / 4</div>
+                <a href="catalogo.php"><img class="SlideProduto" src="assets/img/Banner black friday ofertas preto amarelo.png" alt="Ousadia"></a>
             </div>
-        </div>
-        
-        <div class="banner" id="banner2">
-            <div class="carrossel-navigation-left">
-                <button class="prev-btn">&lt;</button>
+
+            <div class="mySlides fade">
+                <div class="numbertext">3 / 4</div>
+                <a href="catalogo.php"><img class="SlideProduto" src="./assets/img/Ofertas dia do consumidor neon amarelo e preto banner para mercado shops.png" alt="Stella"></a>
             </div>
-            <img src="assets/img/Ofertas dia do consumidor neon amarelo e preto banner para mercado shops.png" alt="banner2">
-            <div class="carrossel-navigation-right">
-                <button class="next-btn">&gt;</button>
-            </div>
-        </div>
-        
-        <div class="banner" id="banner3">
-            <div class="carrossel-navigation-left">
-                <button class="prev-btn">&lt;</button>
-            </div>
-            <img src="assets/img/Banner black friday ofertas preto amarelo.png" alt="banner3">
-            <div class="carrossel-navigation-right">
-                <button class="next-btn">&gt;</button>
+
+            <div class="mySlides fade">
+                <div class="numbertext">4 / 4</div>
+                <a href="catalogo.php"><img class="SlideProduto" src="assets/img/Banner black friday ofertas preto amarelo.png" alt="Catuaba"></a>
             </div>
         </div>
-        <!-- Adicione mais banners conforme necessário -->
-    </div>
-    <div class="carrossel-controls">
-        <button class="control-btn" data-index="0"></button>
-        <button class="control-btn" data-index="1"></button>
-        <button class="control-btn" data-index="2"></button>
-        <!-- Adicione mais botões conforme necessário -->
-    </div>
-</div>
+
+                <!-- The dots/circles -->
+                <div style="text-align:center">
+            <span class="dot" onclick="currentSlide(1)"></span>
+            <span class="dot" onclick="currentSlide(2)"></span>
+            <span class="dot" onclick="currentSlide(3)"></span>
+            <span class="dot" onclick="currentSlide(4)"></span>
+        </div>
+
 
 <div class="destaques">
     <h2 class="destaque-titulo">MAIS VENDIDOS DA SEMANA</h2>
