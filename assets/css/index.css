@@ -275,6 +275,12 @@ li {
     transition: all 0.2s ease; /* Para uma transição suave */
 }
 
+.imagem-institu img{
+    width: 300px;
+    height: 300px;
+    padding-top: 40px;
+}
+
 .nav-catalogo {
     display: flex;
     width: 50%;
@@ -288,6 +294,7 @@ li {
     text-align: center; /* Centraliza o conteúdo */
     transition: all 0.3s ease; /* Para uma transição suave */
 }
+
 
 .institucional {
     position: fixed; /* Fixa o header no topo */

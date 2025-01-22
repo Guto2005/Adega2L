@@ -11,12 +11,16 @@
 </head>
 
 <body>
+    <div class="imagem-institu">
+    <img src="./assets/img/Image.png" alt="">
+    </div>
     
     <div class="marquee-container">
             <div class="marquee">Bem-vindo à Adega2L!</div>
         </div>
 
     <main class="container">
+
     <nav class="nav-catalogo">
         <a href="catalogo.php" class="btn-catalogo">Ir para o catálogo</a>
     </nav>
