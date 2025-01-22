@@ -39,9 +39,6 @@ li {
 /*Classificados*/
 
 /* index */
- @media screen {
-
- }
 
 #facebook-icon {
     color: var(--cor-dourado);
@@ -92,11 +89,8 @@ li {
     transform: scale(1.2);
 }
 
-/* index responsivo */
-@media (max-width: 500px) {
-
-
-
+.redes-sociais {
+    padding-right: 70px;
 }
 
 footer {
@@ -119,6 +113,10 @@ footer {
     padding: 0 20px;
 }
 
+.logotipo_footer {
+    width: 100%;
+}
+
 .logotipo-footer img {
     background-color: var(--cor-preto-claro);
     color: var(--cor-branco);
@@ -126,60 +124,60 @@ footer {
     text-align: center;
     justify-content: center;
     border-radius: 20px;
-    width: 50%;
+    width: 90%;
 }
 
 .footer-left,
-.footer-center,
 .footer-right {
     margin-bottom: 20px;
     text-align: start;
 }
 
 .footer-left {
-    width: 34%;
-}
-
-.footer-center {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    width: 33%;
+    width: 30%;
+    align-items: center;
 }
 
-.footer-center h4 {
+.footer-left h4 {
     font-size: 1.8vw;
     width: 100%;
 }
 
 .footer-right {
-    width: 33%;
+    width: 70%;
     display: flex;
     gap: 64px;
 }
 
-.contato {
-    font-size: 1.4vw;
-    width: 100%;
-}
-
-.contato p {
+.contato-endereco {
+    padding-top: 5px;
     font-size: 1.2vw;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
-.endereco {
-    font-size: 1.4vw;
-    width: 100%;
+.endereco-loja {
+    padding-left: 55px;
 }
 
-.endereco p {
-    font-size: 1.2vw;
+ iframe{
+    width: 200px;
+    height: 200px;
+    position: relative;
+    top: 40px;
+    left: 40px;
+    transition: all 0.3s ease; /* Para uma transição suave */
 }
 
-.endereco a {
-    font-size: 1.2vw;
+iframe:hover {
+    transform:scale(1.2);
 }
-
 /* Ajuste de Responsividade */
 
 /* Garante que o layout de conteúdo seja em coluna em telas menores */
@@ -191,13 +189,13 @@ footer {
         padding: 20px;
     }
 
-    .footer-left, .footer-center, .footer-right {
+   .footer-left, .footer-right {
         width: 100%;
         text-align: center;
         margin-bottom: 20px;
     }
 
-    .footer-center h4 {
+    .footer-left h4 {
         font-size: 1.4rem;
     }
 
@@ -220,13 +218,13 @@ footer {
         padding: 20px;
     }
 
-    .footer-left, .footer-center, .footer-right {
+    .footer-left, .footer-right {
         width: 100%;
         text-align: center;
         margin-bottom: 20px;
     }
 
-    .footer-center h4 {
+    .footer-left h4 {
         font-size: 1.2rem;
     }
 
@@ -243,12 +241,12 @@ footer {
         padding: 10px;
     }
 
-    .footer-left, .footer-center, .footer-right {
+    .footer-left, .footer-right {
         width: 100%;
         margin-bottom: 10px;
     }
 
-    .footer-center h4 {
+    .footer-left h4 {
         font-size: 1rem;
     }
 
