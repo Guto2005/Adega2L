@@ -304,7 +304,8 @@ li {
 }
 
 .nav-catalogo a:hover {
-    transition: all 0.3s ease;
+
+    transform: scale(1.1); /* Aumenta ligeiramente o botão */
     color: #FFD700;
 }
 
