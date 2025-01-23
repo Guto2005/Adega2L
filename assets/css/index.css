@@ -551,12 +551,6 @@ footer {
     width: 100%;
 }
 
-.footer-right {
-    width: 70%;
-    display: flex;
-    gap: 64px;
-}
-
 .contato-endereco {
     padding-top: 5px;
     font-size: 1.2vw;
@@ -566,6 +560,13 @@ footer {
     justify-content: center;
     align-items: center;
 }
+
+.footer-right {
+    width: 70%;
+    display: flex;
+    gap: 64px;
+}
+
 
 .endereco-loja {
     padding-left: 55px;
@@ -672,20 +673,17 @@ iframe:hover {
         margin-bottom: 20px;
     }
 
-    .footer-institucional {
-        flex-direction: column;
-        align-items: center;
-        padding: 20px;
-    }
-
-    .footer-left, .footer-left, .footer-right {
-        width: 100%;
-        text-align: center;
-        margin-bottom: 20px;
-    }
-
     .footer-left h4 {
         font-size: 1.4rem;
+    }
+
+    .footer-institucional {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
     }
 
     .redes-sociais a {
