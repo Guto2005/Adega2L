@@ -12,6 +12,38 @@ try {
     die("Erro na conexão: " . $e->getMessage());
 }
 
+// Manipulação do formulário de upload
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['imagemProduto'])) {
+    $uploadDir = 'uploads/';
+    $uploadFile = $uploadDir . basename($_FILES['imagemProduto']['name']);
+
+    // Verifica se é uma imagem válida
+    $fileType = pathinfo($uploadFile, PATHINFO_EXTENSION);
+    $allowedTypes = ['jpg', 'jpeg', 'png', 'gif'];
+
+    if (in_array(strtolower($fileType), $allowedTypes)) {
+        if (move_uploaded_file($_FILES['imagemProduto']['tmp_name'], $uploadFile)) {
+            // Salva os dados no banco de dados
+            $sql = "INSERT INTO ADG2L_Produtos (nomeProduto, precoProduto, quantidadeEstoqueProduto, imagemProduto) 
+                    VALUES (:nomeProduto, :precoProduto, :quantidadeEstoqueProduto, :imagemProduto)";
+
+            $stmt = $pdo->prepare($sql);
+            $stmt->execute([
+                ':nomeProduto' => $_POST['nomeProduto'],
+                ':precoProduto' => $_POST['precoProduto'],
+                ':quantidadeEstoqueProduto' => $_POST['quantidadeEstoqueProduto'],
+                ':imagemProduto' => $uploadFile
+            ]);
+
+            echo "Produto cadastrado com sucesso!";
+        } else {
+            echo "Erro ao salvar o arquivo.";
+        }
+    } else {
+        echo "Formato de arquivo não permitido.";
+    }
+}
+
 // Consulta os produtos agrupados por categoria
 $sql = "SELECT 
             p.idProduto, 
@@ -20,6 +52,7 @@ $sql = "SELECT
             p.quantidadeEstoqueProduto, 
             p.tipoUnidade, 
             p.descricaoBebidas, 
+            p.imagemProduto, -- Campo correto
             c.nomeCategoria AS categoria
         FROM ADG2L_Produtos p
         INNER JOIN ADG2L_Categorias c ON p.idCategoria = c.idCategoria
@@ -35,7 +68,6 @@ foreach ($produtos as $produto) {
     $categorias[$produto['categoria']][] = $produto;
 }
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">

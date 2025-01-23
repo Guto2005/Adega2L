@@ -35,8 +35,8 @@
 <div class="destaques">
     <h2 class="destaque-titulo">MAIS VENDIDOS DA SEMANA</h2>
 
-    <!-- Itera sobre as categorias -->
-    <?php foreach ($categorias as $categoria => $produtosCategoria): ?>
+   <!-- Iteração sobre as categorias e produtos -->
+   <?php foreach ($categorias as $categoria => $produtosCategoria): ?>
         <div class="destaques-<?= strtolower($categoria) ?>">
             <h2 class="destaque-titulo"><?= htmlspecialchars($categoria) ?></h2>
             <ul>
@@ -46,7 +46,7 @@
                         <h2><?= htmlspecialchars($produto['nomeProduto']) ?></h2>
                         <p>Preço: R$ <?= number_format($produto['precoProduto'], 2, ',', '.') ?></p>
                         <p>Estoque: <?= htmlspecialchars($produto['quantidadeEstoqueProduto']) ?> unidades</p>
-                        <img src="<?= htmlspecialchars($produto['pro_img']) ?>" alt="Imagem de <?= htmlspecialchars($produto['nomeProduto']) ?>">
+                        <img src="<?= htmlspecialchars($produto['imagemProduto']) ?>" alt="Imagem de <?= htmlspecialchars($produto['nomeProduto']) ?>">
                     </li>
                 <?php endforeach; ?>
             </ul>
