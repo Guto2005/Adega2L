@@ -1,25 +1,25 @@
 <?php require __DIR__ . '/header.php' ?>
-<link rel="stylesheet" href="./assets/css/catalogo.css" />
+<link rel="stylesheet" href="./assets/css/index.css" />
 <main class="container">
 <div class="slideshow-container">
             <div class="mySlides fade">
                 <div class="numbertext">1 / 4</div>
-                <a href="catalogo.php"><img class="SlideProduto" src="./assets/img/Ofertas dia do consumidor neon amarelo e preto banner para mercado shops.png" alt="Oferta1"></a>
+                <a href="index.php"><img class="SlideProduto" src="./assets/img/Ofertas dia do consumidor neon amarelo e preto banner para mercado shops.png" alt="Oferta1"></a>
             </div>
 
             <div class="mySlides fade">
                 <div class="numbertext">2 / 4</div>
-                <a href="catalogo.php"><img class="SlideProduto" src="assets/img/Banner black friday ofertas preto amarelo.png" alt="Ousadia"></a>
+                <a href="index.php"><img class="SlideProduto" src="assets/img/Banner black friday ofertas preto amarelo.png" alt="Ousadia"></a>
             </div>
 
             <div class="mySlides fade">
                 <div class="numbertext">3 / 4</div>
-                <a href="catalogo.php"><img class="SlideProduto" src="./assets/img/Ofertas dia do consumidor neon amarelo e preto banner para mercado shops.png" alt="Stella"></a>
+                <a href="index.php"><img class="SlideProduto" src="./assets/img/Ofertas dia do consumidor neon amarelo e preto banner para mercado shops.png" alt="Stella"></a>
             </div>
 
             <div class="mySlides fade">
                 <div class="numbertext">4 / 4</div>
-                <a href="catalogo.php"><img class="SlideProduto" src="assets/img/Banner black friday ofertas preto amarelo.png" alt="Catuaba"></a>
+                <a href="index.php"><img class="SlideProduto" src="assets/img/Banner black friday ofertas preto amarelo.png" alt="Catuaba"></a>
             </div>
         </div>
 

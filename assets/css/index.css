@@ -31,6 +31,7 @@ body {
     color: white;
     align-items: center;
     gap: 80px;
+    padding-top: 250px; /* Igual à altura do header */
     overflow-x: hidden;
 }
 
@@ -43,7 +44,7 @@ header {
     top: 0;
     justify-content: space-around;
     width: 100%;
-    height: 200px; /* Altura fixa do header */
+    height: 250px; /* Altura fixa do header */
     border-bottom: 2px solid var(--cor-dourado);
     padding: 0 40px; /* Ajuste o padding conforme necessário */
     background-color: var(--cor-preto); /* Adicione uma cor de fundo para evitar transparência */
@@ -71,155 +72,6 @@ li {
 
  }
 
-.logotipo {
-    transition: all 0.3s ease; /* Para uma transição suave */
-}
-
-.logotipo img {
-    height: 200px; /* Ajuste a altura do logotipo conforme necessário */
-    width: auto; /* Mantém a proporção do logotipo */ 
-}
-
-.logotipo:hover {
-    transform:scale(1.2);
-}
-
-.logotipo-mobile {
-    display: none;
-    height: 200px; /* Ajuste a altura do logotipo conforme necessário */
-    width: auto; /* Mantém a proporção do logotipo */
-
-}
-
-.search-bar {
-    display: flex; /* Utiliza flexbox para alinhar os itens */
-    align-items: center; /* Alinha verticalmente os itens ao centro */
-    background-color: var(--cor-branco);
-    border-radius: 20px;
-    padding: 10px;
-}
-
-.search-placeholder {
-    padding: 10px; /* Adiciona espaçamento interno */
-    border: none; /* Define a borda */
-    border-radius: 4px 0 0 4px; /* Bordas arredondadas */
-    flex: 1; /* Faz o input ocupar o máximo de espaço disponível */
-    outline: none; /* Remove a borda de foco padrão */
-    font-size: 2.0vw;
-}
-
-.botao-enviar {
-    background-color: var(--cor-branco); /* Cor de fundo do botão */
-    border: none;
-    border-radius: 0 4px 4px 0; /* Bordas arredondadas */
-    padding: 10px; /* Adiciona espaçamento interno */
-    cursor: pointer; /* Muda o cursor ao passar por cima */
-    font-size: 1.5vw;
-    transition: all 0.3s ease; /* Para uma transição suave */
-}
-
-.botao-enviar i {
-    font-size: 1.2em; /* Ajusta o tamanho do ícone */
-}
-
-
-.botao-enviar:hover {
-    color: var(--cor-dourado);
-    transform: scale(1.2);
-}
-
-.perfil-link,
-.link-carrinho {
-    display: flex;
-    align-items: center;
-    font-size: 1.2rem;
-    color: var(--cor-dourado);
-    gap: 10px;
-    height: 100%; /* Mantém os itens alinhados verticalmente */
-    padding-top: 20px; /* Remova este padding se não precisar */
-}
-
-.perfil-modal {
-    color: black;
-}
-
-.perfil-btn {
-    display: flex;
-    background-color: #000000;
-    border: none;
-    color: var(--cor-branco);
-    align-items: center;
-    font-size: 1.8vw;
-    width: 100%;
-    transition: all 0.3s ease; /* Para uma transição suave */
-}
-
-.perfil-btn:hover {
-    transform: scale(1.2); /* Aumenta a div ao passar o mouse */
-    color: var(--cor-dourado);
-}
-
-.perfil-titulo {
-    font-family: 'Sans-Italic';
-}
-
-#user-icon {
-    font-size: 1.6vw;
-}
-
-#home-icon {
-    display: none;
-}
-
-#facebook-icon {
-    color: var(--cor-dourado);
-    font-size: 2.0vw;
-    transition: all 0.2s ease; /* Para uma transição suave */
-}
-
-#instagram-icon {
-    color: var(--cor-dourado);
-    font-size: 2.0vw;
-    transition: all 0.2s ease; /* Para uma transição suave */
-}
-
-#twitter-icon {
-    color: var(--cor-dourado);
-    font-size: 2.0vw;
-    transition: all 0.2s ease; /* Para uma transição suave */
-}
-
-#facebook-icon:hover {
-    color: var(--cor-branco);
-    font-size: 2.0vw;
-    transform: scale(1.2);
-}
-
-#instagram-icon:hover {
-    color: var(--cor-branco);
-    font-size: 2.0vw;
-    transform: scale(1.2);
-}
-
-#twitter-icon:hover {
-    color: var(--cor-branco);
-    font-size: 2.0vw;
-    transform: scale(1.2);
-
-}
-
-#map-icon {
-    font-size: 2.0vw;
-    color: var(--cor-dourado);
-    transition: all 0.2s ease; /* Para uma transição suave */
-}
-
-#map-icon:hover {
-    color: var(--cor-branco);
-    font-size: 2.0vw;
-    transform: scale(1.2);
-}
-
 .container {
     display: flex;
     flex-direction: column;
@@ -229,132 +81,18 @@ li {
     justify-content: center;
 }
 
-.link-carrinho {
-    display: flex;
-    text-decoration: none;
-    color: var(--cor-branco);
-    align-items: center;
-    font-size: 40px;
-    padding-right: 40px;
-    transition: all 0.2s ease; /* Para uma transição suave */
-}
-
-.link-carrinho:hover {
-    color: gold; /* Cor ao passar o mouse */
-    transform: scale(1.2); /* Aumenta ligeiramente o tamanho */
-}
-
-.link-carrinho:hover #cart-count {
-    color: gold; /* Cor do span ao passar o mouse */
-}
-
-.link-carrinho:hover #cart-icon {
-    color: gold; /* Cor do ícone ao passar o mouse */
-}
-
-.link-carrinho:hover .carrinho-titulo {
-    color: gold; /* Cor do ícone ao passar o mouse */
-}
-
-#cart-icon {
-    font-size: 1.8vw;
-    display: flex;
-    align-items: center;
-}
-
-.carrinho-quantidade{
-    font-size: 1.8vw;
-}
-
-.carrinho-titulo {
-    display: block;
-    font-size: 1.8vw;
-    color: var(--cor-branco);
-    font-family: 'Sans-Italic';
-    padding-left: 10px;
-    transition: all 0.2s ease; /* Para uma transição suave */
-}
-
-.imagem-institu img{
-    width: 300px;
-    height: 300px;
-    padding-top: 40px;
-}
-
-.nav-catalogo {
-    display: flex;
-    width: 50%;
-    align-items: center;
-    border: 3px solid var(--cor-dourado);
-    font-size: 2.0vw;
-    justify-content: center;
-    padding: 30px;
-    text-align: center; /* Centraliza o conteúdo */
-    transition: all 0.3s ease; /* Define a transição para mudanças suaves */
-}
-
-.nav-catalogo:hover {
-    transform: scale(1.1); /* Aumenta ligeiramente o botão */
-    color: var(--cor-dourado); /* Altera a cor do texto */
-}
-
-.nav-catalogo a{
-   color: #FFFFFF;
-   transition: all 0.3s ease; /* Define a transição para mudanças suaves */
-}
-
-.nav-catalogo a:hover {
-
-    transform: scale(1.1); /* Aumenta ligeiramente o botão */
-    color: #FFD700;
-}
-
-.institucional {
-    position: fixed; /* Fixa o header no topo */
-    top: 0;
-    width: 100%; /* Largura total */
-    height: 200px; /* Altura do header */
-    background-color: var(--cor-preto); /* Cor de fundo */
-    border-bottom: 2px solid var(--cor-dourado); /* Borda inferior */
-    z-index: 1000; /* Garante que o header fique acima de outros elementos */
-}
-
-.marquee-container {
-    padding: 20px;
-    width: 90%;
-    /*background-color: var(--cor-preto-claro);*/
-}
-
-.marquee {
-    display: flex;
-    white-space: nowrap;
-    overflow: hidden;
-    box-sizing: border-box;
-    border: 2px solid gold; /* Borda dourada */
-    padding: 20px; /* Padding de 20px */
-    font-size: 4.0vw; /* Fonte maior */
-    align-items: center;
-    background-color: black; /* Fundo do marquee preto */
-    color: white; /* Texto branco */
-    justify-content: center;
-}
-
-body {font-family: Verdana, sans-serif;}
-img {vertical-align: middle;}
-
-/* Slideshow container */
 .slideshow-container {
     display: flex;
     align-items: center;
     padding-left: 100px;
     padding-right: 100px;
-    background-color: var(--cor-branco);
+    background-color: var(--cor-preto-claro);
     padding-top: 60px;
     padding-bottom: 60px;
     border-radius: 20px;
     justify-content: center;
     flex-direction: column;
-    width: 30%;
+    width: 90%;
 }
 
 /* Hide all images by default */
@@ -388,114 +126,158 @@ img {vertical-align: middle;}
 .active {
     background-color: #717171;
 }
+.banner {
+    position: relative;
+    min-width: 95%;
+    box-sizing: border-box;
+    padding: 40px 20px;
+    background-color: var(--cor-preto-claro);
+    /* Cor de fundo do banner */
+    color: var(--cor-branco);
+}   
 
-/* index responsivo */
-@media (max-width: 500px) {
-    header {
-        display: flex;
-        position: fixed;
-        top: 0;
-        border-bottom: 2px solid var(--cor-dourado);
-
-    }
-
-
-
+.banner img {
+    width: 95%;
+    position: relative;
+    left: 40px;
 }
 
-.institucional-quem-somos-proposta {
+.destaques {
+    background-color: var(--cor-preto-claro);
     display: flex;
-    flex-direction: row;
-    width: 80%;
-    padding: 40px;
-    justify-content: space-around;
+    flex-direction: column;
+    align-items: center;
+    font-size: 20px;
+    color: var(--cor-branco);
+    width: 90%;
+    margin: 0 auto;
+    text-align: center;
     gap: 32px;
-}
-
-.quem-somos {
-    display: flex;
-    width: 100%;
-    flex-direction: column;
-    font-size: 1.6vw;
     border: 2px solid var(--cor-dourado);
-    align-items: center;
-    background-color: var(--cor-preto-claro);
-    padding: 20px;
 }
 
-.proposta-site-vendas {
+body {font-family: Verdana, sans-serif;}
+img {vertical-align: middle;}  /*perguntar depois p o gustavo*/
+
+
+/* Next & previous buttons */
+.prev, .next {
+    position: absolute;
+    top: 50%;
+    width: auto;
+    padding: 16px;
+    margin-top: -22px; /* Center the arrows vertically */
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.3s;
+    border-radius: 0 3px 3px 0;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    text-decoration: none;
+}
+
+/* Position the "prev" arrow to the left */
+.prev {
+    left: -50px; /* Position the "prev" arrow outside the image */
+}
+
+/* Position the "next" arrow to the right */
+.next {
+    right: -50px; /* Position the "next" arrow outside the image */
+}
+
+/* On hover, show the arrows more clearly */
+.prev:hover, .next:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.destaque-titulo {
+    color: var(--cor-branco);
+    font-family: 'Sans-Variable';
+
+}
+
+.destaques-bebidas {
     display: flex;
-    width: 100%;
+    flex-wrap: wrap;
     flex-direction: column;
-    font-size: 1.6vw;
-    align-items: center;
-    border: 2px solid var(--cor-dourado);
-    background-color: var(--cor-preto-claro);
-    padding: 20px;
-}
-
-.nossa-historia-container {
-    display: flex;
-    width: 80%;
-    flex-direction: row;
-    align-items: center;
-    font-size: 1.6vw;
-    background-color: var(--cor-preto-claro);
-    padding: 80px;
-    gap: 32px;
-}
-
-.nossa-historia {
-    display: flex;
-    width: 100%;
-    align-items: center;
+    gap: 20px;
     justify-content: center;
-    flex-direction: column;
-    font-size: 1.6vw;
-    border: 2px solid var(--cor-dourado);
-    background-color: var(--cor-preto-claro);
-    padding: 40px;
+    overflow: hidden;
 }
 
-.nossa-historia-img {
-    padding: 20px;
-    background-color: var(--cor-preto-claro);
-    padding: 29px;
-}
-
-.nossa-historia-img img {
-    width: 100%;
-    border: 2px solid var(--cor-dourado); 
-    padding: 29px;
-}
-
-.nossa-missao {
+.destaques-alcoolicas {
     display: flex;
-    width: 80%;
-    align-items: center;
-    justify-content: center;
+    flex-wrap: wrap;
     flex-direction: column;
-    font-size: 1.6vw;
-    border: 2px solid var(--cor-dourado);
-    background-color: var(--cor-preto-claro);
-    padding: 40px;
+    gap: 20px;
+    justify-content: center;
+    overflow: hidden;
 }
 
-.modal {
-    display: none;
-    /* Escondido por padrão */
-    position: fixed;
-    /* Fixa o modal na tela */
-    z-index: 1000;
-    /* Garante que o modal fique acima de outros elementos */
-    left: 0;
-    top: 0;
+.destaques-snacks {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    gap: 20px;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.destaques-cigarros {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    gap: 20px;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.destaques-bebidas ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+}
+
+.destaques-alcoolicas ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+}
+
+.destaques-snacks ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+}
+
+.destaques-cigarros ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+}
+
+.card-produto {
+    width: 200px;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+}
+
+.card-produto img {
     width: 100%;
-    /* Largura total */
-    height: 100%;
-    /* Altura total */
-    background-color: rgba(0, 0, 0, 0.5);
-    /* Fundo semi-transparente */
+    height: auto;
 }
 
 footer {
@@ -509,328 +291,24 @@ footer {
     width: 100%;
 }
 
-.footer-institucional {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-}
-
-.logotipo-footer img {
-    background-color: var(--cor-preto-claro);
-    color: var(--cor-branco);
-    padding: 20px;
-    text-align: center;
-    justify-content: center;
-    border-radius: 20px;
-    width: 50%;
-}
-
-.footer-left,
-.footer-right {
-    margin-bottom: 20px;
-    text-align: start;
-}
-
-.footer-left {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    width: 33%;
-}
-
-.footer-left h4 {
-    font-size: 1.8vw;
-    width: 100%;
-}
-
-.footer-right {
-    width: 33%;
-    display: flex;
-    gap: 64px;
-}
-
-.redes-sociais {
-    display: flex;
-    flex-direction: row;
-    gap: 16px;
-}
-
-.contato {
-    font-size: 1.4vw;
-    width: 100%;
-}
-
-.contato p {
-    font-size: 1.2vw;
-}
-
-.endereco {
-    font-size: 1.4vw;
-    width: 100%;
-}
-
-.endereco p {
-    font-size: 1.2vw;
-}
-
-.endereco a {
-    font-size: 1.2vw;
-}
-
-.endereco iframe{
-    width: 200px;
-    height: 200px;
-}
-
-@keyframes marquee {
-    0% {
-        transform: translateX(100%); /* Começa fora da tela à direita */
-    }
-    100% {
-        transform: translateX(-100%); /* Termina fora da tela à esquerda */
-    }
-}
-
-@keyframes fade {
-    from {opacity: .4} 
-    to {opacity: 1}
-  }
-
 /* Ajuste de Responsividade */
 
 /* Garante que o layout de conteúdo seja em coluna em telas menores */
 @media (max-width: 873px) {
-    header {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        padding: 10px;
-    }
-
-    .mobile {
-        display: block;
-        width: 100%;
-        text-align: center;
-    }
-
-    .logotipo img {
-        width: 60%;
-        max-width: 250px; /* Limita o tamanho do logotipo */
-    }
-
-    .search-bar {
-        width: 100%;
-        margin: 10px 0;
-    }
-
-    .search-placeholder {
-        width: 80%;
-        font-size: 1.2rem;
-    }
-
-    .perfil-link {
-        display: flex;
-        justify-content: center;
-        margin: 10px 0;
-    }
-
-    .link-carrinho {
-        display: flex;
-        justify-content: center;
-        margin: 10px 0;
-    }
-
     .container {
         padding: 20px;
     }
 
-    .marquee-container {
-        text-align: center;
-        font-size: 1.2rem;
-    }
-
-    .slideshow-container {
-        width: 100%;
-    }
-
-    .slideshow-container .mySlides img {
-        width: 100%;
-        height: auto;
-    }
-
-    .institucional-quem-somos-proposta {
-        flex-direction: column;
-        padding: 10px;
-    }
-
-    .quem-somos, .proposta-site-vendas {
-        width: 100%;
-        margin-bottom: 20px;
-        padding: 20px;
-        text-align: center;
-    }
-
-    .nossa-historia-container {
-        flex-direction: column;
-        padding: 20px;
-    }
-
-    .nossa-historia, .nossa-historia-img {
-        width: 100%;
-        margin-bottom: 20px;
-    }
-
-    .footer-institucional {
-        flex-direction: column;
-        align-items: center;
-        padding: 20px;
-    }
-
-    .footer-left, .footer-left, .footer-right {
-        width: 100%;
-        text-align: center;
-        margin-bottom: 20px;
-    }
-
-    .footer-left h4 {
-        font-size: 1.4rem;
-    }
-
-    .redes-sociais a {
-        font-size: 1.5rem;
-        margin: 0 10px;
-    }
-
-    .endereco a {
-        font-size: 1rem;
-    }
 }
 
 /* Para telas ainda menores (dispositivos com até 650px de largura) */
 @media (max-width: 650px) {
-    header {
-        padding: 10px;
-    }
 
-    .logotipo img {
-        width: 50%;
-        max-width: 180px;
-    }
-
-    .search-bar {
-        width: 100%;
-    }
-
-    .search-placeholder {
-        font-size: 1rem;
-    }
-
-    .perfil-link, .link-carrinho {
-        flex-direction: column;
-        align-items: center;
-        margin: 10px 0;
-    }
-
-    .nav-catalogo {
-        display: none;
-    }
-
-    .slideshow-container .mySlides img {
-        width: 100%;
-        height: auto;
-    }
-
-    .institucional-quem-somos-proposta {
-        flex-direction: column;
-        padding: 10px;
-    }
-
-    .quem-somos, .proposta-site-vendas {
-        width: 100%;
-        margin-bottom: 20px;
-        padding: 20px;
-    }
-
-    .nossa-historia-container {
-        flex-direction: column;
-        padding: 20px;
-    }
-
-    .footer-institucional {
-        flex-direction: column;
-        align-items: center;
-        padding: 20px;
-    }
-
-    .footer-left, .footer-left, .footer-right {
-        width: 100%;
-        text-align: center;
-        margin-bottom: 20px;
-    }
-
-    .footer-left h4 {
-        font-size: 1.2rem;
-    }
-
-    .redes-sociais a {
-        font-size: 1.2rem;
-    }
+   
 }
 
 /* Para telas extremamente pequenas (como smartphones muito compactos, até 320px) */
 @media (max-width: 320px) {
-    header {
-        padding: 5px;
-    }
-
-    .logotipo img {
-        width: 50%;
-        max-width: 150px;
-    }
-
-    .search-placeholder {
-        font-size: 1rem;
-    }
-
-    .perfil-link, .link-carrinho {
-        font-size: 1rem;
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .slideshow-container .mySlides img {
-        width: 100%;
-        height: auto;
-    }
-
-    .institucional-quem-somos-proposta {
-        flex-direction: column;
-    }
-
-    .quem-somos, .proposta-site-vendas {
-        width: 100%;
-        margin-bottom: 10px;
-    }
-
-    .footer-institucional {
-        flex-direction: column;
-        padding: 10px;
-    }
-
-    .footer-left, .footer-left, .footer-right {
-        width: 100%;
-        margin-bottom: 10px;
-    }
-
-    .footer-left h4 {
-        font-size: 1rem;
-    }
-
-    .redes-sociais a {
-        font-size: 1.2rem;
-        margin: 0 5px;
-    }
+   
+   
 }

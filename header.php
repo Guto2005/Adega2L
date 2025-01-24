@@ -122,7 +122,7 @@ foreach ($produtos as $produto) {
 
         </div>
 
-        <a class="logotipo" href="catalogo.php"><img src="./assets/img/Image.png" alt="logo"></a>
+        <a class="logotipo" href="index.php"><img src="./assets/img/Image.png" alt="logo"></a>
 
         <div class="search-bar">
             <input class="search-placeholder" type="text" placeholder="Olá, O que você procura?" />
