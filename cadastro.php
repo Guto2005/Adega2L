@@ -1,27 +1,26 @@
 <?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Informações de conexão com o banco de dados
-    $servername = "";
-    $username = "";
-    $password = "";
-    $dbname = "";
+$host = 'cc220df3eb53.sn.mynetname.net';
+$dbname = 'gto_caveira';
+$user = 'gto_caveira';
+$password = 'gto416966';
 
     // Criar conexão com o banco de dados
-    $conn = mysqli_connect($servername, $username, $password, $dbname);
+    $conn = mysqli_connect($host, $user, $password, $dbname);
 
     // Verificar se a conexão foi estabelecida
     if (!$conn) {
         die("Conexão falhou: " . mysqli_connect_error());
     }
 // Recuperar dados do formulário
-    $nome = mysqli_real_escape_string($conn, $_POST['nome']);
-    $email = mysqli_real_escape_string($conn, $_POST['email']);
-    $senha = password_hash($_POST['senha'], PASSWORD_DEFAULT); // Criptografar a senha
-    $tipo = mysqli_real_escape_string($conn, $_POST['tipo']);
+    $nome = mysqli_real_escape_string($conn, $_POST['nomeUsuario']);
+    $email = mysqli_real_escape_string($conn, $_POST['emailUsuario']);
+    $senha = password_hash($_POST['senhaUsuario'], PASSWORD_DEFAULT); // Criptografar a senha
     
 
     // Inserir dados no banco de dados
-    $sql = "INSERT INTO usuarios (nome, email, senha, tipo) VALUES ('$nome', '$email', '$senha', '$tipo')";
+    $sql = "INSERT INTO ADG2L_Usuarios (nomeUsuario, emailUsuario, senhaUsuario) VALUES ('$nome', '$email', '$senha')";
 
     if (mysqli_query($conn, $sql)) {
         echo "Novo registro criado com sucesso";
