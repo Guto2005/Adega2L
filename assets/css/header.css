@@ -1,3 +1,4 @@
+
 /*Comandos sem classe*/
 
 :root {
@@ -40,7 +41,7 @@ body {
 header {
     display: flex;
     align-items: center;
-    position: fixed;
+    position: absolute;
     top: 0;
     gap:30px;
     width: 100%;

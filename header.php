@@ -81,58 +81,45 @@ foreach ($produtos as $produto) {
 
 <body>
     <header>
-        <div class="mobile">
-            <a class="link-carrinho-mobile" href="./cart.php">
-                <span class="carrinho-quantidade" id="cart-count">0</span>
-                <i class="fa-solid fa-cart-shopping" id="cart-icon"></i>
-                <h3 class="carrinho-titulo">Minhas Compras</h3>
-            </a>
-            <div class="menu-mobile">
-                <button class="icone-mobile" aria-label="Menu" id="menu-toggle">
-                    <i id="menu-icon" class="fas fa-bars"></i>
-                </button>
-                <div class="icones-menu" id="perfil-content" style="display: none;">
-                    <form>
-                        <div class="home">
-                            <a class="home-ancora" href="catalogo.php"><i id="home-icon" class="fas fa-home"></i></a>
-                            <h3 class="home-titulo-mobile">Home</h3>
-                        </div>
-                        <button id="perfil-btn" class="perfil-btn-mobile">
-                            <h3 class="perfil-titulo-mobile">Perfil</h3>
-                            <i id="user-icon" class="fa-solid fa-user"></i>
-                        </button>
-                    </form>
-                </div>
-            </div>
-            <div class="search-nav-mobile">
-                <div class="search-bar-mobile">
-                    <input class="search-placeholder" type="text" placeholder="Olá, O que você procura?" />
-                    <button class="botao-enviar" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
-                </div>
-                <nav class="nav-products-mobile">
-                    <ul class="nav-list-mobile">
-                        <li><a href="bebidas.php">Bebidas</a></li>
-                        <li><a href="destilados.php">Destilados</a></li>
-                        <li><a href="snacks.php">Snacks</a></li>
-                        <li><a href="cigarros.php">Cigarros</a></li>
-                    </ul>
-                </nav>
-            </div>
-
-
+        <a class="logotipo" href="catalogo.php"><img src="./assets/img/Image.png" alt="logo"></a>
+    <div class="junçao-mobile">
+        <div class="search-bar-mobile">
+        <button class="botao-enviar" type="submit">
+            <input class="search-placeholder" type="text" placeholder="Olá, O que você procura?" />
+            <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
         </div>
 
-        <a class="logotipo" href="index.php"><img src="./assets/img/Image.png" alt="logo"></a>
+        <div class="perfil-link-mobile">
+            <a href="perfil.php" class="perfil-btn">
+            <i id="user-icon" class="fa-solid fa-user"></i>
+                <h3 class="perfil-titulo">Perfil</h3>
+            </a>
+        </div>
 
+        <a class="link-carrinho-mobile" href="./cart.php">
+            <span class="carrinho-quantidade" id="cart-count">0</span>
+            <i class="fa-solid fa-cart-shopping" id="cart-icon"></i>
+            <h3 class="carrinho-titulo">Minhas Compras</h3>
+        </a>
+    <div class="adm-link-mobile">
+        <a class="adm-btn" href="./panel/index.php">
+        <i class="fa-regular fa-address-card" id="adm-icon"></i>
+            <h3 class="adm-titulo">Administrativo</h3>
+        </a>
+    </div>    
+        </div>
         <div class="search-bar">
+        <button class="botao-enviar" type="submit">
             <input class="search-placeholder" type="text" placeholder="Olá, O que você procura?" />
-            <button class="botao-enviar" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+            <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
         </div>
 
         <div class="perfil-link">
             <a href="perfil.php" class="perfil-btn">
+            <i id="user-icon" class="fa-solid fa-user"></i>
                 <h3 class="perfil-titulo">Perfil</h3>
-                <i id="user-icon" class="fa-solid fa-user"></i>
             </a>
         </div>
 
@@ -213,3 +200,5 @@ foreach ($produtos as $produto) {
             <li><a href="cigarros.php">Cigarros</a></li>
         </ul>
     </nav>
+
+
