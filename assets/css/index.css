@@ -35,6 +35,22 @@ body {
     overflow-x: hidden;
 }
 
+
+
+header {
+    display: flex;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    justify-content: space-around;
+    width: 100%;
+    height: 250px; /* Altura fixa do header */
+    border-bottom: 2px solid var(--cor-dourado);
+    padding: 0 40px; /* Ajuste o padding conforme necessário */
+    background-color: var(--cor-preto); /* Adicione uma cor de fundo para evitar transparência */
+}
+
+
 a {
     color: white;
     text-decoration: none;
@@ -131,7 +147,7 @@ li {
     display: flex;
     flex-direction: column;
     align-items: center;
-    font-size: 1.6vw;
+    font-size: 20px;
     color: var(--cor-branco);
     width: 90%;
     margin: 0 auto;
@@ -179,7 +195,6 @@ img {vertical-align: middle;}  /*perguntar depois p o gustavo*/
     color: var(--cor-branco);
     font-family: 'Sans-Variable';
 
-
 }
 
 .destaques-bebidas {
@@ -191,7 +206,7 @@ img {vertical-align: middle;}  /*perguntar depois p o gustavo*/
     overflow: hidden;
 }
 
-.destaques-destilados {
+.destaques-alcoolicas {
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
@@ -227,7 +242,7 @@ img {vertical-align: middle;}  /*perguntar depois p o gustavo*/
     list-style-type: none;
 }
 
-.destaques-destilados ul {
+.destaques-alcoolicas ul {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -297,7 +312,3 @@ footer {
    
    
 }
-
-
-
-
