@@ -35,21 +35,6 @@ body {
 }
 
 
-
-/* header {
-    display: flex;
-    align-items: center;
-    position: fixed;
-    top: 0;
-    justify-content: space-around;
-    width: 100%;
-    height: 250px; /* Altura fixa do header 
-    border-bottom: 2px solid var(--cor-dourado);
-    padding: 0 40px; /* Ajuste o padding conforme necessário 
-    background-color: var(--cor-preto); Adicione uma cor de fundo para evitar transparência 
-} */
-
-
 a {
     color: white;
     text-decoration: none;
@@ -114,3 +99,14 @@ li {
     background: rgba(91, 91, 91, 0.50);
 }
 
+/* ISA NÃO RETIRA ISSO QUE BLOQUEIA AS SETAS DOS INPUTS DE NUMERO*/
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type="number"] {
+    -moz-appearance: textfield;
+}
