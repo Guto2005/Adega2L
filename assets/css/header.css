@@ -74,6 +74,8 @@ li {
 .logotipo {
     transition: all 0.3s ease; /* Para uma transição suave */
     width: fit-content;
+    position: relative;
+    top: 15px;
 }
 
 .logotipo img {
