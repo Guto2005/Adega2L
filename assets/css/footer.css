@@ -77,17 +77,7 @@ li {
 
 }
 
-#map-icon {
-    font-size: 2.0vw;
-    color: var(--cor-dourado);
-    transition: all 0.2s ease; /* Para uma transição suave */
-}
 
-#map-icon:hover {
-    color: var(--cor-branco);
-    font-size: 2.0vw;
-    transform: scale(1.2);
-}
 
 .redes-sociais {
     padding-right: 70px;
@@ -102,6 +92,7 @@ footer {
     justify-content: center;
     border-radius: 20px;
     width: 100%;
+    min-width: 340px;
 }
 
 .footer-institucional {
@@ -171,7 +162,6 @@ footer {
     height: 200px;
     position: relative;
     top: 40px;
-    left: 40px;
     transition: all 0.3s ease; /* Para uma transição suave */
 }
 
@@ -199,18 +189,93 @@ iframe:hover {
         font-size: 1.4rem;
     }
 
+    .footer-right {
+        gap:0px;
+    }
+
+    .redes-sociais {
+        padding-right: 0px;
+    }
+
     .redes-sociais a {
-        font-size: 1.5rem;
+        font-size: 1.5vw;
         margin: 0 10px;
+    }
+
+    .endereco-loja {
+        padding-left: 0px;
     }
 
     .endereco a {
         font-size: 1rem;
     }
+
+    .contato-endereco {
+        font-size: 3.0vw;
+        padding: 20px;
+        width: 80%;
+    }
+
+    #facebook-icon {
+        color: var(--cor-dourado);
+        font-size: 4.0vw;
+        transition: all 0.2s ease; /* Para uma transição suave */
+    }
+    
+    #instagram-icon {
+        color: var(--cor-dourado);
+        font-size: 4.0vw;
+        transition: all 0.2s ease; /* Para uma transição suave */
+    }
+    
+    #twitter-icon {
+        color: var(--cor-dourado);
+        font-size: 4.0vw;
+        transition: all 0.2s ease; /* Para uma transição suave */
+    }
+    
+    #facebook-icon:hover {
+        color: var(--cor-branco);
+        transform: scale(1.4);
+        font-size: 5.0vw;
+    }
+    
+    #instagram-icon:hover {
+        color: var(--cor-branco);
+        transform: scale(1.4);
+        font-size: 5.0vw;
+    }
+    
+    #twitter-icon:hover {
+        color: var(--cor-branco);
+        transform: scale(1.4);
+        font-size: 5.0vw;
+    }
+
+    .numero-telefone{
+        font-size: 2.5vw;
+    }
+
+    .endereco-loja{
+        font-size: 2.5vw;
+    }
+
+
+    iframe{
+        width: 180px;
+        height: 180px;
+        position: relative;
+        top: 40px;
+        transition: all 0.3s ease; /* Para uma transição suave */
+    }
+
+    iframe:hover {
+        transform:scale(1.1);
+    }
 }
 
-/* Para telas ainda menores (dispositivos com até 650px de largura) */
-@media (max-width: 650px) {
+/* Para telas extremamente pequenas (como smartphones muito compactos, até 320px) */
+@media (max-width: 340px) {
 
     .footer-institucional {
         flex-direction: column;
@@ -225,33 +290,12 @@ iframe:hover {
     }
 
     .footer-left h4 {
-        font-size: 1.2rem;
-    }
-
-    .redes-sociais a {
-        font-size: 1.2rem;
-    }
-}
-
-/* Para telas extremamente pequenas (como smartphones muito compactos, até 320px) */
-@media (max-width: 320px) {
-
-    .footer-institucional {
-        flex-direction: column;
-        padding: 10px;
-    }
-
-    .footer-left, .footer-right {
+        font-size: 5.0vw;
         width: 100%;
-        margin-bottom: 10px;
-    }
-
-    .footer-left h4 {
-        font-size: 1rem;
     }
 
     .redes-sociais a {
         font-size: 1.2rem;
-        margin: 0 5px;
+        padding-right: 0px;
     }
 }

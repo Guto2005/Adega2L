@@ -40,14 +40,16 @@ body {
 header {
     display: flex;
     align-items: center;
-    position: fixed;
+    position: absolute;
     top: 0;
-    justify-content: space-around;
+    gap:30px;
     width: 100%;
-    height: 250px; /* Altura fixa do header */
+    height: 20%; /* Altura fixa do header */
     border-bottom: 2px solid var(--cor-dourado);
     padding: 0 40px; /* Ajuste o padding conforme necessário */
     background-color: var(--cor-preto); /* Adicione uma cor de fundo para evitar transparência */
+    z-index: 1;
+    min-width: 340px;
 }
 
 

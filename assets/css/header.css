@@ -23,6 +23,10 @@
 
 * {box-sizing:border-box}
 
+html {
+    min-width: 340px;
+}
+
 body {
     margin: 0;
     padding: 0;
@@ -34,6 +38,7 @@ body {
     gap: 80px;
     padding-top: 250px; /* Igual à altura do header */
     overflow-x: hidden;
+    min-width: 340px;
 }
 
 
@@ -50,6 +55,7 @@ header {
     padding: 0 40px; /* Ajuste o padding conforme necessário */
     background-color: var(--cor-preto); /* Adicione uma cor de fundo para evitar transparência */
     z-index: 1;
+    min-width: 340px;
 }
 
 
@@ -292,6 +298,7 @@ li {
     width: 90%;
     align-items: center;
     padding-top: 100px;
+    
 }
 
 .nav-list {
@@ -466,6 +473,12 @@ li {
         display: flex;
         justify-content: center;
         margin: 10px 0;
+        transition: all 0.2s ease; /* Para uma transição suave */
+    }
+
+    .perfil-link-mobile:hover {
+        color: gold; /* Cor ao passar o mouse */
+        transform: scale(1.2); /* Aumenta ligeiramente o tamanho */
     }
 
     .perfil-link-mobile .perfil-btn .perfil-titulo{
@@ -481,6 +494,24 @@ li {
         justify-content: center;
         margin: 10px 0;
         align-items: center;
+        transition: all 0.2s ease; /* Para uma transição suave */
+    }
+
+    .link-carrinho-mobile:hover {
+        color: gold; /* Cor ao passar o mouse */
+        transform: scale(1.2); /* Aumenta ligeiramente o tamanho */
+    }
+
+    .link-carrinho-mobile:hover #cart-count {
+        color: gold; /* Cor do span ao passar o mouse */
+    }
+    
+    .link-carrinho-mobile:hover #cart-icon {
+        color: gold; /* Cor do ícone ao passar o mouse */
+    }
+    
+    .link-carrinho-mobile:hover .carrinho-titulo {
+        color: gold; /* Cor do ícone ao passar o mouse */
     }
 
     .link-carrinho-mobile .carrinho-quantidade{
@@ -516,6 +547,17 @@ li {
         top: 0px;
     }
 
+    .adm-link-mobile .adm-btn {
+        position: relative;
+        top: 0px;
+        transition: all 0.2s ease; /* Para uma transição suave */
+    }
+
+    .adm-link-mobile:hover .adm-btn {
+        color: gold; /* Cor ao passar o mouse */
+        transform: scale(1.2); /* Aumenta ligeiramente o tamanho */
+    }
+
     .adm-link-mobile .adm-btn #adm-icon {
         font-size: 3.0vw;
     }
@@ -531,27 +573,81 @@ li {
         padding-top: 250px;
     }
 
+    .search-placeholder {
+        font-size: 3.0vw;
+    }
+
+    .botao-enviar i {
+        font-size: 3.0vw; /* Ajusta o tamanho do ícone */
+    }
+
+    .nav-list {
+        width: 90%;
+        gap: 16px;
+    }
+
+    .nav-list li {
+        font-family: 'Sans-Italic';
+        padding: 20px;
+        font-size: 2.0vw;
+        transition: all 0.2s ease; /* Para uma transição suave */
+    }
+
+
 }
 
 
-@media (max-width: 480px) and(min-width: 340px)  {
-    header {
-        padding: 5px;
+@media (max-width: 400px) {
+
+    
+    .logotipo {
+        transition: all 0.3s ease; /* Para uma transição suave */
+        width: fit-content;
     }
 
     .logotipo img {
-        width: 50%;
-        max-width: 150px;
+        width: 100%;
+        max-width: 250px; /* Limita o tamanho do logotipo */
     }
 
-    .search-placeholder {
-        font-size: 1rem;
-    }
-
-    .perfil-link, .link-carrinho {
-        font-size: 1rem;
-        flex-direction: column;
+    .junçao-mobile {
+        display: flex;
         align-items: center;
+        justify-content: center;
+        gap: 40px;
+    }
+
+    .perfil-link-mobile .perfil-btn .perfil-titulo{
+        font-size: 3.0vw;
+    }
+
+    .perfil-link-mobile #user-icon {
+        font-size: 3.0vw;
+    }
+
+    .link-carrinho-mobile .carrinho-quantidade{
+        font-size: 3.0vw;
+    }
+
+    .link-carrinho-mobile #cart-icon {
+       font-size: 3.0vw;
+    }
+
+    .link-carrinho-mobile .carrinho-titulo {
+       font-size: 3.0vw;
+    }
+
+    .adm-link-mobile .adm-btn #adm-icon {
+        font-size: 3.0vw;
+    }
+
+    .adm-link-mobile .adm-btn .adm-titulo {
+        font-size: 3.0vw;
+    }
+
+    .nav-list {
+        width: 90%;
+        gap: 0px;
     }
   }
   
