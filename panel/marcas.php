@@ -147,16 +147,22 @@
             $actions->setCaption($this->GetLocalizerCaptions()->GetMessageString('Actions'));
             $actions->setPosition(ActionList::POSITION_LEFT);
             
-            if ($this->GetSecurityInfo()->HasViewGrant())
-            {
-                $operation = new LinkOperation($this->GetLocalizerCaptions()->GetMessageString('View'), OPERATION_VIEW, $this->dataset, $grid);
+            if ($this->GetSecurityInfo()->HasViewGrant()) {
+            
+                $operation = new AjaxOperation(OPERATION_VIEW,
+                    $this->GetLocalizerCaptions()->GetMessageString('View'),
+                    $this->GetLocalizerCaptions()->GetMessageString('View'), $this->dataset,
+                    $this->GetModalGridViewHandler(), $grid);
                 $operation->setUseImage(true);
                 $actions->addOperation($operation);
             }
             
             if ($this->GetSecurityInfo()->HasEditGrant())
             {
-                $operation = new LinkOperation($this->GetLocalizerCaptions()->GetMessageString('Edit'), OPERATION_EDIT, $this->dataset, $grid);
+                $operation = new AjaxOperation(OPERATION_EDIT,
+                    $this->GetLocalizerCaptions()->GetMessageString('Edit'),
+                    $this->GetLocalizerCaptions()->GetMessageString('Edit'), $this->dataset,
+                    $this->GetGridEditHandler(), $grid);
                 $operation->setUseImage(true);
                 $actions->addOperation($operation);
                 $operation->OnShow->AddListener('ShowEditButtonHandler', $this);
@@ -357,6 +363,7 @@
         {
             return ;
         }
+        public function GetEnableModalSingleRecordView() { return true; }
     
         protected function CreateGrid()
         {
@@ -378,8 +385,9 @@
             $this->AddCompareHeaderColumns($result);
             $this->AddCompareColumns($result);
             $result->setMultiEditAllowed($this->GetSecurityInfo()->HasEditGrant() && true);
-            $result->setTableBordered(false);
-            $result->setTableCondensed(false);
+            $result->setUseModalMultiEdit(true);
+            $result->setTableBordered(true);
+            $result->setTableCondensed(true);
             
             $result->SetHighlightRowAtHover(false);
             $result->SetWidth('');
@@ -396,7 +404,7 @@
     
     
             $this->SetShowPageList(true);
-            $this->SetShowTopPageNavigator(false);
+            $this->SetShowTopPageNavigator(true);
             $this->SetShowBottomPageNavigator(true);
             $this->setAllowedActions(array('view', 'insert', 'copy', 'edit', 'multi-edit', 'delete', 'multi-delete'));
             $this->setPrintListAvailable(true);
@@ -407,6 +415,8 @@
             $this->setExportSelectedRecordsAvailable(array('pdf', 'excel', 'word', 'xml', 'csv'));
             $this->setExportListRecordAvailable(array());
             $this->setExportOneRecordAvailable(array('pdf', 'excel', 'word', 'xml', 'csv'));
+            $this->setModalViewSize(Modal::SIZE_LG);
+            $this->setModalFormSize(Modal::SIZE_LG);
     
             return $result;
         }

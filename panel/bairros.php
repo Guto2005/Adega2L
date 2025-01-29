@@ -239,7 +239,7 @@
                     new IntegerField('bairro_cidade', true)
                 )
             );
-            $this->dataset->AddLookupField('bairro_cidade', 'cidades', new IntegerField('cidade_id'), new StringField('cidade_nome', false, false, false, false, 'bairro_cidade_cidade_nome', 'bairro_cidade_cidade_nome_cidades'), 'bairro_cidade_cidade_nome_cidades');
+            $this->dataset->AddLookupField('bairro_cidade', 'cidades', new StringField('cidade_nome'), new StringField('cidade_nome', false, false, false, false, 'bairro_cidade_cidade_nome', 'bairro_cidade_cidade_nome_cidades'), 'bairro_cidade_cidade_nome_cidades');
         }
     
         protected function DoPrepare() {
@@ -350,16 +350,22 @@
             $actions->setCaption($this->GetLocalizerCaptions()->GetMessageString('Actions'));
             $actions->setPosition(ActionList::POSITION_LEFT);
             
-            if ($this->GetSecurityInfo()->HasViewGrant())
-            {
-                $operation = new LinkOperation($this->GetLocalizerCaptions()->GetMessageString('View'), OPERATION_VIEW, $this->dataset, $grid);
+            if ($this->GetSecurityInfo()->HasViewGrant()) {
+            
+                $operation = new AjaxOperation(OPERATION_VIEW,
+                    $this->GetLocalizerCaptions()->GetMessageString('View'),
+                    $this->GetLocalizerCaptions()->GetMessageString('View'), $this->dataset,
+                    $this->GetModalGridViewHandler(), $grid);
                 $operation->setUseImage(true);
                 $actions->addOperation($operation);
             }
             
             if ($this->GetSecurityInfo()->HasEditGrant())
             {
-                $operation = new LinkOperation($this->GetLocalizerCaptions()->GetMessageString('Edit'), OPERATION_EDIT, $this->dataset, $grid);
+                $operation = new AjaxOperation(OPERATION_EDIT,
+                    $this->GetLocalizerCaptions()->GetMessageString('Edit'),
+                    $this->GetLocalizerCaptions()->GetMessageString('Edit'), $this->dataset,
+                    $this->GetGridEditHandler(), $grid);
                 $operation->setUseImage(true);
                 $actions->addOperation($operation);
                 $operation->OnShow->AddListener('ShowEditButtonHandler', $this);
@@ -388,16 +394,6 @@
         protected function AddFieldColumns(Grid $grid, $withDetails = true)
         {
             //
-            // View column for bairro_id field
-            //
-            $column = new NumberViewColumn('bairro_id', 'bairro_id', 'Bairro Id', $this->dataset);
-            $column->SetOrderable(true);
-            $column->setNumberAfterDecimal(0);
-            $column->setThousandsSeparator(',');
-            $column->setDecimalSeparator('');
-            $column->setMinimalVisibility(ColumnVisibility::PHONE);
-            $grid->AddViewColumn($column);
-            //
             // View column for bairro_nome field
             //
             $column = new TextViewColumn('bairro_nome', 'bairro_nome', 'Bairro Nome', $this->dataset);
@@ -419,16 +415,6 @@
     
         protected function AddSingleRecordViewColumns(Grid $grid)
         {
-            //
-            // View column for bairro_id field
-            //
-            $column = new NumberViewColumn('bairro_id', 'bairro_id', 'Bairro Id', $this->dataset);
-            $column->SetOrderable(true);
-            $column->setNumberAfterDecimal(0);
-            $column->setThousandsSeparator(',');
-            $column->setDecimalSeparator('');
-            $grid->AddSingleRecordViewColumn($column);
-            
             //
             // View column for bairro_nome field
             //
@@ -461,7 +447,9 @@
             //
             // Edit column for bairro_cidade field
             //
-            $editor = new ComboBox('bairro_cidade_edit', $this->GetLocalizerCaptions()->GetMessageString('PleaseSelect'));
+            $editor = new DynamicCombobox('bairro_cidade_edit', $this->CreateLinkBuilder());
+            $editor->setAllowClear(true);
+            $editor->setMinimumInputLength(0);
             $lookupDataset = new TableDataset(
                 MySqlIConnectionFactory::getInstance(),
                 GetConnectionOptions(),
@@ -473,16 +461,11 @@
                 )
             );
             $lookupDataset->setOrderByField('cidade_nome', 'ASC');
-            $editColumn = new LookUpEditColumn(
-                'Bairro Cidade', 
-                'bairro_cidade', 
-                $editor, 
-                $this->dataset, 'cidade_id', 'cidade_nome', $lookupDataset);
+            $editColumn = new DynamicLookupEditColumn('Bairro Cidade', 'bairro_cidade', 'bairro_cidade_cidade_nome', 'edit_bairros_bairro_cidade_search', $editor, $this->dataset, $lookupDataset, 'cidade_nome', 'cidade_nome', '');
             $editColumn->setNestedInsertFormLink(
                 $this->GetHandlerLink(bairros_bairro_cidadeNestedPage::getNestedInsertHandlerName())
             );
-            $validator = new RequiredValidator(StringUtils::Format($this->GetLocalizerCaptions()->GetMessageString('RequiredValidationMessage'), $editColumn->GetCaption()));
-            $editor->GetValidatorCollection()->AddValidator($validator);
+            $editColumn->SetAllowSetToNull(true);
             $this->ApplyCommonColumnEditProperties($editColumn);
             $grid->AddEditColumn($editColumn);
         }
@@ -502,7 +485,9 @@
             //
             // Edit column for bairro_cidade field
             //
-            $editor = new ComboBox('bairro_cidade_edit', $this->GetLocalizerCaptions()->GetMessageString('PleaseSelect'));
+            $editor = new DynamicCombobox('bairro_cidade_edit', $this->CreateLinkBuilder());
+            $editor->setAllowClear(true);
+            $editor->setMinimumInputLength(0);
             $lookupDataset = new TableDataset(
                 MySqlIConnectionFactory::getInstance(),
                 GetConnectionOptions(),
@@ -514,16 +499,11 @@
                 )
             );
             $lookupDataset->setOrderByField('cidade_nome', 'ASC');
-            $editColumn = new LookUpEditColumn(
-                'Bairro Cidade', 
-                'bairro_cidade', 
-                $editor, 
-                $this->dataset, 'cidade_id', 'cidade_nome', $lookupDataset);
+            $editColumn = new DynamicLookupEditColumn('Bairro Cidade', 'bairro_cidade', 'bairro_cidade_cidade_nome', 'multi_edit_bairros_bairro_cidade_search', $editor, $this->dataset, $lookupDataset, 'cidade_nome', 'cidade_nome', '');
             $editColumn->setNestedInsertFormLink(
                 $this->GetHandlerLink(bairros_bairro_cidadeNestedPage::getNestedInsertHandlerName())
             );
-            $validator = new RequiredValidator(StringUtils::Format($this->GetLocalizerCaptions()->GetMessageString('RequiredValidationMessage'), $editColumn->GetCaption()));
-            $editor->GetValidatorCollection()->AddValidator($validator);
+            $editColumn->SetAllowSetToNull(true);
             $this->ApplyCommonColumnEditProperties($editColumn);
             $grid->AddMultiEditColumn($editColumn);
         }
@@ -548,7 +528,9 @@
             //
             // Edit column for bairro_cidade field
             //
-            $editor = new ComboBox('bairro_cidade_edit', $this->GetLocalizerCaptions()->GetMessageString('PleaseSelect'));
+            $editor = new DynamicCombobox('bairro_cidade_edit', $this->CreateLinkBuilder());
+            $editor->setAllowClear(true);
+            $editor->setMinimumInputLength(0);
             $lookupDataset = new TableDataset(
                 MySqlIConnectionFactory::getInstance(),
                 GetConnectionOptions(),
@@ -560,16 +542,11 @@
                 )
             );
             $lookupDataset->setOrderByField('cidade_nome', 'ASC');
-            $editColumn = new LookUpEditColumn(
-                'Bairro Cidade', 
-                'bairro_cidade', 
-                $editor, 
-                $this->dataset, 'cidade_id', 'cidade_nome', $lookupDataset);
+            $editColumn = new DynamicLookupEditColumn('Bairro Cidade', 'bairro_cidade', 'bairro_cidade_cidade_nome', 'insert_bairros_bairro_cidade_search', $editor, $this->dataset, $lookupDataset, 'cidade_nome', 'cidade_nome', '');
             $editColumn->setNestedInsertFormLink(
                 $this->GetHandlerLink(bairros_bairro_cidadeNestedPage::getNestedInsertHandlerName())
             );
-            $validator = new RequiredValidator(StringUtils::Format($this->GetLocalizerCaptions()->GetMessageString('RequiredValidationMessage'), $editColumn->GetCaption()));
-            $editor->GetValidatorCollection()->AddValidator($validator);
+            $editColumn->SetAllowSetToNull(true);
             $this->ApplyCommonColumnEditProperties($editColumn);
             $grid->AddInsertColumn($editColumn);
             $grid->SetShowAddButton(true && $this->GetSecurityInfo()->HasAddGrant());
@@ -671,6 +648,7 @@
         {
             return ;
         }
+        public function GetEnableModalSingleRecordView() { return true; }
     
         protected function CreateGrid()
         {
@@ -683,19 +661,20 @@
             ApplyCommonPageSettings($this, $result);
             
             $result->SetUseImagesForActions(true);
-            $result->SetUseFixedHeader(true);
-            $result->SetShowLineNumbers(true);
+            $result->SetUseFixedHeader(false);
+            $result->SetShowLineNumbers(false);
+            $result->SetShowKeyColumnsImagesInHeader(false);
             $result->SetViewMode(ViewMode::TABLE);
             $result->setEnableRuntimeCustomization(true);
             $result->setAllowCompare(true);
             $this->AddCompareHeaderColumns($result);
             $this->AddCompareColumns($result);
             $result->setMultiEditAllowed($this->GetSecurityInfo()->HasEditGrant() && true);
+            $result->setUseModalMultiEdit(true);
             $result->setTableBordered(true);
             $result->setTableCondensed(true);
-            $result->setReloadPageAfterAjaxOperation(true);
             
-            $result->SetHighlightRowAtHover(true);
+            $result->SetHighlightRowAtHover(false);
             $result->SetWidth('');
             $this->AddOperationsColumns($result);
             $this->AddFieldColumns($result);
@@ -711,7 +690,7 @@
     
             $this->SetShowPageList(true);
             $this->SetShowTopPageNavigator(true);
-            $this->SetShowBottomPageNavigator(false);
+            $this->SetShowBottomPageNavigator(true);
             $this->setAllowedActions(array('view', 'insert', 'copy', 'edit', 'multi-edit', 'delete', 'multi-delete'));
             $this->setPrintListAvailable(true);
             $this->setPrintListRecordAvailable(false);
@@ -732,7 +711,19 @@
         }
     
         protected function doRegisterHandlers() {
-            
+            $lookupDataset = new TableDataset(
+                MySqlIConnectionFactory::getInstance(),
+                GetConnectionOptions(),
+                '`cidades`');
+            $lookupDataset->addFields(
+                array(
+                    new IntegerField('cidade_id', true, true, true),
+                    new StringField('cidade_nome', true)
+                )
+            );
+            $lookupDataset->setOrderByField('cidade_nome', 'ASC');
+            $handler = new DynamicSearchHandler($lookupDataset, 'insert_bairros_bairro_cidade_search', 'cidade_nome', 'cidade_nome', null, 20);
+            GetApplication()->RegisterHTTPHandler($handler);
             
             $lookupDataset = new TableDataset(
                 MySqlIConnectionFactory::getInstance(),
@@ -745,7 +736,35 @@
                 )
             );
             $lookupDataset->setOrderByField('cidade_nome', 'ASC');
-            $handler = new DynamicSearchHandler($lookupDataset, 'filter_builder_bairros_bairro_cidade_search', 'cidade_id', 'cidade_nome', null, 20);
+            $handler = new DynamicSearchHandler($lookupDataset, 'filter_builder_bairros_bairro_cidade_search', 'cidade_nome', 'cidade_nome', null, 20);
+            GetApplication()->RegisterHTTPHandler($handler);
+            
+            $lookupDataset = new TableDataset(
+                MySqlIConnectionFactory::getInstance(),
+                GetConnectionOptions(),
+                '`cidades`');
+            $lookupDataset->addFields(
+                array(
+                    new IntegerField('cidade_id', true, true, true),
+                    new StringField('cidade_nome', true)
+                )
+            );
+            $lookupDataset->setOrderByField('cidade_nome', 'ASC');
+            $handler = new DynamicSearchHandler($lookupDataset, 'edit_bairros_bairro_cidade_search', 'cidade_nome', 'cidade_nome', null, 20);
+            GetApplication()->RegisterHTTPHandler($handler);
+            
+            $lookupDataset = new TableDataset(
+                MySqlIConnectionFactory::getInstance(),
+                GetConnectionOptions(),
+                '`cidades`');
+            $lookupDataset->addFields(
+                array(
+                    new IntegerField('cidade_id', true, true, true),
+                    new StringField('cidade_nome', true)
+                )
+            );
+            $lookupDataset->setOrderByField('cidade_nome', 'ASC');
+            $handler = new DynamicSearchHandler($lookupDataset, 'multi_edit_bairros_bairro_cidade_search', 'cidade_nome', 'cidade_nome', null, 20);
             GetApplication()->RegisterHTTPHandler($handler);
             
             

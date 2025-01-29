@@ -82,18 +82,19 @@
         protected function getFiltersColumns()
         {
             return array(
-                new FilterColumn($this->dataset, 'pro_id', 'pro_id', 'Pro Id'),
-                new FilterColumn($this->dataset, 'pro_nome', 'pro_nome', 'Produto'),
-                new FilterColumn($this->dataset, 'pro_cod', 'pro_cod', 'Codigo'),
-                new FilterColumn($this->dataset, 'pro_valor', 'pro_valor', 'Valor'),
-                new FilterColumn($this->dataset, 'pro_estoque', 'pro_estoque', 'Estoque'),
-                new FilterColumn($this->dataset, 'pro_img', 'pro_img', 'Foto')
+                new FilterColumn($this->dataset, 'pro_id', 'pro_id', 'ID'),
+                new FilterColumn($this->dataset, 'pro_nome', 'pro_nome', 'Pro Nome'),
+                new FilterColumn($this->dataset, 'pro_cod', 'pro_cod', 'Pro Cod'),
+                new FilterColumn($this->dataset, 'pro_valor', 'pro_valor', 'Pro Valor'),
+                new FilterColumn($this->dataset, 'pro_estoque', 'pro_estoque', 'Pro Estoque'),
+                new FilterColumn($this->dataset, 'pro_img', 'pro_img', 'Pro Img')
             );
         }
     
         protected function setupQuickFilter(QuickFilter $quickFilter, FixedKeysArray $columns)
         {
             $quickFilter
+                ->addColumn($columns['pro_id'])
                 ->addColumn($columns['pro_nome'])
                 ->addColumn($columns['pro_cod'])
                 ->addColumn($columns['pro_valor'])
@@ -103,13 +104,131 @@
     
         protected function setupColumnFilter(ColumnFilter $columnFilter)
         {
-            $columnFilter
-                ->setOptionsFor('pro_nome');
+    
         }
     
         protected function setupFilterBuilder(FilterBuilder $filterBuilder, FixedKeysArray $columns)
         {
-    
+            $main_editor = new TextEdit('pro_id_edit');
+            
+            $filterBuilder->addColumn(
+                $columns['pro_id'],
+                array(
+                    FilterConditionOperator::EQUALS => $main_editor,
+                    FilterConditionOperator::DOES_NOT_EQUAL => $main_editor,
+                    FilterConditionOperator::IS_GREATER_THAN => $main_editor,
+                    FilterConditionOperator::IS_GREATER_THAN_OR_EQUAL_TO => $main_editor,
+                    FilterConditionOperator::IS_LESS_THAN => $main_editor,
+                    FilterConditionOperator::IS_LESS_THAN_OR_EQUAL_TO => $main_editor,
+                    FilterConditionOperator::IS_BETWEEN => $main_editor,
+                    FilterConditionOperator::IS_NOT_BETWEEN => $main_editor,
+                    FilterConditionOperator::IS_BLANK => null,
+                    FilterConditionOperator::IS_NOT_BLANK => null
+                )
+            );
+            
+            $main_editor = new TextEdit('pro_nome_edit');
+            $main_editor->SetMaxLength(100);
+            
+            $filterBuilder->addColumn(
+                $columns['pro_nome'],
+                array(
+                    FilterConditionOperator::EQUALS => $main_editor,
+                    FilterConditionOperator::DOES_NOT_EQUAL => $main_editor,
+                    FilterConditionOperator::IS_GREATER_THAN => $main_editor,
+                    FilterConditionOperator::IS_GREATER_THAN_OR_EQUAL_TO => $main_editor,
+                    FilterConditionOperator::IS_LESS_THAN => $main_editor,
+                    FilterConditionOperator::IS_LESS_THAN_OR_EQUAL_TO => $main_editor,
+                    FilterConditionOperator::IS_BETWEEN => $main_editor,
+                    FilterConditionOperator::IS_NOT_BETWEEN => $main_editor,
+                    FilterConditionOperator::CONTAINS => $main_editor,
+                    FilterConditionOperator::DOES_NOT_CONTAIN => $main_editor,
+                    FilterConditionOperator::BEGINS_WITH => $main_editor,
+                    FilterConditionOperator::ENDS_WITH => $main_editor,
+                    FilterConditionOperator::IS_LIKE => $main_editor,
+                    FilterConditionOperator::IS_NOT_LIKE => $main_editor,
+                    FilterConditionOperator::IS_BLANK => null,
+                    FilterConditionOperator::IS_NOT_BLANK => null
+                )
+            );
+            
+            $main_editor = new TextEdit('pro_cod_edit');
+            
+            $filterBuilder->addColumn(
+                $columns['pro_cod'],
+                array(
+                    FilterConditionOperator::EQUALS => $main_editor,
+                    FilterConditionOperator::DOES_NOT_EQUAL => $main_editor,
+                    FilterConditionOperator::IS_GREATER_THAN => $main_editor,
+                    FilterConditionOperator::IS_GREATER_THAN_OR_EQUAL_TO => $main_editor,
+                    FilterConditionOperator::IS_LESS_THAN => $main_editor,
+                    FilterConditionOperator::IS_LESS_THAN_OR_EQUAL_TO => $main_editor,
+                    FilterConditionOperator::IS_BETWEEN => $main_editor,
+                    FilterConditionOperator::IS_NOT_BETWEEN => $main_editor,
+                    FilterConditionOperator::IS_BLANK => null,
+                    FilterConditionOperator::IS_NOT_BLANK => null
+                )
+            );
+            
+            $main_editor = new TextEdit('pro_valor_edit');
+            
+            $filterBuilder->addColumn(
+                $columns['pro_valor'],
+                array(
+                    FilterConditionOperator::EQUALS => $main_editor,
+                    FilterConditionOperator::DOES_NOT_EQUAL => $main_editor,
+                    FilterConditionOperator::IS_GREATER_THAN => $main_editor,
+                    FilterConditionOperator::IS_GREATER_THAN_OR_EQUAL_TO => $main_editor,
+                    FilterConditionOperator::IS_LESS_THAN => $main_editor,
+                    FilterConditionOperator::IS_LESS_THAN_OR_EQUAL_TO => $main_editor,
+                    FilterConditionOperator::IS_BETWEEN => $main_editor,
+                    FilterConditionOperator::IS_NOT_BETWEEN => $main_editor,
+                    FilterConditionOperator::IS_BLANK => null,
+                    FilterConditionOperator::IS_NOT_BLANK => null
+                )
+            );
+            
+            $main_editor = new TextEdit('pro_estoque_edit');
+            
+            $filterBuilder->addColumn(
+                $columns['pro_estoque'],
+                array(
+                    FilterConditionOperator::EQUALS => $main_editor,
+                    FilterConditionOperator::DOES_NOT_EQUAL => $main_editor,
+                    FilterConditionOperator::IS_GREATER_THAN => $main_editor,
+                    FilterConditionOperator::IS_GREATER_THAN_OR_EQUAL_TO => $main_editor,
+                    FilterConditionOperator::IS_LESS_THAN => $main_editor,
+                    FilterConditionOperator::IS_LESS_THAN_OR_EQUAL_TO => $main_editor,
+                    FilterConditionOperator::IS_BETWEEN => $main_editor,
+                    FilterConditionOperator::IS_NOT_BETWEEN => $main_editor,
+                    FilterConditionOperator::IS_BLANK => null,
+                    FilterConditionOperator::IS_NOT_BLANK => null
+                )
+            );
+            
+            $main_editor = new TextEdit('pro_img');
+            
+            $filterBuilder->addColumn(
+                $columns['pro_img'],
+                array(
+                    FilterConditionOperator::EQUALS => $main_editor,
+                    FilterConditionOperator::DOES_NOT_EQUAL => $main_editor,
+                    FilterConditionOperator::IS_GREATER_THAN => $main_editor,
+                    FilterConditionOperator::IS_GREATER_THAN_OR_EQUAL_TO => $main_editor,
+                    FilterConditionOperator::IS_LESS_THAN => $main_editor,
+                    FilterConditionOperator::IS_LESS_THAN_OR_EQUAL_TO => $main_editor,
+                    FilterConditionOperator::IS_BETWEEN => $main_editor,
+                    FilterConditionOperator::IS_NOT_BETWEEN => $main_editor,
+                    FilterConditionOperator::CONTAINS => $main_editor,
+                    FilterConditionOperator::DOES_NOT_CONTAIN => $main_editor,
+                    FilterConditionOperator::BEGINS_WITH => $main_editor,
+                    FilterConditionOperator::ENDS_WITH => $main_editor,
+                    FilterConditionOperator::IS_LIKE => $main_editor,
+                    FilterConditionOperator::IS_NOT_LIKE => $main_editor,
+                    FilterConditionOperator::IS_BLANK => null,
+                    FilterConditionOperator::IS_NOT_BLANK => null
+                )
+            );
         }
     
         protected function AddOperationsColumns(Grid $grid)
@@ -118,16 +237,22 @@
             $actions->setCaption($this->GetLocalizerCaptions()->GetMessageString('Actions'));
             $actions->setPosition(ActionList::POSITION_LEFT);
             
-            if ($this->GetSecurityInfo()->HasViewGrant())
-            {
-                $operation = new LinkOperation($this->GetLocalizerCaptions()->GetMessageString('View'), OPERATION_VIEW, $this->dataset, $grid);
+            if ($this->GetSecurityInfo()->HasViewGrant()) {
+            
+                $operation = new AjaxOperation(OPERATION_VIEW,
+                    $this->GetLocalizerCaptions()->GetMessageString('View'),
+                    $this->GetLocalizerCaptions()->GetMessageString('View'), $this->dataset,
+                    $this->GetModalGridViewHandler(), $grid);
                 $operation->setUseImage(true);
                 $actions->addOperation($operation);
             }
             
             if ($this->GetSecurityInfo()->HasEditGrant())
             {
-                $operation = new LinkOperation($this->GetLocalizerCaptions()->GetMessageString('Edit'), OPERATION_EDIT, $this->dataset, $grid);
+                $operation = new AjaxOperation(OPERATION_EDIT,
+                    $this->GetLocalizerCaptions()->GetMessageString('Edit'),
+                    $this->GetLocalizerCaptions()->GetMessageString('Edit'), $this->dataset,
+                    $this->GetGridEditHandler(), $grid);
                 $operation->setUseImage(true);
                 $actions->addOperation($operation);
                 $operation->OnShow->AddListener('ShowEditButtonHandler', $this);
@@ -156,36 +281,48 @@
         protected function AddFieldColumns(Grid $grid, $withDetails = true)
         {
             //
+            // View column for pro_id field
+            //
+            $column = new NumberViewColumn('pro_id', 'pro_id', 'ID', $this->dataset);
+            $column->SetOrderable(true);
+            $column->setAlign('left');
+            $column->setNumberAfterDecimal(0);
+            $column->setThousandsSeparator(',');
+            $column->setDecimalSeparator('');
+            $column->setMinimalVisibility(ColumnVisibility::PHONE);
+            $grid->AddViewColumn($column);
+            //
             // View column for pro_nome field
             //
-            $column = new TextViewColumn('pro_nome', 'pro_nome', 'Produto', $this->dataset);
+            $column = new TextViewColumn('pro_nome', 'pro_nome', 'Pro Nome', $this->dataset);
             $column->SetOrderable(true);
-            $column->setAlign('center');
             $column->SetMaxLength(75);
             $column->setMinimalVisibility(ColumnVisibility::PHONE);
             $grid->AddViewColumn($column);
             //
             // View column for pro_cod field
             //
-            $column = new TextViewColumn('pro_cod', 'pro_cod', 'Codigo', $this->dataset);
+            $column = new NumberViewColumn('pro_cod', 'pro_cod', 'Pro Cod', $this->dataset);
             $column->SetOrderable(true);
+            $column->setNumberAfterDecimal(4);
+            $column->setThousandsSeparator(',');
+            $column->setDecimalSeparator('.');
             $column->setMinimalVisibility(ColumnVisibility::PHONE);
             $grid->AddViewColumn($column);
             //
             // View column for pro_valor field
             //
-            $column = new NumberViewColumn('pro_valor', 'pro_valor', 'Valor', $this->dataset);
+            $column = new NumberViewColumn('pro_valor', 'pro_valor', 'Pro Valor', $this->dataset);
             $column->SetOrderable(true);
-            $column->setAlign('center');
-            $column->setNumberAfterDecimal(2);
-            $column->setThousandsSeparator('.');
-            $column->setDecimalSeparator(',');
+            $column->setNumberAfterDecimal(4);
+            $column->setThousandsSeparator(',');
+            $column->setDecimalSeparator('.');
             $column->setMinimalVisibility(ColumnVisibility::PHONE);
             $grid->AddViewColumn($column);
             //
             // View column for pro_estoque field
             //
-            $column = new NumberViewColumn('pro_estoque', 'pro_estoque', 'Estoque', $this->dataset);
+            $column = new NumberViewColumn('pro_estoque', 'pro_estoque', 'Pro Estoque', $this->dataset);
             $column->SetOrderable(true);
             $column->setNumberAfterDecimal(0);
             $column->setThousandsSeparator(',');
@@ -195,16 +332,70 @@
             //
             // View column for pro_img field
             //
-            $column = new TextViewColumn('pro_img', 'pro_img', 'Foto', $this->dataset);
+            $column = new ExternalImageViewColumn('pro_img', 'pro_img', 'Pro Img', $this->dataset);
             $column->SetOrderable(true);
-            $column->SetMaxLength(75);
+            $column->setWidth('100');
             $column->setMinimalVisibility(ColumnVisibility::PHONE);
             $grid->AddViewColumn($column);
         }
     
         protected function AddSingleRecordViewColumns(Grid $grid)
         {
-    
+            //
+            // View column for pro_id field
+            //
+            $column = new NumberViewColumn('pro_id', 'pro_id', 'ID', $this->dataset);
+            $column->SetOrderable(true);
+            $column->setNumberAfterDecimal(0);
+            $column->setThousandsSeparator(',');
+            $column->setDecimalSeparator('');
+            $grid->AddSingleRecordViewColumn($column);
+            
+            //
+            // View column for pro_nome field
+            //
+            $column = new TextViewColumn('pro_nome', 'pro_nome', 'Pro Nome', $this->dataset);
+            $column->SetOrderable(true);
+            $column->SetMaxLength(75);
+            $grid->AddSingleRecordViewColumn($column);
+            
+            //
+            // View column for pro_cod field
+            //
+            $column = new NumberViewColumn('pro_cod', 'pro_cod', 'Pro Cod', $this->dataset);
+            $column->SetOrderable(true);
+            $column->setNumberAfterDecimal(4);
+            $column->setThousandsSeparator(',');
+            $column->setDecimalSeparator('.');
+            $grid->AddSingleRecordViewColumn($column);
+            
+            //
+            // View column for pro_valor field
+            //
+            $column = new NumberViewColumn('pro_valor', 'pro_valor', 'Pro Valor', $this->dataset);
+            $column->SetOrderable(true);
+            $column->setNumberAfterDecimal(4);
+            $column->setThousandsSeparator(',');
+            $column->setDecimalSeparator('.');
+            $grid->AddSingleRecordViewColumn($column);
+            
+            //
+            // View column for pro_estoque field
+            //
+            $column = new NumberViewColumn('pro_estoque', 'pro_estoque', 'Pro Estoque', $this->dataset);
+            $column->SetOrderable(true);
+            $column->setNumberAfterDecimal(0);
+            $column->setThousandsSeparator(',');
+            $column->setDecimalSeparator('');
+            $grid->AddSingleRecordViewColumn($column);
+            
+            //
+            // View column for pro_img field
+            //
+            $column = new ExternalImageViewColumn('pro_img', 'pro_img', 'Pro Img', $this->dataset);
+            $column->SetOrderable(true);
+            $column->setWidth('100');
+            $grid->AddSingleRecordViewColumn($column);
         }
     
         protected function AddEditColumns(Grid $grid)
@@ -213,9 +404,9 @@
             // Edit column for pro_nome field
             //
             $editor = new TextEdit('pro_nome_edit');
-            $editColumn = new CustomEditColumn('Produto', 'pro_nome', $editor, $this->dataset);
-            $validator = new RequiredValidator(StringUtils::Format($this->GetLocalizerCaptions()->GetMessageString('RequiredValidationMessage'), $editColumn->GetCaption()));
-            $editor->GetValidatorCollection()->AddValidator($validator);
+            $editor->SetMaxLength(100);
+            $editColumn = new CustomEditColumn('Pro Nome', 'pro_nome', $editor, $this->dataset);
+            $editColumn->SetAllowSetToNull(true);
             $this->ApplyCommonColumnEditProperties($editColumn);
             $grid->AddEditColumn($editColumn);
             
@@ -223,7 +414,7 @@
             // Edit column for pro_cod field
             //
             $editor = new TextEdit('pro_cod_edit');
-            $editColumn = new CustomEditColumn('Codigo', 'pro_cod', $editor, $this->dataset);
+            $editColumn = new CustomEditColumn('Pro Cod', 'pro_cod', $editor, $this->dataset);
             $editColumn->SetAllowSetToNull(true);
             $this->ApplyCommonColumnEditProperties($editColumn);
             $grid->AddEditColumn($editColumn);
@@ -232,7 +423,7 @@
             // Edit column for pro_valor field
             //
             $editor = new TextEdit('pro_valor_edit');
-            $editColumn = new CustomEditColumn('Valor', 'pro_valor', $editor, $this->dataset);
+            $editColumn = new CustomEditColumn('Pro Valor', 'pro_valor', $editor, $this->dataset);
             $validator = new RequiredValidator(StringUtils::Format($this->GetLocalizerCaptions()->GetMessageString('RequiredValidationMessage'), $editColumn->GetCaption()));
             $editor->GetValidatorCollection()->AddValidator($validator);
             $this->ApplyCommonColumnEditProperties($editColumn);
@@ -242,7 +433,7 @@
             // Edit column for pro_estoque field
             //
             $editor = new TextEdit('pro_estoque_edit');
-            $editColumn = new CustomEditColumn('Estoque', 'pro_estoque', $editor, $this->dataset);
+            $editColumn = new CustomEditColumn('Pro Estoque', 'pro_estoque', $editor, $this->dataset);
             $validator = new RequiredValidator(StringUtils::Format($this->GetLocalizerCaptions()->GetMessageString('RequiredValidationMessage'), $editColumn->GetCaption()));
             $editor->GetValidatorCollection()->AddValidator($validator);
             $this->ApplyCommonColumnEditProperties($editColumn);
@@ -251,8 +442,11 @@
             //
             // Edit column for pro_img field
             //
-            $editor = new TextAreaEdit('pro_img_edit', 50, 8);
-            $editColumn = new CustomEditColumn('Foto', 'pro_img', $editor, $this->dataset);
+            $editor = new ImageUploader('pro_img_edit');
+            $editor->SetShowImage(true);
+            $editor->setAcceptableFileTypes('image/*');
+            $editColumn = new UploadFileToFolderColumn('Pro Img', 'pro_img', $editor, $this->dataset, false, false, 'fotos/', '%original_file_name%', $this->OnFileUpload, false);
+            $editColumn->SetReplaceUploadedFileIfExist(true);
             $editColumn->SetAllowSetToNull(true);
             $this->ApplyCommonColumnEditProperties($editColumn);
             $grid->AddEditColumn($editColumn);
@@ -260,7 +454,56 @@
     
         protected function AddMultiEditColumns(Grid $grid)
         {
-    
+            //
+            // Edit column for pro_nome field
+            //
+            $editor = new TextEdit('pro_nome_edit');
+            $editor->SetMaxLength(100);
+            $editColumn = new CustomEditColumn('Pro Nome', 'pro_nome', $editor, $this->dataset);
+            $editColumn->SetAllowSetToNull(true);
+            $this->ApplyCommonColumnEditProperties($editColumn);
+            $grid->AddMultiEditColumn($editColumn);
+            
+            //
+            // Edit column for pro_cod field
+            //
+            $editor = new TextEdit('pro_cod_edit');
+            $editColumn = new CustomEditColumn('Pro Cod', 'pro_cod', $editor, $this->dataset);
+            $editColumn->SetAllowSetToNull(true);
+            $this->ApplyCommonColumnEditProperties($editColumn);
+            $grid->AddMultiEditColumn($editColumn);
+            
+            //
+            // Edit column for pro_valor field
+            //
+            $editor = new TextEdit('pro_valor_edit');
+            $editColumn = new CustomEditColumn('Pro Valor', 'pro_valor', $editor, $this->dataset);
+            $validator = new RequiredValidator(StringUtils::Format($this->GetLocalizerCaptions()->GetMessageString('RequiredValidationMessage'), $editColumn->GetCaption()));
+            $editor->GetValidatorCollection()->AddValidator($validator);
+            $this->ApplyCommonColumnEditProperties($editColumn);
+            $grid->AddMultiEditColumn($editColumn);
+            
+            //
+            // Edit column for pro_estoque field
+            //
+            $editor = new TextEdit('pro_estoque_edit');
+            $editColumn = new CustomEditColumn('Pro Estoque', 'pro_estoque', $editor, $this->dataset);
+            $validator = new RequiredValidator(StringUtils::Format($this->GetLocalizerCaptions()->GetMessageString('RequiredValidationMessage'), $editColumn->GetCaption()));
+            $editor->GetValidatorCollection()->AddValidator($validator);
+            $this->ApplyCommonColumnEditProperties($editColumn);
+            $grid->AddMultiEditColumn($editColumn);
+            
+            //
+            // Edit column for pro_img field
+            //
+            $editor = new ImageUploader('pro_img_edit');
+            $editor->SetShowImage(true);
+            $editor->setAcceptableFileTypes('image/*');
+            $editColumn = new UploadFileToFolderColumn('Pro Img', 'pro_img', $editor, $this->dataset, false, false, 'fotos/', '%original_file_name%', $this->OnFileUpload, false);
+            $editColumn->SetReplaceUploadedFileIfExist(true);
+            $editColumn->SetAllowSetToNull(true);
+            $this->ApplyCommonColumnEditProperties($editColumn);
+            $grid->AddMultiEditColumn($editColumn);
         }
     
         protected function AddToggleEditColumns(Grid $grid)
@@ -274,9 +517,9 @@
             // Edit column for pro_nome field
             //
             $editor = new TextEdit('pro_nome_edit');
-            $editColumn = new CustomEditColumn('Produto', 'pro_nome', $editor, $this->dataset);
-            $validator = new RequiredValidator(StringUtils::Format($this->GetLocalizerCaptions()->GetMessageString('RequiredValidationMessage'), $editColumn->GetCaption()));
-            $editor->GetValidatorCollection()->AddValidator($validator);
+            $editor->SetMaxLength(100);
+            $editColumn = new CustomEditColumn('Pro Nome', 'pro_nome', $editor, $this->dataset);
+            $editColumn->SetAllowSetToNull(true);
             $this->ApplyCommonColumnEditProperties($editColumn);
             $grid->AddInsertColumn($editColumn);
             
@@ -284,7 +527,7 @@
             // Edit column for pro_cod field
             //
             $editor = new TextEdit('pro_cod_edit');
-            $editColumn = new CustomEditColumn('Codigo', 'pro_cod', $editor, $this->dataset);
+            $editColumn = new CustomEditColumn('Pro Cod', 'pro_cod', $editor, $this->dataset);
             $editColumn->SetAllowSetToNull(true);
             $this->ApplyCommonColumnEditProperties($editColumn);
             $grid->AddInsertColumn($editColumn);
@@ -293,8 +536,7 @@
             // Edit column for pro_valor field
             //
             $editor = new TextEdit('pro_valor_edit');
-            $editColumn = new CustomEditColumn('Valor', 'pro_valor', $editor, $this->dataset);
-            $editColumn->SetInsertDefaultValue('0');
+            $editColumn = new CustomEditColumn('Pro Valor', 'pro_valor', $editor, $this->dataset);
             $validator = new RequiredValidator(StringUtils::Format($this->GetLocalizerCaptions()->GetMessageString('RequiredValidationMessage'), $editColumn->GetCaption()));
             $editor->GetValidatorCollection()->AddValidator($validator);
             $this->ApplyCommonColumnEditProperties($editColumn);
@@ -304,8 +546,7 @@
             // Edit column for pro_estoque field
             //
             $editor = new TextEdit('pro_estoque_edit');
-            $editColumn = new CustomEditColumn('Estoque', 'pro_estoque', $editor, $this->dataset);
-            $editColumn->SetInsertDefaultValue('0');
+            $editColumn = new CustomEditColumn('Pro Estoque', 'pro_estoque', $editor, $this->dataset);
             $validator = new RequiredValidator(StringUtils::Format($this->GetLocalizerCaptions()->GetMessageString('RequiredValidationMessage'), $editColumn->GetCaption()));
             $editor->GetValidatorCollection()->AddValidator($validator);
             $this->ApplyCommonColumnEditProperties($editColumn);
@@ -314,8 +555,11 @@
             //
             // Edit column for pro_img field
             //
-            $editor = new TextAreaEdit('pro_img_edit', 50, 8);
-            $editColumn = new CustomEditColumn('Foto', 'pro_img', $editor, $this->dataset);
+            $editor = new ImageUploader('pro_img_edit');
+            $editor->SetShowImage(true);
+            $editor->setAcceptableFileTypes('image/*');
+            $editColumn = new UploadFileToFolderColumn('Pro Img', 'pro_img', $editor, $this->dataset, false, false, 'fotos/', '%original_file_name%', $this->OnFileUpload, false);
+            $editColumn->SetReplaceUploadedFileIfExist(true);
             $editColumn->SetAllowSetToNull(true);
             $this->ApplyCommonColumnEditProperties($editColumn);
             $grid->AddInsertColumn($editColumn);
@@ -330,36 +574,48 @@
         protected function AddPrintColumns(Grid $grid)
         {
             //
+            // View column for pro_id field
+            //
+            $column = new NumberViewColumn('pro_id', 'pro_id', 'ID', $this->dataset);
+            $column->SetOrderable(true);
+            $column->setAlign('left');
+            $column->setNumberAfterDecimal(0);
+            $column->setThousandsSeparator(',');
+            $column->setDecimalSeparator('');
+            $grid->AddPrintColumn($column);
+            
+            //
             // View column for pro_nome field
             //
-            $column = new TextViewColumn('pro_nome', 'pro_nome', 'Produto', $this->dataset);
+            $column = new TextViewColumn('pro_nome', 'pro_nome', 'Pro Nome', $this->dataset);
             $column->SetOrderable(true);
-            $column->setAlign('center');
             $column->SetMaxLength(75);
             $grid->AddPrintColumn($column);
             
             //
             // View column for pro_cod field
             //
-            $column = new TextViewColumn('pro_cod', 'pro_cod', 'Codigo', $this->dataset);
+            $column = new NumberViewColumn('pro_cod', 'pro_cod', 'Pro Cod', $this->dataset);
             $column->SetOrderable(true);
+            $column->setNumberAfterDecimal(4);
+            $column->setThousandsSeparator(',');
+            $column->setDecimalSeparator('.');
             $grid->AddPrintColumn($column);
             
             //
             // View column for pro_valor field
             //
-            $column = new NumberViewColumn('pro_valor', 'pro_valor', 'Valor', $this->dataset);
+            $column = new NumberViewColumn('pro_valor', 'pro_valor', 'Pro Valor', $this->dataset);
             $column->SetOrderable(true);
-            $column->setAlign('center');
-            $column->setNumberAfterDecimal(2);
-            $column->setThousandsSeparator('.');
-            $column->setDecimalSeparator(',');
+            $column->setNumberAfterDecimal(4);
+            $column->setThousandsSeparator(',');
+            $column->setDecimalSeparator('.');
             $grid->AddPrintColumn($column);
             
             //
             // View column for pro_estoque field
             //
-            $column = new NumberViewColumn('pro_estoque', 'pro_estoque', 'Estoque', $this->dataset);
+            $column = new NumberViewColumn('pro_estoque', 'pro_estoque', 'Pro Estoque', $this->dataset);
             $column->SetOrderable(true);
             $column->setNumberAfterDecimal(0);
             $column->setThousandsSeparator(',');
@@ -369,45 +625,57 @@
             //
             // View column for pro_img field
             //
-            $column = new TextViewColumn('pro_img', 'pro_img', 'Foto', $this->dataset);
+            $column = new ExternalImageViewColumn('pro_img', 'pro_img', 'Pro Img', $this->dataset);
             $column->SetOrderable(true);
-            $column->SetMaxLength(75);
+            $column->setWidth('100');
             $grid->AddPrintColumn($column);
         }
     
         protected function AddExportColumns(Grid $grid)
         {
             //
+            // View column for pro_id field
+            //
+            $column = new NumberViewColumn('pro_id', 'pro_id', 'ID', $this->dataset);
+            $column->SetOrderable(true);
+            $column->setAlign('left');
+            $column->setNumberAfterDecimal(0);
+            $column->setThousandsSeparator(',');
+            $column->setDecimalSeparator('');
+            $grid->AddExportColumn($column);
+            
+            //
             // View column for pro_nome field
             //
-            $column = new TextViewColumn('pro_nome', 'pro_nome', 'Produto', $this->dataset);
+            $column = new TextViewColumn('pro_nome', 'pro_nome', 'Pro Nome', $this->dataset);
             $column->SetOrderable(true);
-            $column->setAlign('center');
             $column->SetMaxLength(75);
             $grid->AddExportColumn($column);
             
             //
             // View column for pro_cod field
             //
-            $column = new TextViewColumn('pro_cod', 'pro_cod', 'Codigo', $this->dataset);
+            $column = new NumberViewColumn('pro_cod', 'pro_cod', 'Pro Cod', $this->dataset);
             $column->SetOrderable(true);
+            $column->setNumberAfterDecimal(4);
+            $column->setThousandsSeparator(',');
+            $column->setDecimalSeparator('.');
             $grid->AddExportColumn($column);
             
             //
             // View column for pro_valor field
             //
-            $column = new NumberViewColumn('pro_valor', 'pro_valor', 'Valor', $this->dataset);
+            $column = new NumberViewColumn('pro_valor', 'pro_valor', 'Pro Valor', $this->dataset);
             $column->SetOrderable(true);
-            $column->setAlign('center');
-            $column->setNumberAfterDecimal(2);
-            $column->setThousandsSeparator('.');
-            $column->setDecimalSeparator(',');
+            $column->setNumberAfterDecimal(4);
+            $column->setThousandsSeparator(',');
+            $column->setDecimalSeparator('.');
             $grid->AddExportColumn($column);
             
             //
             // View column for pro_estoque field
             //
-            $column = new NumberViewColumn('pro_estoque', 'pro_estoque', 'Estoque', $this->dataset);
+            $column = new NumberViewColumn('pro_estoque', 'pro_estoque', 'Pro Estoque', $this->dataset);
             $column->SetOrderable(true);
             $column->setNumberAfterDecimal(0);
             $column->setThousandsSeparator(',');
@@ -417,15 +685,59 @@
             //
             // View column for pro_img field
             //
-            $column = new TextViewColumn('pro_img', 'pro_img', 'Foto', $this->dataset);
+            $column = new ExternalImageViewColumn('pro_img', 'pro_img', 'Pro Img', $this->dataset);
             $column->SetOrderable(true);
-            $column->SetMaxLength(75);
+            $column->setWidth('100');
             $grid->AddExportColumn($column);
         }
     
         private function AddCompareColumns(Grid $grid)
         {
-    
+            //
+            // View column for pro_nome field
+            //
+            $column = new TextViewColumn('pro_nome', 'pro_nome', 'Pro Nome', $this->dataset);
+            $column->SetOrderable(true);
+            $column->SetMaxLength(75);
+            $grid->AddCompareColumn($column);
+            
+            //
+            // View column for pro_cod field
+            //
+            $column = new NumberViewColumn('pro_cod', 'pro_cod', 'Pro Cod', $this->dataset);
+            $column->SetOrderable(true);
+            $column->setNumberAfterDecimal(4);
+            $column->setThousandsSeparator(',');
+            $column->setDecimalSeparator('.');
+            $grid->AddCompareColumn($column);
+            
+            //
+            // View column for pro_valor field
+            //
+            $column = new NumberViewColumn('pro_valor', 'pro_valor', 'Pro Valor', $this->dataset);
+            $column->SetOrderable(true);
+            $column->setNumberAfterDecimal(4);
+            $column->setThousandsSeparator(',');
+            $column->setDecimalSeparator('.');
+            $grid->AddCompareColumn($column);
+            
+            //
+            // View column for pro_estoque field
+            //
+            $column = new NumberViewColumn('pro_estoque', 'pro_estoque', 'Pro Estoque', $this->dataset);
+            $column->SetOrderable(true);
+            $column->setNumberAfterDecimal(0);
+            $column->setThousandsSeparator(',');
+            $column->setDecimalSeparator('');
+            $grid->AddCompareColumn($column);
+            
+            //
+            // View column for pro_img field
+            //
+            $column = new ExternalImageViewColumn('pro_img', 'pro_img', 'Pro Img', $this->dataset);
+            $column->SetOrderable(true);
+            $column->setWidth('100');
+            $grid->AddCompareColumn($column);
         }
     
         private function AddCompareHeaderColumns(Grid $grid)
@@ -459,6 +771,7 @@
         {
             return ;
         }
+        public function GetEnableModalSingleRecordView() { return true; }
     
         protected function CreateGrid()
         {
@@ -480,8 +793,9 @@
             $this->AddCompareHeaderColumns($result);
             $this->AddCompareColumns($result);
             $result->setMultiEditAllowed($this->GetSecurityInfo()->HasEditGrant() && true);
-            $result->setTableBordered(false);
-            $result->setTableCondensed(false);
+            $result->setUseModalMultiEdit(true);
+            $result->setTableBordered(true);
+            $result->setTableCondensed(true);
             
             $result->SetHighlightRowAtHover(false);
             $result->SetWidth('');
@@ -498,7 +812,7 @@
     
     
             $this->SetShowPageList(true);
-            $this->SetShowTopPageNavigator(false);
+            $this->SetShowTopPageNavigator(true);
             $this->SetShowBottomPageNavigator(true);
             $this->setAllowedActions(array('view', 'insert', 'copy', 'edit', 'multi-edit', 'delete', 'multi-delete'));
             $this->setPrintListAvailable(true);
@@ -509,6 +823,8 @@
             $this->setExportSelectedRecordsAvailable(array('pdf', 'excel', 'word', 'xml', 'csv'));
             $this->setExportListRecordAvailable(array());
             $this->setExportOneRecordAvailable(array('pdf', 'excel', 'word', 'xml', 'csv'));
+            $this->setModalViewSize(Modal::SIZE_LG);
+            $this->setModalFormSize(Modal::SIZE_LG);
     
             return $result;
         }

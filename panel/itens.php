@@ -51,7 +51,6 @@
                     new StringField('item_serv_cod', true)
                 )
             );
-            $this->dataset->AddLookupField('item_produto', 'produtos', new StringField('pro_nome'), new StringField('pro_nome', false, false, false, false, 'item_produto_pro_nome', 'item_produto_pro_nome_produtos'), 'item_produto_pro_nome_produtos');
         }
     
         protected function DoPrepare() {
@@ -83,7 +82,7 @@
         {
             return array(
                 new FilterColumn($this->dataset, 'item_id', 'item_id', 'Item Id'),
-                new FilterColumn($this->dataset, 'item_produto', 'item_produto_pro_nome', 'Item Produto'),
+                new FilterColumn($this->dataset, 'item_produto', 'item_produto', 'Item Produto'),
                 new FilterColumn($this->dataset, 'item_valor', 'item_valor', 'Item Valor'),
                 new FilterColumn($this->dataset, 'item_qtd', 'item_qtd', 'Item Qtd'),
                 new FilterColumn($this->dataset, 'item_serv_cod', 'item_serv_cod', 'Item Serv Cod')
@@ -102,8 +101,7 @@
     
         protected function setupColumnFilter(ColumnFilter $columnFilter)
         {
-            $columnFilter
-                ->setOptionsFor('item_produto');
+    
         }
     
         protected function setupFilterBuilder(FilterBuilder $filterBuilder, FixedKeysArray $columns)
@@ -126,14 +124,7 @@
                 )
             );
             
-            $main_editor = new DynamicCombobox('item_produto_edit', $this->CreateLinkBuilder());
-            $main_editor->setAllowClear(true);
-            $main_editor->setMinimumInputLength(0);
-            $main_editor->SetAllowNullValue(false);
-            $main_editor->SetHandlerName('filter_builder_itens_item_produto_search');
-            
-            $multi_value_select_editor = new RemoteMultiValueSelect('item_produto', $this->CreateLinkBuilder());
-            $multi_value_select_editor->SetHandlerName('filter_builder_itens_item_produto_search');
+            $main_editor = new TextEdit('item_produto_edit');
             
             $filterBuilder->addColumn(
                 $columns['item_produto'],
@@ -146,8 +137,6 @@
                     FilterConditionOperator::IS_LESS_THAN_OR_EQUAL_TO => $main_editor,
                     FilterConditionOperator::IS_BETWEEN => $main_editor,
                     FilterConditionOperator::IS_NOT_BETWEEN => $main_editor,
-                    FilterConditionOperator::IN => $multi_value_select_editor,
-                    FilterConditionOperator::NOT_IN => $multi_value_select_editor,
                     FilterConditionOperator::IS_BLANK => null,
                     FilterConditionOperator::IS_NOT_BLANK => null
                 )
@@ -221,16 +210,22 @@
             $actions->setCaption($this->GetLocalizerCaptions()->GetMessageString('Actions'));
             $actions->setPosition(ActionList::POSITION_LEFT);
             
-            if ($this->GetSecurityInfo()->HasViewGrant())
-            {
-                $operation = new LinkOperation($this->GetLocalizerCaptions()->GetMessageString('View'), OPERATION_VIEW, $this->dataset, $grid);
+            if ($this->GetSecurityInfo()->HasViewGrant()) {
+            
+                $operation = new AjaxOperation(OPERATION_VIEW,
+                    $this->GetLocalizerCaptions()->GetMessageString('View'),
+                    $this->GetLocalizerCaptions()->GetMessageString('View'), $this->dataset,
+                    $this->GetModalGridViewHandler(), $grid);
                 $operation->setUseImage(true);
                 $actions->addOperation($operation);
             }
             
             if ($this->GetSecurityInfo()->HasEditGrant())
             {
-                $operation = new LinkOperation($this->GetLocalizerCaptions()->GetMessageString('Edit'), OPERATION_EDIT, $this->dataset, $grid);
+                $operation = new AjaxOperation(OPERATION_EDIT,
+                    $this->GetLocalizerCaptions()->GetMessageString('Edit'),
+                    $this->GetLocalizerCaptions()->GetMessageString('Edit'), $this->dataset,
+                    $this->GetGridEditHandler(), $grid);
                 $operation->setUseImage(true);
                 $actions->addOperation($operation);
                 $operation->OnShow->AddListener('ShowEditButtonHandler', $this);
@@ -269,10 +264,13 @@
             $column->setMinimalVisibility(ColumnVisibility::PHONE);
             $grid->AddViewColumn($column);
             //
-            // View column for pro_nome field
+            // View column for item_produto field
             //
-            $column = new TextViewColumn('item_produto', 'item_produto_pro_nome', 'Item Produto', $this->dataset);
+            $column = new NumberViewColumn('item_produto', 'item_produto', 'Item Produto', $this->dataset);
             $column->SetOrderable(true);
+            $column->setNumberAfterDecimal(0);
+            $column->setThousandsSeparator(',');
+            $column->setDecimalSeparator('');
             $column->setMinimalVisibility(ColumnVisibility::PHONE);
             $grid->AddViewColumn($column);
             //
@@ -280,9 +278,9 @@
             //
             $column = new NumberViewColumn('item_valor', 'item_valor', 'Item Valor', $this->dataset);
             $column->SetOrderable(true);
-            $column->setNumberAfterDecimal(2);
-            $column->setThousandsSeparator('.');
-            $column->setDecimalSeparator(',');
+            $column->setNumberAfterDecimal(4);
+            $column->setThousandsSeparator(',');
+            $column->setDecimalSeparator('.');
             $column->setMinimalVisibility(ColumnVisibility::PHONE);
             $grid->AddViewColumn($column);
             //
@@ -317,10 +315,13 @@
             $grid->AddSingleRecordViewColumn($column);
             
             //
-            // View column for pro_nome field
+            // View column for item_produto field
             //
-            $column = new TextViewColumn('item_produto', 'item_produto_pro_nome', 'Item Produto', $this->dataset);
+            $column = new NumberViewColumn('item_produto', 'item_produto', 'Item Produto', $this->dataset);
             $column->SetOrderable(true);
+            $column->setNumberAfterDecimal(0);
+            $column->setThousandsSeparator(',');
+            $column->setDecimalSeparator('');
             $grid->AddSingleRecordViewColumn($column);
             
             //
@@ -328,9 +329,9 @@
             //
             $column = new NumberViewColumn('item_valor', 'item_valor', 'Item Valor', $this->dataset);
             $column->SetOrderable(true);
-            $column->setNumberAfterDecimal(2);
-            $column->setThousandsSeparator('.');
-            $column->setDecimalSeparator(',');
+            $column->setNumberAfterDecimal(4);
+            $column->setThousandsSeparator(',');
+            $column->setDecimalSeparator('.');
             $grid->AddSingleRecordViewColumn($column);
             
             //
@@ -366,25 +367,8 @@
             //
             // Edit column for item_produto field
             //
-            $editor = new DynamicCombobox('item_produto_edit', $this->CreateLinkBuilder());
-            $editor->setAllowClear(true);
-            $editor->setMinimumInputLength(0);
-            $lookupDataset = new TableDataset(
-                MySqlIConnectionFactory::getInstance(),
-                GetConnectionOptions(),
-                '`produtos`');
-            $lookupDataset->addFields(
-                array(
-                    new IntegerField('pro_id', true, true, true),
-                    new StringField('pro_nome', true),
-                    new IntegerField('pro_valor', true),
-                    new StringField('pro_cod'),
-                    new IntegerField('pro_estoque', true),
-                    new StringField('pro_img')
-                )
-            );
-            $lookupDataset->setOrderByField('pro_nome', 'ASC');
-            $editColumn = new DynamicLookupEditColumn('Item Produto', 'item_produto', 'item_produto_pro_nome', 'edit_itens_item_produto_search', $editor, $this->dataset, $lookupDataset, 'pro_nome', 'pro_nome', '');
+            $editor = new TextEdit('item_produto_edit');
+            $editColumn = new CustomEditColumn('Item Produto', 'item_produto', $editor, $this->dataset);
             $validator = new RequiredValidator(StringUtils::Format($this->GetLocalizerCaptions()->GetMessageString('RequiredValidationMessage'), $editColumn->GetCaption()));
             $editor->GetValidatorCollection()->AddValidator($validator);
             $this->ApplyCommonColumnEditProperties($editColumn);
@@ -427,25 +411,8 @@
             //
             // Edit column for item_produto field
             //
-            $editor = new DynamicCombobox('item_produto_edit', $this->CreateLinkBuilder());
-            $editor->setAllowClear(true);
-            $editor->setMinimumInputLength(0);
-            $lookupDataset = new TableDataset(
-                MySqlIConnectionFactory::getInstance(),
-                GetConnectionOptions(),
-                '`produtos`');
-            $lookupDataset->addFields(
-                array(
-                    new IntegerField('pro_id', true, true, true),
-                    new StringField('pro_nome', true),
-                    new IntegerField('pro_valor', true),
-                    new StringField('pro_cod'),
-                    new IntegerField('pro_estoque', true),
-                    new StringField('pro_img')
-                )
-            );
-            $lookupDataset->setOrderByField('pro_nome', 'ASC');
-            $editColumn = new DynamicLookupEditColumn('Item Produto', 'item_produto', 'item_produto_pro_nome', 'multi_edit_itens_item_produto_search', $editor, $this->dataset, $lookupDataset, 'pro_nome', 'pro_nome', '');
+            $editor = new TextEdit('item_produto_edit');
+            $editColumn = new CustomEditColumn('Item Produto', 'item_produto', $editor, $this->dataset);
             $validator = new RequiredValidator(StringUtils::Format($this->GetLocalizerCaptions()->GetMessageString('RequiredValidationMessage'), $editColumn->GetCaption()));
             $editor->GetValidatorCollection()->AddValidator($validator);
             $this->ApplyCommonColumnEditProperties($editColumn);
@@ -503,25 +470,8 @@
             //
             // Edit column for item_produto field
             //
-            $editor = new DynamicCombobox('item_produto_edit', $this->CreateLinkBuilder());
-            $editor->setAllowClear(true);
-            $editor->setMinimumInputLength(0);
-            $lookupDataset = new TableDataset(
-                MySqlIConnectionFactory::getInstance(),
-                GetConnectionOptions(),
-                '`produtos`');
-            $lookupDataset->addFields(
-                array(
-                    new IntegerField('pro_id', true, true, true),
-                    new StringField('pro_nome', true),
-                    new IntegerField('pro_valor', true),
-                    new StringField('pro_cod'),
-                    new IntegerField('pro_estoque', true),
-                    new StringField('pro_img')
-                )
-            );
-            $lookupDataset->setOrderByField('pro_nome', 'ASC');
-            $editColumn = new DynamicLookupEditColumn('Item Produto', 'item_produto', 'item_produto_pro_nome', 'insert_itens_item_produto_search', $editor, $this->dataset, $lookupDataset, 'pro_nome', 'pro_nome', '');
+            $editor = new TextEdit('item_produto_edit');
+            $editColumn = new CustomEditColumn('Item Produto', 'item_produto', $editor, $this->dataset);
             $validator = new RequiredValidator(StringUtils::Format($this->GetLocalizerCaptions()->GetMessageString('RequiredValidationMessage'), $editColumn->GetCaption()));
             $editor->GetValidatorCollection()->AddValidator($validator);
             $this->ApplyCommonColumnEditProperties($editColumn);
@@ -578,10 +528,13 @@
             $grid->AddPrintColumn($column);
             
             //
-            // View column for pro_nome field
+            // View column for item_produto field
             //
-            $column = new TextViewColumn('item_produto', 'item_produto_pro_nome', 'Item Produto', $this->dataset);
+            $column = new NumberViewColumn('item_produto', 'item_produto', 'Item Produto', $this->dataset);
             $column->SetOrderable(true);
+            $column->setNumberAfterDecimal(0);
+            $column->setThousandsSeparator(',');
+            $column->setDecimalSeparator('');
             $grid->AddPrintColumn($column);
             
             //
@@ -589,9 +542,9 @@
             //
             $column = new NumberViewColumn('item_valor', 'item_valor', 'Item Valor', $this->dataset);
             $column->SetOrderable(true);
-            $column->setNumberAfterDecimal(2);
-            $column->setThousandsSeparator('.');
-            $column->setDecimalSeparator(',');
+            $column->setNumberAfterDecimal(4);
+            $column->setThousandsSeparator(',');
+            $column->setDecimalSeparator('.');
             $grid->AddPrintColumn($column);
             
             //
@@ -625,10 +578,13 @@
             $grid->AddExportColumn($column);
             
             //
-            // View column for pro_nome field
+            // View column for item_produto field
             //
-            $column = new TextViewColumn('item_produto', 'item_produto_pro_nome', 'Item Produto', $this->dataset);
+            $column = new NumberViewColumn('item_produto', 'item_produto', 'Item Produto', $this->dataset);
             $column->SetOrderable(true);
+            $column->setNumberAfterDecimal(0);
+            $column->setThousandsSeparator(',');
+            $column->setDecimalSeparator('');
             $grid->AddExportColumn($column);
             
             //
@@ -636,9 +592,9 @@
             //
             $column = new NumberViewColumn('item_valor', 'item_valor', 'Item Valor', $this->dataset);
             $column->SetOrderable(true);
-            $column->setNumberAfterDecimal(2);
-            $column->setThousandsSeparator('.');
-            $column->setDecimalSeparator(',');
+            $column->setNumberAfterDecimal(4);
+            $column->setThousandsSeparator(',');
+            $column->setDecimalSeparator('.');
             $grid->AddExportColumn($column);
             
             //
@@ -672,10 +628,13 @@
             $grid->AddCompareColumn($column);
             
             //
-            // View column for pro_nome field
+            // View column for item_produto field
             //
-            $column = new TextViewColumn('item_produto', 'item_produto_pro_nome', 'Item Produto', $this->dataset);
+            $column = new NumberViewColumn('item_produto', 'item_produto', 'Item Produto', $this->dataset);
             $column->SetOrderable(true);
+            $column->setNumberAfterDecimal(0);
+            $column->setThousandsSeparator(',');
+            $column->setDecimalSeparator('');
             $grid->AddCompareColumn($column);
             
             //
@@ -683,9 +642,9 @@
             //
             $column = new NumberViewColumn('item_valor', 'item_valor', 'Item Valor', $this->dataset);
             $column->SetOrderable(true);
-            $column->setNumberAfterDecimal(2);
-            $column->setThousandsSeparator('.');
-            $column->setDecimalSeparator(',');
+            $column->setNumberAfterDecimal(4);
+            $column->setThousandsSeparator(',');
+            $column->setDecimalSeparator('.');
             $grid->AddCompareColumn($column);
             
             //
@@ -737,6 +696,7 @@
         {
             return ;
         }
+        public function GetEnableModalSingleRecordView() { return true; }
     
         protected function CreateGrid()
         {
@@ -758,8 +718,9 @@
             $this->AddCompareHeaderColumns($result);
             $this->AddCompareColumns($result);
             $result->setMultiEditAllowed($this->GetSecurityInfo()->HasEditGrant() && true);
-            $result->setTableBordered(false);
-            $result->setTableCondensed(false);
+            $result->setUseModalMultiEdit(true);
+            $result->setTableBordered(true);
+            $result->setTableCondensed(true);
             
             $result->SetHighlightRowAtHover(false);
             $result->SetWidth('');
@@ -776,7 +737,7 @@
     
     
             $this->SetShowPageList(true);
-            $this->SetShowTopPageNavigator(false);
+            $this->SetShowTopPageNavigator(true);
             $this->SetShowBottomPageNavigator(true);
             $this->setAllowedActions(array('view', 'insert', 'copy', 'edit', 'multi-edit', 'delete', 'multi-delete'));
             $this->setPrintListAvailable(true);
@@ -787,6 +748,8 @@
             $this->setExportSelectedRecordsAvailable(array('pdf', 'excel', 'word', 'xml', 'csv'));
             $this->setExportListRecordAvailable(array());
             $this->setExportOneRecordAvailable(array('pdf', 'excel', 'word', 'xml', 'csv'));
+            $this->setModalViewSize(Modal::SIZE_LG);
+            $this->setModalFormSize(Modal::SIZE_LG);
     
             return $result;
         }
@@ -796,77 +759,8 @@
         }
     
         protected function doRegisterHandlers() {
-            $lookupDataset = new TableDataset(
-                MySqlIConnectionFactory::getInstance(),
-                GetConnectionOptions(),
-                '`produtos`');
-            $lookupDataset->addFields(
-                array(
-                    new IntegerField('pro_id', true, true, true),
-                    new StringField('pro_nome', true),
-                    new IntegerField('pro_valor', true),
-                    new StringField('pro_cod'),
-                    new IntegerField('pro_estoque', true),
-                    new StringField('pro_img')
-                )
-            );
-            $lookupDataset->setOrderByField('pro_nome', 'ASC');
-            $handler = new DynamicSearchHandler($lookupDataset, 'insert_itens_item_produto_search', 'pro_nome', 'pro_nome', null, 20);
-            GetApplication()->RegisterHTTPHandler($handler);
             
-            $lookupDataset = new TableDataset(
-                MySqlIConnectionFactory::getInstance(),
-                GetConnectionOptions(),
-                '`produtos`');
-            $lookupDataset->addFields(
-                array(
-                    new IntegerField('pro_id', true, true, true),
-                    new StringField('pro_nome', true),
-                    new IntegerField('pro_valor', true),
-                    new StringField('pro_cod'),
-                    new IntegerField('pro_estoque', true),
-                    new StringField('pro_img')
-                )
-            );
-            $lookupDataset->setOrderByField('pro_nome', 'ASC');
-            $handler = new DynamicSearchHandler($lookupDataset, 'filter_builder_itens_item_produto_search', 'pro_nome', 'pro_nome', null, 20);
-            GetApplication()->RegisterHTTPHandler($handler);
             
-            $lookupDataset = new TableDataset(
-                MySqlIConnectionFactory::getInstance(),
-                GetConnectionOptions(),
-                '`produtos`');
-            $lookupDataset->addFields(
-                array(
-                    new IntegerField('pro_id', true, true, true),
-                    new StringField('pro_nome', true),
-                    new IntegerField('pro_valor', true),
-                    new StringField('pro_cod'),
-                    new IntegerField('pro_estoque', true),
-                    new StringField('pro_img')
-                )
-            );
-            $lookupDataset->setOrderByField('pro_nome', 'ASC');
-            $handler = new DynamicSearchHandler($lookupDataset, 'edit_itens_item_produto_search', 'pro_nome', 'pro_nome', null, 20);
-            GetApplication()->RegisterHTTPHandler($handler);
-            
-            $lookupDataset = new TableDataset(
-                MySqlIConnectionFactory::getInstance(),
-                GetConnectionOptions(),
-                '`produtos`');
-            $lookupDataset->addFields(
-                array(
-                    new IntegerField('pro_id', true, true, true),
-                    new StringField('pro_nome', true),
-                    new IntegerField('pro_valor', true),
-                    new StringField('pro_cod'),
-                    new IntegerField('pro_estoque', true),
-                    new StringField('pro_img')
-                )
-            );
-            $lookupDataset->setOrderByField('pro_nome', 'ASC');
-            $handler = new DynamicSearchHandler($lookupDataset, 'multi_edit_itens_item_produto_search', 'pro_nome', 'pro_nome', null, 20);
-            GetApplication()->RegisterHTTPHandler($handler);
         }
        
         protected function doCustomRenderColumn($fieldName, $fieldData, $rowData, &$customText, &$handled)
