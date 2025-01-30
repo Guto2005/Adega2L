@@ -42,3 +42,10 @@ function showSlidesAuto() {
     slides[slideIndexAuto - 1].style.display = "block";
     setTimeout(showSlidesAuto, 8000); // Troca de imagem a cada 2 segundos
 }
+
+document.querySelectorAll('input[type="text"]').forEach(input => {
+    input.addEventListener('input', function() {
+        this.value = this.value.replace(/[^0-9]/g, '');
+    });
+});
+

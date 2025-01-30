@@ -114,11 +114,53 @@ li {
 
 .login-decoration {
     display: flex;
-    width: 800px;
+    width: 50%;
     height: 100vh;
     padding: 242px 95px;
     flex-direction: column;
     align-items: center;
     border: 1px solid #FFEA00;
     background: rgba(91, 91, 91, 0.50);
+}
+
+
+/* Ajuste de Responsividade */
+
+/* Garante que o layout de conteúdo seja em coluna em telas menores */
+@media (max-width: 850px) {
+    .login-decoration {
+        display: flex;
+        width: 50%;
+        height: 100vh;
+        padding: 242px 95px;
+        flex-direction: column;
+        align-items: center;
+        border: 1px solid #FFEA00;
+        background: rgba(91, 91, 91, 0.50);
+    }
+
+}
+
+@media (max-width: 625px) {
+    .login-decoration {
+        display: flex;
+        width: 50%;
+        height: 100vh;
+        padding: 242px 95px;
+        flex-direction: column;
+        align-items: center;
+        border: 1px solid #FFEA00;
+        background: rgba(91, 91, 91, 0.50);
+    }
+
+    .login-links {
+        font-size: medium;
+        align-items: center;
+        color: #3DB4FF;
+        margin: auto;
+        display: inherit;
+        flex-direction: inherit;
+        padding: 0px;
+    }
+
 }

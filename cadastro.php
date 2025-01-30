@@ -1,10 +1,10 @@
 <?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Informações de conexão com o banco de dados
-$host = 'cc220df3eb53.sn.mynetname.net';
-$dbname = 'gto_caveira';
-$user = 'gto_caveira';
-$password = 'gto416966';
+    $host = 'cc220df3eb53.sn.mynetname.net';
+    $dbname = 'gto_caveira';
+    $user = 'gto_caveira';
+    $password = 'gto416966';
 
     // Criar conexão com o banco de dados
     $conn = mysqli_connect($host, $user, $password, $dbname);
@@ -13,14 +13,29 @@ $password = 'gto416966';
     if (!$conn) {
         die("Conexão falhou: " . mysqli_connect_error());
     }
-// Recuperar dados do formulário
+
+    // Recuperar dados do formulário
     $nome = mysqli_real_escape_string($conn, $_POST['nomeUsuario']);
     $email = mysqli_real_escape_string($conn, $_POST['emailUsuario']);
     $senha = password_hash($_POST['senhaUsuario'], PASSWORD_DEFAULT); // Criptografar a senha
-    
+    $cpf = mysqli_real_escape_string($conn, $_POST['cpfUsuario']);
+    $tipoLogradouro = mysqli_real_escape_string($conn, $_POST['tipoLogradouro']);
+    $nomeLogradouro = mysqli_real_escape_string($conn, $_POST['nomeLogradouro']);
+    $numeroLogradouro = mysqli_real_escape_string($conn, $_POST['numeroLogradouro']);
+    $complementoLogradouro = mysqli_real_escape_string($conn, $_POST['complementoLogradouro']);
+    $bairro = mysqli_real_escape_string($conn, $_POST['bairro']);
+    $cidade = mysqli_real_escape_string($conn, $_POST['cidade']);
+    $cep = mysqli_real_escape_string($conn, $_POST['cep']);
+    $ddi = mysqli_real_escape_string($conn, $_POST['DDI']);
+    $ddd = mysqli_real_escape_string($conn, $_POST['DDD']);
+    $numeroTelefone = mysqli_real_escape_string($conn, $_POST['numeroTelefone']);
+    $dataNasc = mysqli_real_escape_string($conn, $_POST['dataNasc']);
 
     // Inserir dados no banco de dados
-    $sql = "INSERT INTO ADG2L_Usuarios (nomeUsuario, emailUsuario, senhaUsuario) VALUES ('$nome', '$email', '$senha')";
+    $sql = "INSERT INTO ADG2L_Usuarios 
+        (nomeUsuario, emailUsuario, senhaUsuario, cpfUsuario, tipoLogradouro, nomeLogradouro, numeroLogradouro, complementoLogradouro, bairro, cidade, cep, DDI, DDD, numeroTelefone, dataNasc) 
+        VALUES 
+        ('$nome', '$email', '$senha', '$cpf', '$tipoLogradouro', '$nomeLogradouro', '$numeroLogradouro', '$complementoLogradouro', '$bairro', '$cidade', '$cep', '$ddi', '$ddd', '$numeroTelefone', '$dataNasc')";
 
     if (mysqli_query($conn, $sql)) {
         echo "Novo registro criado com sucesso";
@@ -32,40 +47,52 @@ $password = 'gto416966';
     mysqli_close($conn);
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <title>Cadastrar Usuário</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://kit.fontawesome.com/534bfbb4de.js" crossorigin="anonymous"></script>
-
     <link rel="stylesheet" href="./assets/css/cadastro.css">
 </head>
 <body class="cadastro-container">  
 
 <div class="cadastro-decoration">
     <form class="form-cadastro" method="POST">
-    <h1 class="cadastro-title">Cadastro</h1>
-        <input type="text" id="nome" placeholder="Nome" name="usuario" required>
-        <input type="tel" name="telefone" placeholder="Celular" required>
-        <input type="text" name="cpf" placeholder="Digite um CPF"  required>
-              <input type="email" id="email" name="email" placeholder="Email">
-              <input id="date" type="date" required>
-              <input type="password" id="senha" placeholder="Senha" name="senha" required>
-        <input type="password" id="senha" placeholder="Confirmar senha" name="senha" required>
-        <button class="cadastro-button" 
-        type="submit">Entrar</button>        
+        <h1 class="cadastro-title">Cadastro</h1>
+        
+        <input type="text" name="nomeUsuario" placeholder="Nome Completo" required>
+        <input type="email" name="emailUsuario" placeholder="E-mail" required>
+        <input type="password" name="senhaUsuario" placeholder="Senha" required>
+        
+        <!-- Campo CPF (Apenas Números com 11 dígitos) -->
+        <input type="number" name="cpfUsuario" placeholder="CPF" maxlength="11" title="Digite apenas números, com 11 dígitos" required>
+        
+        <!-- Endereço -->
+        <input type="text" name="tipoLogradouro" placeholder="Tipo de Logradouro (Ex: Rua, Av)">
+        <input type="text" name="nomeLogradouro" placeholder="Nome do Logradouro">
+        <input type="number" name="numeroLogradouro" placeholder="Número" maxlength="6" title="Digite apenas números">
+        <input type="text" name="complementoLogradouro" placeholder="Complemento">
+        <input type="text" name="bairro" placeholder="Bairro">
+        <input type="text" name="cidade" placeholder="Cidade">
+        
+        <!-- Campo CEP (Apenas Números com 8 dígitos) -->
+        <input type="number" name="cep" placeholder="CEP" maxlength="8" title="Digite apenas números, com 8 dígitos" required>
+        
+        <!-- Contato -->
+        <input type="number" id="ddi" name="DDI" placeholder="DDI (Ex: 55)" maxlength="3"  required>
+        <input type="number" id="ddd" name="DDD" placeholder="DDD (Ex: 11)" maxlength="3"  required>
+        <input type="number" id="telefone" name="numeroTelefone" placeholder="Número de Telefone" maxlength="9" required>
 
-<div class="cadastro-links">
-<a class="cadastro-links" href="#">Esqueceu sua senha?</a>
-<a class="cadastro-links" href="#">Cadastre-se</a>
-</div>
+        
+        <!-- Data de Nascimento -->
+        <input type="date" name="dataNasc" placeholder="Data de Nascimento" required>
+        
+        <button class="cadastro-button" type="submit">Cadastrar</button>
     </form>
-    
 </div>
-
 
 </body>
 </html>
-<!--É enviando para a mesma página--
