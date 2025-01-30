@@ -5,6 +5,8 @@ $dbname = 'gto_caveira';
 $user = 'gto_caveira';
 $password = 'gto416966';
 
+require "./config.php";
+
 try {
     $pdo = new PDO("mysql:host=$host;dbname=$dbname", $user, $password);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -34,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['imagemProduto'])) {
                 ':quantidadeEstoqueProduto' => $_POST['quantidadeEstoqueProduto'],
                 ':imagemProduto' => $uploadFile
             ]);
-
+             
             echo "Produto cadastrado com sucesso!";
         } else {
             echo "Erro ao salvar o arquivo.";
@@ -68,6 +70,8 @@ foreach ($produtos as $produto) {
     $categorias[$produto['categoria']][] = $produto;
 }
 ?>
+
+
 
 <!DOCTYPE html>
 <html lang="en">
