@@ -62,14 +62,13 @@ function GetPageInfos()
 {
     $result = array();
     $result[] = array('caption' => 'Produtos', 'short_caption' => 'Produtos', 'filename' => 'produtos.php', 'name' => 'produtos', 'group_name' => 'Default', 'add_separator' => false, 'description' => '');
-    $result[] = array('caption' => 'Usuarios', 'short_caption' => 'Usuarios', 'filename' => 'usuarios.php', 'name' => 'usuarios', 'group_name' => 'Default', 'add_separator' => false, 'description' => '');
-    $result[] = array('caption' => 'Marcas', 'short_caption' => 'Marcas', 'filename' => 'marcas.php', 'name' => 'marcas', 'group_name' => 'Default', 'add_separator' => false, 'description' => '');
-    $result[] = array('caption' => 'Equipamentos', 'short_caption' => 'Equipamentos', 'filename' => 'equipamentos.php', 'name' => 'equipamentos', 'group_name' => 'Default', 'add_separator' => false, 'description' => '');
-    $result[] = array('caption' => 'Clientes', 'short_caption' => 'Clientes', 'filename' => 'clientes.php', 'name' => 'clientes', 'group_name' => 'Default', 'add_separator' => false, 'description' => '');
-    $result[] = array('caption' => 'Cidades', 'short_caption' => 'Cidades', 'filename' => 'cidades.php', 'name' => 'cidades', 'group_name' => 'Default', 'add_separator' => false, 'description' => '');
-    $result[] = array('caption' => 'Itens', 'short_caption' => 'Itens', 'filename' => 'itens.php', 'name' => 'itens', 'group_name' => 'Default', 'add_separator' => false, 'description' => '');
-    $result[] = array('caption' => 'Servicos', 'short_caption' => 'Servicos', 'filename' => 'servicos.php', 'name' => 'servicos', 'group_name' => 'Default', 'add_separator' => false, 'description' => '');
-    $result[] = array('caption' => 'Bairros', 'short_caption' => 'Bairros', 'filename' => 'bairros.php', 'name' => 'bairros', 'group_name' => 'Default', 'add_separator' => false, 'description' => '');
+    $result[] = array('caption' => 'ADG2 L Fluxo Caixa', 'short_caption' => 'ADG2 L Fluxo Caixa', 'filename' => 'ADG2L_FluxoCaixa.php', 'name' => 'ADG2L_FluxoCaixa', 'group_name' => 'Default', 'add_separator' => false, 'description' => '');
+    $result[] = array('caption' => 'ADG2 L Fornecedor', 'short_caption' => 'ADG2 L Fornecedor', 'filename' => 'ADG2L_Fornecedor.php', 'name' => 'ADG2L_Fornecedor', 'group_name' => 'Default', 'add_separator' => false, 'description' => '');
+    $result[] = array('caption' => 'ADG2 L Movimentacao Estoque', 'short_caption' => 'ADG2 L Movimentacao Estoque', 'filename' => 'ADG2L_MovimentacaoEstoque.php', 'name' => 'ADG2L_MovimentacaoEstoque', 'group_name' => 'Default', 'add_separator' => false, 'description' => '');
+    $result[] = array('caption' => 'ADG2 L Produtos', 'short_caption' => 'ADG2 L Produtos', 'filename' => 'ADG2L_Produtos.php', 'name' => 'ADG2L_Produtos', 'group_name' => 'Default', 'add_separator' => false, 'description' => '');
+    $result[] = array('caption' => 'ADG2 L Usuarios', 'short_caption' => 'ADG2 L Usuarios', 'filename' => 'ADG2L_Usuarios.php', 'name' => 'ADG2L_Usuarios', 'group_name' => 'Default', 'add_separator' => false, 'description' => '');
+    $result[] = array('caption' => 'ADG2 L Venda Produtos', 'short_caption' => 'ADG2 L Venda Produtos', 'filename' => 'ADG2L_VendaProdutos.php', 'name' => 'ADG2L_VendaProdutos', 'group_name' => 'Default', 'add_separator' => false, 'description' => '');
+    $result[] = array('caption' => 'ADG2 L Vendas', 'short_caption' => 'ADG2 L Vendas', 'filename' => 'ADG2L_Vendas.php', 'name' => 'ADG2L_Vendas', 'group_name' => 'Default', 'add_separator' => false, 'description' => '');
     return $result;
 }
 

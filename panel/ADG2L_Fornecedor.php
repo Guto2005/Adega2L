@@ -283,8 +283,7 @@
                 )
             );
             
-            $main_editor = new TextEdit('descricaobebidas_edit');
-            $main_editor->SetMaxLength(45);
+            $main_editor = new TextEdit('descricaoBebidas');
             
             $filterBuilder->addColumn(
                 $columns['descricaoBebidas'],
@@ -351,7 +350,7 @@
                 )
             );
             
-            $main_editor = new DateTimeEdit('datavalidade_edit', false, 'Y-m-d');
+            $main_editor = new DateTimeEdit('datavalidade_edit', false, 'd-m-Y');
             
             $filterBuilder->addColumn(
                 $columns['dataValidade'],
@@ -372,7 +371,7 @@
                 )
             );
             
-            $main_editor = new DateTimeEdit('datacompradoproduto_edit', false, 'Y-m-d H:i:s');
+            $main_editor = new DateTimeEdit('datacompradoproduto_edit', false, 'd-m-Y H:i:s');
             
             $filterBuilder->addColumn(
                 $columns['dataCompraDoProduto'],
@@ -424,16 +423,22 @@
             $actions->setCaption($this->GetLocalizerCaptions()->GetMessageString('Actions'));
             $actions->setPosition(ActionList::POSITION_LEFT);
             
-            if ($this->GetSecurityInfo()->HasViewGrant())
-            {
-                $operation = new LinkOperation($this->GetLocalizerCaptions()->GetMessageString('View'), OPERATION_VIEW, $this->dataset, $grid);
+            if ($this->GetSecurityInfo()->HasViewGrant()) {
+            
+                $operation = new AjaxOperation(OPERATION_VIEW,
+                    $this->GetLocalizerCaptions()->GetMessageString('View'),
+                    $this->GetLocalizerCaptions()->GetMessageString('View'), $this->dataset,
+                    $this->GetModalGridViewHandler(), $grid);
                 $operation->setUseImage(true);
                 $actions->addOperation($operation);
             }
             
             if ($this->GetSecurityInfo()->HasEditGrant())
             {
-                $operation = new LinkOperation($this->GetLocalizerCaptions()->GetMessageString('Edit'), OPERATION_EDIT, $this->dataset, $grid);
+                $operation = new AjaxOperation(OPERATION_EDIT,
+                    $this->GetLocalizerCaptions()->GetMessageString('Edit'),
+                    $this->GetLocalizerCaptions()->GetMessageString('Edit'), $this->dataset,
+                    $this->GetGridEditHandler(), $grid);
                 $operation->setUseImage(true);
                 $actions->addOperation($operation);
                 $operation->OnShow->AddListener('ShowEditButtonHandler', $this);
@@ -467,7 +472,7 @@
             $column = new NumberViewColumn('idProduto', 'idProduto', 'Id Produto', $this->dataset);
             $column->SetOrderable(true);
             $column->setNumberAfterDecimal(0);
-            $column->setThousandsSeparator('.');
+            $column->setThousandsSeparator(',');
             $column->setDecimalSeparator('');
             $column->setMinimalVisibility(ColumnVisibility::PHONE);
             $grid->AddViewColumn($column);
@@ -498,9 +503,9 @@
             //
             $column = new NumberViewColumn('precoProduto', 'precoProduto', 'Preco Produto', $this->dataset);
             $column->SetOrderable(true);
-            $column->setNumberAfterDecimal(2);
-            $column->setThousandsSeparator('.');
-            $column->setDecimalSeparator(',');
+            $column->setNumberAfterDecimal(4);
+            $column->setThousandsSeparator(',');
+            $column->setDecimalSeparator('.');
             $column->setMinimalVisibility(ColumnVisibility::PHONE);
             $grid->AddViewColumn($column);
             //
@@ -509,7 +514,7 @@
             $column = new NumberViewColumn('quantidadeEstoqueProduto', 'quantidadeEstoqueProduto', 'Quantidade Estoque Produto', $this->dataset);
             $column->SetOrderable(true);
             $column->setNumberAfterDecimal(0);
-            $column->setThousandsSeparator('.');
+            $column->setThousandsSeparator(',');
             $column->setDecimalSeparator('');
             $column->setMinimalVisibility(ColumnVisibility::PHONE);
             $grid->AddViewColumn($column);
@@ -518,6 +523,7 @@
             //
             $column = new TextViewColumn('descricaoBebidas', 'descricaoBebidas', 'Descricao Bebidas', $this->dataset);
             $column->SetOrderable(true);
+            $column->SetMaxLength(75);
             $column->setMinimalVisibility(ColumnVisibility::PHONE);
             $grid->AddViewColumn($column);
             //
@@ -533,7 +539,7 @@
             $column = new NumberViewColumn('tamanhoUnidade', 'tamanhoUnidade', 'Tamanho Unidade', $this->dataset);
             $column->SetOrderable(true);
             $column->setNumberAfterDecimal(0);
-            $column->setThousandsSeparator('.');
+            $column->setThousandsSeparator(',');
             $column->setDecimalSeparator('');
             $column->setMinimalVisibility(ColumnVisibility::PHONE);
             $grid->AddViewColumn($column);
@@ -542,7 +548,7 @@
             //
             $column = new DateTimeViewColumn('dataValidade', 'dataValidade', 'Data Validade', $this->dataset);
             $column->SetOrderable(true);
-            $column->SetDateTimeFormat('Y-m-d');
+            $column->SetDateTimeFormat('d-m-Y');
             $column->setMinimalVisibility(ColumnVisibility::PHONE);
             $grid->AddViewColumn($column);
             //
@@ -550,7 +556,7 @@
             //
             $column = new DateTimeViewColumn('dataCompraDoProduto', 'dataCompraDoProduto', 'Data Compra Do Produto', $this->dataset);
             $column->SetOrderable(true);
-            $column->SetDateTimeFormat('Y-m-d H:i:s');
+            $column->SetDateTimeFormat('d-m-Y H:i:s');
             $column->setMinimalVisibility(ColumnVisibility::PHONE);
             $grid->AddViewColumn($column);
             //
@@ -571,7 +577,7 @@
             $column = new NumberViewColumn('idProduto', 'idProduto', 'Id Produto', $this->dataset);
             $column->SetOrderable(true);
             $column->setNumberAfterDecimal(0);
-            $column->setThousandsSeparator('.');
+            $column->setThousandsSeparator(',');
             $column->setDecimalSeparator('');
             $grid->AddSingleRecordViewColumn($column);
             
@@ -602,9 +608,9 @@
             //
             $column = new NumberViewColumn('precoProduto', 'precoProduto', 'Preco Produto', $this->dataset);
             $column->SetOrderable(true);
-            $column->setNumberAfterDecimal(2);
-            $column->setThousandsSeparator('.');
-            $column->setDecimalSeparator(',');
+            $column->setNumberAfterDecimal(4);
+            $column->setThousandsSeparator(',');
+            $column->setDecimalSeparator('.');
             $grid->AddSingleRecordViewColumn($column);
             
             //
@@ -613,7 +619,7 @@
             $column = new NumberViewColumn('quantidadeEstoqueProduto', 'quantidadeEstoqueProduto', 'Quantidade Estoque Produto', $this->dataset);
             $column->SetOrderable(true);
             $column->setNumberAfterDecimal(0);
-            $column->setThousandsSeparator('.');
+            $column->setThousandsSeparator(',');
             $column->setDecimalSeparator('');
             $grid->AddSingleRecordViewColumn($column);
             
@@ -622,6 +628,7 @@
             //
             $column = new TextViewColumn('descricaoBebidas', 'descricaoBebidas', 'Descricao Bebidas', $this->dataset);
             $column->SetOrderable(true);
+            $column->SetMaxLength(75);
             $grid->AddSingleRecordViewColumn($column);
             
             //
@@ -637,7 +644,7 @@
             $column = new NumberViewColumn('tamanhoUnidade', 'tamanhoUnidade', 'Tamanho Unidade', $this->dataset);
             $column->SetOrderable(true);
             $column->setNumberAfterDecimal(0);
-            $column->setThousandsSeparator('.');
+            $column->setThousandsSeparator(',');
             $column->setDecimalSeparator('');
             $grid->AddSingleRecordViewColumn($column);
             
@@ -646,7 +653,7 @@
             //
             $column = new DateTimeViewColumn('dataValidade', 'dataValidade', 'Data Validade', $this->dataset);
             $column->SetOrderable(true);
-            $column->SetDateTimeFormat('Y-m-d');
+            $column->SetDateTimeFormat('d-m-Y');
             $grid->AddSingleRecordViewColumn($column);
             
             //
@@ -654,7 +661,7 @@
             //
             $column = new DateTimeViewColumn('dataCompraDoProduto', 'dataCompraDoProduto', 'Data Compra Do Produto', $this->dataset);
             $column->SetOrderable(true);
-            $column->SetDateTimeFormat('Y-m-d H:i:s');
+            $column->SetDateTimeFormat('d-m-Y H:i:s');
             $grid->AddSingleRecordViewColumn($column);
             
             //
@@ -668,6 +675,16 @@
     
         protected function AddEditColumns(Grid $grid)
         {
+            //
+            // Edit column for idProduto field
+            //
+            $editor = new TextEdit('idproduto_edit');
+            $editColumn = new CustomEditColumn('Id Produto', 'idProduto', $editor, $this->dataset);
+            $validator = new RequiredValidator(StringUtils::Format($this->GetLocalizerCaptions()->GetMessageString('RequiredValidationMessage'), $editColumn->GetCaption()));
+            $editor->GetValidatorCollection()->AddValidator($validator);
+            $this->ApplyCommonColumnEditProperties($editColumn);
+            $grid->AddEditColumn($editColumn);
+            
             //
             // Edit column for idCategoria field
             //
@@ -750,8 +767,7 @@
             //
             // Edit column for descricaoBebidas field
             //
-            $editor = new TextEdit('descricaobebidas_edit');
-            $editor->SetMaxLength(45);
+            $editor = new TextAreaEdit('descricaobebidas_edit', 50, 8);
             $editColumn = new CustomEditColumn('Descricao Bebidas', 'descricaoBebidas', $editor, $this->dataset);
             $editColumn->SetAllowSetToNull(true);
             $this->ApplyCommonColumnEditProperties($editColumn);
@@ -779,7 +795,7 @@
             //
             // Edit column for dataValidade field
             //
-            $editor = new DateTimeEdit('datavalidade_edit', false, 'Y-m-d');
+            $editor = new DateTimeEdit('datavalidade_edit', false, 'd-m-Y');
             $editColumn = new CustomEditColumn('Data Validade', 'dataValidade', $editor, $this->dataset);
             $editColumn->SetAllowSetToNull(true);
             $this->ApplyCommonColumnEditProperties($editColumn);
@@ -788,7 +804,7 @@
             //
             // Edit column for dataCompraDoProduto field
             //
-            $editor = new DateTimeEdit('datacompradoproduto_edit', false, 'Y-m-d H:i:s');
+            $editor = new DateTimeEdit('datacompradoproduto_edit', false, 'd-m-Y H:i:s');
             $editColumn = new CustomEditColumn('Data Compra Do Produto', 'dataCompraDoProduto', $editor, $this->dataset);
             $editColumn->SetAllowSetToNull(true);
             $this->ApplyCommonColumnEditProperties($editColumn);
@@ -888,8 +904,7 @@
             //
             // Edit column for descricaoBebidas field
             //
-            $editor = new TextEdit('descricaobebidas_edit');
-            $editor->SetMaxLength(45);
+            $editor = new TextAreaEdit('descricaobebidas_edit', 50, 8);
             $editColumn = new CustomEditColumn('Descricao Bebidas', 'descricaoBebidas', $editor, $this->dataset);
             $editColumn->SetAllowSetToNull(true);
             $this->ApplyCommonColumnEditProperties($editColumn);
@@ -917,7 +932,7 @@
             //
             // Edit column for dataValidade field
             //
-            $editor = new DateTimeEdit('datavalidade_edit', false, 'Y-m-d');
+            $editor = new DateTimeEdit('datavalidade_edit', false, 'd-m-Y');
             $editColumn = new CustomEditColumn('Data Validade', 'dataValidade', $editor, $this->dataset);
             $editColumn->SetAllowSetToNull(true);
             $this->ApplyCommonColumnEditProperties($editColumn);
@@ -926,7 +941,7 @@
             //
             // Edit column for dataCompraDoProduto field
             //
-            $editor = new DateTimeEdit('datacompradoproduto_edit', false, 'Y-m-d H:i:s');
+            $editor = new DateTimeEdit('datacompradoproduto_edit', false, 'd-m-Y H:i:s');
             $editColumn = new CustomEditColumn('Data Compra Do Produto', 'dataCompraDoProduto', $editor, $this->dataset);
             $editColumn->SetAllowSetToNull(true);
             $this->ApplyCommonColumnEditProperties($editColumn);
@@ -949,6 +964,16 @@
     
         protected function AddInsertColumns(Grid $grid)
         {
+            //
+            // Edit column for idProduto field
+            //
+            $editor = new TextEdit('idproduto_edit');
+            $editColumn = new CustomEditColumn('Id Produto', 'idProduto', $editor, $this->dataset);
+            $validator = new RequiredValidator(StringUtils::Format($this->GetLocalizerCaptions()->GetMessageString('RequiredValidationMessage'), $editColumn->GetCaption()));
+            $editor->GetValidatorCollection()->AddValidator($validator);
+            $this->ApplyCommonColumnEditProperties($editColumn);
+            $grid->AddInsertColumn($editColumn);
+            
             //
             // Edit column for idCategoria field
             //
@@ -1031,8 +1056,7 @@
             //
             // Edit column for descricaoBebidas field
             //
-            $editor = new TextEdit('descricaobebidas_edit');
-            $editor->SetMaxLength(45);
+            $editor = new TextAreaEdit('descricaobebidas_edit', 50, 8);
             $editColumn = new CustomEditColumn('Descricao Bebidas', 'descricaoBebidas', $editor, $this->dataset);
             $editColumn->SetAllowSetToNull(true);
             $this->ApplyCommonColumnEditProperties($editColumn);
@@ -1060,7 +1084,7 @@
             //
             // Edit column for dataValidade field
             //
-            $editor = new DateTimeEdit('datavalidade_edit', false, 'Y-m-d');
+            $editor = new DateTimeEdit('datavalidade_edit', false, 'd-m-Y');
             $editColumn = new CustomEditColumn('Data Validade', 'dataValidade', $editor, $this->dataset);
             $editColumn->SetAllowSetToNull(true);
             $this->ApplyCommonColumnEditProperties($editColumn);
@@ -1069,7 +1093,7 @@
             //
             // Edit column for dataCompraDoProduto field
             //
-            $editor = new DateTimeEdit('datacompradoproduto_edit', false, 'Y-m-d H:i:s');
+            $editor = new DateTimeEdit('datacompradoproduto_edit', false, 'd-m-Y H:i:s');
             $editColumn = new CustomEditColumn('Data Compra Do Produto', 'dataCompraDoProduto', $editor, $this->dataset);
             $editColumn->SetAllowSetToNull(true);
             $this->ApplyCommonColumnEditProperties($editColumn);
@@ -1099,7 +1123,7 @@
             $column = new NumberViewColumn('idProduto', 'idProduto', 'Id Produto', $this->dataset);
             $column->SetOrderable(true);
             $column->setNumberAfterDecimal(0);
-            $column->setThousandsSeparator('.');
+            $column->setThousandsSeparator(',');
             $column->setDecimalSeparator('');
             $grid->AddPrintColumn($column);
             
@@ -1130,9 +1154,9 @@
             //
             $column = new NumberViewColumn('precoProduto', 'precoProduto', 'Preco Produto', $this->dataset);
             $column->SetOrderable(true);
-            $column->setNumberAfterDecimal(2);
-            $column->setThousandsSeparator('.');
-            $column->setDecimalSeparator(',');
+            $column->setNumberAfterDecimal(4);
+            $column->setThousandsSeparator(',');
+            $column->setDecimalSeparator('.');
             $grid->AddPrintColumn($column);
             
             //
@@ -1141,7 +1165,7 @@
             $column = new NumberViewColumn('quantidadeEstoqueProduto', 'quantidadeEstoqueProduto', 'Quantidade Estoque Produto', $this->dataset);
             $column->SetOrderable(true);
             $column->setNumberAfterDecimal(0);
-            $column->setThousandsSeparator('.');
+            $column->setThousandsSeparator(',');
             $column->setDecimalSeparator('');
             $grid->AddPrintColumn($column);
             
@@ -1150,6 +1174,7 @@
             //
             $column = new TextViewColumn('descricaoBebidas', 'descricaoBebidas', 'Descricao Bebidas', $this->dataset);
             $column->SetOrderable(true);
+            $column->SetMaxLength(75);
             $grid->AddPrintColumn($column);
             
             //
@@ -1165,7 +1190,7 @@
             $column = new NumberViewColumn('tamanhoUnidade', 'tamanhoUnidade', 'Tamanho Unidade', $this->dataset);
             $column->SetOrderable(true);
             $column->setNumberAfterDecimal(0);
-            $column->setThousandsSeparator('.');
+            $column->setThousandsSeparator(',');
             $column->setDecimalSeparator('');
             $grid->AddPrintColumn($column);
             
@@ -1174,7 +1199,7 @@
             //
             $column = new DateTimeViewColumn('dataValidade', 'dataValidade', 'Data Validade', $this->dataset);
             $column->SetOrderable(true);
-            $column->SetDateTimeFormat('Y-m-d');
+            $column->SetDateTimeFormat('d-m-Y');
             $grid->AddPrintColumn($column);
             
             //
@@ -1182,7 +1207,7 @@
             //
             $column = new DateTimeViewColumn('dataCompraDoProduto', 'dataCompraDoProduto', 'Data Compra Do Produto', $this->dataset);
             $column->SetOrderable(true);
-            $column->SetDateTimeFormat('Y-m-d H:i:s');
+            $column->SetDateTimeFormat('d-m-Y H:i:s');
             $grid->AddPrintColumn($column);
             
             //
@@ -1202,7 +1227,7 @@
             $column = new NumberViewColumn('idProduto', 'idProduto', 'Id Produto', $this->dataset);
             $column->SetOrderable(true);
             $column->setNumberAfterDecimal(0);
-            $column->setThousandsSeparator('.');
+            $column->setThousandsSeparator(',');
             $column->setDecimalSeparator('');
             $grid->AddExportColumn($column);
             
@@ -1233,9 +1258,9 @@
             //
             $column = new NumberViewColumn('precoProduto', 'precoProduto', 'Preco Produto', $this->dataset);
             $column->SetOrderable(true);
-            $column->setNumberAfterDecimal(2);
-            $column->setThousandsSeparator('.');
-            $column->setDecimalSeparator(',');
+            $column->setNumberAfterDecimal(4);
+            $column->setThousandsSeparator(',');
+            $column->setDecimalSeparator('.');
             $grid->AddExportColumn($column);
             
             //
@@ -1244,7 +1269,7 @@
             $column = new NumberViewColumn('quantidadeEstoqueProduto', 'quantidadeEstoqueProduto', 'Quantidade Estoque Produto', $this->dataset);
             $column->SetOrderable(true);
             $column->setNumberAfterDecimal(0);
-            $column->setThousandsSeparator('.');
+            $column->setThousandsSeparator(',');
             $column->setDecimalSeparator('');
             $grid->AddExportColumn($column);
             
@@ -1253,6 +1278,7 @@
             //
             $column = new TextViewColumn('descricaoBebidas', 'descricaoBebidas', 'Descricao Bebidas', $this->dataset);
             $column->SetOrderable(true);
+            $column->SetMaxLength(75);
             $grid->AddExportColumn($column);
             
             //
@@ -1268,7 +1294,7 @@
             $column = new NumberViewColumn('tamanhoUnidade', 'tamanhoUnidade', 'Tamanho Unidade', $this->dataset);
             $column->SetOrderable(true);
             $column->setNumberAfterDecimal(0);
-            $column->setThousandsSeparator('.');
+            $column->setThousandsSeparator(',');
             $column->setDecimalSeparator('');
             $grid->AddExportColumn($column);
             
@@ -1277,7 +1303,7 @@
             //
             $column = new DateTimeViewColumn('dataValidade', 'dataValidade', 'Data Validade', $this->dataset);
             $column->SetOrderable(true);
-            $column->SetDateTimeFormat('Y-m-d');
+            $column->SetDateTimeFormat('d-m-Y');
             $grid->AddExportColumn($column);
             
             //
@@ -1285,7 +1311,7 @@
             //
             $column = new DateTimeViewColumn('dataCompraDoProduto', 'dataCompraDoProduto', 'Data Compra Do Produto', $this->dataset);
             $column->SetOrderable(true);
-            $column->SetDateTimeFormat('Y-m-d H:i:s');
+            $column->SetDateTimeFormat('d-m-Y H:i:s');
             $grid->AddExportColumn($column);
             
             //
@@ -1300,6 +1326,16 @@
         private function AddCompareColumns(Grid $grid)
         {
             //
+            // View column for idProduto field
+            //
+            $column = new NumberViewColumn('idProduto', 'idProduto', 'Id Produto', $this->dataset);
+            $column->SetOrderable(true);
+            $column->setNumberAfterDecimal(0);
+            $column->setThousandsSeparator(',');
+            $column->setDecimalSeparator('');
+            $grid->AddCompareColumn($column);
+            
+            //
             // View column for nomeCategoria field
             //
             $column = new TextViewColumn('idCategoria', 'idCategoria_nomeCategoria', 'Id Categoria', $this->dataset);
@@ -1326,9 +1362,9 @@
             //
             $column = new NumberViewColumn('precoProduto', 'precoProduto', 'Preco Produto', $this->dataset);
             $column->SetOrderable(true);
-            $column->setNumberAfterDecimal(2);
-            $column->setThousandsSeparator('.');
-            $column->setDecimalSeparator(',');
+            $column->setNumberAfterDecimal(4);
+            $column->setThousandsSeparator(',');
+            $column->setDecimalSeparator('.');
             $grid->AddCompareColumn($column);
             
             //
@@ -1337,7 +1373,7 @@
             $column = new NumberViewColumn('quantidadeEstoqueProduto', 'quantidadeEstoqueProduto', 'Quantidade Estoque Produto', $this->dataset);
             $column->SetOrderable(true);
             $column->setNumberAfterDecimal(0);
-            $column->setThousandsSeparator('.');
+            $column->setThousandsSeparator(',');
             $column->setDecimalSeparator('');
             $grid->AddCompareColumn($column);
             
@@ -1346,6 +1382,7 @@
             //
             $column = new TextViewColumn('descricaoBebidas', 'descricaoBebidas', 'Descricao Bebidas', $this->dataset);
             $column->SetOrderable(true);
+            $column->SetMaxLength(75);
             $grid->AddCompareColumn($column);
             
             //
@@ -1361,7 +1398,7 @@
             $column = new NumberViewColumn('tamanhoUnidade', 'tamanhoUnidade', 'Tamanho Unidade', $this->dataset);
             $column->SetOrderable(true);
             $column->setNumberAfterDecimal(0);
-            $column->setThousandsSeparator('.');
+            $column->setThousandsSeparator(',');
             $column->setDecimalSeparator('');
             $grid->AddCompareColumn($column);
             
@@ -1370,7 +1407,7 @@
             //
             $column = new DateTimeViewColumn('dataValidade', 'dataValidade', 'Data Validade', $this->dataset);
             $column->SetOrderable(true);
-            $column->SetDateTimeFormat('Y-m-d');
+            $column->SetDateTimeFormat('d-m-Y');
             $grid->AddCompareColumn($column);
             
             //
@@ -1378,7 +1415,7 @@
             //
             $column = new DateTimeViewColumn('dataCompraDoProduto', 'dataCompraDoProduto', 'Data Compra Do Produto', $this->dataset);
             $column->SetOrderable(true);
-            $column->SetDateTimeFormat('Y-m-d H:i:s');
+            $column->SetDateTimeFormat('d-m-Y H:i:s');
             $grid->AddCompareColumn($column);
             
             //
@@ -1421,6 +1458,7 @@
         {
             return ;
         }
+        public function GetEnableModalSingleRecordView() { return true; }
     
         protected function CreateGrid()
         {
@@ -1442,8 +1480,9 @@
             $this->AddCompareHeaderColumns($result);
             $this->AddCompareColumns($result);
             $result->setMultiEditAllowed($this->GetSecurityInfo()->HasEditGrant() && true);
-            $result->setTableBordered(false);
-            $result->setTableCondensed(false);
+            $result->setUseModalMultiEdit(true);
+            $result->setTableBordered(true);
+            $result->setTableCondensed(true);
             
             $result->SetHighlightRowAtHover(false);
             $result->SetWidth('');
@@ -1460,7 +1499,7 @@
     
     
             $this->SetShowPageList(true);
-            $this->SetShowTopPageNavigator(false);
+            $this->SetShowTopPageNavigator(true);
             $this->SetShowBottomPageNavigator(true);
             $this->setAllowedActions(array('view', 'insert', 'copy', 'edit', 'multi-edit', 'delete', 'multi-delete'));
             $this->setPrintListAvailable(true);
@@ -1471,6 +1510,8 @@
             $this->setExportSelectedRecordsAvailable(array('pdf', 'excel', 'word', 'xml', 'csv'));
             $this->setExportListRecordAvailable(array());
             $this->setExportOneRecordAvailable(array('pdf', 'excel', 'word', 'xml', 'csv'));
+            $this->setModalViewSize(Modal::SIZE_LG);
+            $this->setModalFormSize(Modal::SIZE_LG);
     
             return $result;
         }
@@ -1919,16 +1960,22 @@
             $actions->setCaption($this->GetLocalizerCaptions()->GetMessageString('Actions'));
             $actions->setPosition(ActionList::POSITION_LEFT);
             
-            if ($this->GetSecurityInfo()->HasViewGrant())
-            {
-                $operation = new LinkOperation($this->GetLocalizerCaptions()->GetMessageString('View'), OPERATION_VIEW, $this->dataset, $grid);
+            if ($this->GetSecurityInfo()->HasViewGrant()) {
+            
+                $operation = new AjaxOperation(OPERATION_VIEW,
+                    $this->GetLocalizerCaptions()->GetMessageString('View'),
+                    $this->GetLocalizerCaptions()->GetMessageString('View'), $this->dataset,
+                    $this->GetModalGridViewHandler(), $grid);
                 $operation->setUseImage(true);
                 $actions->addOperation($operation);
             }
             
             if ($this->GetSecurityInfo()->HasEditGrant())
             {
-                $operation = new LinkOperation($this->GetLocalizerCaptions()->GetMessageString('Edit'), OPERATION_EDIT, $this->dataset, $grid);
+                $operation = new AjaxOperation(OPERATION_EDIT,
+                    $this->GetLocalizerCaptions()->GetMessageString('Edit'),
+                    $this->GetLocalizerCaptions()->GetMessageString('Edit'), $this->dataset,
+                    $this->GetGridEditHandler(), $grid);
                 $operation->setUseImage(true);
                 $actions->addOperation($operation);
                 $operation->OnShow->AddListener('ShowEditButtonHandler', $this);
@@ -1972,7 +2019,7 @@
             $column = new NumberViewColumn('idFornecedor', 'idFornecedor', 'Id Fornecedor', $this->dataset);
             $column->SetOrderable(true);
             $column->setNumberAfterDecimal(0);
-            $column->setThousandsSeparator('.');
+            $column->setThousandsSeparator(',');
             $column->setDecimalSeparator('');
             $column->setMinimalVisibility(ColumnVisibility::PHONE);
             $grid->AddViewColumn($column);
@@ -2007,7 +2054,7 @@
             $column = new NumberViewColumn('idFornecedor', 'idFornecedor', 'Id Fornecedor', $this->dataset);
             $column->SetOrderable(true);
             $column->setNumberAfterDecimal(0);
-            $column->setThousandsSeparator('.');
+            $column->setThousandsSeparator(',');
             $column->setDecimalSeparator('');
             $grid->AddSingleRecordViewColumn($column);
             
@@ -2035,6 +2082,16 @@
     
         protected function AddEditColumns(Grid $grid)
         {
+            //
+            // Edit column for idFornecedor field
+            //
+            $editor = new TextEdit('idfornecedor_edit');
+            $editColumn = new CustomEditColumn('Id Fornecedor', 'idFornecedor', $editor, $this->dataset);
+            $validator = new RequiredValidator(StringUtils::Format($this->GetLocalizerCaptions()->GetMessageString('RequiredValidationMessage'), $editColumn->GetCaption()));
+            $editor->GetValidatorCollection()->AddValidator($validator);
+            $this->ApplyCommonColumnEditProperties($editColumn);
+            $grid->AddEditColumn($editColumn);
+            
             //
             // Edit column for nomeFornecedor field
             //
@@ -2113,6 +2170,16 @@
         protected function AddInsertColumns(Grid $grid)
         {
             //
+            // Edit column for idFornecedor field
+            //
+            $editor = new TextEdit('idfornecedor_edit');
+            $editColumn = new CustomEditColumn('Id Fornecedor', 'idFornecedor', $editor, $this->dataset);
+            $validator = new RequiredValidator(StringUtils::Format($this->GetLocalizerCaptions()->GetMessageString('RequiredValidationMessage'), $editColumn->GetCaption()));
+            $editor->GetValidatorCollection()->AddValidator($validator);
+            $this->ApplyCommonColumnEditProperties($editColumn);
+            $grid->AddInsertColumn($editColumn);
+            
+            //
             // Edit column for nomeFornecedor field
             //
             $editor = new TextEdit('nomefornecedor_edit');
@@ -2160,7 +2227,7 @@
             $column = new NumberViewColumn('idFornecedor', 'idFornecedor', 'Id Fornecedor', $this->dataset);
             $column->SetOrderable(true);
             $column->setNumberAfterDecimal(0);
-            $column->setThousandsSeparator('.');
+            $column->setThousandsSeparator(',');
             $column->setDecimalSeparator('');
             $grid->AddPrintColumn($column);
             
@@ -2194,7 +2261,7 @@
             $column = new NumberViewColumn('idFornecedor', 'idFornecedor', 'Id Fornecedor', $this->dataset);
             $column->SetOrderable(true);
             $column->setNumberAfterDecimal(0);
-            $column->setThousandsSeparator('.');
+            $column->setThousandsSeparator(',');
             $column->setDecimalSeparator('');
             $grid->AddExportColumn($column);
             
@@ -2222,6 +2289,16 @@
     
         private function AddCompareColumns(Grid $grid)
         {
+            //
+            // View column for idFornecedor field
+            //
+            $column = new NumberViewColumn('idFornecedor', 'idFornecedor', 'Id Fornecedor', $this->dataset);
+            $column->SetOrderable(true);
+            $column->setNumberAfterDecimal(0);
+            $column->setThousandsSeparator(',');
+            $column->setDecimalSeparator('');
+            $grid->AddCompareColumn($column);
+            
             //
             // View column for nomeFornecedor field
             //
@@ -2279,8 +2356,8 @@
             $result->SetShowKeyColumnsImagesInHeader(false);
             $result->SetViewMode(ViewMode::TABLE);
             $result->setEnableRuntimeCustomization(false);
-            $result->setTableBordered(false);
-            $result->setTableCondensed(false);
+            $result->setTableBordered(true);
+            $result->setTableCondensed(true);
             
             $this->setupGridColumnGroup($result);
             $this->attachGridEventHandlers($result);
@@ -2297,6 +2374,7 @@
         {
             return ;
         }
+        public function GetEnableModalSingleRecordView() { return true; }
     
         protected function CreateGrid()
         {
@@ -2318,8 +2396,9 @@
             $this->AddCompareHeaderColumns($result);
             $this->AddCompareColumns($result);
             $result->setMultiEditAllowed($this->GetSecurityInfo()->HasEditGrant() && true);
-            $result->setTableBordered(false);
-            $result->setTableCondensed(false);
+            $result->setUseModalMultiEdit(true);
+            $result->setTableBordered(true);
+            $result->setTableCondensed(true);
             
             $result->SetHighlightRowAtHover(false);
             $result->SetWidth('');
@@ -2336,7 +2415,7 @@
     
     
             $this->SetShowPageList(true);
-            $this->SetShowTopPageNavigator(false);
+            $this->SetShowTopPageNavigator(true);
             $this->SetShowBottomPageNavigator(true);
             $this->setAllowedActions(array('view', 'insert', 'copy', 'edit', 'multi-edit', 'delete', 'multi-delete'));
             $this->setPrintListAvailable(true);
@@ -2347,6 +2426,8 @@
             $this->setExportSelectedRecordsAvailable(array('pdf', 'excel', 'word', 'xml', 'csv'));
             $this->setExportListRecordAvailable(array());
             $this->setExportOneRecordAvailable(array('pdf', 'excel', 'word', 'xml', 'csv'));
+            $this->setModalViewSize(Modal::SIZE_LG);
+            $this->setModalFormSize(Modal::SIZE_LG);
     
             return $result;
         }
