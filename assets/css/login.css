@@ -107,7 +107,7 @@ li {
     background: rgba(0, 0, 0, 0.50);
     margin: 20px;
     padding: 70px;
-    width: 100%;
+    width: 80%;
     max-width: 400px;
     /* Limitar a largura do formulário */
 }
@@ -151,6 +151,21 @@ li {
         align-items: center;
         border: 1px solid #FFEA00;
         background: rgba(91, 91, 91, 0.50);
+    }
+
+    .form-login {
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+        font-size: 1.6rem;
+        border-radius: 10px;
+        border: 2px solid #000;
+        background: rgba(0, 0, 0, 0.50);
+        margin: 20px;
+        padding: 70px;
+        width: 80%;
+        max-width: 400px;
+        /* Limitar a largura do formulário */
     }
 
     .login-links {
