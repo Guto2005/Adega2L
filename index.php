@@ -40,22 +40,35 @@
         <div class="destaques-<?= strtolower($categoria) ?>">
             <h2 class="destaque-titulo"><?= htmlspecialchars($categoria) ?></h2>
             <ul>
-                <!-- Itera sobre os produtos de cada categoria, limitando a 5 -->
-                <?php foreach (array_slice($produtosCategoria, 0, 5) as $produto): ?>
-                    <li class="card-produto">
-                        <h2><?= htmlspecialchars($produto['nomeProduto']) ?></h2>
-                        <p>Preço: R$ <?= number_format($produto['precoProduto'], 2, ',', '.') ?></p>
-                        <p>Estoque: <?= htmlspecialchars($produto['quantidadeEstoqueProduto']) ?> unidades</p>
-                        <img src="<?= $base . "/panel/fotos/" . htmlspecialchars($produto['imagemProduto']) ?>" alt="Imagem de <?= htmlspecialchars($produto['nomeProduto']) ?>">
-                    </li>
-                <?php endforeach; ?>
-            </ul>
-        </div>
+    <?php foreach (array_slice($produtosCategoria, 0, 5) as $produto): ?>
+        <li class="card-produto">
+            <h2><?= htmlspecialchars($produto['nomeProduto']) ?></h2>
+
+            <!-- Exibe a imagem do produto -->
+            <?php if (!empty($produto['imagemProduto'])): ?>
+                <img src="<?= "./panel/fotos/" . htmlspecialchars($produto['imagemProduto']) ?>" 
+                     alt="Imagem de <?= htmlspecialchars($produto['nomeProduto']) ?>" 
+                     class="img-produto">
+            <?php else: ?>
+                <img src="./assets/img/placeholder.png" alt="Imagem indisponível" class="img-produto">
+            <?php endif; ?>
+
+            <!-- Preço abaixo da imagem -->
+            <p class="preco">R$ <?= number_format($produto['precoProduto'], 2, ',', '.') ?></p>
+
+            <!-- Botão de adicionar ao carrinho -->
+            <button class="btn-add-carrinho" onclick="adicionarAoCarrinho(<?= $produto['idProduto'] ?>)">
+                +
+            </button>
+        </li>
     <?php endforeach; ?>
-</div>
+</ul>
+</div> 
+<?php endforeach; ?> <!-- Fechamento do foreach das categorias -->
 
 </main>
 <?php require __DIR__ . '/footer.php' ?>
+
 <script src="assets/scripts/script.js"></script>
 </body>
 <script src="https://kit.fontawesome.com/149b000a36.js" crossorigin="anonymous"></script>
