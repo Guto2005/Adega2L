@@ -1,55 +1,37 @@
-/*Comandos sem classe*/
+/* Comandos sem classe */
 
 :root {
     --cor-dourado: #FFD700;
-    /* Código hexadecimal para dourado */
     --cor-preto: #000000;
-    /* Código hexadecimal para preto */
     --cor-branco: #FFFFFF;
-    /* Código hexadecimal para branco */
     --cor-preto-claro: #1f1f1f;
 }
 
 @font-face {
     font-family: 'Sans-Italic';
-    src: url('./../fonts/OpenSans-Italic-VariableFont_wdth\,wght.ttf');
+    src: url('./../fonts/OpenSans-Italic-VariableFont_wdth,wght.ttf');
 }
 
 @font-face {
     font-family: 'Sans-Variable';
-    src: url(./../fonts/OpenSans-VariableFont_wdth\,wght.ttf);
+    src: url('./../fonts/OpenSans-VariableFont_wdth,wght.ttf');
 }
 
-* {box-sizing:border-box}
-
-body {
+* {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
+}
+
+body {
     display: flex;
     background-color: var(--cor-preto);
     flex-direction: column;
     color: white;
     align-items: center;
     gap: 80px;
-    /*padding-top: 250px; /* Igual à altura do header */
     overflow-x: hidden;
 }
-
-
-
-/*header {
-    display: flex;
-    align-items: center;
-    position: fixed;
-    top: 0;
-    justify-content: space-around;
-    width: 100%;
-    height: 250px; /* Altura fixa do header 
-    border-bottom: 2px solid var(--cor-dourado);
-    padding: 0 40px; /* Ajuste o padding conforme necessário 
-    background-color: var(--cor-preto); /* Adicione uma cor de fundo para evitar transparência 
-}*/
-
 
 a {
     color: white;
@@ -64,27 +46,23 @@ li {
     list-style-type: none;
 }
 
-/*Classificados*/
+/* Classificados */
 
-/*Tela de Login*/
-.login-container {
-    /*align-items: flex-start;
-    background-image: url(../img/Image.png);
-    background-repeat: no-repeat;
-    background-position: center;
-    background-position-x: right;*/
-    overflow-y: hidden;
-    /*width: 100%;*/
-}
+/* Tela de Login */
 
 .login-button {
     border-radius: 4px;
     background: #FFEA00;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border: none;
+    cursor: pointer;
 }
 
 .login-title {
     justify-content: center;
     display: flex;
+    font-size: 3vw;
 }
 
 .login-links {
@@ -92,9 +70,10 @@ li {
     align-items: center;
     color: #3DB4FF;
     margin: auto;
-    display: inherit;
-    flex-direction: inherit;
+    display: flex;
+    flex-direction: column;
     padding: 5px;
+    text-align: center;
 }
 
 .form-login {
@@ -107,9 +86,8 @@ li {
     background: rgba(0, 0, 0, 0.50);
     margin: 20px;
     padding: 70px;
-    width: 80%;
+    width: 100%;
     max-width: 400px;
-    /* Limitar a largura do formulário */
 }
 
 .login-decoration {
@@ -123,59 +101,47 @@ li {
     background: rgba(91, 91, 91, 0.50);
 }
 
+/* Responsividade */
 
-/* Ajuste de Responsividade */
-
-/* Garante que o layout de conteúdo seja em coluna em telas menores */
-@media (max-width: 850px) {
-    .login-decoration {
-        display: flex;
-        width: 50%;
-        height: 100vh;
-        padding: 242px 95px;
-        flex-direction: column;
-        align-items: center;
-        border: 1px solid #FFEA00;
-        background: rgba(91, 91, 91, 0.50);
+@media (max-width: 1024px) {
+    .login-title {
+        font-size: 4vw;
     }
-
+    .login-decoration {
+        width: 100%;
+        height: auto;
+        padding: 100px 50px;
+    }
+    .form-login {
+        max-width: 80%;
+        gap: 64px;
+    }
 }
 
-@media (max-width: 625px) {
-    .login-decoration {
-        display: flex;
-        width: 50%;
-        height: 100vh;
-        padding: 242px 95px;
-        flex-direction: column;
-        align-items: center;
-        border: 1px solid #FFEA00;
-        background: rgba(91, 91, 91, 0.50);
-    }
-
+@media (max-width: 768px) {
     .form-login {
-        display: flex;
-        flex-direction: column;
-        gap: 30px;
-        font-size: 1.6rem;
-        border-radius: 10px;
-        border: 2px solid #000;
-        background: rgba(0, 0, 0, 0.50);
-        margin: 20px;
-        padding: 70px;
-        width: 80%;
-        max-width: 400px;
-        /* Limitar a largura do formulário */
+        padding: 40px;
+        max-width: 90%;
     }
-
-    .login-links {
-        font-size: medium;
-        align-items: center;
-        color: #3DB4FF;
-        margin: auto;
-        display: inherit;
-        flex-direction: inherit;
-        padding: 0px;
+    .login-title {
+        font-size: 5vw;
     }
+    .login-decoration {
+        padding: 50px 30px;
+    }
+}
 
+@media (max-width: 480px) {
+    .form-login {
+        padding: 30px;
+        gap: 20px;
+        max-width: 100%;
+    }
+    .login-title {
+        font-size: 6vw;
+    }
+    .login-decoration {
+        padding: 30px 15px;
+        width: 100%;
+    }
 }
