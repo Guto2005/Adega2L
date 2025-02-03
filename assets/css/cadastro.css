@@ -17,7 +17,7 @@
 
 @font-face {
     font-family: 'Sans-Variable';
-    src: url(./../fonts/OpenSans-VariableFont_wdth\,wght.ttf);
+    src: url('./../fonts/OpenSans-VariableFont_wdth\,wght.ttf');
 }
 
 * {box-sizing:border-box}
