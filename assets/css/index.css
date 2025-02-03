@@ -168,7 +168,7 @@ img {vertical-align: middle;}  /*perguntar depois p o gustavo*/
 .destaque-titulo {
     color: var(--cor-branco);
     font-family: 'Sans-Variable';
-
+    font-size: 2vw;
 }
 
 .destaques-bebidas {
@@ -244,18 +244,28 @@ img {vertical-align: middle;}  /*perguntar depois p o gustavo*/
 }
 
 .card-produto {
-    width: 200px;
+    width: 20vw;
     box-sizing: border-box;
     margin-bottom: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
-}
-
-.card-produto img {
-    width: 100%;
     height: auto;
 }
+
+.card-produto h2 {
+    font-size: 1vw;
+    text-align: center;
+}
+
+/* Ajuste para padronizar todas as imagens */
+.card-produto img {
+    width: 200px;
+    height: 400px;
+    object-fit: cover; /* Mantém a proporção e corta o excesso */
+    border-radius: 10px; /* Bordas arredondadas para um design mais bonito */
+}
+
 
 footer {
     display: flex;
@@ -306,6 +316,19 @@ footer {
       font-size: 3.0vw;
     }
 
+    .card-produto {
+        width: 40vw;
+    }
+
+    .card-produto h2 {
+        font-size: 3vw;
+    }
+
+    .card-produto img {
+        width: 140px;
+        height: 400px;
+    }
+
 
 }
 
@@ -326,7 +349,18 @@ footer {
         width: 60%;
     }
     
-    
+    .card-produto {
+        width: 80vw;
+    }
+
+    .card-produto h2 {
+        font-size: 4vw;
+    }
+
+    .card-produto img {
+        width: 120px;
+        height: 400px;
+    }
 
 
 }
