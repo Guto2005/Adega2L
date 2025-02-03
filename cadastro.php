@@ -60,39 +60,46 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <body class="cadastro-container">  
 
 <div class="cadastro-decoration">
-    <form class="form-cadastro" method="POST">
+    <form class="form-cadastro" method="POST" onsubmit="return validarSenha()">
         <h1 class="cadastro-title">Cadastro</h1>
         
         <input type="text" name="nomeUsuario" placeholder="Nome Completo" required>
         <input type="email" name="emailUsuario" placeholder="E-mail" required>
-        <input type="password" name="senhaUsuario" placeholder="Senha" required>
+        <input type="password" id="senhaUsuario" name="senhaUsuario" placeholder="Senha" required>
+        <input type="password" id="confirmarSenha" placeholder="Confirme sua Senha" required>
         
-        <!-- Campo CPF (Apenas Números com 11 dígitos) -->
-        <input type="number" name="cpfUsuario" placeholder="CPF" maxlength="11" title="Digite apenas números, com 11 dígitos" required>
-        
-        <!-- Endereço -->
+        <input type="number" name="cpfUsuario" placeholder="CPF" maxlength="11" required>
         <input type="text" name="tipoLogradouro" placeholder="Tipo de Logradouro (Ex: Rua, Av)">
         <input type="text" name="nomeLogradouro" placeholder="Nome do Logradouro">
-        <input type="number" name="numeroLogradouro" placeholder="Número" maxlength="6" title="Digite apenas números">
+        <input type="number" name="numeroLogradouro" placeholder="Número" maxlength="6">
         <input type="text" name="complementoLogradouro" placeholder="Complemento">
         <input type="text" name="bairro" placeholder="Bairro">
         <input type="text" name="cidade" placeholder="Cidade">
         
-        <!-- Campo CEP (Apenas Números com 8 dígitos) -->
-        <input type="number" name="cep" placeholder="CEP" maxlength="8" title="Digite apenas números, com 8 dígitos" required>
+        <input type="number" name="cep" placeholder="CEP" maxlength="8" required>
         
-        <!-- Contato -->
-        <input type="number" id="ddi" name="DDI" placeholder="DDI (Ex: 55)" maxlength="3"  required>
-        <input type="number" id="ddd" name="DDD" placeholder="DDD (Ex: 11)" maxlength="3"  required>
+        <input type="number" id="ddi" name="DDI" placeholder="DDI (Ex: 55)" maxlength="3" required>
+        <input type="number" id="ddd" name="DDD" placeholder="DDD (Ex: 11)" maxlength="3" required>
         <input type="number" id="telefone" name="numeroTelefone" placeholder="Número de Telefone" maxlength="9" required>
 
-        
-        <!-- Data de Nascimento -->
         <input type="date" name="dataNasc" placeholder="Data de Nascimento" required>
         
         <button class="cadastro-button" type="submit">Cadastrar</button>
     </form>
 </div>
+
+<script>
+    function validarSenha() {
+        var senha = document.getElementById("senhaUsuario").value;
+        var confirmarSenha = document.getElementById("confirmarSenha").value;
+        
+        if (senha !== confirmarSenha) {
+            alert("As senhas não coincidem. Por favor, tente novamente.");
+            return false;
+        }
+        return true;
+    }
+</script>
 
 </body>
 </html>
