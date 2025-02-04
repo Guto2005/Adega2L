@@ -101,6 +101,18 @@ li {
     background: rgba(91, 91, 91, 0.50);
 }
 
+/* Estilo para a mensagem de erro */
+.error-message {
+    color: #ff0000;
+    padding: 15px;
+    margin-top: 10px;
+    border-radius: 5px;
+    font-size: 14px;
+    text-align: center;
+    display: block; /* Agora ficará visível quando a variável de erro for preenchida */
+}
+
+
 /* Responsividade */
 
 @media (max-width: 1024px) {
