@@ -94,13 +94,13 @@ foreach ($produtos as $produto) {
             </button>
         </div>
 
+        
         <div class="perfil-link-mobile">
             <a href="perfil.php" class="perfil-btn">
             <i id="user-icon" class="fa-solid fa-user"></i>
                 <h3 class="perfil-titulo">Perfil</h3>
             </a>
         </div>
-
         <a class="link-carrinho-mobile" href="./cart.php">
             <span class="carrinho-quantidade" id="cart-count">0</span>
             <i class="fa-solid fa-cart-shopping" id="cart-icon"></i>
@@ -120,24 +120,24 @@ foreach ($produtos as $produto) {
             </button>
         </div>
 
-        <div class="perfil-link">
-            <a href="perfil.php" class="perfil-btn">
-            <i id="user-icon" class="fa-solid fa-user"></i>
-                <h3 class="perfil-titulo">Perfil</h3>
-            </a>
-        </div>
-
+        
         <a class="link-carrinho" href="./cart.php">
             <span class="carrinho-quantidade" id="cart-count">0</span>
             <i class="fa-solid fa-cart-shopping" id="cart-icon"></i>
             <h3 class="carrinho-titulo">Minhas Compras</h3>
         </a>
-    <div class="adm-link">
-        <a class="adm-btn" href="./panel/index.php">
-        <i class="fa-regular fa-address-card" id="adm-icon"></i>
-            <h3 class="adm-titulo">Administrativo</h3>
-        </a>
-    </div>    
+        <div class="adm-link">
+            <a class="adm-btn" href="./panel/index.php">
+                <i class="fa-regular fa-address-card" id="adm-icon"></i>
+                <h3 class="adm-titulo">Administrativo</h3>
+            </a>
+        </div>    
+        <div class="perfil-link">
+            <a href="perfil.php" class="perfil-btn">
+            <i id="user-icon" class="fa-solid fa-id-badge"></i>
+                <h3 class="perfil-titulo">Perfil</h3>
+            </a>
+        </div>
 
     </header>
 

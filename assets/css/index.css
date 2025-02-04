@@ -35,7 +35,7 @@ body {
     color: white;
     align-items: center;
     gap: 80px;
-    padding-top: 250px; /* Igual à altura do header */
+    padding-top: 160px;
     overflow-x: hidden;
     min-width: 340px;
 }
@@ -126,7 +126,6 @@ li {
     width: 90%;
     margin: 0 auto;
     text-align: center;
-    gap: 32px;
     border: 2px solid var(--cor-dourado);
 }
 
