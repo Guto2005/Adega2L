@@ -1,38 +1,54 @@
 <?php
+session_start();
+
+$error_message = '';
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Informações de conexão com o banco de dados
-    $servername = "";
-    $username = "";
-    $password = "";
-    $dbname = "";
+    $host = 'cc220df3eb53.sn.mynetname.net';
+    $dbname = 'gto_caveira';
+    $user = 'gto_caveira';
+    $password = 'gto416966';
 
     // Criar conexão com o banco de dados
-    $conn = mysqli_connect($servername, $username, $password, $dbname);
+    $conn = mysqli_connect($host, $user, $password, $dbname);
 
     // Verificar se a conexão foi estabelecida
     if (!$conn) {
         die("Conexão falhou: " . mysqli_connect_error());
     }
-// Recuperar dados do formulário
-    $nome = mysqli_real_escape_string($conn, $_POST['nome']);
-    $email = mysqli_real_escape_string($conn, $_POST['email']);
-    $senha = password_hash($_POST['senha'], PASSWORD_DEFAULT); // Criptografar a senha
-    $tipo = mysqli_real_escape_string($conn, $_POST['tipo']);
+
+    // Recuperar dados do formulário
+    $email = mysqli_real_escape_string($conn, $_POST['emailUsuario']);
+    $senha = $_POST['senhaUsuario'];
     
+    // Verificar se o usuário existe no banco de dados
+    $sql = "SELECT senhaUsuario FROM ADG2L_Usuarios WHERE emailUsuario = ?";
+    $stmt = mysqli_prepare($conn, $sql);
+    mysqli_stmt_bind_param($stmt, "s", $email);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
 
-    // Inserir dados no banco de dados
-    $sql = "INSERT INTO usuarios (nome, email, senha, tipo) VALUES ('$nome', '$email', '$senha', '$tipo')";
-
-    if (mysqli_query($conn, $sql)) {
-        echo "Novo registro criado com sucesso";
+    if ($row = mysqli_fetch_assoc($result)) {
+        // Verificar a senha
+        if (password_verify($senha, $row['senhaUsuario'])) {
+            $_SESSION['emailUsuario'] = $email;
+            // Redirecionamento para uma página segura (exemplo: dashboard.php)
+            header("Location: index.php");
+            exit();
+        } else {
+            $error_message = '<div class="error-message">Os dados não conferem, tente novamente.</div>';
+        }
     } else {
-        echo "Erro: " . $sql . "<br>" . mysqli_error($conn);
+        $error_message = '<div class="error-message">Os dados não conferem, tente novamente.</div>';
     }
 
-    // Fechar conexão com o banco de dados
+    // Fechar conexão
+    mysqli_stmt_close($stmt);
     mysqli_close($conn);
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -48,19 +64,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <div class="login-decoration">
     <form class="form-login" method="POST">
     <h1 class="login-title">Adega2L</h1>
-        <input type="text" id="usuario" placeholder="Usuário" name="usuario" required>  
-        <input type="password" id="senha" placeholder="Senha" name="senha" required>
-        <button class="login-button" 
-        type="submit">Entrar</button>        
-<div class="login-links">
-<a class="login-links" href="#">Esqueceu sua senha?</a>
-<a class="login-links" href="#">Cadastre-se</a>
-</div>
-    </form>
-    
-</div>
+        <input type="email" name="emailUsuario" placeholder="E-mail" required> 
+        <input type="password" id="senhaUsuario" name="senhaUsuario" placeholder="Senha" required>
+        <button class="login-button" type="submit">Entrar</button>
 
+        <?php if (!empty($error_message)): ?>
+            <?php echo $error_message; ?>
+        <?php endif; ?>
+
+        <div class="login-links">
+            <a class="login-links" href="#">Esqueceu sua senha?</a>
+            <a class="login-links" href="cadastro.php">Cadastre-se</a>
+        </div>
+    </form>
+</div>
 
 </body>
 </html>
-<!--É enviando para a mesma página--
