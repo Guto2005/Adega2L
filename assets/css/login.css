@@ -140,9 +140,6 @@ li {
 /* Estilo para a mensagem de erro */
 .error-message {
     color: #ff0000;
-    padding: 15px;
-    margin-top: 10px;
-    border-radius: 5px;
     font-size: 14px;
     text-align: center;
     display: block;
