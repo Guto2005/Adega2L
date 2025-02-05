@@ -23,6 +23,18 @@
 * {box-sizing:border-box}
 
 
+footer {
+    display: flex;
+    background-color: var(--cor-preto-claro);
+    color: var(--cor-branco);
+    padding: 20px;
+    text-align: center;
+    justify-content: center;
+    border-radius: 20px;
+    width: 100%;
+    min-width: 340px;
+}
+
 a {
     color: white;
     text-decoration: none;
@@ -77,22 +89,27 @@ li {
 
 }
 
-
-
-.redes-sociais {
-    padding-right: 70px;
+.perfil-btn {
+    display: flex;
+    background-color: #000000;
+    border: none;
+    flex-direction: column;
+    color: var(--cor-branco);
+    align-items: center;
+    font-size: 1.8vw;
+    width: 100%;
+    padding-right: 30px;
+    transition: all 0.3s ease; /* Para uma transição suave */
 }
 
-footer {
-    display: flex;
-    background-color: var(--cor-preto-claro);
-    color: var(--cor-branco);
-    padding: 20px;
-    text-align: center;
-    justify-content: center;
-    border-radius: 20px;
-    width: 100%;
-    min-width: 340px;
+.perfil-btn:hover {
+    transform: scale(1.1); /* Aumenta a div ao passar o mouse */
+    color: var(--cor-dourado);
+}
+
+.perfil-titulo {
+    font-family: 'Sans-Italic';
+    font-size: 1.6vw;
 }
 
 .footer-institucional {
@@ -102,6 +119,21 @@ footer {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
+}
+
+.institucional-titulo{
+    font-size: 1.8vw;
+    color: var(--cor-branco);
+    transition: all 0.3s ease; /* Para uma transição suave */  
+}
+
+.institucional-titulo:hover{
+    color: var(--cor-dourado);
+    transform: scale(1.1); /* Aumenta a div ao passar o mouse */
+}
+
+.institucional-titulo{
+    font-size: 1.6vw;
 }
 
 .logotipo_footer {
@@ -128,12 +160,11 @@ footer {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    width: 30%;
     align-items: center;
 }
 
 .footer-left h4 {
-    font-size: 1.8vw;
+    font-size: 1.2vw;
     width: 100%;
 }
 
@@ -283,6 +314,10 @@ iframe:hover {
         padding: 20px;
     }
 
+    .institucional-titulo {
+        font-size: 4vw;
+    }
+
     .footer-left, .footer-right {
         width: 100%;
         text-align: center;
@@ -290,12 +325,20 @@ iframe:hover {
     }
 
     .footer-left h4 {
-        font-size: 5.0vw;
+        font-size: 4.0vw;
         width: 100%;
     }
 
     .redes-sociais a {
         font-size: 1.2rem;
         padding-right: 0px;
+    }
+
+    iframe{
+        width: 140px;
+        height: 140px;
+        position: relative;
+        top: 40px;
+        transition: all 0.3s ease; /* Para uma transição suave */
     }
 }

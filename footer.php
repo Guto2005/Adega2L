@@ -9,6 +9,9 @@
                     <a href="#"><i id="instagram-icon" class="fab fa-instagram"></i></a>
                     <a href="#"><i id="twitter-icon" class="fab fa-twitter"></i></a>
                 </div>
+                <div class="institucional-btn">
+                <a class="institucional-link" href="institucional.php"><h4 class="institucional-titulo">Institucional</h4></a>
+                </div>
             </div>
             <div class="footer-right">
                 <div class="contato-endereco">

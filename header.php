@@ -87,12 +87,13 @@ foreach ($produtos as $produto) {
     <header>
         <a class="logotipo" href="catalogo.php"><img src="./assets/img/Image.png" alt="logo"></a>
     <div class="junçao-mobile">
-        <div class="search-bar-mobile">
-        <button class="botao-enviar" type="submit">
-            <input class="search-placeholder" type="text" placeholder="Olá, O que você procura?" />
-            <i class="fa-solid fa-magnifying-glass"></i>
-            </button>
-        </div>
+    <form id="search-form" class="search-bar" action="" method="GET">
+    <input class="search-placeholder" type="text" name="q" id="search-input" placeholder="Olá, o que você procura?" oninput="handleSearch()" required />
+    <button class="botao-enviar" type="submit">
+        <i class="fa-solid fa-magnifying-glass"></i>
+    </button>
+</form>
+
 
         
         <div class="perfil-link-mobile">
@@ -113,12 +114,13 @@ foreach ($produtos as $produto) {
         </a>
     </div>    
         </div>
-        <div class="search-bar">
-        <button class="botao-enviar" type="submit">
-            <input class="search-placeholder" type="text" placeholder="Olá, O que você procura?" />
-            <i class="fa-solid fa-magnifying-glass"></i>
-            </button>
-        </div>
+        <form id="search-form" class="search-bar" action="" method="GET">
+    <input class="search-placeholder" type="text" name="q" id="search-input" placeholder="Olá, o que você procura?" oninput="handleSearch()" required />
+    <button class="botao-enviar" type="submit">
+        <i class="fa-solid fa-magnifying-glass"></i>
+    </button>
+</form>
+
 
         
         <a class="link-carrinho" href="./cart.php">

@@ -481,22 +481,7 @@ img {vertical-align: middle;}
     padding: 40px;
 }
 
-.modal {
-    display: none;
-    /* Escondido por padrão */
-    position: fixed;
-    /* Fixa o modal na tela */
-    z-index: 1000;
-    /* Garante que o modal fique acima de outros elementos */
-    left: 0;
-    top: 0;
-    width: 100%;
-    /* Largura total */
-    height: 100%;
-    /* Altura total */
-    background-color: rgba(0, 0, 0, 0.5);
-    /* Fundo semi-transparente */
-}
+
 
 footer {
     display: flex;
@@ -584,10 +569,6 @@ footer {
 iframe:hover {
     transform:scale(1.2);
 }
-@keyframes fade {
-    from {opacity: .4} 
-    to {opacity: 1}
-  }
 
 /* Ajuste de Responsividade */
 
@@ -606,49 +587,8 @@ iframe:hover {
         text-align: center;
     }
 
-    .logotipo img {
-        width: 60%;
-        max-width: 250px; /* Limita o tamanho do logotipo */
-    }
-
-    .search-bar {
-        width: 100%;
-        margin: 10px 0;
-    }
-
-    .search-placeholder {
-        width: 80%;
-        font-size: 1.2rem;
-    }
-
-    .perfil-link {
-        display: flex;
-        justify-content: center;
-        margin: 10px 0;
-    }
-
-    .link-carrinho {
-        display: flex;
-        justify-content: center;
-        margin: 10px 0;
-    }
-
     .container {
         padding: 20px;
-    }
-
-    .marquee-container {
-        text-align: center;
-        font-size: 1.2rem;
-    }
-
-    .slideshow-container {
-        width: 100%;
-    }
-
-    .slideshow-container .mySlides img {
-        width: 100%;
-        height: auto;
     }
 
     .institucional-quem-somos-proposta {
@@ -707,29 +647,6 @@ iframe:hover {
         max-width: 180px;
     }
 
-    .search-bar {
-        width: 100%;
-    }
-
-    .search-placeholder {
-        font-size: 1rem;
-    }
-
-    .perfil-link, .link-carrinho {
-        flex-direction: column;
-        align-items: center;
-        margin: 10px 0;
-    }
-
-    .nav-catalogo {
-        display: none;
-    }
-
-    .slideshow-container .mySlides img {
-        width: 100%;
-        height: auto;
-    }
-
     .institucional-quem-somos-proposta {
         flex-direction: column;
         padding: 10px;
@@ -771,26 +688,6 @@ iframe:hover {
 @media (max-width: 320px) {
     header {
         padding: 5px;
-    }
-
-    .logotipo img {
-        width: 50%;
-        max-width: 150px;
-    }
-
-    .search-placeholder {
-        font-size: 1rem;
-    }
-
-    .perfil-link, .link-carrinho {
-        font-size: 1rem;
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .slideshow-container .mySlides img {
-        width: 100%;
-        height: auto;
     }
 
     .institucional-quem-somos-proposta {
