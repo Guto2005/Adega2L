@@ -1,12 +1,7 @@
-/*Comandos sem classe*/
-
 :root {
     --cor-dourado: #FFD700;
-    /* Código hexadecimal para dourado */
     --cor-preto: #000000;
-    /* Código hexadecimal para preto */
     --cor-branco: #FFFFFF;
-    /* Código hexadecimal para branco */
     --cor-preto-claro: #1f1f1f;
 }
 
@@ -20,7 +15,9 @@
     src: url('./../fonts/OpenSans-VariableFont_wdth\,wght.ttf');
 }
 
-* {box-sizing:border-box}
+* {
+    box-sizing: border-box;
+}
 
 body {
     margin: 0;
@@ -33,7 +30,6 @@ body {
     gap: 80px;
     overflow-x: hidden;
 }
-
 
 a {
     color: white;
@@ -48,20 +44,102 @@ li {
     list-style-type: none;
 }
 
-/*Classificados*/
+/* ========== Tela de Cadastro ========== */
 
-/* Tela de cadastro */
+.cadastro-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
 
-.cadastro-button {
-    border-radius: 4px;
-    background: #FFEA00;
+.cadastro-decoration {
+    display: flex;
+    width: 800px;
+    justify-content: center;
+    border: 1px solid #FFEA00;
+    background: rgba(91, 91, 91, 0.50);
+    padding: 40px;
+    border-radius: 10px;
 }
 
 .cadastro-title {
     justify-content: center;
     display: flex;
+    text-align: center;
+    color: #FFEA00;
+    width: 100%;
 }
 
+/* ========== Formulário ========== */
+
+.form-cadastro {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 10px;
+    font-size: 1.4rem;
+    border-radius: 10px;
+    border: 2px solid #000;
+    background: rgba(0, 0, 0, 0.50);
+    padding: 40px;
+    width: 100%;
+    max-width: 800px;
+}
+
+/* Estilizando os inputs */
+.form-cadastro input {
+    flex: 1 1 calc(50% - 10px);
+    padding: 12px;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background: var(--cor-preto-claro);
+    color: white;
+}
+
+.form-cadastro input::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.form-cadastro input:focus {
+    outline: 2px solid var(--cor-dourado);
+}
+
+/* Ajustando tamanhos específicos */
+.form-cadastro input[name="cpfUsuario"],
+.form-cadastro input[name="cep"],
+.form-cadastro input[name="DDI"],
+.form-cadastro input[name="DDD"],
+.form-cadastro input[name="numeroTelefone"] {
+    width: calc(30% - 10px);
+}
+
+.form-cadastro input[type="password"],
+.form-cadastro input[type="text"],
+.form-cadastro input[type="email"],
+.form-cadastro input[type="date"] {
+    width: calc(50% - 10px);
+}
+
+/* Botão de cadastro */
+.cadastro-button {
+    width: 100%;
+    padding: 14px;
+    border-radius: 4px;
+    background: #FFEA00;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--cor-preto);
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.cadastro-button:hover {
+    background: #e6c200;
+}
+
+/* Links */
 .cadastro-links {
     font-size: medium;
     align-items: center;
@@ -72,31 +150,7 @@ li {
     padding: 5px;
 }
 
-.form-cadastro {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    font-size: 1.6rem;
-    border-radius: 10px;
-    border: 2px solid #000;
-    background: rgba(0, 0, 0, 0.50);
-    margin: 20px;
-    padding: 70px;
-    width: 100%;
-    max-width: 60vh;
-    /* Limitar a largura do formulário */
-}
-
-.cadastro-decoration {
-    display: flex;
-    width: 800px;
-    justify-content: center;
-    border: 1px solid #FFEA00;
-    background: rgba(91, 91, 91, 0.50);
-}
-
-/* ISA NÃO RETIRA ISSO QUE BLOQUEIA AS SETAS DOS INPUTS DE NUMERO*/
-
+/* Bloquear setas dos inputs de número */
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
     -webkit-appearance: none;
@@ -105,4 +159,58 @@ input[type="number"]::-webkit-outer-spin-button {
 
 input[type="number"] {
     -moz-appearance: textfield;
+}
+
+/* ========== Responsividade ========== */
+
+@media (max-width: 1024px) {
+    .form-cadastro {
+        max-width: 90%;
+        padding: 30px;
+    }
+
+    .form-cadastro input {
+        flex: 1 1 calc(48% - 10px);
+    }
+
+    .cadastro-decoration {
+        width: 90%;
+        padding: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .form-cadastro {
+        max-width: 90%;
+        padding: 25px;
+    }
+
+    .form-cadastro input {
+        flex: 1 1 calc(100% - 10px);
+    }
+
+    .cadastro-decoration {
+        width: 100%;
+        padding: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .form-cadastro {
+        max-width: 90%;
+        padding: 20px;
+    }
+
+    .form-cadastro input {
+        flex: 1 1 calc(100% - 10px);
+    }
+
+    .cadastro-button {
+        padding: 12px;
+    }
+
+    .cadastro-decoration {
+        width: 100%;
+        padding: 15px;
+    }
 }
