@@ -123,6 +123,15 @@ li {
     width: calc(50% - 10px);
 }
 
+.erro-mensagem {
+    color: red;
+    font-size: 16px;
+    padding-top: 10px;
+    text-align: center;
+    width: 100%;
+    padding-bottom: 10px;
+
+}
 /* Botão de cadastro */
 .cadastro-button {
     width: 100%;
