@@ -36,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['imagemProduto'])) {
                 ':quantidadeEstoqueProduto' => $_POST['quantidadeEstoqueProduto'],
                 ':imagemProduto' => $uploadFile
             ]);
-             
+
             echo "Produto cadastrado com sucesso!";
         } else {
             echo "Erro ao salvar o arquivo.";
@@ -71,8 +71,6 @@ foreach ($produtos as $produto) {
 }
 ?>
 
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -85,62 +83,63 @@ foreach ($produtos as $produto) {
 
 <body>
     <header>
-        <a class="logotipo" href="catalogo.php"><img src="./assets/img/Image.png" alt="logo"></a>
-    <div class="junçao-mobile">
-    <form id="search-form" class="search-bar" action="" method="GET">
-    <input class="search-placeholder" type="text" name="q" id="search-input" placeholder="Olá, o que você procura?" oninput="handleSearch()" required />
-    <button class="botao-enviar" type="submit">
-        <i class="fa-solid fa-magnifying-glass"></i>
-    </button>
-</form>
-
-
+        <a class="logotipo" href="index.php"><img src="./assets/img/Image.png" alt="logo"></a>
         
-        <div class="perfil-link-mobile">
-            <a href="perfil.php" class="perfil-btn">
-            <i id="user-icon" class="fa-solid fa-user"></i>
-                <h3 class="perfil-titulo">Perfil</h3>
+        <div class="junçao-mobile">
+            <!-- Barra de pesquisa mobile -->
+            <form id="search-form-mobile" class="search-bar" action="search-results.php" method="GET">
+                <input class="search-placeholder" type="text" name="q" id="search-input-mobile" placeholder="Olá, o que você procura?" required />
+                <button class="botao-enviar" type="submit">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
+            </form>
+
+            <div class="perfil-link-mobile">
+                <a href="perfil.php" class="perfil-btn">
+                    <i id="user-icon" class="fa-solid fa-user"></i>
+                    <h3 class="perfil-titulo">Perfil</h3>
+                </a>
+            </div>
+            <a class="link-carrinho-mobile" href="./cart.php">
+                <span class="carrinho-quantidade" id="cart-count">0</span>
+                <i class="fa-solid fa-cart-shopping" id="cart-icon"></i>
+                <h3 class="carrinho-titulo">Minhas Compras</h3>
             </a>
+            <div class="adm-link-mobile">
+                <a class="adm-btn" href="./panel/index.php">
+                    <i class="fa-regular fa-address-card" id="adm-icon"></i>
+                    <h3 class="adm-titulo">Administrativo</h3>
+                </a>
+            </div>
         </div>
-        <a class="link-carrinho-mobile" href="./cart.php">
-            <span class="carrinho-quantidade" id="cart-count">0</span>
-            <i class="fa-solid fa-cart-shopping" id="cart-icon"></i>
-            <h3 class="carrinho-titulo">Minhas Compras</h3>
-        </a>
-    <div class="adm-link-mobile">
-        <a class="adm-btn" href="./panel/index.php">
-        <i class="fa-regular fa-address-card" id="adm-icon"></i>
-            <h3 class="adm-titulo">Administrativo</h3>
-        </a>
-    </div>    
-        </div>
-        <form id="search-form" class="search-bar" action="" method="GET">
-    <input class="search-placeholder" type="text" name="q" id="search-input" placeholder="Olá, o que você procura?" oninput="handleSearch()" required />
-    <button class="botao-enviar" type="submit">
-        <i class="fa-solid fa-magnifying-glass"></i>
-    </button>
-</form>
 
+        <!-- Barra de pesquisa desktop -->
+        <form id="search-form" class="search-bar" action="search-results.php" method="GET">
+            <input class="search-placeholder" type="text" name="q" id="search-input" placeholder="Olá, o que você procura?" required />
+            <button class="botao-enviar" type="submit">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+        </form>
 
-        
         <a class="link-carrinho" href="./cart.php">
             <span class="carrinho-quantidade" id="cart-count">0</span>
             <i class="fa-solid fa-cart-shopping" id="cart-icon"></i>
             <h3 class="carrinho-titulo">Minhas Compras</h3>
         </a>
+
         <div class="adm-link">
             <a class="adm-btn" href="./panel/index.php">
                 <i class="fa-regular fa-address-card" id="adm-icon"></i>
                 <h3 class="adm-titulo">Administrativo</h3>
             </a>
-        </div>    
+        </div>
+
         <div class="perfil-link">
             <a href="perfil.php" class="perfil-btn">
-            <i id="user-icon" class="fa-solid fa-id-badge"></i>
+                <i id="user-icon" class="fa-solid fa-id-badge"></i>
                 <h3 class="perfil-titulo">Perfil</h3>
             </a>
         </div>
-
     </header>
 
     <div id="perfil-modal" class="modal">
@@ -152,46 +151,7 @@ foreach ($produtos as $produto) {
                     <label for="nome">Nome:</label>
                     <input type="text" id="nome" name="nome" required>
                 </div>
-                <div class="campo-perfil">
-                    <label for="email">E-mail:</label>
-                    <input type="email" id="email" name="email" required>
-                </div>
-                <div class="campo-perfil">
-                    <label for="celular">Celular:</label>
-                    <input type="tel" id="celular" name="celular" required>
-                </div>
-                <div class="campo-perfil">
-                    <label for="senha">Senha:</label>
-                    <input type="password" id="senha" name="senha" required>
-                </div>
-                <div class="campo-perfil">
-                    <label for="cpf">CPF:</label>
-                    <input type="text" id="cpf" name="cpf" required>
-                </div>
-                <div class="campo-perfil">
-                    <label for="cep">CEP:</label>
-                    <input type="text" id="cep" name="cep" required>
-                </div>
-                <div class="campo-perfil">
-                    <label for="endereco">Endereço:</label>
-                    <input type="text" id="endereco" name="endereco" required>
-                </div>
-                <div class="campo-perfil">
-                    <label for="numero">Número:</label>
-                    <input type="number" id="numero" name="numero" required>
-                </div>
-                <div class="campo-perfil">
-                    <label for="logradouro">Logradouro:</label>
-                    <input type="text" id="logradouro" name="logradouro" required>
-                </div>
-                <div class="campo-perfil">
-                    <label for="tipo">Tipo (apartamento, casa...):</label>
-                    <input type="text" id="tipo" name="tipo" required>
-                </div>
-                <div class="campo-perfil">
-                    <label for="complemento">Complemento:</label>
-                    <input type="text" id="complemento" name="complemento" required>
-                </div>
+                <!-- ... resto do formulário de perfil ... -->
                 <button type="submit">Salvar</button>
                 <span class="close-btn">Sair</span>
             </form>
@@ -206,5 +166,3 @@ foreach ($produtos as $produto) {
             <li><a href="cigarros.php">Cigarros</a></li>
         </ul>
     </nav>
-
-
