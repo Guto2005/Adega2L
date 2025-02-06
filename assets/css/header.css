@@ -226,6 +226,11 @@ li {
 
 .perfil-modal {
     color: black;
+    background-color: white;
+}
+
+#perfil-modal {
+    display: none;
 }
 
 .perfil-btn {
@@ -342,65 +347,53 @@ li {
     transform:scale(1.4);
 }
 
-.modal {
-    display: none;
-    /* Escondido por padrão */
+/* Estilos para o modal */
+#modal {
+    display: none; /* Esconde o modal por padrão */
     position: fixed;
-    /* Fixa o modal na tela */
-    z-index: 1000;
-    /* Garante que o modal fique acima de outros elementos */
+    z-index: 1;
     left: 0;
     top: 0;
     width: 100%;
-    /* Largura total */
     height: 100%;
-    /* Altura total */
-    background-color: rgba(0, 0, 0, 0.5);
-    /* Fundo semi-transparente */
+    background-color: rgba(0, 0, 0, 0.7); /* Fundo escuro */
+    overflow: auto;
+    padding-top: 60px;
 }
 
-
-.modal-content {
-    background-color: var(--cor-preto-claro);
-    /* Cor de fundo do conteúdo do modal */
-    margin: 5% auto;
-    /* Margem para centralizar o modal */
-    padding: 30px;
-    /* Aumenta o espaçamento interno */
-    border: 1px solid #888;
-    /* Borda */
-    width: 90%;
-    /* Largura do modal (90% da largura da tela) */
-    max-width: 800px;
-    /* Largura máxima para telas grandes */
-    max-height: 90%;
-    /* Altura máxima para evitar que o modal saia da tela */
-    overflow-y: auto;
-    /* Adiciona rolagem vertical se o conteúdo for muito grande */
-    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
-    /* Sombra */
-    border-radius: 8px;
-    /* Bordas arredondadas */
-    color: rgb(255, 255, 255);
-    align-items: center;
-}
-
-.modal-content button {
-    cursor: pointer; /* Cursor pointer para indicar que é clicável */
-    float: right; /* Alinha o botão de fechar à direita */
-    font-size: 20px; /* Tamanho do botão de fechar */
-    color: #ffffff; /* Cor do botão de fechar */
-    background-color: rgb(40, 167, 15);
+#modal-content {
+    background-color: #fff;
+    margin: auto;
     padding: 20px;
-    border-radius: 20px;
-    width: 50%;
-    border: none;
+    border: 1px solid #888;
+    width: 60%; /* Tamanho do modal */
 }
 
-.modal-titulo {
-    font-size: 2.0rem;
-    color: var(--cor-dourado);
+#modal-img {
+    width: 100%; /* Ajuste do tamanho da imagem no modal */
+    height: auto;
 }
+
+#modal-desc {
+    margin-top: 10px;
+    font-size: 16px;
+    color: #333;
+}
+
+/* Botão invisível para imagem do produto */
+.btn-imagem {
+    background: transparent;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+}
+
+.img-produto {
+    width: 100%; /* Ajuste o tamanho conforme necessário */
+    height: auto;
+}
+
+/* Outros estilos podem ser necessários, ajuste conforme seu layout */
 
 .perfil-campos {
     display: flex;
@@ -409,6 +402,11 @@ li {
     gap: 32px;
 
 }
+
+#perfil {
+    display: none;
+}
+
 
 .campo-perfil {
     display: flex;
@@ -423,8 +421,6 @@ li {
 .campo-perfil label {
     font-size: 1.4rem;
 }
-
-
 
 .close-btn {
     cursor: pointer;
