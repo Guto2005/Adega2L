@@ -1,0 +1,123 @@
+:root {
+    --cor-dourado: #FFD700;
+    --cor-preto: #000000;
+    --cor-branco: #FFFFFF;
+    --cor-preto-claro: #1f1f1f;
+}
+
+@font-face {
+    font-family: 'Sans-Italic';
+    src: url('./../fonts/OpenSans-Italic-VariableFont_wdth\,wght.ttf');
+}
+
+@font-face {
+    font-family: 'Sans-Variable';
+    src: url('./../fonts/OpenSans-VariableFont_wdth\,wght.ttf');
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    background-color: var(--cor-preto);
+    flex-direction: column;
+    color: white;
+    align-items: center;
+    gap: 80px;
+    overflow-x: hidden;
+}
+
+a {
+    color: white;
+    text-decoration: none;
+}
+
+a i {
+    font-size: 20px;
+}
+
+li {
+    list-style-type: none;
+}
+
+/* Formatação da página de recuperação de senha */
+.esqueci-senha-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.esqueci-senha-decoration {
+    background-color: var(--cor-preto-claro);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 500px;
+}
+
+.form-esqueci-senha {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.esqueci-senha-title {
+    font-size: 24px;
+    color: var(--cor-dourado);
+    margin-bottom: 20px;
+}
+
+input {
+    width: 100%;
+    padding: 12px;
+    margin: 8px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #333;
+    color: white;
+}
+
+input:focus {
+    outline: none;
+    border-color: var(--cor-dourado);
+}
+
+button.esqueci-senha-button {
+    width: 100%;
+    padding: 12px;
+    background-color: var(--cor-dourado);
+    border: none;
+    border-radius: 5px;
+    color: var(--cor-preto);
+    font-weight: bold;
+    cursor: pointer;
+}
+
+button.esqueci-senha-button:hover {
+    background-color: #e1b200;
+}
+
+/* Estilos para a mensagem de erro e sucesso */
+.erro-mensagem, .sucesso-mensagem {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.erro-mensagem {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+.sucesso-mensagem {
+    background-color: #d4edda;
+    color: #155724;
+}

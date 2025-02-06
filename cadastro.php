@@ -87,12 +87,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <form class="form-cadastro" method="POST">
         <h1 class="cadastro-title">Cadastro</h1>
 
-        <?php if ($erro): ?>
-            <div class="alert alert-danger">
-                <?php echo $erro; ?>
-            </div>
-        <?php endif; ?>
-
         <input type="text" name="nomeUsuario" value="<?php echo isset($_POST['nomeUsuario']) ? $_POST['nomeUsuario'] : ''; ?>" placeholder="Nome Completo" required>
         <input type="email" name="emailUsuario" value="<?php echo isset($_POST['emailUsuario']) ? $_POST['emailUsuario'] : ''; ?>" placeholder="E-mail" required>
         <input type="password" id="senhaUsuario" name="senhaUsuario" placeholder="Senha (mínimo 8 caracteres)" required>
@@ -113,7 +107,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <input type="text" id="telefone" name="numeroTelefone" value="<?php echo isset($_POST['numeroTelefone']) ? $_POST['numeroTelefone'] : ''; ?>" placeholder="Número de Telefone" maxlength="9" required>
 
         <input type="date" name="dataNasc" value="<?php echo isset($_POST['dataNasc']) ? $_POST['dataNasc'] : ''; ?>" placeholder="Data de Nascimento" required>
-        
+
+        <!-- Exibição da mensagem de erro com a nova classe -->
+        <?php if ($erro): ?>
+            <div class="erro-mensagem">
+                <?php echo $erro; ?>
+            </div>
+        <?php endif; ?>
+
         <button class="cadastro-button" type="submit">Cadastrar</button>
     </form>
 </div>
