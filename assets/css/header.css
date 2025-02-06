@@ -60,7 +60,6 @@ header {
 
 
 a {
-    color: white;
     text-decoration: none;
 }
 
@@ -100,6 +99,23 @@ li {
     display: none;
 }
 
+.search-bar {
+    display: flex;
+    background-color: var(--cor-branco);
+    border: 2px solid white;
+    border-radius: 20px;
+    transition: all 0.3s ease; /* Para uma transição suave */
+    padding: 5px;
+}
+.search-bar:hover {
+    transform: scale(1.1);
+}
+
+.search-bar button i {
+    position: relative;
+    bottom: 4px;
+}
+
 .search-bar-mobile {
     display: none;
 }
@@ -133,7 +149,6 @@ li {
     display: flex;
     background-color: var(--cor-branco); /* Cor de fundo do botão */
     border: none;
-    border-radius: 0 4px 4px 0; /* Bordas arredondadas */
     padding: 7px; /* Adiciona espaçamento interno */
     cursor: pointer; /* Muda o cursor ao passar por cima */
     font-size: 1.5vw;
@@ -183,7 +198,7 @@ li {
     width: 100%;
     position:relative;
     right: 20px;
-    top: 5px;
+    top: 10px;
 }
 
 .adm-titulo {
