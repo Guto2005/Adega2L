@@ -235,7 +235,6 @@ li {
 
 .perfil-btn {
     display: flex;
-    background-color: #000000;
     border: none;
     flex-direction: column;
     color: var(--cor-branco);

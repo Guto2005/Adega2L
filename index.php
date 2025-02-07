@@ -51,13 +51,25 @@
 
                             <!-- Exibe a imagem do produto -->
                             <?php if (!empty($produto['imagemProduto'])): ?>
-                                <button class="btn-imagem" onclick="mostrarModal(<?= $produto['idProduto'] ?>, '<?= htmlspecialchars($produto['nomeProduto']) ?>', '<?= "./panel/fotos/" . htmlspecialchars($produto['imagemProduto']) ?>')">
+                                <button class="btn-imagem" onclick="mostrarModal(
+                                    <?= $produto['idProduto'] ?>, 
+                                    '<?= htmlspecialchars($produto['nomeProduto']) ?>', 
+                                    '<?= "./panel/fotos/" . htmlspecialchars($produto['imagemProduto']) ?>', 
+                                    '<?= htmlspecialchars($produto['descricaoBebidas']) ?>',
+                                    <?= $produto['precoProduto'] ?>
+                                )">
                                     <img src="<?= "./panel/fotos/" . htmlspecialchars($produto['imagemProduto']) ?>" 
                                          alt="Imagem de <?= htmlspecialchars($produto['nomeProduto']) ?>" 
                                          class="img-produto">
                                 </button>
                             <?php else: ?>
-                                <button class="btn-imagem" onclick="mostrarModal(<?= $produto['idProduto'] ?>, '<?= htmlspecialchars($produto['nomeProduto']) ?>', './assets/img/placeholder.png')">
+                                <button class="btn-imagem" onclick="mostrarModal(
+                                    <?= $produto['idProduto'] ?>, 
+                                    '<?= htmlspecialchars($produto['nomeProduto']) ?>', 
+                                    './assets/img/placeholder.png', 
+                                    'Imagem indisponível', 
+                                    <?= $produto['precoProduto'] ?>
+                                )">
                                     <img src="./assets/img/placeholder.png" alt="Imagem indisponível" class="img-produto">
                                 </button>
                             <?php endif; ?>
@@ -71,21 +83,10 @@
                         </li>
                     <?php endforeach; ?>
                 </ul>
-            </div> 
+            </div>
         <?php endforeach; ?>
     </div>
 </main>
 
 <?php require __DIR__ . '/footer.php' ?>
 
-<!-- Modal -->
-<div id="modal">
-    <div id="modal-content">
-        <span onclick="fecharModal()" style="cursor: pointer; font-size: 30px;">&times;</span>
-        <img id="modal-img" src="" alt="Produto">
-        <p id="modal-desc"></p>
-    </div>
-</div>
-
-<script src="assets/scripts/script.js"></script>
-<script src="https://kit.fontawesome.com/149b000a36.js" crossorigin="anonymous"></script>

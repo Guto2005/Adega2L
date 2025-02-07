@@ -114,7 +114,7 @@ foreach ($produtos as $produto) {
         </div>
 
         <!-- Barra de pesquisa desktop -->
-        <form id="search-form" class="search-bar" action="search-results.php" method="GET">
+        <form id="search-form" class="search-bar" action="search.php" method="GET">
             <input class="search-placeholder" type="text" name="q" id="search-input" placeholder="Olá, o que você procura?" required />
             <button class="botao-enviar" type="submit">
                 <i class="fa-solid fa-magnifying-glass"></i>

@@ -123,6 +123,7 @@ img {vertical-align: middle;}
     gap: 20px;
     justify-content: center;
     overflow: hidden;
+    font-size: 1.4vw;
 }
 
 .destaques-alcoolicas ul {

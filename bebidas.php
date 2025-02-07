@@ -8,16 +8,14 @@
         <div class="destaques-bebidas">
             <ul>
                 <?php
-                // Obter o idCategoria para 'Bebidas'
                 $queryCategoria = "SELECT idCategoria FROM ADG2L_Categorias WHERE nomeCategoria = 'Bebidas'";
                 $resultCategoria = $pdo->query($queryCategoria);
                 $categoria = $resultCategoria->fetch(PDO::FETCH_ASSOC);
 
-                // Verifique se a categoria foi encontrada
                 if ($categoria) {
                     $idCategoria = $categoria['idCategoria'];
 
-                    // Buscar produtos da categoria 'Bebidas' usando o idCategoria (limite de 5 produtos)
+                    // Ajuste para incluir mais detalhes no modal
                     $query = "SELECT idProduto, nomeProduto, precoProduto, imagemProduto, descricaoBebidas, tipoUnidade, tamanhoUnidade FROM ADG2L_Produtos WHERE idCategoria = :idCategoria LIMIT 5";
                     $stmt = $pdo->prepare($query);
                     $stmt->execute([':idCategoria' => $idCategoria]);
@@ -25,11 +23,11 @@
 
                     if (count($produtos) > 0) {
                         foreach ($produtos as $produto): ?>
-                            <!-- Exemplo de li dentro do loop -->
                             <li class="card-produto" data-category="bebidas">
-                                <h2 onclick="mostrarModal(<?= $produto['idProduto'] ?>)"><?= htmlspecialchars($produto['nomeProduto']) ?></h2>
-                                <!-- Botão invisível em volta da imagem -->
-                                <button class="btn-imagem" onclick="mostrarModal(<?= $produto['idProduto'] ?>)">
+                                <h2 onclick="mostrarModal(<?= $produto['idProduto'] ?>, '<?= htmlspecialchars($produto['nomeProduto']) ?>', '<?= './panel/fotos/' . htmlspecialchars($produto['imagemProduto']) ?>', '<?= htmlspecialchars($produto['descricaoBebidas']) ?>', <?= number_format($produto['precoProduto'], 2, ',', '.') ?>, '<?= htmlspecialchars($produto['tipoUnidade']) ?>', <?= $produto['tamanhoUnidade'] ?>)">
+                                    <?= htmlspecialchars($produto['nomeProduto']) ?>
+                                </h2>
+                                <button class="btn-imagem" onclick="mostrarModal(<?= $produto['idProduto'] ?>, '<?= htmlspecialchars($produto['nomeProduto']) ?>', '<?= './panel/fotos/' . htmlspecialchars($produto['imagemProduto']) ?>', '<?= htmlspecialchars($produto['descricaoBebidas']) ?>', <?= number_format($produto['precoProduto'], 2, ',', '.') ?>, '<?= htmlspecialchars($produto['tipoUnidade']) ?>', <?= $produto['tamanhoUnidade'] ?>)">
                                     <?php if (!empty($produto['imagemProduto'])): ?>
                                         <img src="<?= "./panel/fotos/" . htmlspecialchars($produto['imagemProduto']) ?>" alt="Imagem de <?= htmlspecialchars($produto['nomeProduto']) ?>" class="img-produto">
                                     <?php else: ?>
@@ -39,8 +37,7 @@
                                 <p class="preco">R$ <?= number_format($produto['precoProduto'], 2, ',', '.') ?></p>
                                 <button class="btn-add-carrinho" onclick="adicionarAoCarrinho(<?= $produto['idProduto'] ?>)">+</button>
                             </li>
-
-                <?php endforeach;
+                        <?php endforeach;
                     } else {
                         echo "<p>Nenhum produto encontrado.</p>";
                     }
@@ -50,28 +47,14 @@
                 ?>
             </ul>
 
-            <!-- Modal de detalhes do produto -->
-            <div id="modalProduto" class="modal">
-                <div class="modal-content">
-                    <span class="fechar" onclick="fecharModal()">&times;</span>
-                    <h2 id="modalNomeProduto"></h2>
-                    <img id="modalImagemProduto" src="" alt="Imagem do produto" class="modal-imagem">
-                    <p id="modalDescricaoProduto"></p>
-                    <p id="modalPrecoProduto"></p>
-                    <p id="modalUnidadeProduto"></p>
-                </div>
-            </div>
-
             <h2 class="catalogo-titulo">CATÁLOGO</h2>
             <div class="catalogo">
                 <ul>
                     <?php
-                    // Lógica de paginação
                     $produtosPorPagina = 15;
                     $pagina = isset($_GET['pagina']) ? (int)$_GET['pagina'] : 1;
                     $offset = ($pagina - 1) * $produtosPorPagina;
 
-                    // Buscar produtos da categoria 'Bebidas' com limite para paginar
                     $queryCatalogo = "SELECT idProduto, nomeProduto, precoProduto, imagemProduto FROM ADG2L_Produtos WHERE idCategoria = :idCategoria LIMIT :limite OFFSET :offset";
                     $stmtCatalogo = $pdo->prepare($queryCatalogo);
                     $stmtCatalogo->bindParam(':idCategoria', $idCategoria, PDO::PARAM_INT);
@@ -83,7 +66,7 @@
                     if (count($produtosCatalogo) > 0) {
                         foreach ($produtosCatalogo as $produto): ?>
                             <li class="card-produto" data-category="bebidas">
-                                <h2 onclick="mostrarModal(<?= $produto['idProduto'] ?>)"><?= htmlspecialchars($produto['nomeProduto']) ?></h2>
+                                <h2 onclick="mostrarModal(<?= $produto['idProduto'] ?>, '<?= htmlspecialchars($produto['nomeProduto']) ?>', '<?= './panel/fotos/' . htmlspecialchars($produto['imagemProduto']) ?>')"><?= htmlspecialchars($produto['nomeProduto']) ?></h2>
                                 <?php if (file_exists("./panel/fotos/" . htmlspecialchars($produto['imagemProduto']))): ?>
                                     <img src="<?= "./panel/fotos/" . htmlspecialchars($produto['imagemProduto']) ?>" alt="Imagem de <?= htmlspecialchars($produto['nomeProduto']) ?>" class="img-produto" onclick="mostrarModal(<?= $produto['idProduto'] ?>)">
                                 <?php else: ?>
@@ -97,14 +80,12 @@
                         echo "<p>Nenhum produto encontrado.</p>";
                     }
 
-                    // Contar total de produtos para paginar
                     $queryCount = "SELECT COUNT(*) FROM ADG2L_Produtos WHERE idCategoria = :idCategoria";
                     $stmtCount = $pdo->prepare($queryCount);
                     $stmtCount->execute([':idCategoria' => $idCategoria]);
                     $totalProdutos = $stmtCount->fetchColumn();
                     $totalPaginas = ceil($totalProdutos / $produtosPorPagina);
                     ?>
-
                 </ul>
 
                 <!-- Paginação -->
