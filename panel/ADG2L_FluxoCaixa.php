@@ -95,41 +95,20 @@
         protected function setupQuickFilter(QuickFilter $quickFilter, FixedKeysArray $columns)
         {
             $quickFilter
-                ->addColumn($columns['idTransacao'])
                 ->addColumn($columns['tipoTransacao'])
                 ->addColumn($columns['valor'])
                 ->addColumn($columns['descricao'])
-                ->addColumn($columns['dataTransacao'])
-                ->addColumn($columns['idVenda']);
+                ->addColumn($columns['dataTransacao']);
         }
     
         protected function setupColumnFilter(ColumnFilter $columnFilter)
         {
             $columnFilter
-                ->setOptionsFor('dataTransacao')
-                ->setOptionsFor('idVenda');
+                ->setOptionsFor('dataTransacao');
         }
     
         protected function setupFilterBuilder(FilterBuilder $filterBuilder, FixedKeysArray $columns)
         {
-            $main_editor = new TextEdit('idtransacao_edit');
-            
-            $filterBuilder->addColumn(
-                $columns['idTransacao'],
-                array(
-                    FilterConditionOperator::EQUALS => $main_editor,
-                    FilterConditionOperator::DOES_NOT_EQUAL => $main_editor,
-                    FilterConditionOperator::IS_GREATER_THAN => $main_editor,
-                    FilterConditionOperator::IS_GREATER_THAN_OR_EQUAL_TO => $main_editor,
-                    FilterConditionOperator::IS_LESS_THAN => $main_editor,
-                    FilterConditionOperator::IS_LESS_THAN_OR_EQUAL_TO => $main_editor,
-                    FilterConditionOperator::IS_BETWEEN => $main_editor,
-                    FilterConditionOperator::IS_NOT_BETWEEN => $main_editor,
-                    FilterConditionOperator::IS_BLANK => null,
-                    FilterConditionOperator::IS_NOT_BLANK => null
-                )
-            );
-            
             $main_editor = new TextEdit('tipotransacao_edit');
             $main_editor->SetMaxLength(10);
             
@@ -217,33 +196,6 @@
                     FilterConditionOperator::IS_NOT_BLANK => null
                 )
             );
-            
-            $main_editor = new DynamicCombobox('idvenda_edit', $this->CreateLinkBuilder());
-            $main_editor->setAllowClear(true);
-            $main_editor->setMinimumInputLength(0);
-            $main_editor->SetAllowNullValue(false);
-            $main_editor->SetHandlerName('filter_builder_ADG2L_FluxoCaixa_idVenda_search');
-            
-            $multi_value_select_editor = new RemoteMultiValueSelect('idVenda', $this->CreateLinkBuilder());
-            $multi_value_select_editor->SetHandlerName('filter_builder_ADG2L_FluxoCaixa_idVenda_search');
-            
-            $filterBuilder->addColumn(
-                $columns['idVenda'],
-                array(
-                    FilterConditionOperator::EQUALS => $main_editor,
-                    FilterConditionOperator::DOES_NOT_EQUAL => $main_editor,
-                    FilterConditionOperator::IS_GREATER_THAN => $main_editor,
-                    FilterConditionOperator::IS_GREATER_THAN_OR_EQUAL_TO => $main_editor,
-                    FilterConditionOperator::IS_LESS_THAN => $main_editor,
-                    FilterConditionOperator::IS_LESS_THAN_OR_EQUAL_TO => $main_editor,
-                    FilterConditionOperator::IS_BETWEEN => $main_editor,
-                    FilterConditionOperator::IS_NOT_BETWEEN => $main_editor,
-                    FilterConditionOperator::IN => $multi_value_select_editor,
-                    FilterConditionOperator::NOT_IN => $multi_value_select_editor,
-                    FilterConditionOperator::IS_BLANK => null,
-                    FilterConditionOperator::IS_NOT_BLANK => null
-                )
-            );
         }
     
         protected function AddOperationsColumns(Grid $grid)
@@ -296,16 +248,6 @@
         protected function AddFieldColumns(Grid $grid, $withDetails = true)
         {
             //
-            // View column for idTransacao field
-            //
-            $column = new NumberViewColumn('idTransacao', 'idTransacao', 'Id Transacao', $this->dataset);
-            $column->SetOrderable(true);
-            $column->setNumberAfterDecimal(0);
-            $column->setThousandsSeparator(',');
-            $column->setDecimalSeparator('');
-            $column->setMinimalVisibility(ColumnVisibility::PHONE);
-            $grid->AddViewColumn($column);
-            //
             // View column for tipoTransacao field
             //
             $column = new TextViewColumn('tipoTransacao', 'tipoTransacao', 'Tipo Transacao', $this->dataset);
@@ -336,16 +278,6 @@
             $column = new DateTimeViewColumn('dataTransacao', 'dataTransacao', 'Data Transacao', $this->dataset);
             $column->SetOrderable(true);
             $column->SetDateTimeFormat('d-m-Y H:i:s');
-            $column->setMinimalVisibility(ColumnVisibility::PHONE);
-            $grid->AddViewColumn($column);
-            //
-            // View column for idUsuario field
-            //
-            $column = new NumberViewColumn('idVenda', 'idVenda_idUsuario', 'Id Venda', $this->dataset);
-            $column->SetOrderable(true);
-            $column->setNumberAfterDecimal(0);
-            $column->setThousandsSeparator(',');
-            $column->setDecimalSeparator('');
             $column->setMinimalVisibility(ColumnVisibility::PHONE);
             $grid->AddViewColumn($column);
         }
@@ -353,16 +285,6 @@
         protected function AddSingleRecordViewColumns(Grid $grid)
         {
             //
-            // View column for idTransacao field
-            //
-            $column = new NumberViewColumn('idTransacao', 'idTransacao', 'Id Transacao', $this->dataset);
-            $column->SetOrderable(true);
-            $column->setNumberAfterDecimal(0);
-            $column->setThousandsSeparator(',');
-            $column->setDecimalSeparator('');
-            $grid->AddSingleRecordViewColumn($column);
-            
-            //
             // View column for tipoTransacao field
             //
             $column = new TextViewColumn('tipoTransacao', 'tipoTransacao', 'Tipo Transacao', $this->dataset);
@@ -394,30 +316,10 @@
             $column->SetOrderable(true);
             $column->SetDateTimeFormat('d-m-Y H:i:s');
             $grid->AddSingleRecordViewColumn($column);
-            
-            //
-            // View column for idUsuario field
-            //
-            $column = new NumberViewColumn('idVenda', 'idVenda_idUsuario', 'Id Venda', $this->dataset);
-            $column->SetOrderable(true);
-            $column->setNumberAfterDecimal(0);
-            $column->setThousandsSeparator(',');
-            $column->setDecimalSeparator('');
-            $grid->AddSingleRecordViewColumn($column);
         }
     
         protected function AddEditColumns(Grid $grid)
         {
-            //
-            // Edit column for idTransacao field
-            //
-            $editor = new TextEdit('idtransacao_edit');
-            $editColumn = new CustomEditColumn('Id Transacao', 'idTransacao', $editor, $this->dataset);
-            $validator = new RequiredValidator(StringUtils::Format($this->GetLocalizerCaptions()->GetMessageString('RequiredValidationMessage'), $editColumn->GetCaption()));
-            $editor->GetValidatorCollection()->AddValidator($validator);
-            $this->ApplyCommonColumnEditProperties($editColumn);
-            $grid->AddEditColumn($editColumn);
-            
             //
             // Edit column for tipoTransacao field
             //
@@ -455,31 +357,6 @@
             $editColumn = new CustomEditColumn('Data Transacao', 'dataTransacao', $editor, $this->dataset);
             $validator = new RequiredValidator(StringUtils::Format($this->GetLocalizerCaptions()->GetMessageString('RequiredValidationMessage'), $editColumn->GetCaption()));
             $editor->GetValidatorCollection()->AddValidator($validator);
-            $this->ApplyCommonColumnEditProperties($editColumn);
-            $grid->AddEditColumn($editColumn);
-            
-            //
-            // Edit column for idVenda field
-            //
-            $editor = new DynamicCombobox('idvenda_edit', $this->CreateLinkBuilder());
-            $editor->setAllowClear(true);
-            $editor->setMinimumInputLength(0);
-            $lookupDataset = new TableDataset(
-                MySqlIConnectionFactory::getInstance(),
-                GetConnectionOptions(),
-                '`ADG2L_Vendas`');
-            $lookupDataset->addFields(
-                array(
-                    new IntegerField('idVenda', true, true, true),
-                    new IntegerField('idUsuario', true),
-                    new DateTimeField('dataVenda', true),
-                    new IntegerField('valorTotalVenda', true),
-                    new StringField('formaDePagamento', true)
-                )
-            );
-            $lookupDataset->setOrderByField('idUsuario', 'ASC');
-            $editColumn = new DynamicLookupEditColumn('Id Venda', 'idVenda', 'idVenda_idUsuario', 'edit_ADG2L_FluxoCaixa_idVenda_search', $editor, $this->dataset, $lookupDataset, 'idVenda', 'idUsuario', '');
-            $editColumn->SetAllowSetToNull(true);
             $this->ApplyCommonColumnEditProperties($editColumn);
             $grid->AddEditColumn($editColumn);
         }
@@ -525,31 +402,6 @@
             $editor->GetValidatorCollection()->AddValidator($validator);
             $this->ApplyCommonColumnEditProperties($editColumn);
             $grid->AddMultiEditColumn($editColumn);
-            
-            //
-            // Edit column for idVenda field
-            //
-            $editor = new DynamicCombobox('idvenda_edit', $this->CreateLinkBuilder());
-            $editor->setAllowClear(true);
-            $editor->setMinimumInputLength(0);
-            $lookupDataset = new TableDataset(
-                MySqlIConnectionFactory::getInstance(),
-                GetConnectionOptions(),
-                '`ADG2L_Vendas`');
-            $lookupDataset->addFields(
-                array(
-                    new IntegerField('idVenda', true, true, true),
-                    new IntegerField('idUsuario', true),
-                    new DateTimeField('dataVenda', true),
-                    new IntegerField('valorTotalVenda', true),
-                    new StringField('formaDePagamento', true)
-                )
-            );
-            $lookupDataset->setOrderByField('idUsuario', 'ASC');
-            $editColumn = new DynamicLookupEditColumn('Id Venda', 'idVenda', 'idVenda_idUsuario', 'multi_edit_ADG2L_FluxoCaixa_idVenda_search', $editor, $this->dataset, $lookupDataset, 'idVenda', 'idUsuario', '');
-            $editColumn->SetAllowSetToNull(true);
-            $this->ApplyCommonColumnEditProperties($editColumn);
-            $grid->AddMultiEditColumn($editColumn);
         }
     
         protected function AddToggleEditColumns(Grid $grid)
@@ -559,16 +411,6 @@
     
         protected function AddInsertColumns(Grid $grid)
         {
-            //
-            // Edit column for idTransacao field
-            //
-            $editor = new TextEdit('idtransacao_edit');
-            $editColumn = new CustomEditColumn('Id Transacao', 'idTransacao', $editor, $this->dataset);
-            $validator = new RequiredValidator(StringUtils::Format($this->GetLocalizerCaptions()->GetMessageString('RequiredValidationMessage'), $editColumn->GetCaption()));
-            $editor->GetValidatorCollection()->AddValidator($validator);
-            $this->ApplyCommonColumnEditProperties($editColumn);
-            $grid->AddInsertColumn($editColumn);
-            
             //
             // Edit column for tipoTransacao field
             //
@@ -608,31 +450,6 @@
             $editor->GetValidatorCollection()->AddValidator($validator);
             $this->ApplyCommonColumnEditProperties($editColumn);
             $grid->AddInsertColumn($editColumn);
-            
-            //
-            // Edit column for idVenda field
-            //
-            $editor = new DynamicCombobox('idvenda_edit', $this->CreateLinkBuilder());
-            $editor->setAllowClear(true);
-            $editor->setMinimumInputLength(0);
-            $lookupDataset = new TableDataset(
-                MySqlIConnectionFactory::getInstance(),
-                GetConnectionOptions(),
-                '`ADG2L_Vendas`');
-            $lookupDataset->addFields(
-                array(
-                    new IntegerField('idVenda', true, true, true),
-                    new IntegerField('idUsuario', true),
-                    new DateTimeField('dataVenda', true),
-                    new IntegerField('valorTotalVenda', true),
-                    new StringField('formaDePagamento', true)
-                )
-            );
-            $lookupDataset->setOrderByField('idUsuario', 'ASC');
-            $editColumn = new DynamicLookupEditColumn('Id Venda', 'idVenda', 'idVenda_idUsuario', 'insert_ADG2L_FluxoCaixa_idVenda_search', $editor, $this->dataset, $lookupDataset, 'idVenda', 'idUsuario', '');
-            $editColumn->SetAllowSetToNull(true);
-            $this->ApplyCommonColumnEditProperties($editColumn);
-            $grid->AddInsertColumn($editColumn);
             $grid->SetShowAddButton(true && $this->GetSecurityInfo()->HasAddGrant());
         }
     
@@ -644,16 +461,6 @@
         protected function AddPrintColumns(Grid $grid)
         {
             //
-            // View column for idTransacao field
-            //
-            $column = new NumberViewColumn('idTransacao', 'idTransacao', 'Id Transacao', $this->dataset);
-            $column->SetOrderable(true);
-            $column->setNumberAfterDecimal(0);
-            $column->setThousandsSeparator(',');
-            $column->setDecimalSeparator('');
-            $grid->AddPrintColumn($column);
-            
-            //
             // View column for tipoTransacao field
             //
             $column = new TextViewColumn('tipoTransacao', 'tipoTransacao', 'Tipo Transacao', $this->dataset);
@@ -684,32 +491,12 @@
             $column = new DateTimeViewColumn('dataTransacao', 'dataTransacao', 'Data Transacao', $this->dataset);
             $column->SetOrderable(true);
             $column->SetDateTimeFormat('d-m-Y H:i:s');
-            $grid->AddPrintColumn($column);
-            
-            //
-            // View column for idUsuario field
-            //
-            $column = new NumberViewColumn('idVenda', 'idVenda_idUsuario', 'Id Venda', $this->dataset);
-            $column->SetOrderable(true);
-            $column->setNumberAfterDecimal(0);
-            $column->setThousandsSeparator(',');
-            $column->setDecimalSeparator('');
             $grid->AddPrintColumn($column);
         }
     
         protected function AddExportColumns(Grid $grid)
         {
             //
-            // View column for idTransacao field
-            //
-            $column = new NumberViewColumn('idTransacao', 'idTransacao', 'Id Transacao', $this->dataset);
-            $column->SetOrderable(true);
-            $column->setNumberAfterDecimal(0);
-            $column->setThousandsSeparator(',');
-            $column->setDecimalSeparator('');
-            $grid->AddExportColumn($column);
-            
-            //
             // View column for tipoTransacao field
             //
             $column = new TextViewColumn('tipoTransacao', 'tipoTransacao', 'Tipo Transacao', $this->dataset);
@@ -740,32 +527,12 @@
             $column = new DateTimeViewColumn('dataTransacao', 'dataTransacao', 'Data Transacao', $this->dataset);
             $column->SetOrderable(true);
             $column->SetDateTimeFormat('d-m-Y H:i:s');
-            $grid->AddExportColumn($column);
-            
-            //
-            // View column for idUsuario field
-            //
-            $column = new NumberViewColumn('idVenda', 'idVenda_idUsuario', 'Id Venda', $this->dataset);
-            $column->SetOrderable(true);
-            $column->setNumberAfterDecimal(0);
-            $column->setThousandsSeparator(',');
-            $column->setDecimalSeparator('');
             $grid->AddExportColumn($column);
         }
     
         private function AddCompareColumns(Grid $grid)
         {
             //
-            // View column for idTransacao field
-            //
-            $column = new NumberViewColumn('idTransacao', 'idTransacao', 'Id Transacao', $this->dataset);
-            $column->SetOrderable(true);
-            $column->setNumberAfterDecimal(0);
-            $column->setThousandsSeparator(',');
-            $column->setDecimalSeparator('');
-            $grid->AddCompareColumn($column);
-            
-            //
             // View column for tipoTransacao field
             //
             $column = new TextViewColumn('tipoTransacao', 'tipoTransacao', 'Tipo Transacao', $this->dataset);
@@ -796,16 +563,6 @@
             $column = new DateTimeViewColumn('dataTransacao', 'dataTransacao', 'Data Transacao', $this->dataset);
             $column->SetOrderable(true);
             $column->SetDateTimeFormat('d-m-Y H:i:s');
-            $grid->AddCompareColumn($column);
-            
-            //
-            // View column for idUsuario field
-            //
-            $column = new NumberViewColumn('idVenda', 'idVenda_idUsuario', 'Id Venda', $this->dataset);
-            $column->SetOrderable(true);
-            $column->setNumberAfterDecimal(0);
-            $column->setThousandsSeparator(',');
-            $column->setDecimalSeparator('');
             $grid->AddCompareColumn($column);
         }
     
@@ -903,73 +660,8 @@
         }
     
         protected function doRegisterHandlers() {
-            $lookupDataset = new TableDataset(
-                MySqlIConnectionFactory::getInstance(),
-                GetConnectionOptions(),
-                '`ADG2L_Vendas`');
-            $lookupDataset->addFields(
-                array(
-                    new IntegerField('idVenda', true, true, true),
-                    new IntegerField('idUsuario', true),
-                    new DateTimeField('dataVenda', true),
-                    new IntegerField('valorTotalVenda', true),
-                    new StringField('formaDePagamento', true)
-                )
-            );
-            $lookupDataset->setOrderByField('idUsuario', 'ASC');
-            $handler = new DynamicSearchHandler($lookupDataset, 'insert_ADG2L_FluxoCaixa_idVenda_search', 'idVenda', 'idUsuario', null, 20);
-            GetApplication()->RegisterHTTPHandler($handler);
             
-            $lookupDataset = new TableDataset(
-                MySqlIConnectionFactory::getInstance(),
-                GetConnectionOptions(),
-                '`ADG2L_Vendas`');
-            $lookupDataset->addFields(
-                array(
-                    new IntegerField('idVenda', true, true, true),
-                    new IntegerField('idUsuario', true),
-                    new DateTimeField('dataVenda', true),
-                    new IntegerField('valorTotalVenda', true),
-                    new StringField('formaDePagamento', true)
-                )
-            );
-            $lookupDataset->setOrderByField('idUsuario', 'ASC');
-            $handler = new DynamicSearchHandler($lookupDataset, 'filter_builder_ADG2L_FluxoCaixa_idVenda_search', 'idVenda', 'idUsuario', null, 20);
-            GetApplication()->RegisterHTTPHandler($handler);
             
-            $lookupDataset = new TableDataset(
-                MySqlIConnectionFactory::getInstance(),
-                GetConnectionOptions(),
-                '`ADG2L_Vendas`');
-            $lookupDataset->addFields(
-                array(
-                    new IntegerField('idVenda', true, true, true),
-                    new IntegerField('idUsuario', true),
-                    new DateTimeField('dataVenda', true),
-                    new IntegerField('valorTotalVenda', true),
-                    new StringField('formaDePagamento', true)
-                )
-            );
-            $lookupDataset->setOrderByField('idUsuario', 'ASC');
-            $handler = new DynamicSearchHandler($lookupDataset, 'edit_ADG2L_FluxoCaixa_idVenda_search', 'idVenda', 'idUsuario', null, 20);
-            GetApplication()->RegisterHTTPHandler($handler);
-            
-            $lookupDataset = new TableDataset(
-                MySqlIConnectionFactory::getInstance(),
-                GetConnectionOptions(),
-                '`ADG2L_Vendas`');
-            $lookupDataset->addFields(
-                array(
-                    new IntegerField('idVenda', true, true, true),
-                    new IntegerField('idUsuario', true),
-                    new DateTimeField('dataVenda', true),
-                    new IntegerField('valorTotalVenda', true),
-                    new StringField('formaDePagamento', true)
-                )
-            );
-            $lookupDataset->setOrderByField('idUsuario', 'ASC');
-            $handler = new DynamicSearchHandler($lookupDataset, 'multi_edit_ADG2L_FluxoCaixa_idVenda_search', 'idVenda', 'idUsuario', null, 20);
-            GetApplication()->RegisterHTTPHandler($handler);
         }
        
         protected function doCustomRenderColumn($fieldName, $fieldData, $rowData, &$customText, &$handled)

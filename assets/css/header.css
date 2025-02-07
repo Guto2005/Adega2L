@@ -198,7 +198,6 @@ li {
     width: 100%;
     position:relative;
     right: 20px;
-    top: 10px;
 }
 
 .adm-titulo {
@@ -277,6 +276,8 @@ li {
     font-size: 40px;
     padding-right: 40px;
     transition: all 0.2s ease; /* Para uma transição suave */
+    position: relative;
+    bottom: 11px;
 }
 
 .link-carrinho:hover {

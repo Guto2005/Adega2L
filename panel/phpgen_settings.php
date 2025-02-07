@@ -61,7 +61,6 @@ function GetPageGroups()
 function GetPageInfos()
 {
     $result = array();
-    $result[] = array('caption' => 'Produtos', 'short_caption' => 'Produtos', 'filename' => 'produtos.php', 'name' => 'produtos', 'group_name' => 'Default', 'add_separator' => false, 'description' => '');
     $result[] = array('caption' => 'ADG2 L Fluxo Caixa', 'short_caption' => 'ADG2 L Fluxo Caixa', 'filename' => 'ADG2L_FluxoCaixa.php', 'name' => 'ADG2L_FluxoCaixa', 'group_name' => 'Default', 'add_separator' => false, 'description' => '');
     $result[] = array('caption' => 'ADG2 L Fornecedor', 'short_caption' => 'ADG2 L Fornecedor', 'filename' => 'ADG2L_Fornecedor.php', 'name' => 'ADG2L_Fornecedor', 'group_name' => 'Default', 'add_separator' => false, 'description' => '');
     $result[] = array('caption' => 'ADG2 L Movimentacao Estoque', 'short_caption' => 'ADG2 L Movimentacao Estoque', 'filename' => 'ADG2L_MovimentacaoEstoque.php', 'name' => 'ADG2L_MovimentacaoEstoque', 'group_name' => 'Default', 'add_separator' => false, 'description' => '');
