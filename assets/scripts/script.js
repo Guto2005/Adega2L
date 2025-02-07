@@ -1,5 +1,6 @@
 // Slideshow de Banners
 let slideIndex = 0;
+let slideTimer; // Variável para armazenar o temporizador do slideshow
 showSlides();
 
 // Função para exibir os slides
@@ -7,14 +8,16 @@ function showSlides() {
     let slides = document.getElementsByClassName("mySlides");
     let dots = document.getElementsByClassName("dot");
 
-    // Reseta o índice de todos os slides
-    for (let i = 0; i < slides.length; i++) {
-        slides[i].style.display = "none";
+    if (slides.length === 0 || dots.length === 0) return;
+
+    // Esconde todos os slides
+    for (let slide of slides) {
+        slide.style.display = "none";
     }
 
     // Reseta a classe ativa dos pontos
-    for (let i = 0; i < dots.length; i++) {
-        dots[i].className = dots[i].className.replace(" active", "");
+    for (let dot of dots) {
+        dot.classList.remove("active");
     }
 
     // Avança para o próximo slide
@@ -23,103 +26,116 @@ function showSlides() {
 
     // Exibe o slide atual
     slides[slideIndex - 1].style.display = "block";
-    dots[slideIndex - 1].className += " active";
+    dots[slideIndex - 1].classList.add("active");
 
-    // Faz o loop a cada 3 segundos
-    setTimeout(showSlides, 3000);
+    // Reinicia o timer para evitar sobreposições
+    clearTimeout(slideTimer);
+    slideTimer = setTimeout(showSlides, 3000);
 }
 
 // Função para navegar diretamente ao slide específico
 function currentSlide(n) {
+    slideIndex = n;
     showSlidesManually(n);
 }
 
-// Função que exibe o slide manualmente
+// Função que exibe o slide manualmente e pausa a rotação automática
 function showSlidesManually(n) {
     let slides = document.getElementsByClassName("mySlides");
     let dots = document.getElementsByClassName("dot");
 
-    // Reseta o índice de todos os slides
-    for (let i = 0; i < slides.length; i++) {
-        slides[i].style.display = "none";
+    if (slides.length === 0 || dots.length === 0) return;
+
+    // Esconde todos os slides
+    for (let slide of slides) {
+        slide.style.display = "none";
     }
 
     // Reseta a classe ativa dos pontos
-    for (let i = 0; i < dots.length; i++) {
-        dots[i].className = dots[i].className.replace(" active", "");
+    for (let dot of dots) {
+        dot.classList.remove("active");
     }
 
     // Exibe o slide escolhido
     slides[n - 1].style.display = "block";
-    dots[n - 1].className += " active";
+    dots[n - 1].classList.add("active");
+
+    // Para o loop automático ao selecionar manualmente
+    clearTimeout(slideTimer);
 }
 
 // Função para tratar a pesquisa
-
 function handleSearch(event) {
     event.preventDefault();  // Impede o envio tradicional do formulário
-    const searchQuery = document.getElementById('search-input').value.trim().toLowerCase();
+    const searchInput = document.getElementById('search-input');
+    if (!searchInput) return;
+
+    const searchQuery = searchInput.value.trim().toLowerCase();
     if (searchQuery) {
         const url = generateSearchURL(searchQuery);
-        window.location.href = url; // Redireciona para a página com a pesquisa
+        window.location.href = url; // Redireciona para a página correta
     }
 }
 
 // Função para gerar a URL da pesquisa
 function generateSearchURL(query) {
-    let categoria = 'bebidas'; // Defina uma lógica para mapear para a categoria correta
+    let categoria = 'bebidas';
+    query = query.toLowerCase();
 
-    // Lógica de mapeamento das palavras-chave para as categorias
-    if (query.includes("refrigerante") || query.includes("coca")) {
-        categoria = 'bebidas';
-    } else if (query.includes("cigarro") || query.includes("charuto")) {
-        categoria = 'cigarros';
-    } else if (query.includes("snack") || query.includes("biscoito") || query.includes("batata")) {
-        categoria = 'snacks';
-    } else if (query.includes("vodka") || query.includes("whisky") || query.includes("rum") || query.includes("catuaba")) {
-        categoria = 'destilados';
+    const categorias = {
+        bebidas: ["refrigerante", "coca", "pepsi", "fanta", "guaraná", "monster", "redbull", "suco", "água", "powerade", "ice", "leev"],
+        cigarros: ["cigarro", "charuto", "rothmans", "dunhill", "winston", "black", "mentolado", "blunt", "essências", "seda", "piteira"],
+        snacks: ["snack", "biscoito", "batata", "doritos", "ruffles", "chocolate", "kitkat", "bis", "bala", "chiclete", "pirulito", "mentos", "brigadeiro", "bolacha", "pé de moleque", "paçoca"],
+        destilados: ["vodka", "whisky", "rum", "catuaba", "smirnoff", "jurupinga", "tequiloka", "licor"]
+    };
+
+    // Função para verificar similaridade parcial na pesquisa
+    function verificaSimilaridade(query, termos) {
+        return termos.some(termo => query.includes(termo) || termo.includes(query));
     }
 
-    // Retorna a URL para a página da categoria com o termo de pesquisa
-    return `http://localhost/adega2L/${categoria}.php?q=${encodeURIComponent(query)}`;
+    for (const [key, termos] of Object.entries(categorias)) {
+        if (verificaSimilaridade(query, termos)) {
+            categoria = key;
+            break;
+        }
+    }
+
+    return `./${categoria}.php?q=${encodeURIComponent(query)}`;
 }
 
-// Adiciona o evento de submit da pesquisa
-document.getElementById('search-form').addEventListener('submit', handleSearch);
+// Aguarda a página carregar para evitar erro ao tentar acessar elementos inexistentes
+document.addEventListener("DOMContentLoaded", function () {
+    const searchForm = document.getElementById("search-form");
+    if (searchForm) {
+        searchForm.addEventListener("submit", handleSearch);
+    }
+});
 
-  // Função para abrir o modal
-function mostrarModal(idProduto, nomeProduto, imagemProduto) {
-    var modal = document.getElementById('modal');
+// Função para abrir o modal
+function mostrarModal(idProduto, nomeProduto, imagemProduto, descricaoProduto, precoProduto) {
+    // Encontrando o modal e elementos internos
+    var modal = document.getElementById('modal-produto');
     var modalImg = document.getElementById('modal-img');
+    var modalNome = document.getElementById('modal-nome-produto');
     var modalDesc = document.getElementById('modal-desc');
+    var modalPreco = document.getElementById('modal-preco-produto');
 
-    // Atualiza as informações do modal
+    if (!modal || !modalImg || !modalNome || !modalDesc || !modalPreco) return;
+
+    // Atualizando os conteúdos do modal com os dados do produto
     modalImg.src = imagemProduto;
-    modalDesc.textContent = nomeProduto;
+    modalNome.textContent = nomeProduto;
+    modalDesc.textContent = descricaoProduto;
+    modalPreco.textContent = 'R$ ' + precoProduto.toFixed(2).replace('.', ',');
 
-    // Mostra o modal
+    // Exibindo o modal
     modal.style.display = "block";
-
-    // Desabilita o foco na tela de trás
-    document.body.style.overflow = 'hidden';
 }
 
-// Função para fechar o modal
 function fecharModal() {
-    var modal = document.getElementById('modal');
+    var modal = document.getElementById('modal-produto');
+    if (!modal) return;
     modal.style.display = "none";
-    
-    // Restaura o foco na tela de trás
-    document.body.style.overflow = 'auto';
 }
-
-// Função para fechar o modal quando clicar fora dele
-window.onclick = function(event) {
-    var modal = document.getElementById('modal');
-    if (event.target == modal) {
-        fecharModal();
-    }
-}
-
-
 

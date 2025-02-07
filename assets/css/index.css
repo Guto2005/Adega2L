@@ -176,6 +176,7 @@ img {vertical-align: middle;}  /*perguntar depois p o gustavo*/
     gap: 20px;
     justify-content: center;
     overflow: hidden;
+    font-size: 1.4vw;
 }
 
 .destaques-destilados {
@@ -185,6 +186,7 @@ img {vertical-align: middle;}  /*perguntar depois p o gustavo*/
     gap: 20px;
     justify-content: center;
     overflow: hidden;
+    font-size: 1.4vw;
 }
 
 .destaques-snacks {
@@ -194,6 +196,7 @@ img {vertical-align: middle;}  /*perguntar depois p o gustavo*/
     gap: 20px;
     justify-content: center;
     overflow: hidden;
+    font-size: 1.4vw;
 }
 
 .destaques-cigarros {
@@ -203,6 +206,7 @@ img {vertical-align: middle;}  /*perguntar depois p o gustavo*/
     gap: 20px;
     justify-content: center;
     overflow: hidden;
+    font-size: 1.4vw;
 }
 
 .destaques-bebidas ul {

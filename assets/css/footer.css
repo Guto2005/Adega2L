@@ -89,19 +89,6 @@ li {
 
 }
 
-.perfil-btn {
-    display: flex;
-    background-color: #000000;
-    border: none;
-    flex-direction: column;
-    color: var(--cor-branco);
-    align-items: center;
-    font-size: 1.8vw;
-    width: 100%;
-    padding-right: 30px;
-    transition: all 0.3s ease; /* Para uma transição suave */
-}
-
 .perfil-btn:hover {
     transform: scale(1.1); /* Aumenta a div ao passar o mouse */
     color: var(--cor-dourado);
