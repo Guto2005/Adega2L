@@ -139,3 +139,43 @@ function fecharModal() {
     modal.style.display = "none";
 }
 
+function verificarLogin() {
+    // Verifica se o usuário está logado
+    const usuarioLogado = localStorage.getItem('usuarioLogado'); 
+  
+    // Se o usuário estiver logado, esconde todos os links de autenticação
+    if (usuarioLogado) {
+      document.getElementById('auth-links-desktop').style.display = 'none';
+      document.getElementById('auth-links-mobile').style.display = 'none';
+    } else {
+      // Caso contrário, mostra os links adequados
+      if (window.innerWidth <= 768) {
+        // Para dispositivos móveis, exibe os links móveis
+        document.getElementById('auth-links-mobile').style.display = 'flex';
+        document.getElementById('auth-links-desktop').style.display = 'none';
+      } else {
+        // Para dispositivos maiores (desktop), exibe os links desktop
+        document.getElementById('auth-links-desktop').style.display = 'flex';
+        document.getElementById('auth-links-mobile').style.display = 'none';
+      }
+    }
+  }
+  
+  // Funções simulando login e logout
+  function logar() {
+    localStorage.setItem('usuarioLogado', 'true');
+    verificarLogin(); // Atualiza a interface
+  }
+  
+  function deslogar() {
+    localStorage.removeItem('usuarioLogado');
+    verificarLogin(); // Atualiza a interface
+  }
+  
+  // Chama a função de verificação no carregamento
+  window.onload = verificarLogin;
+  
+  // Re-verifica sempre que a janela for redimensionada
+  window.onresize = verificarLogin;
+  
+

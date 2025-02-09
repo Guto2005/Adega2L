@@ -1,4 +1,10 @@
 <?php
+
+session_start(); // Inicia a sessão
+
+// Verifica se o usuário está logado
+$usuarioLogado = isset($_SESSION['usuario_logado']) ? true : false;
+
 // Conexão com o banco de dados
 $host = 'cc220df3eb53.sn.mynetname.net';
 $dbname = 'gto_caveira';
@@ -82,65 +88,101 @@ foreach ($produtos as $produto) {
 </head>
 
 <body>
-    <header>
-        <a class="logotipo" href="index.php"><img src="./assets/img/Image.png" alt="logo"></a>
-        
-        <div class="junçao-mobile">
-            <!-- Barra de pesquisa mobile -->
-            <form id="search-form-mobile" class="search-bar" action="search-results.php" method="GET">
-                <input class="search-placeholder" type="text" name="q" id="search-input-mobile" placeholder="Olá, o que você procura?" required />
-                <button class="botao-enviar" type="submit">
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                </button>
-            </form>
+<header>
+    <a class="logotipo" href="index.php"><img src="./assets/img/Image.png" alt="logo"></a>
 
-            <div class="perfil-link-mobile">
-                <a href="perfil.php" class="perfil-btn">
-                    <i id="user-icon" class="fa-solid fa-user"></i>
-                    <h3 class="perfil-titulo">Perfil</h3>
-                </a>
-            </div>
-            <a class="link-carrinho-mobile" href="./cart.php">
-                <span class="carrinho-quantidade" id="cart-count">0</span>
-                <i class="fa-solid fa-cart-shopping" id="cart-icon"></i>
-                <h3 class="carrinho-titulo">Minhas Compras</h3>
-            </a>
-            <div class="adm-link-mobile">
-                <a class="adm-btn" href="./panel/index.php">
-                    <i class="fa-regular fa-address-card" id="adm-icon"></i>
-                    <h3 class="adm-titulo">Administrativo</h3>
-                </a>
-            </div>
-        </div>
-
-        <!-- Barra de pesquisa desktop -->
-        <form id="search-form" class="search-bar" action="search.php" method="GET">
-            <input class="search-placeholder" type="text" name="q" id="search-input" placeholder="Olá, o que você procura?" required />
+    <div class="junçao-mobile">
+        <!-- Barra de pesquisa mobile -->
+        <form id="search-form-mobile" class="search-bar" action="search-results.php" method="GET">
+            <input class="search-placeholder" type="text" name="q" id="search-input-mobile" placeholder="Olá, o que você procura?" required />
             <button class="botao-enviar" type="submit">
                 <i class="fa-solid fa-magnifying-glass"></i>
             </button>
         </form>
 
-        <a class="link-carrinho" href="./cart.php">
+        <div class="perfil-mobile">
+            <!-- Exibe o link de Perfil apenas se o usuário estiver logado -->
+            <?php if ($usuarioLogado): ?>
+                <div class="perfil-link-mobile">
+                    <a href="perfil.php" class="perfil-btn">
+                        <i id="user-icon" class="fa-solid fa-user"></i>
+                        <h3 class="perfil-titulo">Perfil</h3>
+                    </a>
+                </div>
+            <?php endif; ?>
+
+            <!-- Exibe Login e Cadastro apenas se o usuário NÃO estiver logado -->
+            <?php if (!$usuarioLogado): ?>
+                <div id="auth-links-mobile">
+                    <a href="login.php">
+                        <button id="login-button-mobile">Login</button>
+                    </a>
+                    <a href="cadastro.php">
+                        <button id="signup-button-mobile">Cadastre-se</button>
+                    </a>
+                </div>
+            <?php endif; ?>
+        </div>
+
+        <a class="link-carrinho-mobile" href="./cart.php">
             <span class="carrinho-quantidade" id="cart-count">0</span>
             <i class="fa-solid fa-cart-shopping" id="cart-icon"></i>
             <h3 class="carrinho-titulo">Minhas Compras</h3>
         </a>
-
-        <div class="adm-link">
+        <div class="adm-link-mobile">
             <a class="adm-btn" href="./panel/index.php">
                 <i class="fa-regular fa-address-card" id="adm-icon"></i>
                 <h3 class="adm-titulo">Administrativo</h3>
             </a>
         </div>
+    </div>
 
-        <div class="perfil-link">
-            <a href="perfil.php" class="perfil-btn">
-                <i id="user-icon" class="fa-solid fa-id-badge"></i>
-                <h3 class="perfil-titulo">Perfil</h3>
-            </a>
-        </div>
-    </header>
+    <!-- Barra de pesquisa desktop -->
+    <form id="search-form" class="search-bar" action="search.php" method="GET">
+        <input class="search-placeholder" type="text" name="q" id="search-input" placeholder="Olá, o que você procura?" required />
+        <button class="botao-enviar" type="submit">
+            <i class="fa-solid fa-magnifying-glass"></i>
+        </button>
+    </form>
+
+    <a class="link-carrinho" href="./cart.php">
+        <span class="carrinho-quantidade" id="cart-count">0</span>
+        <i class="fa-solid fa-cart-shopping" id="cart-icon"></i>
+        <h3 class="carrinho-titulo">Minhas Compras</h3>
+    </a>
+
+    <div class="adm-link">
+        <a class="adm-btn" href="./panel/index.php">
+            <i class="fa-regular fa-address-card" id="adm-icon"></i>
+            <h3 class="adm-titulo">Administrativo</h3>
+        </a>
+    </div>
+
+    <div class="perfil">
+        <!-- Exibe o link de Perfil apenas se o usuário estiver logado -->
+        <?php if ($usuarioLogado): ?>
+            <div class="perfil-link">
+                <a href="perfil.php" class="perfil-btn">
+                    <i id="user-icon" class="fa-solid fa-id-badge"></i>
+                    <h3 class="perfil-titulo">Perfil</h3>
+                </a>
+            </div>
+        <?php endif; ?>
+
+        <!-- Exibe Login e Cadastro apenas se o usuário NÃO estiver logado -->
+        <?php if (!$usuarioLogado): ?>
+            <div id="auth-links-desktop">
+                <a href="login.php">
+                    <button id="login-button">Login</button>
+                </a>
+                <a href="cadastro.php">
+                    <button id="signup-button">Cadastre-se</button>
+                </a>
+            </div>
+        <?php endif; ?>
+    </div>
+</header>
+
 
     <div id="perfil-modal" class="modal">
         <div class="modal-content">
