@@ -2094,7 +2094,7 @@
             );
             $this->dataset->AddLookupField('idCategoria', 'ADG2L_Categorias', new IntegerField('idCategoria'), new StringField('nomeCategoria', false, false, false, false, 'idCategoria_nomeCategoria', 'idCategoria_nomeCategoria_ADG2L_Categorias'), 'idCategoria_nomeCategoria_ADG2L_Categorias');
             $this->dataset->AddLookupField('idFornecedor', 'ADG2L_Fornecedor', new IntegerField('idFornecedor'), new StringField('nomeFornecedor', false, false, false, false, 'idFornecedor_nomeFornecedor', 'idFornecedor_nomeFornecedor_ADG2L_Fornecedor'), 'idFornecedor_nomeFornecedor_ADG2L_Fornecedor');
-            $this->dataset->AddLookupField('quantidadeEstoqueProduto', 'ADG2L_MovimentacaoEstoque', new IntegerField('quantidade'), new IntegerField('quantidade', false, false, false, false, 'quantidadeEstoqueProduto_quantidade', 'quantidadeEstoqueProduto_quantidade_ADG2L_MovimentacaoEstoque'), 'quantidadeEstoqueProduto_quantidade_ADG2L_MovimentacaoEstoque');
+            $this->dataset->AddLookupField('quantidadeEstoqueProduto', 'ADG2L_CompraProduto', new IntegerField('quantidade'), new IntegerField('quantidade', false, false, false, false, 'quantidadeEstoqueProduto_quantidade', 'quantidadeEstoqueProduto_quantidade_ADG2L_CompraProduto'), 'quantidadeEstoqueProduto_quantidade_ADG2L_CompraProduto');
         }
     
         protected function DoPrepare() {
@@ -2131,7 +2131,7 @@
                 new FilterColumn($this->dataset, 'nomeProduto', 'nomeProduto', 'Nome Produto'),
                 new FilterColumn($this->dataset, 'precoProduto', 'precoProduto', 'Preco Produto'),
                 new FilterColumn($this->dataset, 'quantidadeEstoqueProduto', 'quantidadeEstoqueProduto_quantidade', 'Quantidade Estoque Produto'),
-                new FilterColumn($this->dataset, 'descricaoBebidas', 'descricaoBebidas', 'Descricao Produto'),
+                new FilterColumn($this->dataset, 'descricaoBebidas', 'descricaoBebidas', 'Descricao Bebidas'),
                 new FilterColumn($this->dataset, 'tipoUnidade', 'tipoUnidade', 'Tipo Unidade'),
                 new FilterColumn($this->dataset, 'tamanhoUnidade', 'tamanhoUnidade', 'Tamanho Unidade'),
                 new FilterColumn($this->dataset, 'dataValidade', 'dataValidade', 'Data Validade'),
@@ -2143,6 +2143,7 @@
         protected function setupQuickFilter(QuickFilter $quickFilter, FixedKeysArray $columns)
         {
             $quickFilter
+                ->addColumn($columns['idProduto'])
                 ->addColumn($columns['idCategoria'])
                 ->addColumn($columns['idFornecedor'])
                 ->addColumn($columns['nomeProduto'])
@@ -2168,6 +2169,24 @@
     
         protected function setupFilterBuilder(FilterBuilder $filterBuilder, FixedKeysArray $columns)
         {
+            $main_editor = new TextEdit('idproduto_edit');
+            
+            $filterBuilder->addColumn(
+                $columns['idProduto'],
+                array(
+                    FilterConditionOperator::EQUALS => $main_editor,
+                    FilterConditionOperator::DOES_NOT_EQUAL => $main_editor,
+                    FilterConditionOperator::IS_GREATER_THAN => $main_editor,
+                    FilterConditionOperator::IS_GREATER_THAN_OR_EQUAL_TO => $main_editor,
+                    FilterConditionOperator::IS_LESS_THAN => $main_editor,
+                    FilterConditionOperator::IS_LESS_THAN_OR_EQUAL_TO => $main_editor,
+                    FilterConditionOperator::IS_BETWEEN => $main_editor,
+                    FilterConditionOperator::IS_NOT_BETWEEN => $main_editor,
+                    FilterConditionOperator::IS_BLANK => null,
+                    FilterConditionOperator::IS_NOT_BLANK => null
+                )
+            );
+            
             $main_editor = new DynamicCombobox('idcategoria_edit', $this->CreateLinkBuilder());
             $main_editor->setAllowClear(true);
             $main_editor->setMinimumInputLength(0);
@@ -2332,13 +2351,8 @@
                 )
             );
             
-            $main_editor = new ComboBox('tipounidade_edit', $this->GetLocalizerCaptions()->GetMessageString('PleaseSelect'));
-            $main_editor->SetAllowNullValue(false);
-            
-            $multi_value_select_editor = new MultiValueSelect('tipoUnidade');
-            $multi_value_select_editor->setChoices($main_editor->getChoices());
-            
-            $text_editor = new TextEdit('tipoUnidade');
+            $main_editor = new TextEdit('tipounidade_edit');
+            $main_editor->SetMaxLength(45);
             
             $filterBuilder->addColumn(
                 $columns['tipoUnidade'],
@@ -2351,24 +2365,18 @@
                     FilterConditionOperator::IS_LESS_THAN_OR_EQUAL_TO => $main_editor,
                     FilterConditionOperator::IS_BETWEEN => $main_editor,
                     FilterConditionOperator::IS_NOT_BETWEEN => $main_editor,
-                    FilterConditionOperator::CONTAINS => $text_editor,
-                    FilterConditionOperator::DOES_NOT_CONTAIN => $text_editor,
-                    FilterConditionOperator::BEGINS_WITH => $text_editor,
-                    FilterConditionOperator::ENDS_WITH => $text_editor,
-                    FilterConditionOperator::IS_LIKE => $text_editor,
-                    FilterConditionOperator::IS_NOT_LIKE => $text_editor,
-                    FilterConditionOperator::IN => $multi_value_select_editor,
-                    FilterConditionOperator::NOT_IN => $multi_value_select_editor,
+                    FilterConditionOperator::CONTAINS => $main_editor,
+                    FilterConditionOperator::DOES_NOT_CONTAIN => $main_editor,
+                    FilterConditionOperator::BEGINS_WITH => $main_editor,
+                    FilterConditionOperator::ENDS_WITH => $main_editor,
+                    FilterConditionOperator::IS_LIKE => $main_editor,
+                    FilterConditionOperator::IS_NOT_LIKE => $main_editor,
                     FilterConditionOperator::IS_BLANK => null,
                     FilterConditionOperator::IS_NOT_BLANK => null
                 )
             );
             
-            $main_editor = new ComboBox('tamanhounidade_edit', $this->GetLocalizerCaptions()->GetMessageString('PleaseSelect'));
-            $main_editor->SetAllowNullValue(false);
-            
-            $multi_value_select_editor = new MultiValueSelect('tamanhoUnidade');
-            $multi_value_select_editor->setChoices($main_editor->getChoices());
+            $main_editor = new TextEdit('tamanhounidade_edit');
             
             $filterBuilder->addColumn(
                 $columns['tamanhoUnidade'],
@@ -2381,8 +2389,6 @@
                     FilterConditionOperator::IS_LESS_THAN_OR_EQUAL_TO => $main_editor,
                     FilterConditionOperator::IS_BETWEEN => $main_editor,
                     FilterConditionOperator::IS_NOT_BETWEEN => $main_editor,
-                    FilterConditionOperator::IN => $multi_value_select_editor,
-                    FilterConditionOperator::NOT_IN => $multi_value_select_editor,
                     FilterConditionOperator::IS_BLANK => null,
                     FilterConditionOperator::IS_NOT_BLANK => null
                 )
@@ -2525,6 +2531,16 @@
             }
             
             //
+            // View column for idProduto field
+            //
+            $column = new NumberViewColumn('idProduto', 'idProduto', 'Id Produto', $this->dataset);
+            $column->SetOrderable(true);
+            $column->setNumberAfterDecimal(0);
+            $column->setThousandsSeparator(',');
+            $column->setDecimalSeparator('');
+            $column->setMinimalVisibility(ColumnVisibility::PHONE);
+            $grid->AddViewColumn($column);
+            //
             // View column for nomeCategoria field
             //
             $column = new TextViewColumn('idCategoria', 'idCategoria_nomeCategoria', 'Id Categoria', $this->dataset);
@@ -2569,7 +2585,7 @@
             //
             // View column for descricaoBebidas field
             //
-            $column = new TextViewColumn('descricaoBebidas', 'descricaoBebidas', 'Descricao Produto', $this->dataset);
+            $column = new TextViewColumn('descricaoBebidas', 'descricaoBebidas', 'Descricao Bebidas', $this->dataset);
             $column->SetOrderable(true);
             $column->SetMaxLength(75);
             $column->setMinimalVisibility(ColumnVisibility::PHONE);
@@ -2621,6 +2637,16 @@
         protected function AddSingleRecordViewColumns(Grid $grid)
         {
             //
+            // View column for idProduto field
+            //
+            $column = new NumberViewColumn('idProduto', 'idProduto', 'Id Produto', $this->dataset);
+            $column->SetOrderable(true);
+            $column->setNumberAfterDecimal(0);
+            $column->setThousandsSeparator(',');
+            $column->setDecimalSeparator('');
+            $grid->AddSingleRecordViewColumn($column);
+            
+            //
             // View column for nomeCategoria field
             //
             $column = new TextViewColumn('idCategoria', 'idCategoria_nomeCategoria', 'Id Categoria', $this->dataset);
@@ -2665,7 +2691,7 @@
             //
             // View column for descricaoBebidas field
             //
-            $column = new TextViewColumn('descricaoBebidas', 'descricaoBebidas', 'Descricao Produto', $this->dataset);
+            $column = new TextViewColumn('descricaoBebidas', 'descricaoBebidas', 'Descricao Bebidas', $this->dataset);
             $column->SetOrderable(true);
             $column->SetMaxLength(75);
             $grid->AddSingleRecordViewColumn($column);
@@ -2715,6 +2741,16 @@
     
         protected function AddEditColumns(Grid $grid)
         {
+            //
+            // Edit column for idProduto field
+            //
+            $editor = new TextEdit('idproduto_edit');
+            $editColumn = new CustomEditColumn('Id Produto', 'idProduto', $editor, $this->dataset);
+            $validator = new RequiredValidator(StringUtils::Format($this->GetLocalizerCaptions()->GetMessageString('RequiredValidationMessage'), $editColumn->GetCaption()));
+            $editor->GetValidatorCollection()->AddValidator($validator);
+            $this->ApplyCommonColumnEditProperties($editColumn);
+            $grid->AddEditColumn($editColumn);
+            
             //
             // Edit column for idCategoria field
             //
@@ -2793,15 +2829,12 @@
             $lookupDataset = new TableDataset(
                 MySqlIConnectionFactory::getInstance(),
                 GetConnectionOptions(),
-                '`ADG2L_MovimentacaoEstoque`');
+                '`ADG2L_CompraProduto`');
             $lookupDataset->addFields(
                 array(
-                    new IntegerField('idMovimentacao', true, true, true),
-                    new IntegerField('idProduto', true),
-                    new StringField('tipoMovimentacao', true),
-                    new IntegerField('quantidade', true),
-                    new DateTimeField('dataMovimentacao', true),
-                    new StringField('descricao')
+                    new IntegerField('idProduto', true, true),
+                    new IntegerField('idCompra', true, true),
+                    new IntegerField('quantidade')
                 )
             );
             $lookupDataset->setOrderByField('quantidade', 'ASC');
@@ -2815,7 +2848,7 @@
             // Edit column for descricaoBebidas field
             //
             $editor = new TextAreaEdit('descricaobebidas_edit', 50, 8);
-            $editColumn = new CustomEditColumn('Descricao Produto', 'descricaoBebidas', $editor, $this->dataset);
+            $editColumn = new CustomEditColumn('Descricao Bebidas', 'descricaoBebidas', $editor, $this->dataset);
             $editColumn->SetAllowSetToNull(true);
             $this->ApplyCommonColumnEditProperties($editColumn);
             $grid->AddEditColumn($editColumn);
@@ -2823,7 +2856,8 @@
             //
             // Edit column for tipoUnidade field
             //
-            $editor = new ComboBox('tipounidade_edit', $this->GetLocalizerCaptions()->GetMessageString('PleaseSelect'));
+            $editor = new TextEdit('tipounidade_edit');
+            $editor->SetMaxLength(45);
             $editColumn = new CustomEditColumn('Tipo Unidade', 'tipoUnidade', $editor, $this->dataset);
             $editColumn->SetAllowSetToNull(true);
             $this->ApplyCommonColumnEditProperties($editColumn);
@@ -2832,7 +2866,7 @@
             //
             // Edit column for tamanhoUnidade field
             //
-            $editor = new ComboBox('tamanhounidade_edit', $this->GetLocalizerCaptions()->GetMessageString('PleaseSelect'));
+            $editor = new TextEdit('tamanhounidade_edit');
             $editColumn = new CustomEditColumn('Tamanho Unidade', 'tamanhoUnidade', $editor, $this->dataset);
             $editColumn->SetAllowSetToNull(true);
             $this->ApplyCommonColumnEditProperties($editColumn);
@@ -2949,15 +2983,12 @@
             $lookupDataset = new TableDataset(
                 MySqlIConnectionFactory::getInstance(),
                 GetConnectionOptions(),
-                '`ADG2L_MovimentacaoEstoque`');
+                '`ADG2L_CompraProduto`');
             $lookupDataset->addFields(
                 array(
-                    new IntegerField('idMovimentacao', true, true, true),
-                    new IntegerField('idProduto', true),
-                    new StringField('tipoMovimentacao', true),
-                    new IntegerField('quantidade', true),
-                    new DateTimeField('dataMovimentacao', true),
-                    new StringField('descricao')
+                    new IntegerField('idProduto', true, true),
+                    new IntegerField('idCompra', true, true),
+                    new IntegerField('quantidade')
                 )
             );
             $lookupDataset->setOrderByField('quantidade', 'ASC');
@@ -2971,7 +3002,7 @@
             // Edit column for descricaoBebidas field
             //
             $editor = new TextAreaEdit('descricaobebidas_edit', 50, 8);
-            $editColumn = new CustomEditColumn('Descricao Produto', 'descricaoBebidas', $editor, $this->dataset);
+            $editColumn = new CustomEditColumn('Descricao Bebidas', 'descricaoBebidas', $editor, $this->dataset);
             $editColumn->SetAllowSetToNull(true);
             $this->ApplyCommonColumnEditProperties($editColumn);
             $grid->AddMultiEditColumn($editColumn);
@@ -2979,7 +3010,8 @@
             //
             // Edit column for tipoUnidade field
             //
-            $editor = new ComboBox('tipounidade_edit', $this->GetLocalizerCaptions()->GetMessageString('PleaseSelect'));
+            $editor = new TextEdit('tipounidade_edit');
+            $editor->SetMaxLength(45);
             $editColumn = new CustomEditColumn('Tipo Unidade', 'tipoUnidade', $editor, $this->dataset);
             $editColumn->SetAllowSetToNull(true);
             $this->ApplyCommonColumnEditProperties($editColumn);
@@ -2988,7 +3020,7 @@
             //
             // Edit column for tamanhoUnidade field
             //
-            $editor = new ComboBox('tamanhounidade_edit', $this->GetLocalizerCaptions()->GetMessageString('PleaseSelect'));
+            $editor = new TextEdit('tamanhounidade_edit');
             $editColumn = new CustomEditColumn('Tamanho Unidade', 'tamanhoUnidade', $editor, $this->dataset);
             $editColumn->SetAllowSetToNull(true);
             $this->ApplyCommonColumnEditProperties($editColumn);
@@ -3032,6 +3064,16 @@
     
         protected function AddInsertColumns(Grid $grid)
         {
+            //
+            // Edit column for idProduto field
+            //
+            $editor = new TextEdit('idproduto_edit');
+            $editColumn = new CustomEditColumn('Id Produto', 'idProduto', $editor, $this->dataset);
+            $validator = new RequiredValidator(StringUtils::Format($this->GetLocalizerCaptions()->GetMessageString('RequiredValidationMessage'), $editColumn->GetCaption()));
+            $editor->GetValidatorCollection()->AddValidator($validator);
+            $this->ApplyCommonColumnEditProperties($editColumn);
+            $grid->AddInsertColumn($editColumn);
+            
             //
             // Edit column for idCategoria field
             //
@@ -3110,15 +3152,12 @@
             $lookupDataset = new TableDataset(
                 MySqlIConnectionFactory::getInstance(),
                 GetConnectionOptions(),
-                '`ADG2L_MovimentacaoEstoque`');
+                '`ADG2L_CompraProduto`');
             $lookupDataset->addFields(
                 array(
-                    new IntegerField('idMovimentacao', true, true, true),
-                    new IntegerField('idProduto', true),
-                    new StringField('tipoMovimentacao', true),
-                    new IntegerField('quantidade', true),
-                    new DateTimeField('dataMovimentacao', true),
-                    new StringField('descricao')
+                    new IntegerField('idProduto', true, true),
+                    new IntegerField('idCompra', true, true),
+                    new IntegerField('quantidade')
                 )
             );
             $lookupDataset->setOrderByField('quantidade', 'ASC');
@@ -3132,7 +3171,7 @@
             // Edit column for descricaoBebidas field
             //
             $editor = new TextAreaEdit('descricaobebidas_edit', 50, 8);
-            $editColumn = new CustomEditColumn('Descricao Produto', 'descricaoBebidas', $editor, $this->dataset);
+            $editColumn = new CustomEditColumn('Descricao Bebidas', 'descricaoBebidas', $editor, $this->dataset);
             $editColumn->SetAllowSetToNull(true);
             $this->ApplyCommonColumnEditProperties($editColumn);
             $grid->AddInsertColumn($editColumn);
@@ -3140,7 +3179,8 @@
             //
             // Edit column for tipoUnidade field
             //
-            $editor = new ComboBox('tipounidade_edit', $this->GetLocalizerCaptions()->GetMessageString('PleaseSelect'));
+            $editor = new TextEdit('tipounidade_edit');
+            $editor->SetMaxLength(45);
             $editColumn = new CustomEditColumn('Tipo Unidade', 'tipoUnidade', $editor, $this->dataset);
             $editColumn->SetAllowSetToNull(true);
             $this->ApplyCommonColumnEditProperties($editColumn);
@@ -3149,7 +3189,7 @@
             //
             // Edit column for tamanhoUnidade field
             //
-            $editor = new ComboBox('tamanhounidade_edit', $this->GetLocalizerCaptions()->GetMessageString('PleaseSelect'));
+            $editor = new TextEdit('tamanhounidade_edit');
             $editColumn = new CustomEditColumn('Tamanho Unidade', 'tamanhoUnidade', $editor, $this->dataset);
             $editColumn->SetAllowSetToNull(true);
             $this->ApplyCommonColumnEditProperties($editColumn);
@@ -3195,6 +3235,16 @@
         protected function AddPrintColumns(Grid $grid)
         {
             //
+            // View column for idProduto field
+            //
+            $column = new NumberViewColumn('idProduto', 'idProduto', 'Id Produto', $this->dataset);
+            $column->SetOrderable(true);
+            $column->setNumberAfterDecimal(0);
+            $column->setThousandsSeparator(',');
+            $column->setDecimalSeparator('');
+            $grid->AddPrintColumn($column);
+            
+            //
             // View column for nomeCategoria field
             //
             $column = new TextViewColumn('idCategoria', 'idCategoria_nomeCategoria', 'Id Categoria', $this->dataset);
@@ -3239,7 +3289,7 @@
             //
             // View column for descricaoBebidas field
             //
-            $column = new TextViewColumn('descricaoBebidas', 'descricaoBebidas', 'Descricao Produto', $this->dataset);
+            $column = new TextViewColumn('descricaoBebidas', 'descricaoBebidas', 'Descricao Bebidas', $this->dataset);
             $column->SetOrderable(true);
             $column->SetMaxLength(75);
             $grid->AddPrintColumn($column);
@@ -3290,6 +3340,16 @@
         protected function AddExportColumns(Grid $grid)
         {
             //
+            // View column for idProduto field
+            //
+            $column = new NumberViewColumn('idProduto', 'idProduto', 'Id Produto', $this->dataset);
+            $column->SetOrderable(true);
+            $column->setNumberAfterDecimal(0);
+            $column->setThousandsSeparator(',');
+            $column->setDecimalSeparator('');
+            $grid->AddExportColumn($column);
+            
+            //
             // View column for nomeCategoria field
             //
             $column = new TextViewColumn('idCategoria', 'idCategoria_nomeCategoria', 'Id Categoria', $this->dataset);
@@ -3334,7 +3394,7 @@
             //
             // View column for descricaoBebidas field
             //
-            $column = new TextViewColumn('descricaoBebidas', 'descricaoBebidas', 'Descricao Produto', $this->dataset);
+            $column = new TextViewColumn('descricaoBebidas', 'descricaoBebidas', 'Descricao Bebidas', $this->dataset);
             $column->SetOrderable(true);
             $column->SetMaxLength(75);
             $grid->AddExportColumn($column);
@@ -3385,6 +3445,16 @@
         private function AddCompareColumns(Grid $grid)
         {
             //
+            // View column for idProduto field
+            //
+            $column = new NumberViewColumn('idProduto', 'idProduto', 'Id Produto', $this->dataset);
+            $column->SetOrderable(true);
+            $column->setNumberAfterDecimal(0);
+            $column->setThousandsSeparator(',');
+            $column->setDecimalSeparator('');
+            $grid->AddCompareColumn($column);
+            
+            //
             // View column for nomeCategoria field
             //
             $column = new TextViewColumn('idCategoria', 'idCategoria_nomeCategoria', 'Id Categoria', $this->dataset);
@@ -3429,7 +3499,7 @@
             //
             // View column for descricaoBebidas field
             //
-            $column = new TextViewColumn('descricaoBebidas', 'descricaoBebidas', 'Descricao Produto', $this->dataset);
+            $column = new TextViewColumn('descricaoBebidas', 'descricaoBebidas', 'Descricao Bebidas', $this->dataset);
             $column->SetOrderable(true);
             $column->SetMaxLength(75);
             $grid->AddCompareColumn($column);
@@ -3638,15 +3708,12 @@
             $lookupDataset = new TableDataset(
                 MySqlIConnectionFactory::getInstance(),
                 GetConnectionOptions(),
-                '`ADG2L_MovimentacaoEstoque`');
+                '`ADG2L_CompraProduto`');
             $lookupDataset->addFields(
                 array(
-                    new IntegerField('idMovimentacao', true, true, true),
-                    new IntegerField('idProduto', true),
-                    new StringField('tipoMovimentacao', true),
-                    new IntegerField('quantidade', true),
-                    new DateTimeField('dataMovimentacao', true),
-                    new StringField('descricao')
+                    new IntegerField('idProduto', true, true),
+                    new IntegerField('idCompra', true, true),
+                    new IntegerField('quantidade')
                 )
             );
             $lookupDataset->setOrderByField('quantidade', 'ASC');
@@ -3686,15 +3753,12 @@
             $lookupDataset = new TableDataset(
                 MySqlIConnectionFactory::getInstance(),
                 GetConnectionOptions(),
-                '`ADG2L_MovimentacaoEstoque`');
+                '`ADG2L_CompraProduto`');
             $lookupDataset->addFields(
                 array(
-                    new IntegerField('idMovimentacao', true, true, true),
-                    new IntegerField('idProduto', true),
-                    new StringField('tipoMovimentacao', true),
-                    new IntegerField('quantidade', true),
-                    new DateTimeField('dataMovimentacao', true),
-                    new StringField('descricao')
+                    new IntegerField('idProduto', true, true),
+                    new IntegerField('idCompra', true, true),
+                    new IntegerField('quantidade')
                 )
             );
             $lookupDataset->setOrderByField('quantidade', 'ASC');
@@ -3704,15 +3768,12 @@
             $lookupDataset = new TableDataset(
                 MySqlIConnectionFactory::getInstance(),
                 GetConnectionOptions(),
-                '`ADG2L_MovimentacaoEstoque`');
+                '`ADG2L_CompraProduto`');
             $lookupDataset->addFields(
                 array(
-                    new IntegerField('idMovimentacao', true, true, true),
-                    new IntegerField('idProduto', true),
-                    new StringField('tipoMovimentacao', true),
-                    new IntegerField('quantidade', true),
-                    new DateTimeField('dataMovimentacao', true),
-                    new StringField('descricao')
+                    new IntegerField('idProduto', true, true),
+                    new IntegerField('idCompra', true, true),
+                    new IntegerField('quantidade')
                 )
             );
             $lookupDataset->setOrderByField('quantidade', 'ASC');
@@ -3752,15 +3813,12 @@
             $lookupDataset = new TableDataset(
                 MySqlIConnectionFactory::getInstance(),
                 GetConnectionOptions(),
-                '`ADG2L_MovimentacaoEstoque`');
+                '`ADG2L_CompraProduto`');
             $lookupDataset->addFields(
                 array(
-                    new IntegerField('idMovimentacao', true, true, true),
-                    new IntegerField('idProduto', true),
-                    new StringField('tipoMovimentacao', true),
-                    new IntegerField('quantidade', true),
-                    new DateTimeField('dataMovimentacao', true),
-                    new StringField('descricao')
+                    new IntegerField('idProduto', true, true),
+                    new IntegerField('idCompra', true, true),
+                    new IntegerField('quantidade')
                 )
             );
             $lookupDataset->setOrderByField('quantidade', 'ASC');
@@ -3800,15 +3858,12 @@
             $lookupDataset = new TableDataset(
                 MySqlIConnectionFactory::getInstance(),
                 GetConnectionOptions(),
-                '`ADG2L_MovimentacaoEstoque`');
+                '`ADG2L_CompraProduto`');
             $lookupDataset->addFields(
                 array(
-                    new IntegerField('idMovimentacao', true, true, true),
-                    new IntegerField('idProduto', true),
-                    new StringField('tipoMovimentacao', true),
-                    new IntegerField('quantidade', true),
-                    new DateTimeField('dataMovimentacao', true),
-                    new StringField('descricao')
+                    new IntegerField('idProduto', true, true),
+                    new IntegerField('idCompra', true, true),
+                    new IntegerField('quantidade')
                 )
             );
             $lookupDataset->setOrderByField('quantidade', 'ASC');
