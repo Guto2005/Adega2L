@@ -58,6 +58,14 @@ header {
     min-width: 340px;
 }
 
+button {
+    padding: 15px;
+    font-size: 1.2vw;
+    cursor: pointer;
+    border-radius: 20px;
+    border: none;
+    transition: transform 0.3s, background-color 0.3s;
+  }
 
 a {
     text-decoration: none;
@@ -223,6 +231,47 @@ li {
     color: var(--cor-dourado);
 }
 
+/* Botão de Login (Desktop e Mobile) */
+#login-button, #login-button-mobile {
+    background-color: #6c757d; /* Cinza escuro */
+    color: #ffffff; /* Branco para o texto */
+  }
+  
+  #login-button:hover, #login-button-mobile:hover {
+    background-color: #5a6268; /* Cinza mais escuro no hover */
+    transform: scale(1.05); /* Aumenta ligeiramente o botão ao passar o mouse */
+  }
+  
+  /* Botão de Cadastro (Desktop e Mobile) */
+  #signup-button, #signup-button-mobile {
+    background-color: #FFD700; /* Dourado */
+    color: #343a40; /* Preto para o texto */
+  }
+  
+  #signup-button:hover, #signup-button-mobile:hover {
+    background-color: #e6c200; /* Dourado mais escuro no hover */
+    transform: scale(1.05); /* Aumenta ligeiramente o botão ao passar o mouse */
+  }
+  
+  /* Estilos para o Container de Links de Autenticação no Desktop */
+  #auth-links-desktop {
+    display: flex;
+    gap: 10px;
+  }
+  
+  /* Estilos para o Container de Links de Autenticação no Mobile */
+  #auth-links-mobile {
+    display: none;
+  }
+  
+
+.perfil {
+    display: flex;
+    align-items: center;
+}
+
+
+
 .perfil-modal {
     color: black;
     background-color: white;
@@ -235,13 +284,14 @@ li {
 .perfil-btn {
     display: flex;
     border: none;
-    flex-direction: column;
     color: var(--cor-branco);
     align-items: center;
     font-size: 1.8vw;
     width: 100%;
     padding-right: 30px;
     transition: all 0.3s ease; /* Para uma transição suave */
+    position: relative;
+    bottom: 10px;
 }
 
 .perfil-btn:hover {
@@ -257,7 +307,7 @@ li {
 #user-icon {
     font-size: 2.0vw;
     position: relative;
-    top: 20px;
+    right: 5px;
 }
 
 #home-icon {
@@ -607,9 +657,7 @@ li {
         transition: all 0.2s ease; /* Para uma transição suave */
     }
 
-
 }
-
 
 @media (max-width: 400px) {
 
@@ -634,6 +682,14 @@ li {
     .perfil-link-mobile .perfil-btn .perfil-titulo{
         font-size: 3.0vw;
     }
+
+    #auth-links-desktop {
+        display: none;
+      }
+    
+      #auth-links-mobile {
+        display: block;
+      }
 
     .perfil-link-mobile #user-icon {
         font-size: 3.0vw;
