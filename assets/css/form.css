@@ -1,0 +1,152 @@
+:root {
+    --cor-dourado: #FFD700;
+    --cor-preto: #000000;
+    --cor-branco: #FFFFFF;
+    --cor-preto-claro: #1f1f1f;
+}
+
+@font-face {
+    font-family: 'Sans-Italic';
+    src: url('./../fonts/OpenSans-Italic-VariableFont_wdth\,wght.ttf');
+}
+
+@font-face {
+    font-family: 'Sans-Variable';
+    src: url('./../fonts/OpenSans-VariableFont_wdth\,wght.ttf');
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    background-color: var(--cor-preto);
+    flex-direction: column;
+    color: white;
+    align-items: center;
+    gap: 50px;
+    overflow-x: hidden;
+    font-family: 'Sans-Variable', sans-serif;
+}
+
+a {
+    color: white;
+    text-decoration: none;
+}
+
+li {
+    list-style-type: none;
+}
+
+/* ========== Formulário de Envio ========== */
+
+.formulario-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    width: 100%;
+    padding: 20px;
+}
+
+.formulario-decoration {
+    display: flex;
+    width: 500px;
+    justify-content: center;
+    border: 1px solid var(--cor-dourado);
+    background: rgba(91, 91, 91, 0.50);
+    padding: 40px;
+    border-radius: 10px;
+    flex-direction: column;
+    align-items: center;
+}
+
+.formulario-title {
+    text-align: center;
+    color: var(--cor-dourado);
+    width: 100%;
+    margin-bottom: 20px;
+    font-size: 1.8rem;
+}
+
+/* Estilo do formulário */
+.formulario-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    font-size: 1.2rem;
+    border-radius: 10px;
+    border: 2px solid #000;
+    background: rgba(0, 0, 0, 0.50);
+    padding: 30px;
+    width: 100%;
+}
+
+/* Estilizando os inputs */
+.formulario-form input {
+    padding: 12px;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background: var(--cor-preto-claro);
+    color: white;
+}
+
+.formulario-form input::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.formulario-form input:focus {
+    outline: 2px solid var(--cor-dourado);
+}
+
+/* Botão de envio */
+.formulario-button {
+    width: 100%;
+    padding: 14px;
+    border-radius: 4px;
+    background: var(--cor-dourado);
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--cor-preto);
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.formulario-button:hover {
+    background: #e6c200;
+}
+
+/* Mensagem de sucesso */
+.sucesso-mensagem {
+    color: rgb(21, 241, 21);
+    font-size: 16px;
+    padding-top: 10px;
+    text-align: center;
+    width: 100%;
+    padding-bottom: 10px;
+}
+
+/* ========== Responsividade Melhorada ========== */
+
+@media (max-width: 768px) {
+    .formulario-decoration {
+        width: 90%;
+        padding: 25px;
+    }
+
+    .formulario-form {
+        padding: 25px;
+    }
+
+    .formulario-title {
+        font-size: 1.5rem;
+    }
+}
+
+
