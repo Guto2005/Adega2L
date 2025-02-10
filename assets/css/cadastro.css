@@ -132,6 +132,17 @@ li {
     padding-bottom: 10px;
 
 }
+
+.sucesso-mensagem{
+    color: rgb(21, 241, 21);
+    font-size: 16px;
+    padding-top: 10px;
+    text-align: center;
+    width: 100%;
+    padding-bottom: 10px;
+
+}
+
 /* Botão de cadastro */
 .cadastro-button {
     width: 100%;
@@ -187,6 +198,12 @@ input[type="number"] {
         width: 90%;
         padding: 20px;
     }
+
+    /* Ajuste do cadastro-container em telas menores */
+    .cadastro-container {
+        height: auto;
+        padding-bottom: 20px;  /* Adicionando um pequeno espaçamento inferior */
+    }
 }
 
 @media (max-width: 768px) {
@@ -202,6 +219,12 @@ input[type="number"] {
     .cadastro-decoration {
         width: 100%;
         padding: 20px;
+    }
+
+    /* Ajuste do cadastro-container em telas menores */
+    .cadastro-container {
+        height: auto;
+        padding-bottom: 30px; /* Adicionando um pequeno espaçamento inferior */
     }
 }
 
@@ -223,4 +246,11 @@ input[type="number"] {
         width: 100%;
         padding: 15px;
     }
+
+    /* Ajuste do cadastro-container em telas menores */
+    .cadastro-container {
+        height: auto;
+        padding-bottom: 40px; /* Ajuste final de espaçamento inferior */
+    }
 }
+

@@ -1,5 +1,6 @@
 <?php
 $erro = "";  // Variável para armazenar erros
+$sucesso = "";  // Variável para armazenar mensagem de sucesso
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Informações de conexão com o banco de dados
@@ -59,8 +60,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 ('$nome', '$email', '$senhaHash', '$cpf', '$tipoLogradouro', '$nomeLogradouro', '$numeroLogradouro', '$complementoLogradouro', '$bairro', '$cidade', '$cep', '$ddi', '$ddd', '$numeroTelefone', '$dataNasc')";
 
             if (mysqli_query($conn, $sql)) {
-                echo "Novo registro criado com sucesso";
-                exit;
+                // Mensagem de sucesso
+                $sucesso = "Cadastro realizado com sucesso!";
             } else {
                 $erro = "Erro ao cadastrar usuário: " . mysqli_error($conn);
             }
@@ -108,10 +109,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         <input type="date" name="dataNasc" value="<?php echo isset($_POST['dataNasc']) ? $_POST['dataNasc'] : ''; ?>" placeholder="Data de Nascimento" required>
 
-        <!-- Exibição da mensagem de erro com a nova classe -->
+        <!-- Exibição da mensagem de erro -->
         <?php if ($erro): ?>
             <div class="erro-mensagem">
                 <?php echo $erro; ?>
+            </div>
+        <?php endif; ?>
+
+        <!-- Exibição da mensagem de sucesso -->
+        <?php if ($sucesso): ?>
+            <div class="sucesso-mensagem">
+                <?php echo $sucesso; ?>
             </div>
         <?php endif; ?>
 
