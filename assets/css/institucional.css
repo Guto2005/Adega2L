@@ -388,20 +388,6 @@ img {vertical-align: middle;}
     background-color: #717171;
 }
 
-/* index responsivo */
-@media (max-width: 500px) {
-    header {
-        display: flex;
-        position: fixed;
-        top: 0;
-        border-bottom: 2px solid var(--cor-dourado);
-
-    }
-
-
-
-}
-
 .institucional-quem-somos-proposta {
     display: flex;
     flex-direction: row;
@@ -459,13 +445,13 @@ img {vertical-align: middle;}
 .nossa-historia-img {
     padding: 20px;
     background-color: var(--cor-preto-claro);
-    padding: 29px;
+    padding: 5px;
 }
 
 .nossa-historia-img img {
     width: 100%;
     border: 2px solid var(--cor-dourado); 
-    padding: 29px;
+    padding: 5px;
 }
 
 .nossa-missao {
@@ -552,8 +538,8 @@ footer {
 }
 
  iframe{
-    width: 20vw;
-    height: 20vw;
+    width: 15vw;
+    height: 15vw;
     position: relative;
     top: 10px;
     transition: all 0.3s ease; /* Para uma transição suave */
@@ -607,6 +593,10 @@ iframe:hover {
         padding: 20px;
     }
 
+    .contato-endereco {
+       font-size: 2.0vw;
+    }
+
     .nossa-historia, .nossa-historia-img {
         width: 100%;
         margin-bottom: 20px;
@@ -619,7 +609,7 @@ iframe:hover {
 
 
     .footer-left h4 {
-        font-size: 1vw;
+        font-size: 2.0vw;
     }
 
     .footer-institucional {
@@ -636,15 +626,16 @@ iframe:hover {
         margin: 0 10px;
     }
 
-    .redes-sociais-titulo {
-        position: relative;
-        left: 58px;
-        font-size: 1.0vw;
-    }
-    
-
     .endereco a {
         font-size: 1rem;
+    }
+
+    iframe{
+        width: 30vw;
+        height: 30vw;
+        position: relative;
+        top: 10px;
+        transition: all 0.3s ease; /* Para uma transição suave */
     }
 }
 
@@ -670,6 +661,22 @@ iframe:hover {
         padding: 20px;
     }
 
+    .quem-somos {
+        font-size: 3.0vw;
+    }
+
+    .proposta-site-vendas {
+      font-size: 3.0vw;
+    }
+
+    .nossa-historia {
+      font-size: 3.0vw;
+    }
+
+    .nossa-missao {
+        font-size: 3.0vw;
+    }
+
     .SlideProduto {
         width: 23vw;
         border-radius: 20px;
@@ -677,7 +684,7 @@ iframe:hover {
 
     .contato-endereco {
         padding-top: 5px;
-        font-size: 2.0vw;
+        font-size: 3.0vw;
         width: 50%;
         display: flex;
         flex-direction: column;
@@ -703,7 +710,7 @@ iframe:hover {
     }
 
     .footer-left h4 {
-        font-size: 2.0vw;
+        font-size: 3.0vw;
     }
 
     .redes-sociais-titulo {
@@ -718,39 +725,47 @@ iframe:hover {
 
     #facebook-icon {
         color: var(--cor-dourado);
-        font-size: 3.0vw;
+        font-size: 6.0vw;
         transition: all 0.2s ease; /* Para uma transição suave */
     }
     
     #instagram-icon {
         color: var(--cor-dourado);
-        font-size: 3.0vw;
+        font-size: 6.0vw;
         transition: all 0.2s ease; /* Para uma transição suave */
     }
     
     #twitter-icon {
         color: var(--cor-dourado);
-        font-size: 3.0vw;
+        font-size: 6.0vw;
         transition: all 0.2s ease; /* Para uma transição suave */
     }
     
     #facebook-icon:hover {
         color: var(--cor-branco);
-        font-size: 4.0vw;
+        font-size: 5.0vw;
         transform: scale(1.2);
     }
     
     #instagram-icon:hover {
         color: var(--cor-branco);
-        font-size: 4.0vw;
+        font-size: 5.0vw;
         transform: scale(1.2);
     }
     
     #twitter-icon:hover {
         color: var(--cor-branco);
-        font-size: 4.0vw;
+        font-size: 5.0vw;
         transform: scale(1.2);
     
+    }
+
+    iframe{
+        width: 25vw;
+        height: 25vw;
+        position: relative;
+        top: 10px;
+        transition: all 0.3s ease; /* Para uma transição suave */
     }
   
 }
