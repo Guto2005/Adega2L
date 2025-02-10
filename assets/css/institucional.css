@@ -363,9 +363,8 @@ img {vertical-align: middle;}
 }
 
 .SlideProduto {
-    width: 100%;
+    width: 20vw;
     border-radius: 20px;
-    position: relative;
 }
 
 /* Dots/circles at the bottom */
@@ -532,14 +531,14 @@ footer {
 }
 
 .footer-left h4 {
-    font-size: 1.8vw;
+    font-size: 1.2vw;
     width: 100%;
 }
 
 .contato-endereco {
     padding-top: 5px;
     font-size: 1.2vw;
-    width: 50%;
+    width: 30%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -549,21 +548,21 @@ footer {
 .footer-right {
     width: 70%;
     display: flex;
-    gap: 64px;
-}
-
-
-.endereco-loja {
-    padding-left: 55px;
+    gap: 32px;
 }
 
  iframe{
-    width: 200px;
-    height: 200px;
+    width: 20vw;
+    height: 20vw;
     position: relative;
-    top: 40px;
-    left: 40px;
+    top: 10px;
     transition: all 0.3s ease; /* Para uma transição suave */
+}
+
+.redes-sociais-titulo {
+    position: relative;
+    left: 45px;
+    font-size: 1.0vw;
 }
 
 iframe:hover {
@@ -613,8 +612,14 @@ iframe:hover {
         margin-bottom: 20px;
     }
 
+    .SlideProduto {
+        width: 20vw;
+        border-radius: 20px;
+    }
+
+
     .footer-left h4 {
-        font-size: 1.4rem;
+        font-size: 1vw;
     }
 
     .footer-institucional {
@@ -630,6 +635,13 @@ iframe:hover {
         font-size: 1.5rem;
         margin: 0 10px;
     }
+
+    .redes-sociais-titulo {
+        position: relative;
+        left: 58px;
+        font-size: 1.0vw;
+    }
+    
 
     .endereco a {
         font-size: 1rem;
@@ -658,6 +670,21 @@ iframe:hover {
         padding: 20px;
     }
 
+    .SlideProduto {
+        width: 23vw;
+        border-radius: 20px;
+    }
+
+    .contato-endereco {
+        padding-top: 5px;
+        font-size: 2.0vw;
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
     .nossa-historia-container {
         flex-direction: column;
         padding: 20px;
@@ -676,12 +703,56 @@ iframe:hover {
     }
 
     .footer-left h4 {
-        font-size: 1.2rem;
+        font-size: 2.0vw;
+    }
+
+    .redes-sociais-titulo {
+        position: relative;
+        left: 0;
+        right: 10px;
     }
 
     .redes-sociais a {
         font-size: 1.2rem;
     }
+
+    #facebook-icon {
+        color: var(--cor-dourado);
+        font-size: 3.0vw;
+        transition: all 0.2s ease; /* Para uma transição suave */
+    }
+    
+    #instagram-icon {
+        color: var(--cor-dourado);
+        font-size: 3.0vw;
+        transition: all 0.2s ease; /* Para uma transição suave */
+    }
+    
+    #twitter-icon {
+        color: var(--cor-dourado);
+        font-size: 3.0vw;
+        transition: all 0.2s ease; /* Para uma transição suave */
+    }
+    
+    #facebook-icon:hover {
+        color: var(--cor-branco);
+        font-size: 4.0vw;
+        transform: scale(1.2);
+    }
+    
+    #instagram-icon:hover {
+        color: var(--cor-branco);
+        font-size: 4.0vw;
+        transform: scale(1.2);
+    }
+    
+    #twitter-icon:hover {
+        color: var(--cor-branco);
+        font-size: 4.0vw;
+        transform: scale(1.2);
+    
+    }
+  
 }
 
 /* Para telas extremamente pequenas (como smartphones muito compactos, até 320px) */
@@ -710,11 +781,26 @@ iframe:hover {
     }
 
     .footer-left h4 {
-        font-size: 1rem;
+        font-size: 2.0vw;
     }
 
     .redes-sociais a {
         font-size: 1.2rem;
         margin: 0 5px;
+    }
+
+    .redes-sociais-titulo {
+        position: relative;
+        left: 0;
+        right: 10px;
+    }
+
+    iframe{
+        width: 100px;
+        height: 100px;
+        position: relative;
+        top: 10px;
+        right: 20px;
+        transition: all 0.3s ease; /* Para uma transição suave */
     }
 }

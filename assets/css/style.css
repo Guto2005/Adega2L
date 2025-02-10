@@ -620,13 +620,6 @@ img {vertical-align: middle;}
     display: none;
 }
 
-.SlideProduto {
-    width: 70%;
-    border-radius: 20px;
-    position: relative;
-    left: 140px;
-}
-
 /* Next & previous buttons */
 .prev, .next {
     position: absolute;
@@ -756,7 +749,7 @@ img {vertical-align: middle;}
 .nossa-historia-img img {
     width: 100%;
     border: 2px solid var(--cor-dourado); 
-    padding: 29px;
+    padding: 10px;
 }
 
 .nossa-missao {

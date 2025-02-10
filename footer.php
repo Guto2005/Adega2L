@@ -2,7 +2,7 @@
     <div class="footer-institucional">
         <link rel="stylesheet" href="./assets/css/footer.css" />
         <div class="footer-left">
-            <h4>Redes Sociais</h4>
+            <h4 class="redes-sociais-titulo">Redes Sociais</h4>
             <div class="redes-sociais">
                 <a href="#"><i id="facebook-icon" class="fab fa-facebook"></i></a>
                 <a href="#"><i id="instagram-icon" class="fab fa-instagram"></i></a>
