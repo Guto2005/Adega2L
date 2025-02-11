@@ -270,6 +270,11 @@ img {vertical-align: middle;}  /*perguntar depois p o gustavo*/
     padding: 20px;
 }
 
+.nav-list {
+    position: relative;
+    bottom: 90px;
+}
+
 
 
 footer {

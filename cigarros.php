@@ -53,7 +53,7 @@
 
             <h2 class="catalogo-titulo">CATÁLOGO</h2>
             <div class="catalogo">
-                <ul>
+                <ul class="destaque-ul">
                     <?php
                     $produtosPorPagina = 15;
                     $pagina = isset($_GET['pagina']) ? (int)$_GET['pagina'] : 1;

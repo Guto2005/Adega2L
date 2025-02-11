@@ -139,24 +139,33 @@ img {vertical-align: middle;}
     padding: 0;
     margin: 0;
     list-style-type: none;
+    position: relative;
+}
+
+.destaque-ul {
+    position: relative;
+    left: 20px;
 }
 
 .catalogo {
     display: flex;
     flex-wrap: wrap;
-    flex-direction: column;
+    width: 100%;
     gap: 20px;
     justify-content: center;
     overflow: hidden;
     position: relative;
-    right: 2px;
-    width: 100%;
+    right: 20px;
 }
 
 .card-produto {
     width: 200px;
     box-sizing: border-box;
     margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 /* Ajuste de Responsividade */
