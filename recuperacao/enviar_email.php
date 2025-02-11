@@ -21,7 +21,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         // Gerar um token único para redefinição de senha
         $token = bin2hex(random_bytes(16)); // Gera um token seguro
-        $link_redefinicao = "http://seusite.com/redefinir_senha.php?token=$token";
+        $link_redefinicao = "http://localhost/Adega2L/recuperacao/recuperar_senha.php?token=$token";
+
 
         // Salvar o token no banco de dados (exemplo)
         // Aqui você deve conectar ao banco de dados e salvar o token associado ao e-mail
@@ -35,14 +36,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $mail->Host = 'smtp.gmail.com';
         $mail->SMTPAuth = true;
         $mail->Username = 'isabella.asltavares@gmail.com';  // Seu e-mail
-        $mail->Password = 'azej isex lxtd guat'; // Use a senha gerada no Google
+        $mail->Password = 'amgf taqx qcha kyzl'; // Use a senha gerada no Google
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
         $mail->Port = 587;
+
+        // Definir a codificação para UTF-8
+        $mail->CharSet = 'UTF-8';  // Definir codificação
+
+        // Se o e-mail for em HTML (com links clicáveis, etc.)
+        $mail->isHTML(true);  // Definir como HTML
+
         // Definir informações do e-mail
-        $mail->setFrom('edward166@gmail.com', 'Seu Nome');
+        $mail->setFrom('isabella.asltavares@gmail.com', 'Seu Nome');
         $mail->addAddress($email_destino, 'Usuário');
         $mail->Subject = 'Recuperação de Senha';
-        $mail->Body    = "Olá, \n\nClique no link abaixo para redefinir sua senha:\n\nhttp://seusite.com/redefinir_senha.php?email=$email_destino";
+        $mail->Body    = "Olá, <br><br>Clique no link abaixo para redefinir sua senha:<br><br><a href=\"$link_redefinicao\">Clique aqui</a>";
 
         // Enviar o e-mail
         $mail->send();
