@@ -925,7 +925,7 @@
         protected function DoBeforeCreate()
         {
             $this->SetTitle('ADG2 L Compra Estoque');
-            $this->SetMenuLabel('ADG2 L Compra Estoque');
+            $this->SetMenuLabel('Compra Estoque');
     
             $this->dataset = new TableDataset(
                 MySqlIConnectionFactory::getInstance(),
@@ -940,6 +940,7 @@
                     new IntegerField('idFornecedor', true)
                 )
             );
+            $this->dataset->AddLookupField('idFornecedor', 'ADG2L_Fornecedor', new StringField('nomeFornecedor'), new StringField('nomeFornecedor', false, false, false, false, 'idFornecedor_nomeFornecedor', 'idFornecedor_nomeFornecedor_ADG2L_Fornecedor'), 'idFornecedor_nomeFornecedor_ADG2L_Fornecedor');
         }
     
         protected function DoPrepare() {
@@ -974,14 +975,13 @@
                 new FilterColumn($this->dataset, 'quantidade', 'quantidade', 'Quantidade'),
                 new FilterColumn($this->dataset, 'dataCompra', 'dataCompra', 'Data Compra'),
                 new FilterColumn($this->dataset, 'descricao', 'descricao', 'Descricao'),
-                new FilterColumn($this->dataset, 'idFornecedor', 'idFornecedor', 'Id Fornecedor')
+                new FilterColumn($this->dataset, 'idFornecedor', 'idFornecedor_nomeFornecedor', 'Id Fornecedor')
             );
         }
     
         protected function setupQuickFilter(QuickFilter $quickFilter, FixedKeysArray $columns)
         {
             $quickFilter
-                ->addColumn($columns['idCompra'])
                 ->addColumn($columns['quantidade'])
                 ->addColumn($columns['dataCompra'])
                 ->addColumn($columns['descricao'])
@@ -991,29 +991,12 @@
         protected function setupColumnFilter(ColumnFilter $columnFilter)
         {
             $columnFilter
-                ->setOptionsFor('dataCompra');
+                ->setOptionsFor('dataCompra')
+                ->setOptionsFor('idFornecedor');
         }
     
         protected function setupFilterBuilder(FilterBuilder $filterBuilder, FixedKeysArray $columns)
         {
-            $main_editor = new TextEdit('idcompra_edit');
-            
-            $filterBuilder->addColumn(
-                $columns['idCompra'],
-                array(
-                    FilterConditionOperator::EQUALS => $main_editor,
-                    FilterConditionOperator::DOES_NOT_EQUAL => $main_editor,
-                    FilterConditionOperator::IS_GREATER_THAN => $main_editor,
-                    FilterConditionOperator::IS_GREATER_THAN_OR_EQUAL_TO => $main_editor,
-                    FilterConditionOperator::IS_LESS_THAN => $main_editor,
-                    FilterConditionOperator::IS_LESS_THAN_OR_EQUAL_TO => $main_editor,
-                    FilterConditionOperator::IS_BETWEEN => $main_editor,
-                    FilterConditionOperator::IS_NOT_BETWEEN => $main_editor,
-                    FilterConditionOperator::IS_BLANK => null,
-                    FilterConditionOperator::IS_NOT_BLANK => null
-                )
-            );
-            
             $main_editor = new TextEdit('quantidade_edit');
             
             $filterBuilder->addColumn(
@@ -1077,7 +1060,14 @@
                 )
             );
             
-            $main_editor = new TextEdit('idfornecedor_edit');
+            $main_editor = new DynamicCombobox('idfornecedor_edit', $this->CreateLinkBuilder());
+            $main_editor->setAllowClear(true);
+            $main_editor->setMinimumInputLength(0);
+            $main_editor->SetAllowNullValue(false);
+            $main_editor->SetHandlerName('filter_builder_ADG2L_CompraEstoque_idFornecedor_search');
+            
+            $multi_value_select_editor = new RemoteMultiValueSelect('idFornecedor', $this->CreateLinkBuilder());
+            $multi_value_select_editor->SetHandlerName('filter_builder_ADG2L_CompraEstoque_idFornecedor_search');
             
             $filterBuilder->addColumn(
                 $columns['idFornecedor'],
@@ -1090,6 +1080,8 @@
                     FilterConditionOperator::IS_LESS_THAN_OR_EQUAL_TO => $main_editor,
                     FilterConditionOperator::IS_BETWEEN => $main_editor,
                     FilterConditionOperator::IS_NOT_BETWEEN => $main_editor,
+                    FilterConditionOperator::IN => $multi_value_select_editor,
+                    FilterConditionOperator::NOT_IN => $multi_value_select_editor,
                     FilterConditionOperator::IS_BLANK => null,
                     FilterConditionOperator::IS_NOT_BLANK => null
                 )
@@ -1156,16 +1148,6 @@
             }
             
             //
-            // View column for idCompra field
-            //
-            $column = new NumberViewColumn('idCompra', 'idCompra', 'Id Compra', $this->dataset);
-            $column->SetOrderable(true);
-            $column->setNumberAfterDecimal(0);
-            $column->setThousandsSeparator(',');
-            $column->setDecimalSeparator('');
-            $column->setMinimalVisibility(ColumnVisibility::PHONE);
-            $grid->AddViewColumn($column);
-            //
             // View column for quantidade field
             //
             $column = new NumberViewColumn('quantidade', 'quantidade', 'Quantidade', $this->dataset);
@@ -1192,13 +1174,10 @@
             $column->setMinimalVisibility(ColumnVisibility::PHONE);
             $grid->AddViewColumn($column);
             //
-            // View column for idFornecedor field
+            // View column for nomeFornecedor field
             //
-            $column = new NumberViewColumn('idFornecedor', 'idFornecedor', 'Id Fornecedor', $this->dataset);
+            $column = new TextViewColumn('idFornecedor', 'idFornecedor_nomeFornecedor', 'Id Fornecedor', $this->dataset);
             $column->SetOrderable(true);
-            $column->setNumberAfterDecimal(0);
-            $column->setThousandsSeparator(',');
-            $column->setDecimalSeparator('');
             $column->setMinimalVisibility(ColumnVisibility::PHONE);
             $grid->AddViewColumn($column);
         }
@@ -1206,16 +1185,6 @@
         protected function AddSingleRecordViewColumns(Grid $grid)
         {
             //
-            // View column for idCompra field
-            //
-            $column = new NumberViewColumn('idCompra', 'idCompra', 'Id Compra', $this->dataset);
-            $column->SetOrderable(true);
-            $column->setNumberAfterDecimal(0);
-            $column->setThousandsSeparator(',');
-            $column->setDecimalSeparator('');
-            $grid->AddSingleRecordViewColumn($column);
-            
-            //
             // View column for quantidade field
             //
             $column = new NumberViewColumn('quantidade', 'quantidade', 'Quantidade', $this->dataset);
@@ -1242,28 +1211,15 @@
             $grid->AddSingleRecordViewColumn($column);
             
             //
-            // View column for idFornecedor field
+            // View column for nomeFornecedor field
             //
-            $column = new NumberViewColumn('idFornecedor', 'idFornecedor', 'Id Fornecedor', $this->dataset);
+            $column = new TextViewColumn('idFornecedor', 'idFornecedor_nomeFornecedor', 'Id Fornecedor', $this->dataset);
             $column->SetOrderable(true);
-            $column->setNumberAfterDecimal(0);
-            $column->setThousandsSeparator(',');
-            $column->setDecimalSeparator('');
             $grid->AddSingleRecordViewColumn($column);
         }
     
         protected function AddEditColumns(Grid $grid)
         {
-            //
-            // Edit column for idCompra field
-            //
-            $editor = new TextEdit('idcompra_edit');
-            $editColumn = new CustomEditColumn('Id Compra', 'idCompra', $editor, $this->dataset);
-            $validator = new RequiredValidator(StringUtils::Format($this->GetLocalizerCaptions()->GetMessageString('RequiredValidationMessage'), $editColumn->GetCaption()));
-            $editor->GetValidatorCollection()->AddValidator($validator);
-            $this->ApplyCommonColumnEditProperties($editColumn);
-            $grid->AddEditColumn($editColumn);
-            
             //
             // Edit column for quantidade field
             //
@@ -1296,8 +1252,23 @@
             //
             // Edit column for idFornecedor field
             //
-            $editor = new TextEdit('idfornecedor_edit');
-            $editColumn = new CustomEditColumn('Id Fornecedor', 'idFornecedor', $editor, $this->dataset);
+            $editor = new DynamicCombobox('idfornecedor_edit', $this->CreateLinkBuilder());
+            $editor->setAllowClear(true);
+            $editor->setMinimumInputLength(0);
+            $lookupDataset = new TableDataset(
+                MySqlIConnectionFactory::getInstance(),
+                GetConnectionOptions(),
+                '`ADG2L_Fornecedor`');
+            $lookupDataset->addFields(
+                array(
+                    new IntegerField('idFornecedor', true, true, true),
+                    new StringField('nomeFornecedor', true),
+                    new StringField('contatoTel', true),
+                    new StringField('CNPJ', true)
+                )
+            );
+            $lookupDataset->setOrderByField('nomeFornecedor', 'ASC');
+            $editColumn = new DynamicLookupEditColumn('Id Fornecedor', 'idFornecedor', 'idFornecedor_nomeFornecedor', 'edit_ADG2L_CompraEstoque_idFornecedor_search', $editor, $this->dataset, $lookupDataset, 'nomeFornecedor', 'nomeFornecedor', '');
             $validator = new RequiredValidator(StringUtils::Format($this->GetLocalizerCaptions()->GetMessageString('RequiredValidationMessage'), $editColumn->GetCaption()));
             $editor->GetValidatorCollection()->AddValidator($validator);
             $this->ApplyCommonColumnEditProperties($editColumn);
@@ -1338,8 +1309,23 @@
             //
             // Edit column for idFornecedor field
             //
-            $editor = new TextEdit('idfornecedor_edit');
-            $editColumn = new CustomEditColumn('Id Fornecedor', 'idFornecedor', $editor, $this->dataset);
+            $editor = new DynamicCombobox('idfornecedor_edit', $this->CreateLinkBuilder());
+            $editor->setAllowClear(true);
+            $editor->setMinimumInputLength(0);
+            $lookupDataset = new TableDataset(
+                MySqlIConnectionFactory::getInstance(),
+                GetConnectionOptions(),
+                '`ADG2L_Fornecedor`');
+            $lookupDataset->addFields(
+                array(
+                    new IntegerField('idFornecedor', true, true, true),
+                    new StringField('nomeFornecedor', true),
+                    new StringField('contatoTel', true),
+                    new StringField('CNPJ', true)
+                )
+            );
+            $lookupDataset->setOrderByField('nomeFornecedor', 'ASC');
+            $editColumn = new DynamicLookupEditColumn('Id Fornecedor', 'idFornecedor', 'idFornecedor_nomeFornecedor', 'multi_edit_ADG2L_CompraEstoque_idFornecedor_search', $editor, $this->dataset, $lookupDataset, 'nomeFornecedor', 'nomeFornecedor', '');
             $validator = new RequiredValidator(StringUtils::Format($this->GetLocalizerCaptions()->GetMessageString('RequiredValidationMessage'), $editColumn->GetCaption()));
             $editor->GetValidatorCollection()->AddValidator($validator);
             $this->ApplyCommonColumnEditProperties($editColumn);
@@ -1353,16 +1339,6 @@
     
         protected function AddInsertColumns(Grid $grid)
         {
-            //
-            // Edit column for idCompra field
-            //
-            $editor = new TextEdit('idcompra_edit');
-            $editColumn = new CustomEditColumn('Id Compra', 'idCompra', $editor, $this->dataset);
-            $validator = new RequiredValidator(StringUtils::Format($this->GetLocalizerCaptions()->GetMessageString('RequiredValidationMessage'), $editColumn->GetCaption()));
-            $editor->GetValidatorCollection()->AddValidator($validator);
-            $this->ApplyCommonColumnEditProperties($editColumn);
-            $grid->AddInsertColumn($editColumn);
-            
             //
             // Edit column for quantidade field
             //
@@ -1395,8 +1371,23 @@
             //
             // Edit column for idFornecedor field
             //
-            $editor = new TextEdit('idfornecedor_edit');
-            $editColumn = new CustomEditColumn('Id Fornecedor', 'idFornecedor', $editor, $this->dataset);
+            $editor = new DynamicCombobox('idfornecedor_edit', $this->CreateLinkBuilder());
+            $editor->setAllowClear(true);
+            $editor->setMinimumInputLength(0);
+            $lookupDataset = new TableDataset(
+                MySqlIConnectionFactory::getInstance(),
+                GetConnectionOptions(),
+                '`ADG2L_Fornecedor`');
+            $lookupDataset->addFields(
+                array(
+                    new IntegerField('idFornecedor', true, true, true),
+                    new StringField('nomeFornecedor', true),
+                    new StringField('contatoTel', true),
+                    new StringField('CNPJ', true)
+                )
+            );
+            $lookupDataset->setOrderByField('nomeFornecedor', 'ASC');
+            $editColumn = new DynamicLookupEditColumn('Id Fornecedor', 'idFornecedor', 'idFornecedor_nomeFornecedor', 'insert_ADG2L_CompraEstoque_idFornecedor_search', $editor, $this->dataset, $lookupDataset, 'nomeFornecedor', 'nomeFornecedor', '');
             $validator = new RequiredValidator(StringUtils::Format($this->GetLocalizerCaptions()->GetMessageString('RequiredValidationMessage'), $editColumn->GetCaption()));
             $editor->GetValidatorCollection()->AddValidator($validator);
             $this->ApplyCommonColumnEditProperties($editColumn);
@@ -1412,16 +1403,6 @@
         protected function AddPrintColumns(Grid $grid)
         {
             //
-            // View column for idCompra field
-            //
-            $column = new NumberViewColumn('idCompra', 'idCompra', 'Id Compra', $this->dataset);
-            $column->SetOrderable(true);
-            $column->setNumberAfterDecimal(0);
-            $column->setThousandsSeparator(',');
-            $column->setDecimalSeparator('');
-            $grid->AddPrintColumn($column);
-            
-            //
             // View column for quantidade field
             //
             $column = new NumberViewColumn('quantidade', 'quantidade', 'Quantidade', $this->dataset);
@@ -1448,29 +1429,16 @@
             $grid->AddPrintColumn($column);
             
             //
-            // View column for idFornecedor field
+            // View column for nomeFornecedor field
             //
-            $column = new NumberViewColumn('idFornecedor', 'idFornecedor', 'Id Fornecedor', $this->dataset);
+            $column = new TextViewColumn('idFornecedor', 'idFornecedor_nomeFornecedor', 'Id Fornecedor', $this->dataset);
             $column->SetOrderable(true);
-            $column->setNumberAfterDecimal(0);
-            $column->setThousandsSeparator(',');
-            $column->setDecimalSeparator('');
             $grid->AddPrintColumn($column);
         }
     
         protected function AddExportColumns(Grid $grid)
         {
             //
-            // View column for idCompra field
-            //
-            $column = new NumberViewColumn('idCompra', 'idCompra', 'Id Compra', $this->dataset);
-            $column->SetOrderable(true);
-            $column->setNumberAfterDecimal(0);
-            $column->setThousandsSeparator(',');
-            $column->setDecimalSeparator('');
-            $grid->AddExportColumn($column);
-            
-            //
             // View column for quantidade field
             //
             $column = new NumberViewColumn('quantidade', 'quantidade', 'Quantidade', $this->dataset);
@@ -1497,29 +1465,16 @@
             $grid->AddExportColumn($column);
             
             //
-            // View column for idFornecedor field
+            // View column for nomeFornecedor field
             //
-            $column = new NumberViewColumn('idFornecedor', 'idFornecedor', 'Id Fornecedor', $this->dataset);
+            $column = new TextViewColumn('idFornecedor', 'idFornecedor_nomeFornecedor', 'Id Fornecedor', $this->dataset);
             $column->SetOrderable(true);
-            $column->setNumberAfterDecimal(0);
-            $column->setThousandsSeparator(',');
-            $column->setDecimalSeparator('');
             $grid->AddExportColumn($column);
         }
     
         private function AddCompareColumns(Grid $grid)
         {
             //
-            // View column for idCompra field
-            //
-            $column = new NumberViewColumn('idCompra', 'idCompra', 'Id Compra', $this->dataset);
-            $column->SetOrderable(true);
-            $column->setNumberAfterDecimal(0);
-            $column->setThousandsSeparator(',');
-            $column->setDecimalSeparator('');
-            $grid->AddCompareColumn($column);
-            
-            //
             // View column for quantidade field
             //
             $column = new NumberViewColumn('quantidade', 'quantidade', 'Quantidade', $this->dataset);
@@ -1546,13 +1501,10 @@
             $grid->AddCompareColumn($column);
             
             //
-            // View column for idFornecedor field
+            // View column for nomeFornecedor field
             //
-            $column = new NumberViewColumn('idFornecedor', 'idFornecedor', 'Id Fornecedor', $this->dataset);
+            $column = new TextViewColumn('idFornecedor', 'idFornecedor_nomeFornecedor', 'Id Fornecedor', $this->dataset);
             $column->SetOrderable(true);
-            $column->setNumberAfterDecimal(0);
-            $column->setThousandsSeparator(',');
-            $column->setDecimalSeparator('');
             $grid->AddCompareColumn($column);
         }
     
@@ -1678,6 +1630,69 @@
             $handler = new PageHTTPHandler('ADG2L_CompraEstoque_ADG2L_CompraProduto_handler', $detailPage);
             GetApplication()->RegisterHTTPHandler($handler);
             
+            $lookupDataset = new TableDataset(
+                MySqlIConnectionFactory::getInstance(),
+                GetConnectionOptions(),
+                '`ADG2L_Fornecedor`');
+            $lookupDataset->addFields(
+                array(
+                    new IntegerField('idFornecedor', true, true, true),
+                    new StringField('nomeFornecedor', true),
+                    new StringField('contatoTel', true),
+                    new StringField('CNPJ', true)
+                )
+            );
+            $lookupDataset->setOrderByField('nomeFornecedor', 'ASC');
+            $handler = new DynamicSearchHandler($lookupDataset, 'insert_ADG2L_CompraEstoque_idFornecedor_search', 'nomeFornecedor', 'nomeFornecedor', null, 20);
+            GetApplication()->RegisterHTTPHandler($handler);
+            
+            $lookupDataset = new TableDataset(
+                MySqlIConnectionFactory::getInstance(),
+                GetConnectionOptions(),
+                '`ADG2L_Fornecedor`');
+            $lookupDataset->addFields(
+                array(
+                    new IntegerField('idFornecedor', true, true, true),
+                    new StringField('nomeFornecedor', true),
+                    new StringField('contatoTel', true),
+                    new StringField('CNPJ', true)
+                )
+            );
+            $lookupDataset->setOrderByField('nomeFornecedor', 'ASC');
+            $handler = new DynamicSearchHandler($lookupDataset, 'filter_builder_ADG2L_CompraEstoque_idFornecedor_search', 'nomeFornecedor', 'nomeFornecedor', null, 20);
+            GetApplication()->RegisterHTTPHandler($handler);
+            
+            $lookupDataset = new TableDataset(
+                MySqlIConnectionFactory::getInstance(),
+                GetConnectionOptions(),
+                '`ADG2L_Fornecedor`');
+            $lookupDataset->addFields(
+                array(
+                    new IntegerField('idFornecedor', true, true, true),
+                    new StringField('nomeFornecedor', true),
+                    new StringField('contatoTel', true),
+                    new StringField('CNPJ', true)
+                )
+            );
+            $lookupDataset->setOrderByField('nomeFornecedor', 'ASC');
+            $handler = new DynamicSearchHandler($lookupDataset, 'edit_ADG2L_CompraEstoque_idFornecedor_search', 'nomeFornecedor', 'nomeFornecedor', null, 20);
+            GetApplication()->RegisterHTTPHandler($handler);
+            
+            $lookupDataset = new TableDataset(
+                MySqlIConnectionFactory::getInstance(),
+                GetConnectionOptions(),
+                '`ADG2L_Fornecedor`');
+            $lookupDataset->addFields(
+                array(
+                    new IntegerField('idFornecedor', true, true, true),
+                    new StringField('nomeFornecedor', true),
+                    new StringField('contatoTel', true),
+                    new StringField('CNPJ', true)
+                )
+            );
+            $lookupDataset->setOrderByField('nomeFornecedor', 'ASC');
+            $handler = new DynamicSearchHandler($lookupDataset, 'multi_edit_ADG2L_CompraEstoque_idFornecedor_search', 'nomeFornecedor', 'nomeFornecedor', null, 20);
+            GetApplication()->RegisterHTTPHandler($handler);
         }
        
         protected function doCustomRenderColumn($fieldName, $fieldData, $rowData, &$customText, &$handled)

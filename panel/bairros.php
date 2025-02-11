@@ -225,7 +225,7 @@
     {
         protected function DoBeforeCreate()
         {
-            $this->SetTitle('Bairros');
+            $this->SetTitle('Projeto Bairros');
             $this->SetMenuLabel('Bairros');
     
             $this->dataset = new TableDataset(

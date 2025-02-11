@@ -2009,6 +2009,494 @@
     
     }
     
+    class ADG2L_Vendas_idUsuarioModalViewPage extends ViewBasedPage
+    {
+        protected function DoBeforeCreate()
+        {
+            $this->dataset = new TableDataset(
+                MySqlIConnectionFactory::getInstance(),
+                GetConnectionOptions(),
+                '`ADG2L_Usuarios`');
+            $this->dataset->addFields(
+                array(
+                    new IntegerField('idUsuario', true, true, true),
+                    new StringField('nomeUsuario', true),
+                    new StringField('senhaUsuario', true),
+                    new StringField('emailUsuario', true),
+                    new StringField('cpfUsuario', true),
+                    new StringField('tipoLogradouro', true),
+                    new StringField('nomeLogradouro', true),
+                    new StringField('numeroLogradouro', true),
+                    new StringField('complementoLogradouro'),
+                    new StringField('bairro', true),
+                    new StringField('cidade', true),
+                    new StringField('cep', true),
+                    new StringField('DDI', true),
+                    new StringField('DDD', true),
+                    new StringField('numeroTelefone'),
+                    new DateTimeField('dataNasc'),
+                    new StringField('token_recuperacao')
+                )
+            );
+        }
+    
+        protected function DoPrepare() {
+    
+        }
+    
+        protected function AddSingleRecordViewColumns(Grid $grid)
+        {
+            //
+            // View column for idUsuario field
+            //
+            $column = new NumberViewColumn('idUsuario', 'idUsuario', 'Id Usuario', $this->dataset);
+            $column->SetOrderable(true);
+            $column->setNumberAfterDecimal(0);
+            $column->setThousandsSeparator(',');
+            $column->setDecimalSeparator('');
+            $grid->AddSingleRecordViewColumn($column);
+            
+            //
+            // View column for nomeUsuario field
+            //
+            $column = new TextViewColumn('nomeUsuario', 'nomeUsuario', 'Nome Usuario', $this->dataset);
+            $column->SetOrderable(true);
+            $column->SetMaxLength(75);
+            $grid->AddSingleRecordViewColumn($column);
+            
+            //
+            // View column for senhaUsuario field
+            //
+            $column = new TextViewColumn('senhaUsuario', 'senhaUsuario', 'Senha Usuario', $this->dataset);
+            $column->SetOrderable(true);
+            $column->SetMaxLength(75);
+            $grid->AddSingleRecordViewColumn($column);
+            
+            //
+            // View column for emailUsuario field
+            //
+            $column = new TextViewColumn('emailUsuario', 'emailUsuario', 'Email Usuario', $this->dataset);
+            $column->SetOrderable(true);
+            $grid->AddSingleRecordViewColumn($column);
+            
+            //
+            // View column for cpfUsuario field
+            //
+            $column = new TextViewColumn('cpfUsuario', 'cpfUsuario', 'Cpf Usuario', $this->dataset);
+            $column->SetOrderable(true);
+            $grid->AddSingleRecordViewColumn($column);
+            
+            //
+            // View column for tipoLogradouro field
+            //
+            $column = new TextViewColumn('tipoLogradouro', 'tipoLogradouro', 'Tipo Logradouro', $this->dataset);
+            $column->SetOrderable(true);
+            $grid->AddSingleRecordViewColumn($column);
+            
+            //
+            // View column for nomeLogradouro field
+            //
+            $column = new TextViewColumn('nomeLogradouro', 'nomeLogradouro', 'Nome Logradouro', $this->dataset);
+            $column->SetOrderable(true);
+            $column->SetMaxLength(75);
+            $grid->AddSingleRecordViewColumn($column);
+            
+            //
+            // View column for numeroLogradouro field
+            //
+            $column = new TextViewColumn('numeroLogradouro', 'numeroLogradouro', 'Numero Logradouro', $this->dataset);
+            $column->SetOrderable(true);
+            $grid->AddSingleRecordViewColumn($column);
+            
+            //
+            // View column for complementoLogradouro field
+            //
+            $column = new TextViewColumn('complementoLogradouro', 'complementoLogradouro', 'Complemento Logradouro', $this->dataset);
+            $column->SetOrderable(true);
+            $column->SetMaxLength(75);
+            $grid->AddSingleRecordViewColumn($column);
+            
+            //
+            // View column for bairro field
+            //
+            $column = new TextViewColumn('bairro', 'bairro', 'Bairro', $this->dataset);
+            $column->SetOrderable(true);
+            $grid->AddSingleRecordViewColumn($column);
+            
+            //
+            // View column for cidade field
+            //
+            $column = new TextViewColumn('cidade', 'cidade', 'Cidade', $this->dataset);
+            $column->SetOrderable(true);
+            $grid->AddSingleRecordViewColumn($column);
+            
+            //
+            // View column for cep field
+            //
+            $column = new TextViewColumn('cep', 'cep', 'Cep', $this->dataset);
+            $column->SetOrderable(true);
+            $grid->AddSingleRecordViewColumn($column);
+            
+            //
+            // View column for DDI field
+            //
+            $column = new TextViewColumn('DDI', 'DDI', 'DDI', $this->dataset);
+            $column->SetOrderable(true);
+            $grid->AddSingleRecordViewColumn($column);
+            
+            //
+            // View column for DDD field
+            //
+            $column = new TextViewColumn('DDD', 'DDD', 'DDD', $this->dataset);
+            $column->SetOrderable(true);
+            $grid->AddSingleRecordViewColumn($column);
+            
+            //
+            // View column for numeroTelefone field
+            //
+            $column = new TextViewColumn('numeroTelefone', 'numeroTelefone', 'Numero Telefone', $this->dataset);
+            $column->SetOrderable(true);
+            $grid->AddSingleRecordViewColumn($column);
+            
+            //
+            // View column for dataNasc field
+            //
+            $column = new DateTimeViewColumn('dataNasc', 'dataNasc', 'Data Nasc', $this->dataset);
+            $column->SetOrderable(true);
+            $column->SetDateTimeFormat('d-m-Y H:i:s');
+            $grid->AddSingleRecordViewColumn($column);
+            
+            //
+            // View column for token_recuperacao field
+            //
+            $column = new TextViewColumn('token_recuperacao', 'token_recuperacao', 'Token Recuperacao', $this->dataset);
+            $column->SetOrderable(true);
+            $column->SetMaxLength(75);
+            $grid->AddSingleRecordViewColumn($column);
+        }
+    
+        function GetCustomClientScript()
+        {
+            return ;
+        }
+        
+        function GetOnPageLoadedClientScript()
+        {
+            return ;
+        }
+    
+        protected function setClientSideEvents(Grid $grid) {
+    
+        }
+    
+        protected function doRegisterHandlers() {
+            
+            
+        }
+    
+        static public function getHandlerName() {
+            return get_class() . '_modal_view';
+        }
+    
+        public function GetModalGridViewHandler() {
+            return self::getHandlerName();
+        }
+    
+        protected function ApplyCommonColumnEditProperties(CustomEditColumn $column)
+        {
+            $column->SetVariableContainer($this->GetColumnVariableContainer());
+        }
+    
+        protected function doGetCustomFormLayout($mode, FixedKeysArray $columns, FormLayout $layout)
+        {
+    
+        }
+    
+        protected function doGetCustomTemplate($type, $part, $mode, &$result, &$params)
+        {
+    
+        }
+    
+        protected function doCustomRenderColumn($fieldName, $fieldData, $rowData, &$customText, &$handled)
+        { 
+    
+        }
+    
+        protected function doCalculateFields($rowData, $fieldName, &$value)
+        {
+    
+        }
+    }
+    
+    class ADG2L_Vendas_idUsuarioNestedPage extends NestedFormPage
+    {
+        protected function DoBeforeCreate()
+        {
+            $this->dataset = new TableDataset(
+                MySqlIConnectionFactory::getInstance(),
+                GetConnectionOptions(),
+                '`ADG2L_Usuarios`');
+            $this->dataset->addFields(
+                array(
+                    new IntegerField('idUsuario', true, true, true),
+                    new StringField('nomeUsuario', true),
+                    new StringField('senhaUsuario', true),
+                    new StringField('emailUsuario', true),
+                    new StringField('cpfUsuario', true),
+                    new StringField('tipoLogradouro', true),
+                    new StringField('nomeLogradouro', true),
+                    new StringField('numeroLogradouro', true),
+                    new StringField('complementoLogradouro'),
+                    new StringField('bairro', true),
+                    new StringField('cidade', true),
+                    new StringField('cep', true),
+                    new StringField('DDI', true),
+                    new StringField('DDD', true),
+                    new StringField('numeroTelefone'),
+                    new DateTimeField('dataNasc'),
+                    new StringField('token_recuperacao')
+                )
+            );
+        }
+    
+        protected function DoPrepare() {
+    
+        }
+    
+        protected function AddInsertColumns(Grid $grid)
+        {
+            //
+            // Edit column for nomeUsuario field
+            //
+            $editor = new TextEdit('nomeusuario_edit');
+            $editor->SetMaxLength(80);
+            $editColumn = new CustomEditColumn('Nome Usuario', 'nomeUsuario', $editor, $this->dataset);
+            $validator = new RequiredValidator(StringUtils::Format($this->GetLocalizerCaptions()->GetMessageString('RequiredValidationMessage'), $editColumn->GetCaption()));
+            $editor->GetValidatorCollection()->AddValidator($validator);
+            $this->ApplyCommonColumnEditProperties($editColumn);
+            $grid->AddInsertColumn($editColumn);
+            
+            //
+            // Edit column for senhaUsuario field
+            //
+            $editor = new TextAreaEdit('senhausuario_edit', 50, 8);
+            $editColumn = new CustomEditColumn('Senha Usuario', 'senhaUsuario', $editor, $this->dataset);
+            $validator = new RequiredValidator(StringUtils::Format($this->GetLocalizerCaptions()->GetMessageString('RequiredValidationMessage'), $editColumn->GetCaption()));
+            $editor->GetValidatorCollection()->AddValidator($validator);
+            $this->ApplyCommonColumnEditProperties($editColumn);
+            $grid->AddInsertColumn($editColumn);
+            
+            //
+            // Edit column for emailUsuario field
+            //
+            $editor = new TextEdit('emailusuario_edit');
+            $editor->SetMaxLength(60);
+            $editColumn = new CustomEditColumn('Email Usuario', 'emailUsuario', $editor, $this->dataset);
+            $validator = new RequiredValidator(StringUtils::Format($this->GetLocalizerCaptions()->GetMessageString('RequiredValidationMessage'), $editColumn->GetCaption()));
+            $editor->GetValidatorCollection()->AddValidator($validator);
+            $this->ApplyCommonColumnEditProperties($editColumn);
+            $grid->AddInsertColumn($editColumn);
+            
+            //
+            // Edit column for cpfUsuario field
+            //
+            $editor = new TextEdit('cpfusuario_edit');
+            $editor->SetMaxLength(11);
+            $editColumn = new CustomEditColumn('Cpf Usuario', 'cpfUsuario', $editor, $this->dataset);
+            $validator = new RequiredValidator(StringUtils::Format($this->GetLocalizerCaptions()->GetMessageString('RequiredValidationMessage'), $editColumn->GetCaption()));
+            $editor->GetValidatorCollection()->AddValidator($validator);
+            $this->ApplyCommonColumnEditProperties($editColumn);
+            $grid->AddInsertColumn($editColumn);
+            
+            //
+            // Edit column for tipoLogradouro field
+            //
+            $editor = new TextEdit('tipologradouro_edit');
+            $editor->SetMaxLength(45);
+            $editColumn = new CustomEditColumn('Tipo Logradouro', 'tipoLogradouro', $editor, $this->dataset);
+            $validator = new RequiredValidator(StringUtils::Format($this->GetLocalizerCaptions()->GetMessageString('RequiredValidationMessage'), $editColumn->GetCaption()));
+            $editor->GetValidatorCollection()->AddValidator($validator);
+            $this->ApplyCommonColumnEditProperties($editColumn);
+            $grid->AddInsertColumn($editColumn);
+            
+            //
+            // Edit column for nomeLogradouro field
+            //
+            $editor = new TextEdit('nomelogradouro_edit');
+            $editor->SetMaxLength(100);
+            $editColumn = new CustomEditColumn('Nome Logradouro', 'nomeLogradouro', $editor, $this->dataset);
+            $validator = new RequiredValidator(StringUtils::Format($this->GetLocalizerCaptions()->GetMessageString('RequiredValidationMessage'), $editColumn->GetCaption()));
+            $editor->GetValidatorCollection()->AddValidator($validator);
+            $this->ApplyCommonColumnEditProperties($editColumn);
+            $grid->AddInsertColumn($editColumn);
+            
+            //
+            // Edit column for numeroLogradouro field
+            //
+            $editor = new TextEdit('numerologradouro_edit');
+            $editor->SetMaxLength(6);
+            $editColumn = new CustomEditColumn('Numero Logradouro', 'numeroLogradouro', $editor, $this->dataset);
+            $validator = new RequiredValidator(StringUtils::Format($this->GetLocalizerCaptions()->GetMessageString('RequiredValidationMessage'), $editColumn->GetCaption()));
+            $editor->GetValidatorCollection()->AddValidator($validator);
+            $this->ApplyCommonColumnEditProperties($editColumn);
+            $grid->AddInsertColumn($editColumn);
+            
+            //
+            // Edit column for complementoLogradouro field
+            //
+            $editor = new TextAreaEdit('complementologradouro_edit', 50, 8);
+            $editColumn = new CustomEditColumn('Complemento Logradouro', 'complementoLogradouro', $editor, $this->dataset);
+            $editColumn->SetAllowSetToNull(true);
+            $this->ApplyCommonColumnEditProperties($editColumn);
+            $grid->AddInsertColumn($editColumn);
+            
+            //
+            // Edit column for bairro field
+            //
+            $editor = new TextEdit('bairro_edit');
+            $editor->SetMaxLength(30);
+            $editColumn = new CustomEditColumn('Bairro', 'bairro', $editor, $this->dataset);
+            $validator = new RequiredValidator(StringUtils::Format($this->GetLocalizerCaptions()->GetMessageString('RequiredValidationMessage'), $editColumn->GetCaption()));
+            $editor->GetValidatorCollection()->AddValidator($validator);
+            $this->ApplyCommonColumnEditProperties($editColumn);
+            $grid->AddInsertColumn($editColumn);
+            
+            //
+            // Edit column for cidade field
+            //
+            $editor = new TextEdit('cidade_edit');
+            $editor->SetMaxLength(50);
+            $editColumn = new CustomEditColumn('Cidade', 'cidade', $editor, $this->dataset);
+            $validator = new RequiredValidator(StringUtils::Format($this->GetLocalizerCaptions()->GetMessageString('RequiredValidationMessage'), $editColumn->GetCaption()));
+            $editor->GetValidatorCollection()->AddValidator($validator);
+            $this->ApplyCommonColumnEditProperties($editColumn);
+            $grid->AddInsertColumn($editColumn);
+            
+            //
+            // Edit column for cep field
+            //
+            $editor = new TextEdit('cep_edit');
+            $editor->SetMaxLength(8);
+            $editColumn = new CustomEditColumn('Cep', 'cep', $editor, $this->dataset);
+            $validator = new RequiredValidator(StringUtils::Format($this->GetLocalizerCaptions()->GetMessageString('RequiredValidationMessage'), $editColumn->GetCaption()));
+            $editor->GetValidatorCollection()->AddValidator($validator);
+            $this->ApplyCommonColumnEditProperties($editColumn);
+            $grid->AddInsertColumn($editColumn);
+            
+            //
+            // Edit column for DDI field
+            //
+            $editor = new TextEdit('ddi_edit');
+            $editor->SetMaxLength(3);
+            $editColumn = new CustomEditColumn('DDI', 'DDI', $editor, $this->dataset);
+            $validator = new RequiredValidator(StringUtils::Format($this->GetLocalizerCaptions()->GetMessageString('RequiredValidationMessage'), $editColumn->GetCaption()));
+            $editor->GetValidatorCollection()->AddValidator($validator);
+            $this->ApplyCommonColumnEditProperties($editColumn);
+            $grid->AddInsertColumn($editColumn);
+            
+            //
+            // Edit column for DDD field
+            //
+            $editor = new TextEdit('ddd_edit');
+            $editor->SetMaxLength(3);
+            $editColumn = new CustomEditColumn('DDD', 'DDD', $editor, $this->dataset);
+            $validator = new RequiredValidator(StringUtils::Format($this->GetLocalizerCaptions()->GetMessageString('RequiredValidationMessage'), $editColumn->GetCaption()));
+            $editor->GetValidatorCollection()->AddValidator($validator);
+            $this->ApplyCommonColumnEditProperties($editColumn);
+            $grid->AddInsertColumn($editColumn);
+            
+            //
+            // Edit column for numeroTelefone field
+            //
+            $editor = new TextEdit('numerotelefone_edit');
+            $editor->SetMaxLength(9);
+            $editColumn = new CustomEditColumn('Numero Telefone', 'numeroTelefone', $editor, $this->dataset);
+            $editColumn->SetAllowSetToNull(true);
+            $this->ApplyCommonColumnEditProperties($editColumn);
+            $grid->AddInsertColumn($editColumn);
+            
+            //
+            // Edit column for dataNasc field
+            //
+            $editor = new DateTimeEdit('datanasc_edit', false, 'd-m-Y H:i:s');
+            $editColumn = new CustomEditColumn('Data Nasc', 'dataNasc', $editor, $this->dataset);
+            $editColumn->SetAllowSetToNull(true);
+            $this->ApplyCommonColumnEditProperties($editColumn);
+            $grid->AddInsertColumn($editColumn);
+            
+            //
+            // Edit column for token_recuperacao field
+            //
+            $editor = new TextAreaEdit('token_recuperacao_edit', 50, 8);
+            $editColumn = new CustomEditColumn('Token Recuperacao', 'token_recuperacao', $editor, $this->dataset);
+            $editColumn->SetAllowSetToNull(true);
+            $this->ApplyCommonColumnEditProperties($editColumn);
+            $grid->AddInsertColumn($editColumn);
+        }
+    
+        function GetCustomClientScript()
+        {
+            return ;
+        }
+        
+        function GetOnPageLoadedClientScript()
+        {
+            return ;
+        }
+    
+        protected function setClientSideEvents(Grid $grid) {
+    
+        }
+    
+        protected function ApplyCommonColumnEditProperties(CustomEditColumn $column)
+        {
+            $column->SetDisplaySetToNullCheckBox(false);
+            $column->SetDisplaySetToDefaultCheckBox(false);
+            $column->SetVariableContainer($this->GetColumnVariableContainer());
+        }
+    
+       static public function getNestedInsertHandlerName()
+        {
+            return get_class() . '_form_insert';
+        }
+    
+        public function GetGridInsertHandler()
+        {
+            return self::getNestedInsertHandlerName();
+        }
+    
+        protected function doGetCustomTemplate($type, $part, $mode, &$result, &$params)
+        {
+    
+        }
+    
+        protected function doGetCustomFormLayout($mode, FixedKeysArray $columns, FormLayout $layout)
+        {
+    
+        }
+    
+        protected function doFileUpload($fieldName, $rowData, &$result, &$accept, $originalFileName, $originalFileExtension, $fileSize, $tempFileName)
+        {
+    
+        }
+    
+        public function doCustomDefaultValues(&$values, &$handled) 
+        {
+    
+        }
+    
+        protected function doBeforeInsertRecord($page, &$rowData, $tableName, &$cancel, &$message, &$messageDisplayTime)
+        {
+    
+        }
+    
+        protected function doAfterInsertRecord($page, $rowData, $tableName, &$success, &$message, &$messageDisplayTime)
+        {
+    
+        }
+    
+    }
+    
     // OnBeforePageExecute event handler
     
     
@@ -2018,7 +2506,7 @@
         protected function DoBeforeCreate()
         {
             $this->SetTitle('ADG2 L Vendas');
-            $this->SetMenuLabel('ADG2 L Vendas');
+            $this->SetMenuLabel('Vendas');
     
             $this->dataset = new TableDataset(
                 MySqlIConnectionFactory::getInstance(),
@@ -2065,7 +2553,7 @@
         {
             return array(
                 new FilterColumn($this->dataset, 'idVenda', 'idVenda', 'Id Venda'),
-                new FilterColumn($this->dataset, 'idUsuario', 'idUsuario_nomeUsuario', 'Id Usuario'),
+                new FilterColumn($this->dataset, 'idUsuario', 'idUsuario_nomeUsuario', 'NomeUsuario'),
                 new FilterColumn($this->dataset, 'dataVenda', 'dataVenda', 'Data Venda'),
                 new FilterColumn($this->dataset, 'valorTotalVenda', 'valorTotalVenda', 'Valor Total Venda'),
                 new FilterColumn($this->dataset, 'formaDePagamento', 'formaDePagamento', 'Forma De Pagamento')
@@ -2075,7 +2563,6 @@
         protected function setupQuickFilter(QuickFilter $quickFilter, FixedKeysArray $columns)
         {
             $quickFilter
-                ->addColumn($columns['idVenda'])
                 ->addColumn($columns['idUsuario'])
                 ->addColumn($columns['dataVenda'])
                 ->addColumn($columns['valorTotalVenda'])
@@ -2091,24 +2578,6 @@
     
         protected function setupFilterBuilder(FilterBuilder $filterBuilder, FixedKeysArray $columns)
         {
-            $main_editor = new TextEdit('idvenda_edit');
-            
-            $filterBuilder->addColumn(
-                $columns['idVenda'],
-                array(
-                    FilterConditionOperator::EQUALS => $main_editor,
-                    FilterConditionOperator::DOES_NOT_EQUAL => $main_editor,
-                    FilterConditionOperator::IS_GREATER_THAN => $main_editor,
-                    FilterConditionOperator::IS_GREATER_THAN_OR_EQUAL_TO => $main_editor,
-                    FilterConditionOperator::IS_LESS_THAN => $main_editor,
-                    FilterConditionOperator::IS_LESS_THAN_OR_EQUAL_TO => $main_editor,
-                    FilterConditionOperator::IS_BETWEEN => $main_editor,
-                    FilterConditionOperator::IS_NOT_BETWEEN => $main_editor,
-                    FilterConditionOperator::IS_BLANK => null,
-                    FilterConditionOperator::IS_NOT_BLANK => null
-                )
-            );
-            
             $main_editor = new DynamicCombobox('idusuario_edit', $this->CreateLinkBuilder());
             $main_editor->setAllowClear(true);
             $main_editor->setMinimumInputLength(0);
@@ -2144,7 +2613,7 @@
                 )
             );
             
-            $main_editor = new DateTimeEdit('datavenda_edit', false, 'd-m-Y H:i:s');
+            $main_editor = new DateTimeEdit('datavenda_edit', false, 'Y-m-d H:i:s');
             
             $filterBuilder->addColumn(
                 $columns['dataVenda'],
@@ -2291,9 +2760,9 @@
             //
             // View column for nomeUsuario field
             //
-            $column = new TextViewColumn('idUsuario', 'idUsuario_nomeUsuario', 'Id Usuario', $this->dataset);
+            $column = new TextViewColumn('idUsuario', 'idUsuario_nomeUsuario', 'NomeUsuario', $this->dataset);
             $column->SetOrderable(true);
-            $column->SetMaxLength(75);
+            $column->setLookupRecordModalViewHandlerName(ADG2L_Vendas_idUsuarioModalViewPage::getHandlerName());
             $column->setMinimalVisibility(ColumnVisibility::PHONE);
             $grid->AddViewColumn($column);
             //
@@ -2326,21 +2795,11 @@
         protected function AddSingleRecordViewColumns(Grid $grid)
         {
             //
-            // View column for idVenda field
-            //
-            $column = new NumberViewColumn('idVenda', 'idVenda', 'Id Venda', $this->dataset);
-            $column->SetOrderable(true);
-            $column->setNumberAfterDecimal(0);
-            $column->setThousandsSeparator(',');
-            $column->setDecimalSeparator('');
-            $grid->AddSingleRecordViewColumn($column);
-            
-            //
             // View column for nomeUsuario field
             //
-            $column = new TextViewColumn('idUsuario', 'idUsuario_nomeUsuario', 'Id Usuario', $this->dataset);
+            $column = new TextViewColumn('idUsuario', 'idUsuario_nomeUsuario', 'NomeUsuario', $this->dataset);
             $column->SetOrderable(true);
-            $column->SetMaxLength(75);
+            $column->setLookupRecordModalViewHandlerName(ADG2L_Vendas_idUsuarioModalViewPage::getHandlerName());
             $grid->AddSingleRecordViewColumn($column);
             
             //
@@ -2408,20 +2867,23 @@
                     new StringField('DDI', true),
                     new StringField('DDD', true),
                     new StringField('numeroTelefone'),
-                    new DateTimeField('dataNasc')
+                    new DateTimeField('dataNasc'),
+                    new StringField('token_recuperacao')
                 )
             );
             $lookupDataset->setOrderByField('nomeUsuario', 'ASC');
-            $editColumn = new DynamicLookupEditColumn('Id Usuario', 'idUsuario', 'idUsuario_nomeUsuario', 'edit_ADG2L_Vendas_idUsuario_search', $editor, $this->dataset, $lookupDataset, 'idUsuario', 'nomeUsuario', '');
-            $validator = new RequiredValidator(StringUtils::Format($this->GetLocalizerCaptions()->GetMessageString('RequiredValidationMessage'), $editColumn->GetCaption()));
-            $editor->GetValidatorCollection()->AddValidator($validator);
+            $editColumn = new DynamicLookupEditColumn('NomeUsuario', 'idUsuario', 'idUsuario_nomeUsuario', 'edit_ADG2L_Vendas_idUsuario_search', $editor, $this->dataset, $lookupDataset, 'idUsuario', 'nomeUsuario', '');
+            $editColumn->setNestedInsertFormLink(
+                $this->GetHandlerLink(ADG2L_Vendas_idUsuarioNestedPage::getNestedInsertHandlerName())
+            );
+            $editColumn->SetAllowSetToNull(true);
             $this->ApplyCommonColumnEditProperties($editColumn);
             $grid->AddEditColumn($editColumn);
             
             //
             // Edit column for dataVenda field
             //
-            $editor = new DateTimeEdit('datavenda_edit', false, 'd-m-Y H:i:s');
+            $editor = new DateTimeEdit('datavenda_edit', false, 'Y-m-d H:i:s');
             $editColumn = new CustomEditColumn('Data Venda', 'dataVenda', $editor, $this->dataset);
             $validator = new RequiredValidator(StringUtils::Format($this->GetLocalizerCaptions()->GetMessageString('RequiredValidationMessage'), $editColumn->GetCaption()));
             $editor->GetValidatorCollection()->AddValidator($validator);
@@ -2479,20 +2941,23 @@
                     new StringField('DDI', true),
                     new StringField('DDD', true),
                     new StringField('numeroTelefone'),
-                    new DateTimeField('dataNasc')
+                    new DateTimeField('dataNasc'),
+                    new StringField('token_recuperacao')
                 )
             );
             $lookupDataset->setOrderByField('nomeUsuario', 'ASC');
-            $editColumn = new DynamicLookupEditColumn('Id Usuario', 'idUsuario', 'idUsuario_nomeUsuario', 'multi_edit_ADG2L_Vendas_idUsuario_search', $editor, $this->dataset, $lookupDataset, 'idUsuario', 'nomeUsuario', '');
-            $validator = new RequiredValidator(StringUtils::Format($this->GetLocalizerCaptions()->GetMessageString('RequiredValidationMessage'), $editColumn->GetCaption()));
-            $editor->GetValidatorCollection()->AddValidator($validator);
+            $editColumn = new DynamicLookupEditColumn('NomeUsuario', 'idUsuario', 'idUsuario_nomeUsuario', 'multi_edit_ADG2L_Vendas_idUsuario_search', $editor, $this->dataset, $lookupDataset, 'idUsuario', 'nomeUsuario', '');
+            $editColumn->setNestedInsertFormLink(
+                $this->GetHandlerLink(ADG2L_Vendas_idUsuarioNestedPage::getNestedInsertHandlerName())
+            );
+            $editColumn->SetAllowSetToNull(true);
             $this->ApplyCommonColumnEditProperties($editColumn);
             $grid->AddMultiEditColumn($editColumn);
             
             //
             // Edit column for dataVenda field
             //
-            $editor = new DateTimeEdit('datavenda_edit', false, 'd-m-Y H:i:s');
+            $editor = new DateTimeEdit('datavenda_edit', false, 'Y-m-d H:i:s');
             $editColumn = new CustomEditColumn('Data Venda', 'dataVenda', $editor, $this->dataset);
             $validator = new RequiredValidator(StringUtils::Format($this->GetLocalizerCaptions()->GetMessageString('RequiredValidationMessage'), $editColumn->GetCaption()));
             $editor->GetValidatorCollection()->AddValidator($validator);
@@ -2529,16 +2994,6 @@
         protected function AddInsertColumns(Grid $grid)
         {
             //
-            // Edit column for idVenda field
-            //
-            $editor = new TextEdit('idvenda_edit');
-            $editColumn = new CustomEditColumn('Id Venda', 'idVenda', $editor, $this->dataset);
-            $validator = new RequiredValidator(StringUtils::Format($this->GetLocalizerCaptions()->GetMessageString('RequiredValidationMessage'), $editColumn->GetCaption()));
-            $editor->GetValidatorCollection()->AddValidator($validator);
-            $this->ApplyCommonColumnEditProperties($editColumn);
-            $grid->AddInsertColumn($editColumn);
-            
-            //
             // Edit column for idUsuario field
             //
             $editor = new DynamicCombobox('idusuario_edit', $this->CreateLinkBuilder());
@@ -2565,20 +3020,23 @@
                     new StringField('DDI', true),
                     new StringField('DDD', true),
                     new StringField('numeroTelefone'),
-                    new DateTimeField('dataNasc')
+                    new DateTimeField('dataNasc'),
+                    new StringField('token_recuperacao')
                 )
             );
             $lookupDataset->setOrderByField('nomeUsuario', 'ASC');
-            $editColumn = new DynamicLookupEditColumn('Id Usuario', 'idUsuario', 'idUsuario_nomeUsuario', 'insert_ADG2L_Vendas_idUsuario_search', $editor, $this->dataset, $lookupDataset, 'idUsuario', 'nomeUsuario', '');
-            $validator = new RequiredValidator(StringUtils::Format($this->GetLocalizerCaptions()->GetMessageString('RequiredValidationMessage'), $editColumn->GetCaption()));
-            $editor->GetValidatorCollection()->AddValidator($validator);
+            $editColumn = new DynamicLookupEditColumn('NomeUsuario', 'idUsuario', 'idUsuario_nomeUsuario', 'insert_ADG2L_Vendas_idUsuario_search', $editor, $this->dataset, $lookupDataset, 'idUsuario', 'nomeUsuario', '');
+            $editColumn->setNestedInsertFormLink(
+                $this->GetHandlerLink(ADG2L_Vendas_idUsuarioNestedPage::getNestedInsertHandlerName())
+            );
+            $editColumn->SetAllowSetToNull(true);
             $this->ApplyCommonColumnEditProperties($editColumn);
             $grid->AddInsertColumn($editColumn);
             
             //
             // Edit column for dataVenda field
             //
-            $editor = new DateTimeEdit('datavenda_edit', false, 'd-m-Y H:i:s');
+            $editor = new DateTimeEdit('datavenda_edit', false, 'Y-m-d H:i:s');
             $editColumn = new CustomEditColumn('Data Venda', 'dataVenda', $editor, $this->dataset);
             $validator = new RequiredValidator(StringUtils::Format($this->GetLocalizerCaptions()->GetMessageString('RequiredValidationMessage'), $editColumn->GetCaption()));
             $editor->GetValidatorCollection()->AddValidator($validator);
@@ -2616,21 +3074,10 @@
         protected function AddPrintColumns(Grid $grid)
         {
             //
-            // View column for idVenda field
-            //
-            $column = new NumberViewColumn('idVenda', 'idVenda', 'Id Venda', $this->dataset);
-            $column->SetOrderable(true);
-            $column->setNumberAfterDecimal(0);
-            $column->setThousandsSeparator(',');
-            $column->setDecimalSeparator('');
-            $grid->AddPrintColumn($column);
-            
-            //
             // View column for nomeUsuario field
             //
-            $column = new TextViewColumn('idUsuario', 'idUsuario_nomeUsuario', 'Id Usuario', $this->dataset);
+            $column = new TextViewColumn('idUsuario', 'idUsuario_nomeUsuario', 'NomeUsuario', $this->dataset);
             $column->SetOrderable(true);
-            $column->SetMaxLength(75);
             $grid->AddPrintColumn($column);
             
             //
@@ -2662,21 +3109,10 @@
         protected function AddExportColumns(Grid $grid)
         {
             //
-            // View column for idVenda field
-            //
-            $column = new NumberViewColumn('idVenda', 'idVenda', 'Id Venda', $this->dataset);
-            $column->SetOrderable(true);
-            $column->setNumberAfterDecimal(0);
-            $column->setThousandsSeparator(',');
-            $column->setDecimalSeparator('');
-            $grid->AddExportColumn($column);
-            
-            //
             // View column for nomeUsuario field
             //
-            $column = new TextViewColumn('idUsuario', 'idUsuario_nomeUsuario', 'Id Usuario', $this->dataset);
+            $column = new TextViewColumn('idUsuario', 'idUsuario_nomeUsuario', 'NomeUsuario', $this->dataset);
             $column->SetOrderable(true);
-            $column->SetMaxLength(75);
             $grid->AddExportColumn($column);
             
             //
@@ -2708,21 +3144,10 @@
         private function AddCompareColumns(Grid $grid)
         {
             //
-            // View column for idVenda field
-            //
-            $column = new NumberViewColumn('idVenda', 'idVenda', 'Id Venda', $this->dataset);
-            $column->SetOrderable(true);
-            $column->setNumberAfterDecimal(0);
-            $column->setThousandsSeparator(',');
-            $column->setDecimalSeparator('');
-            $grid->AddCompareColumn($column);
-            
-            //
             // View column for nomeUsuario field
             //
-            $column = new TextViewColumn('idUsuario', 'idUsuario_nomeUsuario', 'Id Usuario', $this->dataset);
+            $column = new TextViewColumn('idUsuario', 'idUsuario_nomeUsuario', 'NomeUsuario', $this->dataset);
             $column->SetOrderable(true);
-            $column->SetMaxLength(75);
             $grid->AddCompareColumn($column);
             
             //
@@ -2900,7 +3325,8 @@
                     new StringField('DDI', true),
                     new StringField('DDD', true),
                     new StringField('numeroTelefone'),
-                    new DateTimeField('dataNasc')
+                    new DateTimeField('dataNasc'),
+                    new StringField('token_recuperacao')
                 )
             );
             $lookupDataset->setOrderByField('nomeUsuario', 'ASC');
@@ -2928,7 +3354,8 @@
                     new StringField('DDI', true),
                     new StringField('DDD', true),
                     new StringField('numeroTelefone'),
-                    new DateTimeField('dataNasc')
+                    new DateTimeField('dataNasc'),
+                    new StringField('token_recuperacao')
                 )
             );
             $lookupDataset->setOrderByField('nomeUsuario', 'ASC');
@@ -2956,7 +3383,8 @@
                     new StringField('DDI', true),
                     new StringField('DDD', true),
                     new StringField('numeroTelefone'),
-                    new DateTimeField('dataNasc')
+                    new DateTimeField('dataNasc'),
+                    new StringField('token_recuperacao')
                 )
             );
             $lookupDataset->setOrderByField('nomeUsuario', 'ASC');
@@ -2984,12 +3412,18 @@
                     new StringField('DDI', true),
                     new StringField('DDD', true),
                     new StringField('numeroTelefone'),
-                    new DateTimeField('dataNasc')
+                    new DateTimeField('dataNasc'),
+                    new StringField('token_recuperacao')
                 )
             );
             $lookupDataset->setOrderByField('nomeUsuario', 'ASC');
             $handler = new DynamicSearchHandler($lookupDataset, 'multi_edit_ADG2L_Vendas_idUsuario_search', 'idUsuario', 'nomeUsuario', null, 20);
             GetApplication()->RegisterHTTPHandler($handler);
+            
+            
+            
+            new ADG2L_Vendas_idUsuarioModalViewPage($this, GetCurrentUserPermissionsForPage('ADG2L_Vendas.idUsuario'));
+            new ADG2L_Vendas_idUsuarioNestedPage($this, GetCurrentUserPermissionsForPage('ADG2L_Vendas.idUsuario'));
         }
        
         protected function doCustomRenderColumn($fieldName, $fieldData, $rowData, &$customText, &$handled)

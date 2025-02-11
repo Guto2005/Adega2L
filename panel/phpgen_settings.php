@@ -61,14 +61,15 @@ function GetPageGroups()
 function GetPageInfos()
 {
     $result = array();
-    $result[] = array('caption' => 'ADG2 L Fluxo Caixa', 'short_caption' => 'ADG2 L Fluxo Caixa', 'filename' => 'ADG2L_FluxoCaixa.php', 'name' => 'ADG2L_FluxoCaixa', 'group_name' => 'Default', 'add_separator' => false, 'description' => '');
-    $result[] = array('caption' => 'ADG2 L Fornecedor', 'short_caption' => 'ADG2 L Fornecedor', 'filename' => 'ADG2L_Fornecedor.php', 'name' => 'ADG2L_Fornecedor', 'group_name' => 'Default', 'add_separator' => false, 'description' => '');
-    $result[] = array('caption' => 'ADG2 L Produtos', 'short_caption' => 'ADG2 L Produtos', 'filename' => 'ADG2L_Produtos.php', 'name' => 'ADG2L_Produtos', 'group_name' => 'Default', 'add_separator' => false, 'description' => '');
-    $result[] = array('caption' => 'ADG2 L Usuarios', 'short_caption' => 'ADG2 L Usuarios', 'filename' => 'ADG2L_Usuarios.php', 'name' => 'ADG2L_Usuarios', 'group_name' => 'Default', 'add_separator' => false, 'description' => '');
-    $result[] = array('caption' => 'ADG2 L Venda Produtos', 'short_caption' => 'ADG2 L Venda Produtos', 'filename' => 'ADG2L_VendaProdutos.php', 'name' => 'ADG2L_VendaProdutos', 'group_name' => 'Default', 'add_separator' => false, 'description' => '');
-    $result[] = array('caption' => 'ADG2 L Vendas', 'short_caption' => 'ADG2 L Vendas', 'filename' => 'ADG2L_Vendas.php', 'name' => 'ADG2L_Vendas', 'group_name' => 'Default', 'add_separator' => false, 'description' => '');
-    $result[] = array('caption' => 'ADG2 L Compra Estoque', 'short_caption' => 'ADG2 L Compra Estoque', 'filename' => 'ADG2L_CompraEstoque.php', 'name' => 'ADG2L_CompraEstoque', 'group_name' => 'Default', 'add_separator' => false, 'description' => '');
-    $result[] = array('caption' => 'ADG2 L Compra Produto', 'short_caption' => 'ADG2 L Compra Produto', 'filename' => 'ADG2L_CompraProduto.php', 'name' => 'ADG2L_CompraProduto', 'group_name' => 'Default', 'add_separator' => false, 'description' => '');
+    $result[] = array('caption' => 'Fluxo do Caixa', 'short_caption' => 'ADG2 L Fluxo Caixa', 'filename' => 'ADG2L_FluxoCaixa.php', 'name' => 'ADG2L_FluxoCaixa', 'group_name' => 'Default', 'add_separator' => false, 'description' => '');
+    $result[] = array('caption' => 'Fornecedor', 'short_caption' => 'ADG2 L Fornecedor', 'filename' => 'ADG2L_Fornecedor.php', 'name' => 'ADG2L_Fornecedor', 'group_name' => 'Default', 'add_separator' => false, 'description' => '');
+    $result[] = array('caption' => 'Movimentacao Estoque', 'short_caption' => 'ADG2 L Movimentacao Estoque', 'filename' => 'ADG2L_MovimentacaoEstoque.php', 'name' => 'ADG2L_MovimentacaoEstoque', 'group_name' => 'Default', 'add_separator' => false, 'description' => '');
+    $result[] = array('caption' => 'Produtos', 'short_caption' => 'ADG2 L Produtos', 'filename' => 'ADG2L_Produtos.php', 'name' => 'ADG2L_Produtos', 'group_name' => 'Default', 'add_separator' => false, 'description' => '');
+    $result[] = array('caption' => 'Usuarios', 'short_caption' => 'ADG2 L Usuarios', 'filename' => 'ADG2L_Usuarios.php', 'name' => 'ADG2L_Usuarios', 'group_name' => 'Default', 'add_separator' => false, 'description' => '');
+    $result[] = array('caption' => 'Venda Produtos', 'short_caption' => 'ADG2 L Venda Produtos', 'filename' => 'ADG2L_VendaProdutos.php', 'name' => 'ADG2L_VendaProdutos', 'group_name' => 'Default', 'add_separator' => false, 'description' => '');
+    $result[] = array('caption' => 'Vendas', 'short_caption' => 'ADG2 L Vendas', 'filename' => 'ADG2L_Vendas.php', 'name' => 'ADG2L_Vendas', 'group_name' => 'Default', 'add_separator' => false, 'description' => '');
+    $result[] = array('caption' => 'Compra Estoque', 'short_caption' => 'ADG2 L Compra Estoque', 'filename' => 'ADG2L_CompraEstoque.php', 'name' => 'ADG2L_CompraEstoque', 'group_name' => 'Default', 'add_separator' => false, 'description' => '');
+    $result[] = array('caption' => 'Compra Produto', 'short_caption' => 'ADG2 L Compra Produto', 'filename' => 'ADG2L_CompraProduto.php', 'name' => 'ADG2L_CompraProduto', 'group_name' => 'Default', 'add_separator' => false, 'description' => '');
     return $result;
 }
 

@@ -36,7 +36,7 @@
         protected function DoBeforeCreate()
         {
             $this->SetTitle('ADG2 L Compra Produto');
-            $this->SetMenuLabel('ADG2 L Compra Produto');
+            $this->SetMenuLabel('Compra Produto');
     
             $this->dataset = new TableDataset(
                 MySqlIConnectionFactory::getInstance(),
@@ -49,8 +49,9 @@
                     new IntegerField('quantidade')
                 )
             );
-            $this->dataset->AddLookupField('idProduto', 'ADG2L_Produtos', new IntegerField('idProduto'), new IntegerField('idCategoria', false, false, false, false, 'idProduto_idCategoria', 'idProduto_idCategoria_ADG2L_Produtos'), 'idProduto_idCategoria_ADG2L_Produtos');
-            $this->dataset->AddLookupField('idCompra', 'ADG2L_CompraEstoque', new IntegerField('idCompra'), new IntegerField('quantidade', false, false, false, false, 'idCompra_quantidade', 'idCompra_quantidade_ADG2L_CompraEstoque'), 'idCompra_quantidade_ADG2L_CompraEstoque');
+            $this->dataset->AddLookupField('idProduto', 'ADG2L_Produtos', new IntegerField('idProduto'), new IntegerField('idProduto', false, false, false, false, 'idProduto_idProduto', 'idProduto_idProduto_ADG2L_Produtos'), 'idProduto_idProduto_ADG2L_Produtos');
+            $this->dataset->AddLookupField('idCompra', 'ADG2L_CompraEstoque', new IntegerField('idCompra'), new IntegerField('idCompra', false, false, false, false, 'idCompra_idCompra', 'idCompra_idCompra_ADG2L_CompraEstoque'), 'idCompra_idCompra_ADG2L_CompraEstoque');
+            $this->dataset->AddLookupField('quantidade', 'ADG2L_CompraEstoque', new IntegerField('idCompra'), new IntegerField('quantidade', false, false, false, false, 'quantidade_quantidade', 'quantidade_quantidade_ADG2L_CompraEstoque'), 'quantidade_quantidade_ADG2L_CompraEstoque');
         }
     
         protected function DoPrepare() {
@@ -81,9 +82,9 @@
         protected function getFiltersColumns()
         {
             return array(
-                new FilterColumn($this->dataset, 'idProduto', 'idProduto_idCategoria', 'Id Produto'),
-                new FilterColumn($this->dataset, 'idCompra', 'idCompra_quantidade', 'Id Compra'),
-                new FilterColumn($this->dataset, 'quantidade', 'quantidade', 'Quantidade')
+                new FilterColumn($this->dataset, 'idProduto', 'idProduto_idProduto', 'Id Produto'),
+                new FilterColumn($this->dataset, 'idCompra', 'idCompra_idCompra', 'Id Compra'),
+                new FilterColumn($this->dataset, 'quantidade', 'quantidade_quantidade', 'Quantidade')
             );
         }
     
@@ -99,7 +100,8 @@
         {
             $columnFilter
                 ->setOptionsFor('idProduto')
-                ->setOptionsFor('idCompra');
+                ->setOptionsFor('idCompra')
+                ->setOptionsFor('quantidade');
         }
     
         protected function setupFilterBuilder(FilterBuilder $filterBuilder, FixedKeysArray $columns)
@@ -158,7 +160,14 @@
                 )
             );
             
-            $main_editor = new TextEdit('quantidade_edit');
+            $main_editor = new DynamicCombobox('quantidade_edit', $this->CreateLinkBuilder());
+            $main_editor->setAllowClear(true);
+            $main_editor->setMinimumInputLength(0);
+            $main_editor->SetAllowNullValue(false);
+            $main_editor->SetHandlerName('filter_builder_ADG2L_CompraProduto_quantidade_search');
+            
+            $multi_value_select_editor = new RemoteMultiValueSelect('quantidade', $this->CreateLinkBuilder());
+            $multi_value_select_editor->SetHandlerName('filter_builder_ADG2L_CompraProduto_quantidade_search');
             
             $filterBuilder->addColumn(
                 $columns['quantidade'],
@@ -171,6 +180,8 @@
                     FilterConditionOperator::IS_LESS_THAN_OR_EQUAL_TO => $main_editor,
                     FilterConditionOperator::IS_BETWEEN => $main_editor,
                     FilterConditionOperator::IS_NOT_BETWEEN => $main_editor,
+                    FilterConditionOperator::IN => $multi_value_select_editor,
+                    FilterConditionOperator::NOT_IN => $multi_value_select_editor,
                     FilterConditionOperator::IS_BLANK => null,
                     FilterConditionOperator::IS_NOT_BLANK => null
                 )
@@ -227,9 +238,19 @@
         protected function AddFieldColumns(Grid $grid, $withDetails = true)
         {
             //
-            // View column for idCategoria field
+            // View column for idProduto field
             //
-            $column = new NumberViewColumn('idProduto', 'idProduto_idCategoria', 'Id Produto', $this->dataset);
+            $column = new NumberViewColumn('idProduto', 'idProduto_idProduto', 'Id Produto', $this->dataset);
+            $column->SetOrderable(true);
+            $column->setNumberAfterDecimal(0);
+            $column->setThousandsSeparator(',');
+            $column->setDecimalSeparator('');
+            $column->setMinimalVisibility(ColumnVisibility::PHONE);
+            $grid->AddViewColumn($column);
+            //
+            // View column for idCompra field
+            //
+            $column = new NumberViewColumn('idCompra', 'idCompra_idCompra', 'Id Compra', $this->dataset);
             $column->SetOrderable(true);
             $column->setNumberAfterDecimal(0);
             $column->setThousandsSeparator(',');
@@ -239,17 +260,7 @@
             //
             // View column for quantidade field
             //
-            $column = new NumberViewColumn('idCompra', 'idCompra_quantidade', 'Id Compra', $this->dataset);
-            $column->SetOrderable(true);
-            $column->setNumberAfterDecimal(0);
-            $column->setThousandsSeparator(',');
-            $column->setDecimalSeparator('');
-            $column->setMinimalVisibility(ColumnVisibility::PHONE);
-            $grid->AddViewColumn($column);
-            //
-            // View column for quantidade field
-            //
-            $column = new NumberViewColumn('quantidade', 'quantidade', 'Quantidade', $this->dataset);
+            $column = new NumberViewColumn('quantidade', 'quantidade_quantidade', 'Quantidade', $this->dataset);
             $column->SetOrderable(true);
             $column->setNumberAfterDecimal(0);
             $column->setThousandsSeparator(',');
@@ -261,9 +272,19 @@
         protected function AddSingleRecordViewColumns(Grid $grid)
         {
             //
-            // View column for idCategoria field
+            // View column for idProduto field
             //
-            $column = new NumberViewColumn('idProduto', 'idProduto_idCategoria', 'Id Produto', $this->dataset);
+            $column = new NumberViewColumn('idProduto', 'idProduto_idProduto', 'Id Produto', $this->dataset);
+            $column->SetOrderable(true);
+            $column->setNumberAfterDecimal(0);
+            $column->setThousandsSeparator(',');
+            $column->setDecimalSeparator('');
+            $grid->AddSingleRecordViewColumn($column);
+            
+            //
+            // View column for idCompra field
+            //
+            $column = new NumberViewColumn('idCompra', 'idCompra_idCompra', 'Id Compra', $this->dataset);
             $column->SetOrderable(true);
             $column->setNumberAfterDecimal(0);
             $column->setThousandsSeparator(',');
@@ -273,17 +294,7 @@
             //
             // View column for quantidade field
             //
-            $column = new NumberViewColumn('idCompra', 'idCompra_quantidade', 'Id Compra', $this->dataset);
-            $column->SetOrderable(true);
-            $column->setNumberAfterDecimal(0);
-            $column->setThousandsSeparator(',');
-            $column->setDecimalSeparator('');
-            $grid->AddSingleRecordViewColumn($column);
-            
-            //
-            // View column for quantidade field
-            //
-            $column = new NumberViewColumn('quantidade', 'quantidade', 'Quantidade', $this->dataset);
+            $column = new NumberViewColumn('quantidade', 'quantidade_quantidade', 'Quantidade', $this->dataset);
             $column->SetOrderable(true);
             $column->setNumberAfterDecimal(0);
             $column->setThousandsSeparator(',');
@@ -319,8 +330,8 @@
                     new StringField('imagemProduto')
                 )
             );
-            $lookupDataset->setOrderByField('idCategoria', 'ASC');
-            $editColumn = new DynamicLookupEditColumn('Id Produto', 'idProduto', 'idProduto_idCategoria', 'edit_ADG2L_CompraProduto_idProduto_search', $editor, $this->dataset, $lookupDataset, 'idProduto', 'idCategoria', '');
+            $lookupDataset->setOrderByField('idProduto', 'ASC');
+            $editColumn = new DynamicLookupEditColumn('Id Produto', 'idProduto', 'idProduto_idProduto', 'edit_ADG2L_CompraProduto_idProduto_search', $editor, $this->dataset, $lookupDataset, 'idProduto', 'idProduto', '');
             $validator = new RequiredValidator(StringUtils::Format($this->GetLocalizerCaptions()->GetMessageString('RequiredValidationMessage'), $editColumn->GetCaption()));
             $editor->GetValidatorCollection()->AddValidator($validator);
             $this->ApplyCommonColumnEditProperties($editColumn);
@@ -345,8 +356,8 @@
                     new IntegerField('idFornecedor', true)
                 )
             );
-            $lookupDataset->setOrderByField('quantidade', 'ASC');
-            $editColumn = new DynamicLookupEditColumn('Id Compra', 'idCompra', 'idCompra_quantidade', 'edit_ADG2L_CompraProduto_idCompra_search', $editor, $this->dataset, $lookupDataset, 'idCompra', 'quantidade', '');
+            $lookupDataset->setOrderByField('idCompra', 'ASC');
+            $editColumn = new DynamicLookupEditColumn('Id Compra', 'idCompra', 'idCompra_idCompra', 'edit_ADG2L_CompraProduto_idCompra_search', $editor, $this->dataset, $lookupDataset, 'idCompra', 'idCompra', '');
             $validator = new RequiredValidator(StringUtils::Format($this->GetLocalizerCaptions()->GetMessageString('RequiredValidationMessage'), $editColumn->GetCaption()));
             $editor->GetValidatorCollection()->AddValidator($validator);
             $this->ApplyCommonColumnEditProperties($editColumn);
@@ -355,8 +366,24 @@
             //
             // Edit column for quantidade field
             //
-            $editor = new TextEdit('quantidade_edit');
-            $editColumn = new CustomEditColumn('Quantidade', 'quantidade', $editor, $this->dataset);
+            $editor = new DynamicCombobox('quantidade_edit', $this->CreateLinkBuilder());
+            $editor->setAllowClear(true);
+            $editor->setMinimumInputLength(0);
+            $lookupDataset = new TableDataset(
+                MySqlIConnectionFactory::getInstance(),
+                GetConnectionOptions(),
+                '`ADG2L_CompraEstoque`');
+            $lookupDataset->addFields(
+                array(
+                    new IntegerField('idCompra', true, true, true),
+                    new IntegerField('quantidade', true),
+                    new DateTimeField('dataCompra', true),
+                    new StringField('descricao'),
+                    new IntegerField('idFornecedor', true)
+                )
+            );
+            $lookupDataset->setOrderByField('quantidade', 'ASC');
+            $editColumn = new DynamicLookupEditColumn('Quantidade', 'quantidade', 'quantidade_quantidade', 'edit_ADG2L_CompraProduto_quantidade_search', $editor, $this->dataset, $lookupDataset, 'idCompra', 'quantidade', '');
             $editColumn->SetAllowSetToNull(true);
             $this->ApplyCommonColumnEditProperties($editColumn);
             $grid->AddEditColumn($editColumn);
@@ -367,8 +394,24 @@
             //
             // Edit column for quantidade field
             //
-            $editor = new TextEdit('quantidade_edit');
-            $editColumn = new CustomEditColumn('Quantidade', 'quantidade', $editor, $this->dataset);
+            $editor = new DynamicCombobox('quantidade_edit', $this->CreateLinkBuilder());
+            $editor->setAllowClear(true);
+            $editor->setMinimumInputLength(0);
+            $lookupDataset = new TableDataset(
+                MySqlIConnectionFactory::getInstance(),
+                GetConnectionOptions(),
+                '`ADG2L_CompraEstoque`');
+            $lookupDataset->addFields(
+                array(
+                    new IntegerField('idCompra', true, true, true),
+                    new IntegerField('quantidade', true),
+                    new DateTimeField('dataCompra', true),
+                    new StringField('descricao'),
+                    new IntegerField('idFornecedor', true)
+                )
+            );
+            $lookupDataset->setOrderByField('quantidade', 'ASC');
+            $editColumn = new DynamicLookupEditColumn('Quantidade', 'quantidade', 'quantidade_quantidade', 'multi_edit_ADG2L_CompraProduto_quantidade_search', $editor, $this->dataset, $lookupDataset, 'idCompra', 'quantidade', '');
             $editColumn->SetAllowSetToNull(true);
             $this->ApplyCommonColumnEditProperties($editColumn);
             $grid->AddMultiEditColumn($editColumn);
@@ -407,8 +450,8 @@
                     new StringField('imagemProduto')
                 )
             );
-            $lookupDataset->setOrderByField('idCategoria', 'ASC');
-            $editColumn = new DynamicLookupEditColumn('Id Produto', 'idProduto', 'idProduto_idCategoria', 'insert_ADG2L_CompraProduto_idProduto_search', $editor, $this->dataset, $lookupDataset, 'idProduto', 'idCategoria', '');
+            $lookupDataset->setOrderByField('idProduto', 'ASC');
+            $editColumn = new DynamicLookupEditColumn('Id Produto', 'idProduto', 'idProduto_idProduto', 'insert_ADG2L_CompraProduto_idProduto_search', $editor, $this->dataset, $lookupDataset, 'idProduto', 'idProduto', '');
             $validator = new RequiredValidator(StringUtils::Format($this->GetLocalizerCaptions()->GetMessageString('RequiredValidationMessage'), $editColumn->GetCaption()));
             $editor->GetValidatorCollection()->AddValidator($validator);
             $this->ApplyCommonColumnEditProperties($editColumn);
@@ -433,8 +476,8 @@
                     new IntegerField('idFornecedor', true)
                 )
             );
-            $lookupDataset->setOrderByField('quantidade', 'ASC');
-            $editColumn = new DynamicLookupEditColumn('Id Compra', 'idCompra', 'idCompra_quantidade', 'insert_ADG2L_CompraProduto_idCompra_search', $editor, $this->dataset, $lookupDataset, 'idCompra', 'quantidade', '');
+            $lookupDataset->setOrderByField('idCompra', 'ASC');
+            $editColumn = new DynamicLookupEditColumn('Id Compra', 'idCompra', 'idCompra_idCompra', 'insert_ADG2L_CompraProduto_idCompra_search', $editor, $this->dataset, $lookupDataset, 'idCompra', 'idCompra', '');
             $validator = new RequiredValidator(StringUtils::Format($this->GetLocalizerCaptions()->GetMessageString('RequiredValidationMessage'), $editColumn->GetCaption()));
             $editor->GetValidatorCollection()->AddValidator($validator);
             $this->ApplyCommonColumnEditProperties($editColumn);
@@ -443,8 +486,24 @@
             //
             // Edit column for quantidade field
             //
-            $editor = new TextEdit('quantidade_edit');
-            $editColumn = new CustomEditColumn('Quantidade', 'quantidade', $editor, $this->dataset);
+            $editor = new DynamicCombobox('quantidade_edit', $this->CreateLinkBuilder());
+            $editor->setAllowClear(true);
+            $editor->setMinimumInputLength(0);
+            $lookupDataset = new TableDataset(
+                MySqlIConnectionFactory::getInstance(),
+                GetConnectionOptions(),
+                '`ADG2L_CompraEstoque`');
+            $lookupDataset->addFields(
+                array(
+                    new IntegerField('idCompra', true, true, true),
+                    new IntegerField('quantidade', true),
+                    new DateTimeField('dataCompra', true),
+                    new StringField('descricao'),
+                    new IntegerField('idFornecedor', true)
+                )
+            );
+            $lookupDataset->setOrderByField('quantidade', 'ASC');
+            $editColumn = new DynamicLookupEditColumn('Quantidade', 'quantidade', 'quantidade_quantidade', 'insert_ADG2L_CompraProduto_quantidade_search', $editor, $this->dataset, $lookupDataset, 'idCompra', 'quantidade', '');
             $editColumn->SetAllowSetToNull(true);
             $this->ApplyCommonColumnEditProperties($editColumn);
             $grid->AddInsertColumn($editColumn);
@@ -459,9 +518,19 @@
         protected function AddPrintColumns(Grid $grid)
         {
             //
-            // View column for idCategoria field
+            // View column for idProduto field
             //
-            $column = new NumberViewColumn('idProduto', 'idProduto_idCategoria', 'Id Produto', $this->dataset);
+            $column = new NumberViewColumn('idProduto', 'idProduto_idProduto', 'Id Produto', $this->dataset);
+            $column->SetOrderable(true);
+            $column->setNumberAfterDecimal(0);
+            $column->setThousandsSeparator(',');
+            $column->setDecimalSeparator('');
+            $grid->AddPrintColumn($column);
+            
+            //
+            // View column for idCompra field
+            //
+            $column = new NumberViewColumn('idCompra', 'idCompra_idCompra', 'Id Compra', $this->dataset);
             $column->SetOrderable(true);
             $column->setNumberAfterDecimal(0);
             $column->setThousandsSeparator(',');
@@ -471,17 +540,7 @@
             //
             // View column for quantidade field
             //
-            $column = new NumberViewColumn('idCompra', 'idCompra_quantidade', 'Id Compra', $this->dataset);
-            $column->SetOrderable(true);
-            $column->setNumberAfterDecimal(0);
-            $column->setThousandsSeparator(',');
-            $column->setDecimalSeparator('');
-            $grid->AddPrintColumn($column);
-            
-            //
-            // View column for quantidade field
-            //
-            $column = new NumberViewColumn('quantidade', 'quantidade', 'Quantidade', $this->dataset);
+            $column = new NumberViewColumn('quantidade', 'quantidade_quantidade', 'Quantidade', $this->dataset);
             $column->SetOrderable(true);
             $column->setNumberAfterDecimal(0);
             $column->setThousandsSeparator(',');
@@ -492,9 +551,19 @@
         protected function AddExportColumns(Grid $grid)
         {
             //
-            // View column for idCategoria field
+            // View column for idProduto field
             //
-            $column = new NumberViewColumn('idProduto', 'idProduto_idCategoria', 'Id Produto', $this->dataset);
+            $column = new NumberViewColumn('idProduto', 'idProduto_idProduto', 'Id Produto', $this->dataset);
+            $column->SetOrderable(true);
+            $column->setNumberAfterDecimal(0);
+            $column->setThousandsSeparator(',');
+            $column->setDecimalSeparator('');
+            $grid->AddExportColumn($column);
+            
+            //
+            // View column for idCompra field
+            //
+            $column = new NumberViewColumn('idCompra', 'idCompra_idCompra', 'Id Compra', $this->dataset);
             $column->SetOrderable(true);
             $column->setNumberAfterDecimal(0);
             $column->setThousandsSeparator(',');
@@ -504,17 +573,7 @@
             //
             // View column for quantidade field
             //
-            $column = new NumberViewColumn('idCompra', 'idCompra_quantidade', 'Id Compra', $this->dataset);
-            $column->SetOrderable(true);
-            $column->setNumberAfterDecimal(0);
-            $column->setThousandsSeparator(',');
-            $column->setDecimalSeparator('');
-            $grid->AddExportColumn($column);
-            
-            //
-            // View column for quantidade field
-            //
-            $column = new NumberViewColumn('quantidade', 'quantidade', 'Quantidade', $this->dataset);
+            $column = new NumberViewColumn('quantidade', 'quantidade_quantidade', 'Quantidade', $this->dataset);
             $column->SetOrderable(true);
             $column->setNumberAfterDecimal(0);
             $column->setThousandsSeparator(',');
@@ -525,9 +584,19 @@
         private function AddCompareColumns(Grid $grid)
         {
             //
-            // View column for idCategoria field
+            // View column for idProduto field
             //
-            $column = new NumberViewColumn('idProduto', 'idProduto_idCategoria', 'Id Produto', $this->dataset);
+            $column = new NumberViewColumn('idProduto', 'idProduto_idProduto', 'Id Produto', $this->dataset);
+            $column->SetOrderable(true);
+            $column->setNumberAfterDecimal(0);
+            $column->setThousandsSeparator(',');
+            $column->setDecimalSeparator('');
+            $grid->AddCompareColumn($column);
+            
+            //
+            // View column for idCompra field
+            //
+            $column = new NumberViewColumn('idCompra', 'idCompra_idCompra', 'Id Compra', $this->dataset);
             $column->SetOrderable(true);
             $column->setNumberAfterDecimal(0);
             $column->setThousandsSeparator(',');
@@ -537,17 +606,7 @@
             //
             // View column for quantidade field
             //
-            $column = new NumberViewColumn('idCompra', 'idCompra_quantidade', 'Id Compra', $this->dataset);
-            $column->SetOrderable(true);
-            $column->setNumberAfterDecimal(0);
-            $column->setThousandsSeparator(',');
-            $column->setDecimalSeparator('');
-            $grid->AddCompareColumn($column);
-            
-            //
-            // View column for quantidade field
-            //
-            $column = new NumberViewColumn('quantidade', 'quantidade', 'Quantidade', $this->dataset);
+            $column = new NumberViewColumn('quantidade', 'quantidade_quantidade', 'Quantidade', $this->dataset);
             $column->SetOrderable(true);
             $column->setNumberAfterDecimal(0);
             $column->setThousandsSeparator(',');
@@ -669,8 +728,25 @@
                     new StringField('imagemProduto')
                 )
             );
-            $lookupDataset->setOrderByField('idCategoria', 'ASC');
-            $handler = new DynamicSearchHandler($lookupDataset, 'insert_ADG2L_CompraProduto_idProduto_search', 'idProduto', 'idCategoria', null, 20);
+            $lookupDataset->setOrderByField('idProduto', 'ASC');
+            $handler = new DynamicSearchHandler($lookupDataset, 'insert_ADG2L_CompraProduto_idProduto_search', 'idProduto', 'idProduto', null, 20);
+            GetApplication()->RegisterHTTPHandler($handler);
+            
+            $lookupDataset = new TableDataset(
+                MySqlIConnectionFactory::getInstance(),
+                GetConnectionOptions(),
+                '`ADG2L_CompraEstoque`');
+            $lookupDataset->addFields(
+                array(
+                    new IntegerField('idCompra', true, true, true),
+                    new IntegerField('quantidade', true),
+                    new DateTimeField('dataCompra', true),
+                    new StringField('descricao'),
+                    new IntegerField('idFornecedor', true)
+                )
+            );
+            $lookupDataset->setOrderByField('idCompra', 'ASC');
+            $handler = new DynamicSearchHandler($lookupDataset, 'insert_ADG2L_CompraProduto_idCompra_search', 'idCompra', 'idCompra', null, 20);
             GetApplication()->RegisterHTTPHandler($handler);
             
             $lookupDataset = new TableDataset(
@@ -687,7 +763,7 @@
                 )
             );
             $lookupDataset->setOrderByField('quantidade', 'ASC');
-            $handler = new DynamicSearchHandler($lookupDataset, 'insert_ADG2L_CompraProduto_idCompra_search', 'idCompra', 'quantidade', null, 20);
+            $handler = new DynamicSearchHandler($lookupDataset, 'insert_ADG2L_CompraProduto_quantidade_search', 'idCompra', 'quantidade', null, 20);
             GetApplication()->RegisterHTTPHandler($handler);
             
             $lookupDataset = new TableDataset(
@@ -710,8 +786,25 @@
                     new StringField('imagemProduto')
                 )
             );
-            $lookupDataset->setOrderByField('idCategoria', 'ASC');
-            $handler = new DynamicSearchHandler($lookupDataset, 'filter_builder_ADG2L_CompraProduto_idProduto_search', 'idProduto', 'idCategoria', null, 20);
+            $lookupDataset->setOrderByField('idProduto', 'ASC');
+            $handler = new DynamicSearchHandler($lookupDataset, 'filter_builder_ADG2L_CompraProduto_idProduto_search', 'idProduto', 'idProduto', null, 20);
+            GetApplication()->RegisterHTTPHandler($handler);
+            
+            $lookupDataset = new TableDataset(
+                MySqlIConnectionFactory::getInstance(),
+                GetConnectionOptions(),
+                '`ADG2L_CompraEstoque`');
+            $lookupDataset->addFields(
+                array(
+                    new IntegerField('idCompra', true, true, true),
+                    new IntegerField('quantidade', true),
+                    new DateTimeField('dataCompra', true),
+                    new StringField('descricao'),
+                    new IntegerField('idFornecedor', true)
+                )
+            );
+            $lookupDataset->setOrderByField('idCompra', 'ASC');
+            $handler = new DynamicSearchHandler($lookupDataset, 'filter_builder_ADG2L_CompraProduto_idCompra_search', 'idCompra', 'idCompra', null, 20);
             GetApplication()->RegisterHTTPHandler($handler);
             
             $lookupDataset = new TableDataset(
@@ -728,7 +821,7 @@
                 )
             );
             $lookupDataset->setOrderByField('quantidade', 'ASC');
-            $handler = new DynamicSearchHandler($lookupDataset, 'filter_builder_ADG2L_CompraProduto_idCompra_search', 'idCompra', 'quantidade', null, 20);
+            $handler = new DynamicSearchHandler($lookupDataset, 'filter_builder_ADG2L_CompraProduto_quantidade_search', 'idCompra', 'quantidade', null, 20);
             GetApplication()->RegisterHTTPHandler($handler);
             
             $lookupDataset = new TableDataset(
@@ -751,8 +844,25 @@
                     new StringField('imagemProduto')
                 )
             );
-            $lookupDataset->setOrderByField('idCategoria', 'ASC');
-            $handler = new DynamicSearchHandler($lookupDataset, 'edit_ADG2L_CompraProduto_idProduto_search', 'idProduto', 'idCategoria', null, 20);
+            $lookupDataset->setOrderByField('idProduto', 'ASC');
+            $handler = new DynamicSearchHandler($lookupDataset, 'edit_ADG2L_CompraProduto_idProduto_search', 'idProduto', 'idProduto', null, 20);
+            GetApplication()->RegisterHTTPHandler($handler);
+            
+            $lookupDataset = new TableDataset(
+                MySqlIConnectionFactory::getInstance(),
+                GetConnectionOptions(),
+                '`ADG2L_CompraEstoque`');
+            $lookupDataset->addFields(
+                array(
+                    new IntegerField('idCompra', true, true, true),
+                    new IntegerField('quantidade', true),
+                    new DateTimeField('dataCompra', true),
+                    new StringField('descricao'),
+                    new IntegerField('idFornecedor', true)
+                )
+            );
+            $lookupDataset->setOrderByField('idCompra', 'ASC');
+            $handler = new DynamicSearchHandler($lookupDataset, 'edit_ADG2L_CompraProduto_idCompra_search', 'idCompra', 'idCompra', null, 20);
             GetApplication()->RegisterHTTPHandler($handler);
             
             $lookupDataset = new TableDataset(
@@ -769,7 +879,24 @@
                 )
             );
             $lookupDataset->setOrderByField('quantidade', 'ASC');
-            $handler = new DynamicSearchHandler($lookupDataset, 'edit_ADG2L_CompraProduto_idCompra_search', 'idCompra', 'quantidade', null, 20);
+            $handler = new DynamicSearchHandler($lookupDataset, 'edit_ADG2L_CompraProduto_quantidade_search', 'idCompra', 'quantidade', null, 20);
+            GetApplication()->RegisterHTTPHandler($handler);
+            
+            $lookupDataset = new TableDataset(
+                MySqlIConnectionFactory::getInstance(),
+                GetConnectionOptions(),
+                '`ADG2L_CompraEstoque`');
+            $lookupDataset->addFields(
+                array(
+                    new IntegerField('idCompra', true, true, true),
+                    new IntegerField('quantidade', true),
+                    new DateTimeField('dataCompra', true),
+                    new StringField('descricao'),
+                    new IntegerField('idFornecedor', true)
+                )
+            );
+            $lookupDataset->setOrderByField('quantidade', 'ASC');
+            $handler = new DynamicSearchHandler($lookupDataset, 'multi_edit_ADG2L_CompraProduto_quantidade_search', 'idCompra', 'quantidade', null, 20);
             GetApplication()->RegisterHTTPHandler($handler);
         }
        

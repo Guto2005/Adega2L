@@ -36,7 +36,7 @@
         protected function DoBeforeCreate()
         {
             $this->SetTitle('ADG2 L Venda Produtos');
-            $this->SetMenuLabel('ADG2 L Venda Produtos');
+            $this->SetMenuLabel('Venda Produtos');
     
             $this->dataset = new TableDataset(
                 MySqlIConnectionFactory::getInstance(),
@@ -49,8 +49,8 @@
                     new IntegerField('qtdItensVendidos', true)
                 )
             );
-            $this->dataset->AddLookupField('idProduto', 'ADG2L_Produtos', new IntegerField('idProduto'), new IntegerField('idCategoria', false, false, false, false, 'idProduto_idCategoria', 'idProduto_idCategoria_ADG2L_Produtos'), 'idProduto_idCategoria_ADG2L_Produtos');
-            $this->dataset->AddLookupField('idVenda', 'ADG2L_Vendas', new IntegerField('idVenda'), new IntegerField('idUsuario', false, false, false, false, 'idVenda_idUsuario', 'idVenda_idUsuario_ADG2L_Vendas'), 'idVenda_idUsuario_ADG2L_Vendas');
+            $this->dataset->AddLookupField('idProduto', 'ADG2L_Produtos', new IntegerField('idProduto'), new IntegerField('idProduto', false, false, false, false, 'idProduto_idProduto', 'idProduto_idProduto_ADG2L_Produtos'), 'idProduto_idProduto_ADG2L_Produtos');
+            $this->dataset->AddLookupField('idVenda', 'ADG2L_Vendas', new IntegerField('idVenda'), new IntegerField('idVenda', false, false, false, false, 'idVenda_idVenda', 'idVenda_idVenda_ADG2L_Vendas'), 'idVenda_idVenda_ADG2L_Vendas');
         }
     
         protected function DoPrepare() {
@@ -81,8 +81,8 @@
         protected function getFiltersColumns()
         {
             return array(
-                new FilterColumn($this->dataset, 'idProduto', 'idProduto_idCategoria', 'Id Produto'),
-                new FilterColumn($this->dataset, 'idVenda', 'idVenda_idUsuario', 'Id Venda'),
+                new FilterColumn($this->dataset, 'idProduto', 'idProduto_idProduto', 'Id Produto'),
+                new FilterColumn($this->dataset, 'idVenda', 'idVenda_idVenda', 'Id Venda'),
                 new FilterColumn($this->dataset, 'qtdItensVendidos', 'qtdItensVendidos', 'Qtd Itens Vendidos')
             );
         }
@@ -227,19 +227,19 @@
         protected function AddFieldColumns(Grid $grid, $withDetails = true)
         {
             //
-            // View column for idCategoria field
+            // View column for idProduto field
             //
-            $column = new NumberViewColumn('idProduto', 'idProduto_idCategoria', 'Id Produto', $this->dataset);
+            $column = new NumberViewColumn('idProduto', 'idProduto_idProduto', 'Id Produto', $this->dataset);
             $column->SetOrderable(true);
-            $column->setNumberAfterDecimal(0);
+            $column->setNumberAfterDecimal(2);
             $column->setThousandsSeparator(',');
-            $column->setDecimalSeparator('');
+            $column->setDecimalSeparator('.');
             $column->setMinimalVisibility(ColumnVisibility::PHONE);
             $grid->AddViewColumn($column);
             //
-            // View column for idUsuario field
+            // View column for idVenda field
             //
-            $column = new NumberViewColumn('idVenda', 'idVenda_idUsuario', 'Id Venda', $this->dataset);
+            $column = new NumberViewColumn('idVenda', 'idVenda_idVenda', 'Id Venda', $this->dataset);
             $column->SetOrderable(true);
             $column->setNumberAfterDecimal(0);
             $column->setThousandsSeparator(',');
@@ -261,19 +261,19 @@
         protected function AddSingleRecordViewColumns(Grid $grid)
         {
             //
-            // View column for idCategoria field
+            // View column for idProduto field
             //
-            $column = new NumberViewColumn('idProduto', 'idProduto_idCategoria', 'Id Produto', $this->dataset);
+            $column = new NumberViewColumn('idProduto', 'idProduto_idProduto', 'Id Produto', $this->dataset);
             $column->SetOrderable(true);
-            $column->setNumberAfterDecimal(0);
+            $column->setNumberAfterDecimal(2);
             $column->setThousandsSeparator(',');
-            $column->setDecimalSeparator('');
+            $column->setDecimalSeparator('.');
             $grid->AddSingleRecordViewColumn($column);
             
             //
-            // View column for idUsuario field
+            // View column for idVenda field
             //
-            $column = new NumberViewColumn('idVenda', 'idVenda_idUsuario', 'Id Venda', $this->dataset);
+            $column = new NumberViewColumn('idVenda', 'idVenda_idVenda', 'Id Venda', $this->dataset);
             $column->SetOrderable(true);
             $column->setNumberAfterDecimal(0);
             $column->setThousandsSeparator(',');
@@ -319,8 +319,8 @@
                     new StringField('imagemProduto')
                 )
             );
-            $lookupDataset->setOrderByField('idCategoria', 'ASC');
-            $editColumn = new DynamicLookupEditColumn('Id Produto', 'idProduto', 'idProduto_idCategoria', 'edit_ADG2L_VendaProdutos_idProduto_search', $editor, $this->dataset, $lookupDataset, 'idProduto', 'idCategoria', '');
+            $lookupDataset->setOrderByField('idProduto', 'ASC');
+            $editColumn = new DynamicLookupEditColumn('Id Produto', 'idProduto', 'idProduto_idProduto', 'edit_ADG2L_VendaProdutos_idProduto_search', $editor, $this->dataset, $lookupDataset, 'idProduto', 'idProduto', '');
             $validator = new RequiredValidator(StringUtils::Format($this->GetLocalizerCaptions()->GetMessageString('RequiredValidationMessage'), $editColumn->GetCaption()));
             $editor->GetValidatorCollection()->AddValidator($validator);
             $this->ApplyCommonColumnEditProperties($editColumn);
@@ -345,8 +345,8 @@
                     new StringField('formaDePagamento', true)
                 )
             );
-            $lookupDataset->setOrderByField('idUsuario', 'ASC');
-            $editColumn = new DynamicLookupEditColumn('Id Venda', 'idVenda', 'idVenda_idUsuario', 'edit_ADG2L_VendaProdutos_idVenda_search', $editor, $this->dataset, $lookupDataset, 'idVenda', 'idUsuario', '');
+            $lookupDataset->setOrderByField('idVenda', 'ASC');
+            $editColumn = new DynamicLookupEditColumn('Id Venda', 'idVenda', 'idVenda_idVenda', 'edit_ADG2L_VendaProdutos_idVenda_search', $editor, $this->dataset, $lookupDataset, 'idVenda', 'idVenda', '');
             $validator = new RequiredValidator(StringUtils::Format($this->GetLocalizerCaptions()->GetMessageString('RequiredValidationMessage'), $editColumn->GetCaption()));
             $editor->GetValidatorCollection()->AddValidator($validator);
             $this->ApplyCommonColumnEditProperties($editColumn);
@@ -409,8 +409,8 @@
                     new StringField('imagemProduto')
                 )
             );
-            $lookupDataset->setOrderByField('idCategoria', 'ASC');
-            $editColumn = new DynamicLookupEditColumn('Id Produto', 'idProduto', 'idProduto_idCategoria', 'insert_ADG2L_VendaProdutos_idProduto_search', $editor, $this->dataset, $lookupDataset, 'idProduto', 'idCategoria', '');
+            $lookupDataset->setOrderByField('idProduto', 'ASC');
+            $editColumn = new DynamicLookupEditColumn('Id Produto', 'idProduto', 'idProduto_idProduto', 'insert_ADG2L_VendaProdutos_idProduto_search', $editor, $this->dataset, $lookupDataset, 'idProduto', 'idProduto', '');
             $validator = new RequiredValidator(StringUtils::Format($this->GetLocalizerCaptions()->GetMessageString('RequiredValidationMessage'), $editColumn->GetCaption()));
             $editor->GetValidatorCollection()->AddValidator($validator);
             $this->ApplyCommonColumnEditProperties($editColumn);
@@ -435,8 +435,8 @@
                     new StringField('formaDePagamento', true)
                 )
             );
-            $lookupDataset->setOrderByField('idUsuario', 'ASC');
-            $editColumn = new DynamicLookupEditColumn('Id Venda', 'idVenda', 'idVenda_idUsuario', 'insert_ADG2L_VendaProdutos_idVenda_search', $editor, $this->dataset, $lookupDataset, 'idVenda', 'idUsuario', '');
+            $lookupDataset->setOrderByField('idVenda', 'ASC');
+            $editColumn = new DynamicLookupEditColumn('Id Venda', 'idVenda', 'idVenda_idVenda', 'insert_ADG2L_VendaProdutos_idVenda_search', $editor, $this->dataset, $lookupDataset, 'idVenda', 'idVenda', '');
             $validator = new RequiredValidator(StringUtils::Format($this->GetLocalizerCaptions()->GetMessageString('RequiredValidationMessage'), $editColumn->GetCaption()));
             $editor->GetValidatorCollection()->AddValidator($validator);
             $this->ApplyCommonColumnEditProperties($editColumn);
@@ -462,19 +462,19 @@
         protected function AddPrintColumns(Grid $grid)
         {
             //
-            // View column for idCategoria field
+            // View column for idProduto field
             //
-            $column = new NumberViewColumn('idProduto', 'idProduto_idCategoria', 'Id Produto', $this->dataset);
+            $column = new NumberViewColumn('idProduto', 'idProduto_idProduto', 'Id Produto', $this->dataset);
             $column->SetOrderable(true);
-            $column->setNumberAfterDecimal(0);
+            $column->setNumberAfterDecimal(2);
             $column->setThousandsSeparator(',');
-            $column->setDecimalSeparator('');
+            $column->setDecimalSeparator('.');
             $grid->AddPrintColumn($column);
             
             //
-            // View column for idUsuario field
+            // View column for idVenda field
             //
-            $column = new NumberViewColumn('idVenda', 'idVenda_idUsuario', 'Id Venda', $this->dataset);
+            $column = new NumberViewColumn('idVenda', 'idVenda_idVenda', 'Id Venda', $this->dataset);
             $column->SetOrderable(true);
             $column->setNumberAfterDecimal(0);
             $column->setThousandsSeparator(',');
@@ -495,19 +495,19 @@
         protected function AddExportColumns(Grid $grid)
         {
             //
-            // View column for idCategoria field
+            // View column for idProduto field
             //
-            $column = new NumberViewColumn('idProduto', 'idProduto_idCategoria', 'Id Produto', $this->dataset);
+            $column = new NumberViewColumn('idProduto', 'idProduto_idProduto', 'Id Produto', $this->dataset);
             $column->SetOrderable(true);
-            $column->setNumberAfterDecimal(0);
+            $column->setNumberAfterDecimal(2);
             $column->setThousandsSeparator(',');
-            $column->setDecimalSeparator('');
+            $column->setDecimalSeparator('.');
             $grid->AddExportColumn($column);
             
             //
-            // View column for idUsuario field
+            // View column for idVenda field
             //
-            $column = new NumberViewColumn('idVenda', 'idVenda_idUsuario', 'Id Venda', $this->dataset);
+            $column = new NumberViewColumn('idVenda', 'idVenda_idVenda', 'Id Venda', $this->dataset);
             $column->SetOrderable(true);
             $column->setNumberAfterDecimal(0);
             $column->setThousandsSeparator(',');
@@ -528,19 +528,19 @@
         private function AddCompareColumns(Grid $grid)
         {
             //
-            // View column for idCategoria field
+            // View column for idProduto field
             //
-            $column = new NumberViewColumn('idProduto', 'idProduto_idCategoria', 'Id Produto', $this->dataset);
+            $column = new NumberViewColumn('idProduto', 'idProduto_idProduto', 'Id Produto', $this->dataset);
             $column->SetOrderable(true);
-            $column->setNumberAfterDecimal(0);
+            $column->setNumberAfterDecimal(2);
             $column->setThousandsSeparator(',');
-            $column->setDecimalSeparator('');
+            $column->setDecimalSeparator('.');
             $grid->AddCompareColumn($column);
             
             //
-            // View column for idUsuario field
+            // View column for idVenda field
             //
-            $column = new NumberViewColumn('idVenda', 'idVenda_idUsuario', 'Id Venda', $this->dataset);
+            $column = new NumberViewColumn('idVenda', 'idVenda_idVenda', 'Id Venda', $this->dataset);
             $column->SetOrderable(true);
             $column->setNumberAfterDecimal(0);
             $column->setThousandsSeparator(',');
@@ -672,8 +672,8 @@
                     new StringField('imagemProduto')
                 )
             );
-            $lookupDataset->setOrderByField('idCategoria', 'ASC');
-            $handler = new DynamicSearchHandler($lookupDataset, 'insert_ADG2L_VendaProdutos_idProduto_search', 'idProduto', 'idCategoria', null, 20);
+            $lookupDataset->setOrderByField('idProduto', 'ASC');
+            $handler = new DynamicSearchHandler($lookupDataset, 'insert_ADG2L_VendaProdutos_idProduto_search', 'idProduto', 'idProduto', null, 20);
             GetApplication()->RegisterHTTPHandler($handler);
             
             $lookupDataset = new TableDataset(
@@ -689,8 +689,8 @@
                     new StringField('formaDePagamento', true)
                 )
             );
-            $lookupDataset->setOrderByField('idUsuario', 'ASC');
-            $handler = new DynamicSearchHandler($lookupDataset, 'insert_ADG2L_VendaProdutos_idVenda_search', 'idVenda', 'idUsuario', null, 20);
+            $lookupDataset->setOrderByField('idVenda', 'ASC');
+            $handler = new DynamicSearchHandler($lookupDataset, 'insert_ADG2L_VendaProdutos_idVenda_search', 'idVenda', 'idVenda', null, 20);
             GetApplication()->RegisterHTTPHandler($handler);
             
             $lookupDataset = new TableDataset(
@@ -713,8 +713,8 @@
                     new StringField('imagemProduto')
                 )
             );
-            $lookupDataset->setOrderByField('idCategoria', 'ASC');
-            $handler = new DynamicSearchHandler($lookupDataset, 'filter_builder_ADG2L_VendaProdutos_idProduto_search', 'idProduto', 'idCategoria', null, 20);
+            $lookupDataset->setOrderByField('idProduto', 'ASC');
+            $handler = new DynamicSearchHandler($lookupDataset, 'filter_builder_ADG2L_VendaProdutos_idProduto_search', 'idProduto', 'idProduto', null, 20);
             GetApplication()->RegisterHTTPHandler($handler);
             
             $lookupDataset = new TableDataset(
@@ -730,8 +730,8 @@
                     new StringField('formaDePagamento', true)
                 )
             );
-            $lookupDataset->setOrderByField('idUsuario', 'ASC');
-            $handler = new DynamicSearchHandler($lookupDataset, 'filter_builder_ADG2L_VendaProdutos_idVenda_search', 'idVenda', 'idUsuario', null, 20);
+            $lookupDataset->setOrderByField('idVenda', 'ASC');
+            $handler = new DynamicSearchHandler($lookupDataset, 'filter_builder_ADG2L_VendaProdutos_idVenda_search', 'idVenda', 'idVenda', null, 20);
             GetApplication()->RegisterHTTPHandler($handler);
             
             $lookupDataset = new TableDataset(
@@ -754,8 +754,8 @@
                     new StringField('imagemProduto')
                 )
             );
-            $lookupDataset->setOrderByField('idCategoria', 'ASC');
-            $handler = new DynamicSearchHandler($lookupDataset, 'edit_ADG2L_VendaProdutos_idProduto_search', 'idProduto', 'idCategoria', null, 20);
+            $lookupDataset->setOrderByField('idProduto', 'ASC');
+            $handler = new DynamicSearchHandler($lookupDataset, 'edit_ADG2L_VendaProdutos_idProduto_search', 'idProduto', 'idProduto', null, 20);
             GetApplication()->RegisterHTTPHandler($handler);
             
             $lookupDataset = new TableDataset(
@@ -771,8 +771,8 @@
                     new StringField('formaDePagamento', true)
                 )
             );
-            $lookupDataset->setOrderByField('idUsuario', 'ASC');
-            $handler = new DynamicSearchHandler($lookupDataset, 'edit_ADG2L_VendaProdutos_idVenda_search', 'idVenda', 'idUsuario', null, 20);
+            $lookupDataset->setOrderByField('idVenda', 'ASC');
+            $handler = new DynamicSearchHandler($lookupDataset, 'edit_ADG2L_VendaProdutos_idVenda_search', 'idVenda', 'idVenda', null, 20);
             GetApplication()->RegisterHTTPHandler($handler);
         }
        

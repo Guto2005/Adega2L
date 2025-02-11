@@ -1793,7 +1793,7 @@
         protected function DoBeforeCreate()
         {
             $this->SetTitle('ADG2 L Fornecedor');
-            $this->SetMenuLabel('ADG2 L Fornecedor');
+            $this->SetMenuLabel('Fornecedor');
     
             $this->dataset = new TableDataset(
                 MySqlIConnectionFactory::getInstance(),
@@ -1847,7 +1847,6 @@
         protected function setupQuickFilter(QuickFilter $quickFilter, FixedKeysArray $columns)
         {
             $quickFilter
-                ->addColumn($columns['idFornecedor'])
                 ->addColumn($columns['nomeFornecedor'])
                 ->addColumn($columns['contatoTel'])
                 ->addColumn($columns['CNPJ']);
@@ -1860,24 +1859,6 @@
     
         protected function setupFilterBuilder(FilterBuilder $filterBuilder, FixedKeysArray $columns)
         {
-            $main_editor = new TextEdit('idfornecedor_edit');
-            
-            $filterBuilder->addColumn(
-                $columns['idFornecedor'],
-                array(
-                    FilterConditionOperator::EQUALS => $main_editor,
-                    FilterConditionOperator::DOES_NOT_EQUAL => $main_editor,
-                    FilterConditionOperator::IS_GREATER_THAN => $main_editor,
-                    FilterConditionOperator::IS_GREATER_THAN_OR_EQUAL_TO => $main_editor,
-                    FilterConditionOperator::IS_LESS_THAN => $main_editor,
-                    FilterConditionOperator::IS_LESS_THAN_OR_EQUAL_TO => $main_editor,
-                    FilterConditionOperator::IS_BETWEEN => $main_editor,
-                    FilterConditionOperator::IS_NOT_BETWEEN => $main_editor,
-                    FilterConditionOperator::IS_BLANK => null,
-                    FilterConditionOperator::IS_NOT_BLANK => null
-                )
-            );
-            
             $main_editor = new TextEdit('nomefornecedor_edit');
             $main_editor->SetMaxLength(45);
             
@@ -2014,16 +1995,6 @@
             }
             
             //
-            // View column for idFornecedor field
-            //
-            $column = new NumberViewColumn('idFornecedor', 'idFornecedor', 'Id Fornecedor', $this->dataset);
-            $column->SetOrderable(true);
-            $column->setNumberAfterDecimal(0);
-            $column->setThousandsSeparator(',');
-            $column->setDecimalSeparator('');
-            $column->setMinimalVisibility(ColumnVisibility::PHONE);
-            $grid->AddViewColumn($column);
-            //
             // View column for nomeFornecedor field
             //
             $column = new TextViewColumn('nomeFornecedor', 'nomeFornecedor', 'Nome Fornecedor', $this->dataset);
@@ -2049,16 +2020,6 @@
         protected function AddSingleRecordViewColumns(Grid $grid)
         {
             //
-            // View column for idFornecedor field
-            //
-            $column = new NumberViewColumn('idFornecedor', 'idFornecedor', 'Id Fornecedor', $this->dataset);
-            $column->SetOrderable(true);
-            $column->setNumberAfterDecimal(0);
-            $column->setThousandsSeparator(',');
-            $column->setDecimalSeparator('');
-            $grid->AddSingleRecordViewColumn($column);
-            
-            //
             // View column for nomeFornecedor field
             //
             $column = new TextViewColumn('nomeFornecedor', 'nomeFornecedor', 'Nome Fornecedor', $this->dataset);
@@ -2082,16 +2043,6 @@
     
         protected function AddEditColumns(Grid $grid)
         {
-            //
-            // Edit column for idFornecedor field
-            //
-            $editor = new TextEdit('idfornecedor_edit');
-            $editColumn = new CustomEditColumn('Id Fornecedor', 'idFornecedor', $editor, $this->dataset);
-            $validator = new RequiredValidator(StringUtils::Format($this->GetLocalizerCaptions()->GetMessageString('RequiredValidationMessage'), $editColumn->GetCaption()));
-            $editor->GetValidatorCollection()->AddValidator($validator);
-            $this->ApplyCommonColumnEditProperties($editColumn);
-            $grid->AddEditColumn($editColumn);
-            
             //
             // Edit column for nomeFornecedor field
             //
@@ -2170,16 +2121,6 @@
         protected function AddInsertColumns(Grid $grid)
         {
             //
-            // Edit column for idFornecedor field
-            //
-            $editor = new TextEdit('idfornecedor_edit');
-            $editColumn = new CustomEditColumn('Id Fornecedor', 'idFornecedor', $editor, $this->dataset);
-            $validator = new RequiredValidator(StringUtils::Format($this->GetLocalizerCaptions()->GetMessageString('RequiredValidationMessage'), $editColumn->GetCaption()));
-            $editor->GetValidatorCollection()->AddValidator($validator);
-            $this->ApplyCommonColumnEditProperties($editColumn);
-            $grid->AddInsertColumn($editColumn);
-            
-            //
             // Edit column for nomeFornecedor field
             //
             $editor = new TextEdit('nomefornecedor_edit');
@@ -2222,16 +2163,6 @@
         protected function AddPrintColumns(Grid $grid)
         {
             //
-            // View column for idFornecedor field
-            //
-            $column = new NumberViewColumn('idFornecedor', 'idFornecedor', 'Id Fornecedor', $this->dataset);
-            $column->SetOrderable(true);
-            $column->setNumberAfterDecimal(0);
-            $column->setThousandsSeparator(',');
-            $column->setDecimalSeparator('');
-            $grid->AddPrintColumn($column);
-            
-            //
             // View column for nomeFornecedor field
             //
             $column = new TextViewColumn('nomeFornecedor', 'nomeFornecedor', 'Nome Fornecedor', $this->dataset);
@@ -2256,16 +2187,6 @@
         protected function AddExportColumns(Grid $grid)
         {
             //
-            // View column for idFornecedor field
-            //
-            $column = new NumberViewColumn('idFornecedor', 'idFornecedor', 'Id Fornecedor', $this->dataset);
-            $column->SetOrderable(true);
-            $column->setNumberAfterDecimal(0);
-            $column->setThousandsSeparator(',');
-            $column->setDecimalSeparator('');
-            $grid->AddExportColumn($column);
-            
-            //
             // View column for nomeFornecedor field
             //
             $column = new TextViewColumn('nomeFornecedor', 'nomeFornecedor', 'Nome Fornecedor', $this->dataset);
@@ -2289,16 +2210,6 @@
     
         private function AddCompareColumns(Grid $grid)
         {
-            //
-            // View column for idFornecedor field
-            //
-            $column = new NumberViewColumn('idFornecedor', 'idFornecedor', 'Id Fornecedor', $this->dataset);
-            $column->SetOrderable(true);
-            $column->setNumberAfterDecimal(0);
-            $column->setThousandsSeparator(',');
-            $column->setDecimalSeparator('');
-            $grid->AddCompareColumn($column);
-            
             //
             // View column for nomeFornecedor field
             //

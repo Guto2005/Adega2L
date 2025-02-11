@@ -36,7 +36,7 @@
         protected function DoBeforeCreate()
         {
             $this->SetTitle('ADG2 L Movimentacao Estoque');
-            $this->SetMenuLabel('ADG2 L Movimentacao Estoque');
+            $this->SetMenuLabel('Movimentacao Estoque');
     
             $this->dataset = new TableDataset(
                 MySqlIConnectionFactory::getInstance(),
@@ -52,7 +52,7 @@
                     new StringField('descricao')
                 )
             );
-            $this->dataset->AddLookupField('idProduto', 'ADG2L_Produtos', new IntegerField('idProduto'), new IntegerField('idCategoria', false, false, false, false, 'idProduto_idCategoria', 'idProduto_idCategoria_ADG2L_Produtos'), 'idProduto_idCategoria_ADG2L_Produtos');
+            $this->dataset->AddLookupField('idProduto', 'ADG2L_Produtos', new IntegerField('idProduto'), new StringField('nomeProduto', false, false, false, false, 'idProduto_nomeProduto', 'idProduto_nomeProduto_ADG2L_Produtos'), 'idProduto_nomeProduto_ADG2L_Produtos');
         }
     
         protected function DoPrepare() {
@@ -84,7 +84,7 @@
         {
             return array(
                 new FilterColumn($this->dataset, 'idMovimentacao', 'idMovimentacao', 'Id Movimentacao'),
-                new FilterColumn($this->dataset, 'idProduto', 'idProduto_idCategoria', 'Id Produto'),
+                new FilterColumn($this->dataset, 'idProduto', 'idProduto_nomeProduto', 'Id Produto'),
                 new FilterColumn($this->dataset, 'tipoMovimentacao', 'tipoMovimentacao', 'Tipo Movimentacao'),
                 new FilterColumn($this->dataset, 'quantidade', 'quantidade', 'Quantidade'),
                 new FilterColumn($this->dataset, 'dataMovimentacao', 'dataMovimentacao', 'Data Movimentacao'),
@@ -95,7 +95,6 @@
         protected function setupQuickFilter(QuickFilter $quickFilter, FixedKeysArray $columns)
         {
             $quickFilter
-                ->addColumn($columns['idMovimentacao'])
                 ->addColumn($columns['idProduto'])
                 ->addColumn($columns['tipoMovimentacao'])
                 ->addColumn($columns['quantidade'])
@@ -112,24 +111,6 @@
     
         protected function setupFilterBuilder(FilterBuilder $filterBuilder, FixedKeysArray $columns)
         {
-            $main_editor = new TextEdit('idmovimentacao_edit');
-            
-            $filterBuilder->addColumn(
-                $columns['idMovimentacao'],
-                array(
-                    FilterConditionOperator::EQUALS => $main_editor,
-                    FilterConditionOperator::DOES_NOT_EQUAL => $main_editor,
-                    FilterConditionOperator::IS_GREATER_THAN => $main_editor,
-                    FilterConditionOperator::IS_GREATER_THAN_OR_EQUAL_TO => $main_editor,
-                    FilterConditionOperator::IS_LESS_THAN => $main_editor,
-                    FilterConditionOperator::IS_LESS_THAN_OR_EQUAL_TO => $main_editor,
-                    FilterConditionOperator::IS_BETWEEN => $main_editor,
-                    FilterConditionOperator::IS_NOT_BETWEEN => $main_editor,
-                    FilterConditionOperator::IS_BLANK => null,
-                    FilterConditionOperator::IS_NOT_BLANK => null
-                )
-            );
-            
             $main_editor = new DynamicCombobox('idproduto_edit', $this->CreateLinkBuilder());
             $main_editor->setAllowClear(true);
             $main_editor->setMinimumInputLength(0);
@@ -296,23 +277,10 @@
         protected function AddFieldColumns(Grid $grid, $withDetails = true)
         {
             //
-            // View column for idMovimentacao field
+            // View column for nomeProduto field
             //
-            $column = new NumberViewColumn('idMovimentacao', 'idMovimentacao', 'Id Movimentacao', $this->dataset);
+            $column = new TextViewColumn('idProduto', 'idProduto_nomeProduto', 'Id Produto', $this->dataset);
             $column->SetOrderable(true);
-            $column->setNumberAfterDecimal(0);
-            $column->setThousandsSeparator(',');
-            $column->setDecimalSeparator('');
-            $column->setMinimalVisibility(ColumnVisibility::PHONE);
-            $grid->AddViewColumn($column);
-            //
-            // View column for idCategoria field
-            //
-            $column = new NumberViewColumn('idProduto', 'idProduto_idCategoria', 'Id Produto', $this->dataset);
-            $column->SetOrderable(true);
-            $column->setNumberAfterDecimal(0);
-            $column->setThousandsSeparator(',');
-            $column->setDecimalSeparator('');
             $column->setMinimalVisibility(ColumnVisibility::PHONE);
             $grid->AddViewColumn($column);
             //
@@ -353,23 +321,10 @@
         protected function AddSingleRecordViewColumns(Grid $grid)
         {
             //
-            // View column for idMovimentacao field
+            // View column for nomeProduto field
             //
-            $column = new NumberViewColumn('idMovimentacao', 'idMovimentacao', 'Id Movimentacao', $this->dataset);
+            $column = new TextViewColumn('idProduto', 'idProduto_nomeProduto', 'Id Produto', $this->dataset);
             $column->SetOrderable(true);
-            $column->setNumberAfterDecimal(0);
-            $column->setThousandsSeparator(',');
-            $column->setDecimalSeparator('');
-            $grid->AddSingleRecordViewColumn($column);
-            
-            //
-            // View column for idCategoria field
-            //
-            $column = new NumberViewColumn('idProduto', 'idProduto_idCategoria', 'Id Produto', $this->dataset);
-            $column->SetOrderable(true);
-            $column->setNumberAfterDecimal(0);
-            $column->setThousandsSeparator(',');
-            $column->setDecimalSeparator('');
             $grid->AddSingleRecordViewColumn($column);
             
             //
@@ -409,16 +364,6 @@
         protected function AddEditColumns(Grid $grid)
         {
             //
-            // Edit column for idMovimentacao field
-            //
-            $editor = new TextEdit('idmovimentacao_edit');
-            $editColumn = new CustomEditColumn('Id Movimentacao', 'idMovimentacao', $editor, $this->dataset);
-            $validator = new RequiredValidator(StringUtils::Format($this->GetLocalizerCaptions()->GetMessageString('RequiredValidationMessage'), $editColumn->GetCaption()));
-            $editor->GetValidatorCollection()->AddValidator($validator);
-            $this->ApplyCommonColumnEditProperties($editColumn);
-            $grid->AddEditColumn($editColumn);
-            
-            //
             // Edit column for idProduto field
             //
             $editor = new DynamicCombobox('idproduto_edit', $this->CreateLinkBuilder());
@@ -444,8 +389,8 @@
                     new StringField('imagemProduto')
                 )
             );
-            $lookupDataset->setOrderByField('idCategoria', 'ASC');
-            $editColumn = new DynamicLookupEditColumn('Id Produto', 'idProduto', 'idProduto_idCategoria', 'edit_ADG2L_MovimentacaoEstoque_idProduto_search', $editor, $this->dataset, $lookupDataset, 'idProduto', 'idCategoria', '');
+            $lookupDataset->setOrderByField('nomeProduto', 'ASC');
+            $editColumn = new DynamicLookupEditColumn('Id Produto', 'idProduto', 'idProduto_nomeProduto', 'edit_ADG2L_MovimentacaoEstoque_idProduto_search', $editor, $this->dataset, $lookupDataset, 'idProduto', 'nomeProduto', '');
             $validator = new RequiredValidator(StringUtils::Format($this->GetLocalizerCaptions()->GetMessageString('RequiredValidationMessage'), $editColumn->GetCaption()));
             $editor->GetValidatorCollection()->AddValidator($validator);
             $this->ApplyCommonColumnEditProperties($editColumn);
@@ -520,8 +465,8 @@
                     new StringField('imagemProduto')
                 )
             );
-            $lookupDataset->setOrderByField('idCategoria', 'ASC');
-            $editColumn = new DynamicLookupEditColumn('Id Produto', 'idProduto', 'idProduto_idCategoria', 'multi_edit_ADG2L_MovimentacaoEstoque_idProduto_search', $editor, $this->dataset, $lookupDataset, 'idProduto', 'idCategoria', '');
+            $lookupDataset->setOrderByField('nomeProduto', 'ASC');
+            $editColumn = new DynamicLookupEditColumn('Id Produto', 'idProduto', 'idProduto_nomeProduto', 'multi_edit_ADG2L_MovimentacaoEstoque_idProduto_search', $editor, $this->dataset, $lookupDataset, 'idProduto', 'nomeProduto', '');
             $validator = new RequiredValidator(StringUtils::Format($this->GetLocalizerCaptions()->GetMessageString('RequiredValidationMessage'), $editColumn->GetCaption()));
             $editor->GetValidatorCollection()->AddValidator($validator);
             $this->ApplyCommonColumnEditProperties($editColumn);
@@ -576,16 +521,6 @@
         protected function AddInsertColumns(Grid $grid)
         {
             //
-            // Edit column for idMovimentacao field
-            //
-            $editor = new TextEdit('idmovimentacao_edit');
-            $editColumn = new CustomEditColumn('Id Movimentacao', 'idMovimentacao', $editor, $this->dataset);
-            $validator = new RequiredValidator(StringUtils::Format($this->GetLocalizerCaptions()->GetMessageString('RequiredValidationMessage'), $editColumn->GetCaption()));
-            $editor->GetValidatorCollection()->AddValidator($validator);
-            $this->ApplyCommonColumnEditProperties($editColumn);
-            $grid->AddInsertColumn($editColumn);
-            
-            //
             // Edit column for idProduto field
             //
             $editor = new DynamicCombobox('idproduto_edit', $this->CreateLinkBuilder());
@@ -611,8 +546,8 @@
                     new StringField('imagemProduto')
                 )
             );
-            $lookupDataset->setOrderByField('idCategoria', 'ASC');
-            $editColumn = new DynamicLookupEditColumn('Id Produto', 'idProduto', 'idProduto_idCategoria', 'insert_ADG2L_MovimentacaoEstoque_idProduto_search', $editor, $this->dataset, $lookupDataset, 'idProduto', 'idCategoria', '');
+            $lookupDataset->setOrderByField('nomeProduto', 'ASC');
+            $editColumn = new DynamicLookupEditColumn('Id Produto', 'idProduto', 'idProduto_nomeProduto', 'insert_ADG2L_MovimentacaoEstoque_idProduto_search', $editor, $this->dataset, $lookupDataset, 'idProduto', 'nomeProduto', '');
             $validator = new RequiredValidator(StringUtils::Format($this->GetLocalizerCaptions()->GetMessageString('RequiredValidationMessage'), $editColumn->GetCaption()));
             $editor->GetValidatorCollection()->AddValidator($validator);
             $this->ApplyCommonColumnEditProperties($editColumn);
@@ -668,23 +603,10 @@
         protected function AddPrintColumns(Grid $grid)
         {
             //
-            // View column for idMovimentacao field
+            // View column for nomeProduto field
             //
-            $column = new NumberViewColumn('idMovimentacao', 'idMovimentacao', 'Id Movimentacao', $this->dataset);
+            $column = new TextViewColumn('idProduto', 'idProduto_nomeProduto', 'Id Produto', $this->dataset);
             $column->SetOrderable(true);
-            $column->setNumberAfterDecimal(0);
-            $column->setThousandsSeparator(',');
-            $column->setDecimalSeparator('');
-            $grid->AddPrintColumn($column);
-            
-            //
-            // View column for idCategoria field
-            //
-            $column = new NumberViewColumn('idProduto', 'idProduto_idCategoria', 'Id Produto', $this->dataset);
-            $column->SetOrderable(true);
-            $column->setNumberAfterDecimal(0);
-            $column->setThousandsSeparator(',');
-            $column->setDecimalSeparator('');
             $grid->AddPrintColumn($column);
             
             //
@@ -724,23 +646,10 @@
         protected function AddExportColumns(Grid $grid)
         {
             //
-            // View column for idMovimentacao field
+            // View column for nomeProduto field
             //
-            $column = new NumberViewColumn('idMovimentacao', 'idMovimentacao', 'Id Movimentacao', $this->dataset);
+            $column = new TextViewColumn('idProduto', 'idProduto_nomeProduto', 'Id Produto', $this->dataset);
             $column->SetOrderable(true);
-            $column->setNumberAfterDecimal(0);
-            $column->setThousandsSeparator(',');
-            $column->setDecimalSeparator('');
-            $grid->AddExportColumn($column);
-            
-            //
-            // View column for idCategoria field
-            //
-            $column = new NumberViewColumn('idProduto', 'idProduto_idCategoria', 'Id Produto', $this->dataset);
-            $column->SetOrderable(true);
-            $column->setNumberAfterDecimal(0);
-            $column->setThousandsSeparator(',');
-            $column->setDecimalSeparator('');
             $grid->AddExportColumn($column);
             
             //
@@ -780,23 +689,10 @@
         private function AddCompareColumns(Grid $grid)
         {
             //
-            // View column for idMovimentacao field
+            // View column for nomeProduto field
             //
-            $column = new NumberViewColumn('idMovimentacao', 'idMovimentacao', 'Id Movimentacao', $this->dataset);
+            $column = new TextViewColumn('idProduto', 'idProduto_nomeProduto', 'Id Produto', $this->dataset);
             $column->SetOrderable(true);
-            $column->setNumberAfterDecimal(0);
-            $column->setThousandsSeparator(',');
-            $column->setDecimalSeparator('');
-            $grid->AddCompareColumn($column);
-            
-            //
-            // View column for idCategoria field
-            //
-            $column = new NumberViewColumn('idProduto', 'idProduto_idCategoria', 'Id Produto', $this->dataset);
-            $column->SetOrderable(true);
-            $column->setNumberAfterDecimal(0);
-            $column->setThousandsSeparator(',');
-            $column->setDecimalSeparator('');
             $grid->AddCompareColumn($column);
             
             //
@@ -947,8 +843,8 @@
                     new StringField('imagemProduto')
                 )
             );
-            $lookupDataset->setOrderByField('idCategoria', 'ASC');
-            $handler = new DynamicSearchHandler($lookupDataset, 'insert_ADG2L_MovimentacaoEstoque_idProduto_search', 'idProduto', 'idCategoria', null, 20);
+            $lookupDataset->setOrderByField('nomeProduto', 'ASC');
+            $handler = new DynamicSearchHandler($lookupDataset, 'insert_ADG2L_MovimentacaoEstoque_idProduto_search', 'idProduto', 'nomeProduto', null, 20);
             GetApplication()->RegisterHTTPHandler($handler);
             
             $lookupDataset = new TableDataset(
@@ -971,8 +867,8 @@
                     new StringField('imagemProduto')
                 )
             );
-            $lookupDataset->setOrderByField('idCategoria', 'ASC');
-            $handler = new DynamicSearchHandler($lookupDataset, 'filter_builder_ADG2L_MovimentacaoEstoque_idProduto_search', 'idProduto', 'idCategoria', null, 20);
+            $lookupDataset->setOrderByField('nomeProduto', 'ASC');
+            $handler = new DynamicSearchHandler($lookupDataset, 'filter_builder_ADG2L_MovimentacaoEstoque_idProduto_search', 'idProduto', 'nomeProduto', null, 20);
             GetApplication()->RegisterHTTPHandler($handler);
             
             $lookupDataset = new TableDataset(
@@ -995,8 +891,8 @@
                     new StringField('imagemProduto')
                 )
             );
-            $lookupDataset->setOrderByField('idCategoria', 'ASC');
-            $handler = new DynamicSearchHandler($lookupDataset, 'edit_ADG2L_MovimentacaoEstoque_idProduto_search', 'idProduto', 'idCategoria', null, 20);
+            $lookupDataset->setOrderByField('nomeProduto', 'ASC');
+            $handler = new DynamicSearchHandler($lookupDataset, 'edit_ADG2L_MovimentacaoEstoque_idProduto_search', 'idProduto', 'nomeProduto', null, 20);
             GetApplication()->RegisterHTTPHandler($handler);
             
             $lookupDataset = new TableDataset(
@@ -1019,8 +915,8 @@
                     new StringField('imagemProduto')
                 )
             );
-            $lookupDataset->setOrderByField('idCategoria', 'ASC');
-            $handler = new DynamicSearchHandler($lookupDataset, 'multi_edit_ADG2L_MovimentacaoEstoque_idProduto_search', 'idProduto', 'idCategoria', null, 20);
+            $lookupDataset->setOrderByField('nomeProduto', 'ASC');
+            $handler = new DynamicSearchHandler($lookupDataset, 'multi_edit_ADG2L_MovimentacaoEstoque_idProduto_search', 'idProduto', 'nomeProduto', null, 20);
             GetApplication()->RegisterHTTPHandler($handler);
         }
        

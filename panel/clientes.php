@@ -35,7 +35,7 @@
     {
         protected function DoBeforeCreate()
         {
-            $this->SetTitle('Clientes');
+            $this->SetTitle('Projeto Clientes');
             $this->SetMenuLabel('Clientes');
     
             $this->dataset = new TableDataset(

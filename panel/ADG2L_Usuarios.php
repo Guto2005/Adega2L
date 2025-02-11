@@ -407,7 +407,8 @@
                     new StringField('DDI', true),
                     new StringField('DDD', true),
                     new StringField('numeroTelefone'),
-                    new DateTimeField('dataNasc')
+                    new DateTimeField('dataNasc'),
+                    new StringField('token_recuperacao')
                 )
             );
             $lookupDataset->setOrderByField('nomeUsuario', 'ASC');
@@ -478,7 +479,8 @@
                     new StringField('DDI', true),
                     new StringField('DDD', true),
                     new StringField('numeroTelefone'),
-                    new DateTimeField('dataNasc')
+                    new DateTimeField('dataNasc'),
+                    new StringField('token_recuperacao')
                 )
             );
             $lookupDataset->setOrderByField('nomeUsuario', 'ASC');
@@ -564,7 +566,8 @@
                     new StringField('DDI', true),
                     new StringField('DDD', true),
                     new StringField('numeroTelefone'),
-                    new DateTimeField('dataNasc')
+                    new DateTimeField('dataNasc'),
+                    new StringField('token_recuperacao')
                 )
             );
             $lookupDataset->setOrderByField('nomeUsuario', 'ASC');
@@ -865,7 +868,8 @@
                     new StringField('DDI', true),
                     new StringField('DDD', true),
                     new StringField('numeroTelefone'),
-                    new DateTimeField('dataNasc')
+                    new DateTimeField('dataNasc'),
+                    new StringField('token_recuperacao')
                 )
             );
             $lookupDataset->setOrderByField('nomeUsuario', 'ASC');
@@ -893,7 +897,8 @@
                     new StringField('DDI', true),
                     new StringField('DDD', true),
                     new StringField('numeroTelefone'),
-                    new DateTimeField('dataNasc')
+                    new DateTimeField('dataNasc'),
+                    new StringField('token_recuperacao')
                 )
             );
             $lookupDataset->setOrderByField('nomeUsuario', 'ASC');
@@ -921,7 +926,8 @@
                     new StringField('DDI', true),
                     new StringField('DDD', true),
                     new StringField('numeroTelefone'),
-                    new DateTimeField('dataNasc')
+                    new DateTimeField('dataNasc'),
+                    new StringField('token_recuperacao')
                 )
             );
             $lookupDataset->setOrderByField('nomeUsuario', 'ASC');
@@ -949,7 +955,8 @@
                     new StringField('DDI', true),
                     new StringField('DDD', true),
                     new StringField('numeroTelefone'),
-                    new DateTimeField('dataNasc')
+                    new DateTimeField('dataNasc'),
+                    new StringField('token_recuperacao')
                 )
             );
             $lookupDataset->setOrderByField('nomeUsuario', 'ASC');
@@ -1108,7 +1115,7 @@
         protected function DoBeforeCreate()
         {
             $this->SetTitle('ADG2 L Usuarios');
-            $this->SetMenuLabel('ADG2 L Usuarios');
+            $this->SetMenuLabel('Usuarios');
     
             $this->dataset = new TableDataset(
                 MySqlIConnectionFactory::getInstance(),
@@ -1131,7 +1138,8 @@
                     new StringField('DDI', true),
                     new StringField('DDD', true),
                     new StringField('numeroTelefone'),
-                    new DateTimeField('dataNasc')
+                    new DateTimeField('dataNasc'),
+                    new StringField('token_recuperacao')
                 )
             );
         }
@@ -1179,14 +1187,14 @@
                 new FilterColumn($this->dataset, 'DDI', 'DDI', 'DDI'),
                 new FilterColumn($this->dataset, 'DDD', 'DDD', 'DDD'),
                 new FilterColumn($this->dataset, 'numeroTelefone', 'numeroTelefone', 'Numero Telefone'),
-                new FilterColumn($this->dataset, 'dataNasc', 'dataNasc', 'Data Nasc')
+                new FilterColumn($this->dataset, 'dataNasc', 'dataNasc', 'Data Nasc'),
+                new FilterColumn($this->dataset, 'token_recuperacao', 'token_recuperacao', 'Token Recuperacao')
             );
         }
     
         protected function setupQuickFilter(QuickFilter $quickFilter, FixedKeysArray $columns)
         {
             $quickFilter
-                ->addColumn($columns['idUsuario'])
                 ->addColumn($columns['nomeUsuario'])
                 ->addColumn($columns['senhaUsuario'])
                 ->addColumn($columns['emailUsuario'])
@@ -1201,7 +1209,8 @@
                 ->addColumn($columns['DDI'])
                 ->addColumn($columns['DDD'])
                 ->addColumn($columns['numeroTelefone'])
-                ->addColumn($columns['dataNasc']);
+                ->addColumn($columns['dataNasc'])
+                ->addColumn($columns['token_recuperacao']);
         }
     
         protected function setupColumnFilter(ColumnFilter $columnFilter)
@@ -1212,24 +1221,6 @@
     
         protected function setupFilterBuilder(FilterBuilder $filterBuilder, FixedKeysArray $columns)
         {
-            $main_editor = new TextEdit('idusuario_edit');
-            
-            $filterBuilder->addColumn(
-                $columns['idUsuario'],
-                array(
-                    FilterConditionOperator::EQUALS => $main_editor,
-                    FilterConditionOperator::DOES_NOT_EQUAL => $main_editor,
-                    FilterConditionOperator::IS_GREATER_THAN => $main_editor,
-                    FilterConditionOperator::IS_GREATER_THAN_OR_EQUAL_TO => $main_editor,
-                    FilterConditionOperator::IS_LESS_THAN => $main_editor,
-                    FilterConditionOperator::IS_LESS_THAN_OR_EQUAL_TO => $main_editor,
-                    FilterConditionOperator::IS_BETWEEN => $main_editor,
-                    FilterConditionOperator::IS_NOT_BETWEEN => $main_editor,
-                    FilterConditionOperator::IS_BLANK => null,
-                    FilterConditionOperator::IS_NOT_BLANK => null
-                )
-            );
-            
             $main_editor = new TextEdit('nomeusuario_edit');
             $main_editor->SetMaxLength(80);
             
@@ -1598,6 +1589,30 @@
                     FilterConditionOperator::IS_NOT_BLANK => null
                 )
             );
+            
+            $main_editor = new TextEdit('token_recuperacao');
+            
+            $filterBuilder->addColumn(
+                $columns['token_recuperacao'],
+                array(
+                    FilterConditionOperator::EQUALS => $main_editor,
+                    FilterConditionOperator::DOES_NOT_EQUAL => $main_editor,
+                    FilterConditionOperator::IS_GREATER_THAN => $main_editor,
+                    FilterConditionOperator::IS_GREATER_THAN_OR_EQUAL_TO => $main_editor,
+                    FilterConditionOperator::IS_LESS_THAN => $main_editor,
+                    FilterConditionOperator::IS_LESS_THAN_OR_EQUAL_TO => $main_editor,
+                    FilterConditionOperator::IS_BETWEEN => $main_editor,
+                    FilterConditionOperator::IS_NOT_BETWEEN => $main_editor,
+                    FilterConditionOperator::CONTAINS => $main_editor,
+                    FilterConditionOperator::DOES_NOT_CONTAIN => $main_editor,
+                    FilterConditionOperator::BEGINS_WITH => $main_editor,
+                    FilterConditionOperator::ENDS_WITH => $main_editor,
+                    FilterConditionOperator::IS_LIKE => $main_editor,
+                    FilterConditionOperator::IS_NOT_LIKE => $main_editor,
+                    FilterConditionOperator::IS_BLANK => null,
+                    FilterConditionOperator::IS_NOT_BLANK => null
+                )
+            );
         }
     
         protected function AddOperationsColumns(Grid $grid)
@@ -1779,20 +1794,18 @@
             $column->SetDateTimeFormat('d-m-Y H:i:s');
             $column->setMinimalVisibility(ColumnVisibility::PHONE);
             $grid->AddViewColumn($column);
+            //
+            // View column for token_recuperacao field
+            //
+            $column = new TextViewColumn('token_recuperacao', 'token_recuperacao', 'Token Recuperacao', $this->dataset);
+            $column->SetOrderable(true);
+            $column->SetMaxLength(75);
+            $column->setMinimalVisibility(ColumnVisibility::PHONE);
+            $grid->AddViewColumn($column);
         }
     
         protected function AddSingleRecordViewColumns(Grid $grid)
         {
-            //
-            // View column for idUsuario field
-            //
-            $column = new NumberViewColumn('idUsuario', 'idUsuario', 'Id Usuario', $this->dataset);
-            $column->SetOrderable(true);
-            $column->setNumberAfterDecimal(0);
-            $column->setThousandsSeparator(',');
-            $column->setDecimalSeparator('');
-            $grid->AddSingleRecordViewColumn($column);
-            
             //
             // View column for nomeUsuario field
             //
@@ -1901,6 +1914,14 @@
             $column = new DateTimeViewColumn('dataNasc', 'dataNasc', 'Data Nasc', $this->dataset);
             $column->SetOrderable(true);
             $column->SetDateTimeFormat('d-m-Y H:i:s');
+            $grid->AddSingleRecordViewColumn($column);
+            
+            //
+            // View column for token_recuperacao field
+            //
+            $column = new TextViewColumn('token_recuperacao', 'token_recuperacao', 'Token Recuperacao', $this->dataset);
+            $column->SetOrderable(true);
+            $column->SetMaxLength(75);
             $grid->AddSingleRecordViewColumn($column);
         }
     
@@ -2074,6 +2095,15 @@
             $editColumn->SetAllowSetToNull(true);
             $this->ApplyCommonColumnEditProperties($editColumn);
             $grid->AddEditColumn($editColumn);
+            
+            //
+            // Edit column for token_recuperacao field
+            //
+            $editor = new TextAreaEdit('token_recuperacao_edit', 50, 8);
+            $editColumn = new CustomEditColumn('Token Recuperacao', 'token_recuperacao', $editor, $this->dataset);
+            $editColumn->SetAllowSetToNull(true);
+            $this->ApplyCommonColumnEditProperties($editColumn);
+            $grid->AddEditColumn($editColumn);
         }
     
         protected function AddMultiEditColumns(Grid $grid)
@@ -2236,6 +2266,15 @@
             $editColumn->SetAllowSetToNull(true);
             $this->ApplyCommonColumnEditProperties($editColumn);
             $grid->AddMultiEditColumn($editColumn);
+            
+            //
+            // Edit column for token_recuperacao field
+            //
+            $editor = new TextAreaEdit('token_recuperacao_edit', 50, 8);
+            $editColumn = new CustomEditColumn('Token Recuperacao', 'token_recuperacao', $editor, $this->dataset);
+            $editColumn->SetAllowSetToNull(true);
+            $this->ApplyCommonColumnEditProperties($editColumn);
+            $grid->AddMultiEditColumn($editColumn);
         }
     
         protected function AddToggleEditColumns(Grid $grid)
@@ -2245,16 +2284,6 @@
     
         protected function AddInsertColumns(Grid $grid)
         {
-            //
-            // Edit column for idUsuario field
-            //
-            $editor = new TextEdit('idusuario_edit');
-            $editColumn = new CustomEditColumn('Id Usuario', 'idUsuario', $editor, $this->dataset);
-            $validator = new RequiredValidator(StringUtils::Format($this->GetLocalizerCaptions()->GetMessageString('RequiredValidationMessage'), $editColumn->GetCaption()));
-            $editor->GetValidatorCollection()->AddValidator($validator);
-            $this->ApplyCommonColumnEditProperties($editColumn);
-            $grid->AddInsertColumn($editColumn);
-            
             //
             // Edit column for nomeUsuario field
             //
@@ -2413,6 +2442,15 @@
             $editColumn->SetAllowSetToNull(true);
             $this->ApplyCommonColumnEditProperties($editColumn);
             $grid->AddInsertColumn($editColumn);
+            
+            //
+            // Edit column for token_recuperacao field
+            //
+            $editor = new TextAreaEdit('token_recuperacao_edit', 50, 8);
+            $editColumn = new CustomEditColumn('Token Recuperacao', 'token_recuperacao', $editor, $this->dataset);
+            $editColumn->SetAllowSetToNull(true);
+            $this->ApplyCommonColumnEditProperties($editColumn);
+            $grid->AddInsertColumn($editColumn);
             $grid->SetShowAddButton(true && $this->GetSecurityInfo()->HasAddGrant());
         }
     
@@ -2424,16 +2462,6 @@
         protected function AddPrintColumns(Grid $grid)
         {
             //
-            // View column for idUsuario field
-            //
-            $column = new NumberViewColumn('idUsuario', 'idUsuario', 'Id Usuario', $this->dataset);
-            $column->SetOrderable(true);
-            $column->setNumberAfterDecimal(0);
-            $column->setThousandsSeparator(',');
-            $column->setDecimalSeparator('');
-            $grid->AddPrintColumn($column);
-            
-            //
             // View column for nomeUsuario field
             //
             $column = new TextViewColumn('nomeUsuario', 'nomeUsuario', 'Nome Usuario', $this->dataset);
@@ -2541,22 +2569,20 @@
             $column = new DateTimeViewColumn('dataNasc', 'dataNasc', 'Data Nasc', $this->dataset);
             $column->SetOrderable(true);
             $column->SetDateTimeFormat('d-m-Y H:i:s');
+            $grid->AddPrintColumn($column);
+            
+            //
+            // View column for token_recuperacao field
+            //
+            $column = new TextViewColumn('token_recuperacao', 'token_recuperacao', 'Token Recuperacao', $this->dataset);
+            $column->SetOrderable(true);
+            $column->SetMaxLength(75);
             $grid->AddPrintColumn($column);
         }
     
         protected function AddExportColumns(Grid $grid)
         {
             //
-            // View column for idUsuario field
-            //
-            $column = new NumberViewColumn('idUsuario', 'idUsuario', 'Id Usuario', $this->dataset);
-            $column->SetOrderable(true);
-            $column->setNumberAfterDecimal(0);
-            $column->setThousandsSeparator(',');
-            $column->setDecimalSeparator('');
-            $grid->AddExportColumn($column);
-            
-            //
             // View column for nomeUsuario field
             //
             $column = new TextViewColumn('nomeUsuario', 'nomeUsuario', 'Nome Usuario', $this->dataset);
@@ -2664,22 +2690,20 @@
             $column = new DateTimeViewColumn('dataNasc', 'dataNasc', 'Data Nasc', $this->dataset);
             $column->SetOrderable(true);
             $column->SetDateTimeFormat('d-m-Y H:i:s');
+            $grid->AddExportColumn($column);
+            
+            //
+            // View column for token_recuperacao field
+            //
+            $column = new TextViewColumn('token_recuperacao', 'token_recuperacao', 'Token Recuperacao', $this->dataset);
+            $column->SetOrderable(true);
+            $column->SetMaxLength(75);
             $grid->AddExportColumn($column);
         }
     
         private function AddCompareColumns(Grid $grid)
         {
             //
-            // View column for idUsuario field
-            //
-            $column = new NumberViewColumn('idUsuario', 'idUsuario', 'Id Usuario', $this->dataset);
-            $column->SetOrderable(true);
-            $column->setNumberAfterDecimal(0);
-            $column->setThousandsSeparator(',');
-            $column->setDecimalSeparator('');
-            $grid->AddCompareColumn($column);
-            
-            //
             // View column for nomeUsuario field
             //
             $column = new TextViewColumn('nomeUsuario', 'nomeUsuario', 'Nome Usuario', $this->dataset);
@@ -2787,6 +2811,14 @@
             $column = new DateTimeViewColumn('dataNasc', 'dataNasc', 'Data Nasc', $this->dataset);
             $column->SetOrderable(true);
             $column->SetDateTimeFormat('d-m-Y H:i:s');
+            $grid->AddCompareColumn($column);
+            
+            //
+            // View column for token_recuperacao field
+            //
+            $column = new TextViewColumn('token_recuperacao', 'token_recuperacao', 'Token Recuperacao', $this->dataset);
+            $column->SetOrderable(true);
+            $column->SetMaxLength(75);
             $grid->AddCompareColumn($column);
         }
     
