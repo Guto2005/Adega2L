@@ -65,6 +65,7 @@ button {
     border-radius: 20px;
     border: none;
     transition: transform 0.3s, background-color 0.3s;
+    background-color: var(--cor-dourado);
   }
 
 a {
@@ -330,6 +331,11 @@ li {
     bottom: 11px;
 }
 
+.btn-add-carrinho {
+    font-size: 1.4vw;
+}
+
+
 .link-carrinho:hover {
     color: gold; /* Cor ao passar o mouse */
     transform: scale(1.2); /* Aumenta ligeiramente o tamanho */
@@ -439,8 +445,12 @@ li {
 }
 
 .img-produto {
-    width: 100%; /* Ajuste o tamanho conforme necessário */
-    height: auto;
+    width: 15vw;
+    height: 40vh;
+    object-fit: cover; /* Mantém a proporção e corta o excesso */
+    border-radius: 10px; /* Bordas arredondadas para um design mais bonito */
+    background-color: white;
+    padding: 20px;
 }
 
 /* Outros estilos podem ser necessários, ajuste conforme seu layout */

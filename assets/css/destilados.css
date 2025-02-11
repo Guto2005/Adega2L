@@ -111,6 +111,11 @@ img {vertical-align: middle;}
 
 }
 
+.produtos h2 {
+    font-size: 2.0vw;
+}
+
+
 .catalogo-titulo {
     color: var(--cor-branco);
     font-family: 'Sans-Variable';
@@ -142,17 +147,14 @@ img {vertical-align: middle;}
     gap: 20px;
     justify-content: center;
     overflow: hidden;
+    position: relative;
+    right: 4px;
 }
 
 .card-produto {
     width: 200px;
     box-sizing: border-box;
     margin-bottom: 20px;
-}
-
-.card-produto img {
-    width: 100%;
-    height: auto;
 }
 
 /* Ajuste de Responsividade */

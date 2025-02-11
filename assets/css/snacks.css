@@ -95,7 +95,7 @@ img {vertical-align: middle;}
     display: flex;
     flex-direction: column;
     align-items: center;
-    font-size: 4.0vw;
+    font-size: 20px;
     color: var(--cor-branco);
     width: 90%;
     margin: 0 auto;
@@ -109,6 +109,11 @@ img {vertical-align: middle;}
     font-family: 'Sans-Variable';
 
 }
+
+.produtos h2 {
+    font-size: 2.0vw;
+}
+
 
 .catalogo-titulo {
     color: var(--cor-branco);
@@ -141,17 +146,14 @@ img {vertical-align: middle;}
     gap: 20px;
     justify-content: center;
     overflow: hidden;
+    position: relative;
+    right: 17px;
 }
 
 .card-produto {
     width: 200px;
     box-sizing: border-box;
     margin-bottom: 20px;
-}
-
-.card-produto img {
-    width: 100%;
-    height: auto;
 }
 
 /* Ajuste de Responsividade */

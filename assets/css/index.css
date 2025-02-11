@@ -262,11 +262,14 @@ img {vertical-align: middle;}  /*perguntar depois p o gustavo*/
 
 /* Ajuste para padronizar todas as imagens */
 .card-produto img {
-    width: 200px;
-    height: 400px;
+    width: 15vw;
+    height: 40vh;
     object-fit: cover; /* Mantém a proporção e corta o excesso */
     border-radius: 10px; /* Bordas arredondadas para um design mais bonito */
+    background-color: white;
+    padding: 20px;
 }
+
 
 
 footer {
