@@ -73,7 +73,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <?php endif; ?>
 
         <div class="login-links">
-            <a class="login-links" href="esquecisenha.php">Esqueceu sua senha?</a>
+            <a class="login-links" href="./recuperacao/form.php">Esqueceu sua senha?</a>
             <a class="login-links" href="cadastro.php">Cadastre-se</a>
         </div>
     </form>
