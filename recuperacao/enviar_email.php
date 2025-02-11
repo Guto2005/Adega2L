@@ -1,4 +1,8 @@
 <?php
+// Exibir erros para depuração
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
 // Incluindo as bibliotecas do PHPMailer
 require 'phpmailer/PHPMailer.php';
 require 'phpmailer/Exception.php';
@@ -8,57 +12,62 @@ require 'phpmailer/SMTP.php';
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Criar uma instância do PHPMailer
-    $mail = new PHPMailer(true);
+// Conexão com o banco de dados
+include("conexao.php");
 
-    try {
-        // Capturar dados do formulário
-        $email_destino = filter_var($_POST['email'], FILTER_VALIDATE_EMAIL);
-        if (!$email_destino) {
-            throw new Exception('E-mail inválido.');
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $email = $_POST['email'];
+
+    // Verificar se o e-mail está cadastrado no banco
+    $query = "SELECT idUsuario, nomeUsuario FROM ADG2L_Usuarios WHERE emailUsuario = ?";
+    $stmt = $pdo->prepare($query);
+    $stmt->execute([$email]);
+    
+    if ($stmt->rowCount() > 0) {
+        // Gerar um token único
+        $user = $stmt->fetch();
+        $token = bin2hex(random_bytes(50));
+
+        // Salvar o token no banco de dados
+        $updateQuery = "UPDATE ADG2L_Usuarios SET token_recuperacao = ? WHERE emailUsuario = ?";
+        $stmt = $pdo->prepare($updateQuery);
+        $stmt->execute([$token, $email]);
+
+        // Gerar link real para recuperação
+        $linkRecuperacao = "http://localhost/Adega2L/recuperacao/recuperar_senha_form.php?token=" . $token;
+
+        // Enviar o e-mail com PHPMailer
+        $mail = new PHPMailer(true);
+        try {
+            // Configuração do servidor SMTP
+            $mail->isSMTP();
+            $mail->Host = 'smtp.gmail.com';
+            $mail->SMTPAuth = true;
+            $mail->Username = 'isabella.asltavares@gmail.com'; // Seu e-mail
+            $mail->Password = 'amgf taqx qcha kyzl'; // Senha de app do Gmail
+            $mail->SMTPSecure = 'tls'; // ou 'ssl'
+            $mail->Port = 587; // ou 465 se usar 'ssl'
+
+            // Definir a codificação como UTF-8
+            $mail->CharSet = 'UTF-8'; 
+            $mail->isHTML(true); // Configuração para e-mails em HTML
+            $mail->setFrom('noreply@seusite.com', 'Recuperação de Senha');
+            $mail->addAddress($email);
+
+            $mail->Subject = "Recuperação de Senha";
+            $mail->Body = "Olá " . htmlspecialchars($user['nomeUsuario']) . ",<br><br>"
+                        . "Clique no link abaixo para redefinir sua senha:<br>"
+                        . "<a href='" . $linkRecuperacao . "'>" . $linkRecuperacao . "</a><br><br>"
+                        . "Se você não solicitou isso, ignore este e-mail.";
+
+            // Enviar o e-mail
+            $mail->send();
+            echo "E-mail enviado com sucesso!";
+        } catch (Exception $e) {
+            echo "Erro ao enviar e-mail: " . $mail->ErrorInfo;
         }
-
-        // Gerar um token único para redefinição de senha
-        $token = bin2hex(random_bytes(16)); // Gera um token seguro
-        $link_redefinicao = "http://localhost/Adega2L/recuperacao/recuperar_senha.php?token=$token";
-
-
-        // Salvar o token no banco de dados (exemplo)
-        // Aqui você deve conectar ao banco de dados e salvar o token associado ao e-mail
-        // $conn = new mysqli('localhost', 'usuario', 'senha', 'banco');
-        // $stmt = $conn->prepare("INSERT INTO tokens (email, token) VALUES (?, ?)");
-        // $stmt->bind_param("ss", $email_destino, $token);
-        // $stmt->execute();
-
-        // Configuração do servidor SMTP
-        $mail->isSMTP();
-        $mail->Host = 'smtp.gmail.com';
-        $mail->SMTPAuth = true;
-        $mail->Username = 'isabella.asltavares@gmail.com';  // Seu e-mail
-        $mail->Password = 'amgf taqx qcha kyzl'; // Use a senha gerada no Google
-        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-        $mail->Port = 587;
-
-        // Definir a codificação para UTF-8
-        $mail->CharSet = 'UTF-8';  // Definir codificação
-
-        // Se o e-mail for em HTML (com links clicáveis, etc.)
-        $mail->isHTML(true);  // Definir como HTML
-
-        // Definir informações do e-mail
-        $mail->setFrom('isabella.asltavares@gmail.com', 'Seu Nome');
-        $mail->addAddress($email_destino, 'Usuário');
-        $mail->Subject = 'Recuperação de Senha';
-        $mail->Body    = "Olá, <br><br>Clique no link abaixo para redefinir sua senha:<br><br><a href=\"$link_redefinicao\">Clique aqui</a>";
-
-        // Enviar o e-mail
-        $mail->send();
-        echo 'E-mail enviado com sucesso!';
-    } catch (Exception $e) {
-        echo "Erro ao enviar o e-mail: {$e->getMessage()}";
+    } else {
+        echo "E-mail não cadastrado.";
     }
-} else {
-    echo 'Formulário de envio não enviado.';
 }
 ?>

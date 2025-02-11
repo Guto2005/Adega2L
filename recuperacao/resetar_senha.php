@@ -16,14 +16,16 @@ if (isset($_POST['token'], $_POST['senha'])) {
     $senha = $_POST['senha'];
 
     // Verificar se o token existe no banco de dados
-    $query = "SELECT id FROM usuarios WHERE token_recuperacao = ?";
+    $query = "SELECT idUsuario FROM ADG2L_Usuarios WHERE token_recuperacao = ?";
     $stmt = $pdo->prepare($query);
     $stmt->execute([$token]);
     
     if ($stmt->rowCount() > 0) {
         // Atualizar a senha (usando hash para segurança)
         $hashedPassword = password_hash($senha, PASSWORD_BCRYPT);
-        $updateQuery = "UPDATE usuarios SET senha = ?, token_recuperacao = NULL WHERE token_recuperacao = ?";
+        
+        // Atualizar a senha no banco e limpar o token
+        $updateQuery = "UPDATE ADG2L_Usuarios SET senhaUsuario = ?, token_recuperacao = NULL WHERE token_recuperacao = ?";
         $stmt = $pdo->prepare($updateQuery);
         $stmt->execute([$hashedPassword, $token]);
         
