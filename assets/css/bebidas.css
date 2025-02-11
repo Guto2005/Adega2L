@@ -103,6 +103,8 @@ img {vertical-align: middle;}
     text-align: center;
     gap: 32px;
     border: 2px solid var(--cor-dourado);
+    position: relative;
+    bottom: 200px;
 }
 
 
@@ -130,6 +132,7 @@ img {vertical-align: middle;}
     justify-content: center;
     overflow: hidden;
     font-size: 1.4vw;
+    width: 100%;
 }
 
 .destaques-bebidas ul {

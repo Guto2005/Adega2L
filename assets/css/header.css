@@ -390,6 +390,8 @@ li {
     background-color: var(--cor-preto);
     justify-content: center;
     border: 2px solid var(--cor-dourado);
+    position: relative;
+    bottom: 170px;
 }
 
 .nav-list li {
@@ -451,6 +453,7 @@ li {
     border-radius: 10px; /* Bordas arredondadas para um design mais bonito */
     background-color: white;
     padding: 20px;
+    border: 20px solid white;
 }
 
 /* Outros estilos podem ser necessários, ajuste conforme seu layout */

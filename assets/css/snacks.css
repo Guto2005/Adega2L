@@ -21,7 +21,7 @@
 }
 
 * {box-sizing:border-box}
-
+f
 body {
     margin: 0;
     padding: 0;
@@ -90,6 +90,11 @@ img {vertical-align: middle;}
     
 }
 
+.nav-list {
+    position: relative;
+    top: 80px;
+}
+
 .produtos {
     background-color: var(--cor-preto-claro);
     display: flex;
@@ -102,6 +107,8 @@ img {vertical-align: middle;}
     text-align: center;
     gap: 32px;
     border: 2px solid var(--cor-dourado);
+    position: relative;
+    top: 40px;
 }
 
 .destaque-titulo {
@@ -124,16 +131,17 @@ img {vertical-align: middle;}
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
-    gap: 20px;
     justify-content: center;
     overflow: hidden;
     font-size: 1.4vw;
+    width: 100%;
 }
 
 .destaques-snacks ul {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    gap: 64px;
     padding: 0;
     margin: 0;
     list-style-type: none;
